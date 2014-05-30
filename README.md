@@ -72,7 +72,7 @@ AGRONOMIA	es 151: Comuna 15, barrio 1.
 ALMAGRO		es 051: Comuna  5, barrio 1.
 BOEDO		es 052: Comuna  5, barrio 2.
 
-UPDATE `1_individuos2` SET id_barrio=51 WHERE barrio LIKE 'ALMAGRO'
+UPDATE '1_individuos2' SET id_barrio=51 WHERE barrio LIKE 'ALMAGRO'
 
 6
 renombrar columnas latitud por lat y longitud por lng ya que así las toma el plugin "simple-csv-master"
