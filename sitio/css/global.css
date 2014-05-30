@@ -1,0 +1,364 @@
+/*
+Goldilocks Approach to Responsive Web Design Boilerplate
+
+Author: Design by Front - @designbyfront
+Version: 0.1
+URL: http://www.goldilocksapproach.com
+----------------------------------------------------------------------------------------
+
+CONTENTS - GLOBAL.CSS
+-----------------------------------------
+1. RESET
+2. ROOT
+3. CORE TYPOGRAPHY
+4. LINKS
+5. GLOBAL LAYOUT & GLOBAL CUSTOM TYPOGRAPHY
+6. CUSTOM LAYOUT & TYPOGRAPHY (Baby bear)
+7. BROWSER AND NON-SEMANTIC STYLING
+
+CONTENTS - LAYOUT.CSS
+-----------------------------------------
+8. CUSTOM LAYOUT & TYPOGRAPHY (Daddy bear)
+9. CUSTOM LAYOUT & TYPOGRAPHY (Mummy bear)
+
+*/
+
+
+/* 1. RESET
+----------------------------------------------------------------------------------------*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size:100%;
+  font: inherit;
+  vertical-align: baseline;
+  }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+  }
+  
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+  
+  
+/* 2. ROOT
+----------------------------------------------------------------------------------------*/
+html { 
+  overflow-y: scroll;
+  background: #FFF;
+  }
+
+/* /ht Ethan Marcotte - http://front.ie/l8rJaA */
+img, embed, object, video { max-width: 100%; }
+.ie6 img.full, .ie6 object.full, .ie6 embed, .ie6 video { width: 100%; }
+
+html, body, nav#menu, section, #map {
+    height: 100%;
+}
+
+.contenedor-que-oculta {
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+}
+
+nav#menu {
+	overflow: auto;
+}
+
+/* 3. CORE TYPOGRAPHY
+----------------------------------------------------------------------------------------*/
+@import url(http://fonts.googleapis.com/css?family=Raleway:300,400,500,700);
+
+body {
+  font-family: 'Raleway', sans-serif;
+  /*font-family: Georgia, "Times New Roman", serif;*/
+  font-size: 1em;
+  line-height: 1.618em;
+  color: #333;
+  }
+input, textarea {
+	font-family: 'Raleway', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.809em;
+  line-height: 1em;
+  }
+
+p, ul, ol, dl, blockquote {
+    font-size: 1em;
+    line-height: 1.618em;
+    margin-bottom: 1.618em; 
+    max-width: 30em; /* Optimal width for long-form text */
+  }
+    
+ul { list-style-type: disc; margin-left: 1.618em; }
+ol { list-style-type: decimal; margin-left: 1.618em; }
+nav ul, nav ol { list-style: none; margin: 0; padding: 0;}
+
+b, strong { font-weight: bold; }
+i, em { font-style: italic; }
+small { font-size: 80%; }
+
+
+/* 4. LINKS
+----------------------------------------------------------------------------------------*/
+a, a:visited { outline: none; color: #5CBA9D; text-decoration: underline; }  
+a:hover { outline: none; text-decoration:none; }  
+a:active, a:focus { outline: none; }
+
+
+/* 5. GLOBAL LAYOUT & GLOBAL CUSTOM TYPOGRAPHY
+----------------------------------------------------------------------------------------*/
+
+body.active-nav .leaflet-bar a.menu-button {
+	color: #fff;
+	background-color: #5cba9d;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+
+body.active-nav .leaflet-bar a.menu-button:hover {
+	color: #fff;
+	background-color: #6dddbb;
+}
+
+
+/* OFFCANVAS */
+[role="navigation"],
+[role="main"] {
+	transition: .2s all ease;			
+	width: 100%;
+}
+.js [role="navigation"] {	
+	margin-left: -100%;
+	float: left;
+}
+.js [role="main"] {
+	margin-left: 0;
+	float: left;
+}
+
+/*Access Left*/
+
+.active-nav [role="navigation"] {	
+	margin-left: 0;	
+	width: 84%;
+}
+.active-nav [role="main"]{
+	margin-right: -100%;
+}
+
+nav#menu input,
+nav#menu textarea,
+nav#menu p,
+nav#menu h1,
+nav#menu h2,
+nav#menu h3,
+nav#menu h4 {
+	font-family: 'Raleway', sans-serif;
+}
+
+nav#menu p,
+nav#menu h1,
+nav#menu h2,
+nav#menu h3,
+nav#menu h4 {
+	line-height: 1.6em;
+	color: #616161;
+	text-decoration: none !important;
+}
+
+nav#menu p {
+	font-size: 10px;
+}
+nav#menu h1 {
+	font-weight: 400;
+	font-size: 1.1em;
+}
+nav#menu h2 {
+	font-size: 16px;
+}
+nav#menu h3 {
+	font-size: 14px;
+}
+nav#menu h4 {
+	font-size: 12px;
+}
+
+nav#menu div#main {
+	width: 100%;
+	padding: 5%;
+	overflow: auto;
+}
+
+nav#menu a.title {
+	text-decoration: none;
+}
+
+nav#menu a.title:hover h1 {
+	color: #6dddbb;
+}
+
+nav#menu a.title h1 {
+	padding-top: 40px;
+	margin-bottom: 20px;
+	padding-left: 60px;
+	background-image: url(../icons/apple-touch-icon-120x120.png);
+	background-repeat: no-repeat;
+	background-position: -36px -7px;
+	min-height: 120px;
+	line-height: 1.2em;
+	color: #5CBA9D;
+}
+
+nav#menu input.search-box,
+nav#menu select {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 30px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	outline: none;
+	border: 1px solid #ababab;
+	font-size: 20px;
+	line-height: 25px;
+	color: #ababab;
+}
+
+nav#menu input.btn {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 30px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	outline: none;
+	border: 1px solid #5CBA9D;
+	font-size: 20px;
+	line-height: 25px;
+	color: #fff;
+	background-color: #5CBA9D;
+	cursor: pointer;
+	margin-top: 20px;
+}
+
+nav#menu input.btn:hover {
+	background-color: #6dddbb;
+	border: 1px solid #6dddbb;
+}
+
+
+nav#menu input.search-box:hover, input.search-box:focus {
+	color: #3b3b3b;
+	border: 1px solid #36a2d2;
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1);
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1);
+}
+nav#menu h4.results-text {
+	display: none;
+}
+nav#menu ul.results {
+	display: none;
+	width: 360px;
+	margin-top: 4px;
+	border: 1px solid #ababab;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	-webkit-box-shadow: rgba(0, 0, 0, .15) 0 1px 3px;
+	-moz-box-shadow: rgba(0,0,0,.15) 0 1px 3px;
+	box-shadow: rgba(0, 0, 0, .15) 0 1px 3px;
+}
+nav#menu ul.results li {
+	padding: 8px;
+	cursor: pointer;
+	border-top: 1px solid #cdcdcd;
+	transition: background-color .3s ease-in-out;
+	-moz-transition: background-color .3s ease-in-out;
+	-webkit-transition: background-color .3s ease-in-out;
+}
+nav#menu ul.results li:hover {
+	background-color: #F7F7F7;
+}
+nav#menu ul.results li:first-child {
+	border-top: none;
+}
+nav#menu ul.results li h3, ul#results li h4 {
+	transition: color .3s ease-in-out;
+	-moz-transition: color .3s ease-in-out;
+	-webkit-transition: color .3s ease-in-out;
+	color: #616161;
+	line-height: 1.2em;
+}
+nav#menu ul.results li:hover h3, ul#results li:hover h4  {
+	color: #3b3b3b;
+	font-weight: bold;
+}
+
+nav#menu ul.results li a {
+	text-decoration: none !important;
+}
+
+#progress {
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    left: 50%;
+    top: 300px;
+    width: 200px;
+    height: 30px;
+    margin-top: -20px;
+    margin-left: -100px;
+    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 4px;
+    padding: 2px;
+	-webkit-box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.3);
+	box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.3);
+}
+
+#progress-bar {
+    width: 0;
+    height: 100%;
+    background-color: #6ace99;
+    border-radius: 4px;
+}
+
+
+
+/* 6. CUSTOM LAYOUT & TYPOGRAPHY (Baby bear)
+----------------------------------------------------------------------------------------*/
+#container {
+    padding: 0.809em;
+    max-width: 30em;
+    margin: auto;
+  }
+
+aside { width: 100%; }
+
+
+/* 7. BROWSER AND NON-SEMANTIC STYLING
+----------------------------------------------------------------------------------------*/
+.cf:before, .cf:after { content: ""; display: block; }
+.cf:after { clear: both; }
+.ie6 .cf { zoom: 1 }
