@@ -1,30 +1,14 @@
 <?php header('Content-Type: text/html; charset=UTF-8'); ?>
 <?php
+require_once('../_db.php');
+/*
+Acá van los datos de conexión
+$schema = "nombre de la base de datos";
+$server = "servidor";
+$user   = "usuario";
+$pass   = "contraseña";
+*/
 require_once('../includes/funciones.php');
-/************************************************
-	The Search PHP File
-************************************************/
-
-
-/************************************************
-	MySQL Connect
-************************************************/
-
-// Credentials
-
-if ( strstr($_SERVER['SCRIPT_FILENAME'], ':') ) {
-	//Local
-	$schema = "db_arbolado";
-	$server = "localhost";
-	$user   = "root";
-	$pass   = "";
-}else{
-	//Server
-	$schema = "db_arbolado";
-	$server = "192.168.0.195";
-	$user   = "usr_arbolado";
-	$pass   = "fGpFvuTzJ";
-}
 
 $dbhost = $server;
 $dbname = $schema;
@@ -107,24 +91,4 @@ if (strlen($search_string) >= 1 && $search_string !== ' ' ) {
 	}
 	
 }
-
-
-/*
-// Build Function List (Insert All Functions Into DB - From PHP)
-
-// Compile Functions Array
-$functions = get_defined_functions();
-$functions = $functions['internal'];
-
-// Loop, Format and Insert
-foreach ($functions as $function) {
-	$function_name = str_replace("_", " ", $function);
-	$function_name = ucwords($function_name);
-
-	$query = '';
-	$query = 'INSERT INTO search SET id = "", function = "'.$function.'", name = "'.$function_name.'"';
-
-	$tutorial_db->query($query);
-}
-*/
 ?>

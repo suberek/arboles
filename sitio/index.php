@@ -96,7 +96,6 @@ if ((is_numeric($id_especie)) && ($id_especie > 0)) {
 <script src="js/leaflet.google.js"></script>
 
 <link rel="stylesheet" href="js/MarkerCluster.css" />
-<link rel="stylesheet" href="js/MarkerCluster.Default.css" />
 <script src="js/leaflet.markercluster-src.js"></script>
 
 <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js'></script>
@@ -131,14 +130,14 @@ if ((is_numeric($id_especie)) && ($id_especie > 0)) {
 		while ($censo_row = mysql_fetch_array($censo_results)) {
 			$i++;
 				
-			$lat	= $censo_row['lat'];
-			$lng	= $censo_row['lng'];
-			$id		= $censo_row['id_individuo'];
-			$id_especie = $censo_row['id_especie'];
+			$lat			= $censo_row['lat'];
+			$lng			= $censo_row['lng'];
+			$id_individuo	= $censo_row['id_individuo'];
+			$id_especie		= $censo_row['id_especie'];
 			
 			if ($i > 1) echo ',';
 			
-			echo '[' . $lat . ',' . $lng . ',' . $id. ',' . $id_especie . ']';
+			echo '[' . $lat . ',' . $lng . ',' . $id_individuo. ',' . $id_especie . ']';
 		}
 		
 		echo ']; </script>';
@@ -163,7 +162,7 @@ if ((is_numeric($id_especie)) && ($id_especie > 0)) {
 		
 			<div>
 				<label for="search"><h2 class="title">especie</h2></label>
-				<input type="text" id="search" autocomplete="off" class="search-box" value="<?php echo $nombre_cientifico; ?>">
+				<input type="text" id="search" autocomplete="off" class="search-box" value="<?php echo $nombre_cientifico; ?>"  onClick="this.setSelectionRange(0, this.value.length)">
 			</div>
 			<h4 id="results-text" class="results-text">Mostrando resultados para: <b id="search-string">Array</b></h4>
 			<ul id="results" class="results"></ul>
@@ -296,44 +295,70 @@ $(document).ready(function(){
 	var markers = L.markerClusterGroup({
 		chunkedLoading: true,
 		chunkProgress: updateProgressBar,
+		showCoverageOnHover: false,
+		disableClusteringAtZoom: 19,
 		maxClusterRadius: 28
 	});
 	
 	var markerList = [];
 	
+	
+	
+	/*
+	Colores para markers circle
 	var marker_color;
-	var marker_color_default = '#6ace99';
+	var marker_color_default = '#5cba9d';
 	var marker_color_violeta = '#8779d0';
 	var marker_color_amarillo = '#f3f153';
 	var marker_color_rosa = '#ffa4a4';
 	var marker_color_naranja = '#fe861c';
+	*/
+	
+	var LeafIcon  = L.Icon.extend({
+		options: {
+			iconSize:     [29, 31],
+			iconAnchor:   [15, 25],
+			popupAnchor:  [-3, -76]
+		}
+	});
+	var arbolIcon			= new LeafIcon({iconUrl: 'icons/marker.png'});
+	var arbolIconVioleta	= new LeafIcon({iconUrl: 'icons/marker-violeta.png'});
+	var arbolIconAmarillo	= new LeafIcon({iconUrl: 'icons/marker-amarillo.png'});
+	var arbolIconRojo		= new LeafIcon({iconUrl: 'icons/marker-rojo.png'});
+	var arbolIconRosa		= new LeafIcon({iconUrl: 'icons/marker-rosa.png'});
+	var arbolIconNaranja	= new LeafIcon({iconUrl: 'icons/marker-naranja.png'});
 	
 	for (var i = 0; i < individuos.length; i++) {
 		var a = individuos[i];
 		var content = 'cargando...';
 		var especie	= a[3];
 		if (especie === 11) { // jacarandá
-			marker_color = marker_color_violeta;
+			marker_color = arbolIconVioleta;
 		} else if ((especie === 249) || (especie === 145)) { //tecoma y limonero
-			marker_color = marker_color_amarillo;
+			marker_color = arbolIconAmarillo;
 		} else if ((especie === 25) || (especie === 340)) { // palo borracho
-			marker_color = marker_color_rosa;
+			marker_color = arbolIconRosa;
 		} else if ((especie === 148) || (especie === 144)) { // naranjo amargo y dule
-			marker_color = marker_color_naranja;
+			marker_color = arbolIconNaranja;
 		} else {
-			marker_color = marker_color_default;
+			marker_color = arbolIcon;
 		}
-		//var arbol = L.marker(L.latLng(a[0], a[1]), { title: title });
+		
+		// Markers default
 		//var individuo = L.marker(L.latLng(a[0], a[1]));
-		var individuo = L.circleMarker(L.latLng(a[0], a[1]), 
+		
+		//Markers colores
+		/*var individuo = L.circleMarker(L.latLng(a[0], a[1]), 
 			circleOptions = {
-				 color: '#fff', 
+				 color: '#fff',
 				 fillColor: marker_color, 
-				 fillOpacity: 0.8,
+				 fillOpacity: 0.7,
 				 radius: 12
 			 }
-		);
+		);*/
 		
+		var individuo = L.marker([a[0], a[1]], {icon: marker_color});
+
 		individuo.individuoId = a[2];
 		
 		individuo.bindPopup(content);

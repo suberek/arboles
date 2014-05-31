@@ -51,7 +51,7 @@ var styler = [
   },{
     "featureType": "poi",
     "stylers": [
-      { "visibility": "simplified" }
+      { "visibility": "off" }
     ]
   },{
     "featureType": "road",

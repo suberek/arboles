@@ -8,6 +8,15 @@ if ((is_numeric($id)) && ($id > 0)) {
 	header("Location: /index.php");
 }
 
+require_once('../_db.php');
+/*
+Acá van los datos de conexión
+$schema = "nombre de la base de datos";
+$server = "servidor";
+$user   = "usuario";
+$pass   = "contraseña";
+*/
+
 require_once('../includes/funciones.php');
 
 $query		= "

@@ -195,6 +195,7 @@ nav#menu h1 {
 }
 nav#menu h2 {
 	font-size: 16px;
+	margin-top: 20px;
 }
 nav#menu h3 {
 	font-size: 14px;
@@ -207,6 +208,7 @@ nav#menu div#main {
 	width: 100%;
 	padding: 5%;
 	overflow: auto;
+	position: relative;
 }
 
 nav#menu a.title {
@@ -233,7 +235,7 @@ nav#menu input.search-box,
 nav#menu select {
 	width: 100%;
 	padding: 10px;
-	margin-bottom: 30px;
+	margin-bottom: 10px;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	border-radius: 2px;
@@ -288,6 +290,12 @@ nav#menu ul.results {
 	-webkit-box-shadow: rgba(0, 0, 0, .15) 0 1px 3px;
 	-moz-box-shadow: rgba(0,0,0,.15) 0 1px 3px;
 	box-shadow: rgba(0, 0, 0, .15) 0 1px 3px;
+	
+	position: absolute;
+	background-color: #FFF;
+	overflow: auto;
+	width: 90%;
+	height: 210px;
 }
 nav#menu ul.results li {
 	padding: 8px;

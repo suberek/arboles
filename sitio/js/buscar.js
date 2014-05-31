@@ -11,7 +11,7 @@ $(document).ready(function() {
 		if(query_value !== ''){
 			$.ajax({
 				type: "POST",
-				url: "data/buscar.php",
+				url: "getdata/buscar.php",
 				data: { query: query_value },
 				cache: false,
 				success: function(html){
