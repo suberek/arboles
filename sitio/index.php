@@ -104,6 +104,12 @@ if ((is_numeric($id_especie)) && ($id_especie > 0)) {
   <link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.21.0/L.Control.Locate.ie.css' rel='stylesheet' />
 <![endif]-->
 
+<!--
+GeoCoder... próximamente...
+<script src="esri-leaflet-geocoder-master/dist/esri-leaflet-geocoder.js"></script>
+<link rel="stylesheet" href="esri-leaflet-geocoder-master/dist/esri-leaflet-geocoder.css" />
+-->
+
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
 <script src="js/jquery.min.js"></script>
@@ -211,7 +217,12 @@ var showMenu = function() {
 
 $(document).ready(function(){
 	
-	var map = L.map('map', { maxZoom: 20 })<?php  if ( ($busqueda == 'vacia') || ($total_registros_censo == 0) ) echo '.setView([-34.607552, -58.445712], 12);' ?>
+	// Límite del mapa puesto a Ciudad de Buenos Aires
+	var southWest	= new L.LatLng(-34.7260, -58.5605),
+    northEast		= new L.LatLng(-34.5096, -58.3192),
+    bounds = new L.LatLngBounds(southWest, northEast);
+	
+	var map = L.map('map', { maxZoom: 20, maxBounds: bounds })<?php  if ( ($busqueda == 'vacia') || ($total_registros_censo == 0) ) echo '.setView([-34.618, -58.44], 12)' ?>;
 	
 	// MAPAS
 	
@@ -240,7 +251,24 @@ $(document).ready(function(){
 	var ggh = new L.Google('HYBRID');
 	map.addControl(new L.Control.Layers({'Google Roadmap':ggr, 'Google Satélite':ggs, 'Google Hybrid':ggh, 'Stamen':stm, 'OpenStreetMap':osm, 'Nokia':Nokia_normalDay}));
 	map.addLayer(ggr);
+	
+	
+	/*
+	GeoCoder... próximamente...
+	
+	var GeoSearchOptions = {
+	  'useMapBounds': true,
+	  'maxResults': 3
+	}
 
+	var searchControl = new L.esri.Controls.Geosearch(GeoSearchOptions).addTo(map);
+	
+	searchControl.on("error", function(e){
+        console.log(e);
+      });
+	 
+	 */
+	
 	// Barra de botones
 	var myButton = L.control({ position: 'topleft' });
 	
@@ -274,6 +302,9 @@ $(document).ready(function(){
 	// COPY
 	map.attributionControl.addAttribution('Proyecto: <a href="http://martinsimonyan.com.ar/arboles-de-buenos-aires/">Martín Simonyan</a> | Árboles gracias a <a href="http://data.buenosaires.gob.ar/dataset/censo-arbolado/" target="_blank">data.buenosaires.gob.ar</a>');
 	
+	
+	
+	
 	<?php if (($busqueda !== 'vacia') || ($total_registros_censo >= 1) ) {  ?>
 	
 	var progress = document.getElementById('progress');
@@ -296,7 +327,7 @@ $(document).ready(function(){
 		chunkedLoading: true,
 		chunkProgress: updateProgressBar,
 		showCoverageOnHover: false,
-		disableClusteringAtZoom: 19,
+		disableClusteringAtZoom: 18,
 		maxClusterRadius: 28
 	});
 	
@@ -321,12 +352,12 @@ $(document).ready(function(){
 			popupAnchor:  [0, -15]
 		}
 	});
-	var arbolIcon			= new LeafIcon({iconUrl: 'icons/marker.png'});
-	var arbolIconVioleta	= new LeafIcon({iconUrl: 'icons/marker-violeta.png'});
-	var arbolIconAmarillo	= new LeafIcon({iconUrl: 'icons/marker-amarillo.png'});
-	var arbolIconRojo		= new LeafIcon({iconUrl: 'icons/marker-rojo.png'});
-	var arbolIconRosa		= new LeafIcon({iconUrl: 'icons/marker-rosa.png'});
-	var arbolIconNaranja	= new LeafIcon({iconUrl: 'icons/marker-naranja.png'});
+	var arbolIcon			= new LeafIcon({iconUrl: 'images/marker.png'});
+	var arbolIconVioleta	= new LeafIcon({iconUrl: 'images/marker-violeta.png'});
+	var arbolIconAmarillo	= new LeafIcon({iconUrl: 'images/marker-amarillo.png'});
+	var arbolIconRojo		= new LeafIcon({iconUrl: 'images/marker-rojo.png'});
+	var arbolIconRosa		= new LeafIcon({iconUrl: 'images/marker-rosa.png'});
+	var arbolIconNaranja	= new LeafIcon({iconUrl: 'images/marker-naranja.png'});
 	
 	for (var i = 0; i < individuos.length; i++) {
 		var a = individuos[i];
@@ -382,6 +413,8 @@ $(document).ready(function(){
 			}
 		});
 	}
+	
+	
 	<?php } ?>
 	
 });
