@@ -318,7 +318,7 @@ $(document).ready(function(){
 		options: {
 			iconSize:     [29, 31],
 			iconAnchor:   [15, 25],
-			popupAnchor:  [-3, -76]
+			popupAnchor:  [0, -15]
 		}
 	});
 	var arbolIcon			= new LeafIcon({iconUrl: 'icons/marker.png'});
