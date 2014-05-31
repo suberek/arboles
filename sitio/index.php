@@ -334,7 +334,7 @@ $(document).ready(function(){
 		var especie	= a[3];
 		if (especie === 11) { // jacarandá
 			marker_color = arbolIconVioleta;
-		} else if ((especie === 249) || (especie === 145)) { //tecoma y limonero
+		} else if ((especie === 249) || (especie === 145) || (especie === 41) ) { //tecoma, limonero y ginkgo
 			marker_color = arbolIconAmarillo;
 		} else if ((especie === 25) || (especie === 340)) { // palo borracho
 			marker_color = arbolIconRosa;
