@@ -100,6 +100,11 @@ if ((is_numeric($id_especie)) && ($id_especie > 0)) {
 
 <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js'></script>
 <link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.css' rel='stylesheet' />
+
+<link rel="stylesheet" href="leaflet.fullscreen-master/Control.FullScreen.css" />
+<script src="leaflet.fullscreen-master/Control.FullScreen.js"></script>
+
+
 <!--[if lt IE 9]>
   <link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.21.0/L.Control.Locate.ie.css' rel='stylesheet' />
 <![endif]-->
@@ -122,7 +127,7 @@ GeoCoder... próximamente...
 
 	$censo_query = "
 		SELECT id_individuo, lat, lng, id_especie
-		FROM 1_individuos2
+		FROM 1_individuos
 		$parametro";
 	
 	$count = true;
@@ -222,14 +227,33 @@ $(document).ready(function(){
     northEast		= new L.LatLng(-34.5096, -58.3192),
     bounds = new L.LatLngBounds(southWest, northEast);
 	
-	var map = L.map('map', { maxZoom: 20, maxBounds: bounds })<?php  if ( ($busqueda == 'vacia') || ($total_registros_censo == 0) ) echo '.setView([-34.618, -58.44], 12)' ?>;
+	bodyHeight = $("section[data-role='main']").height();
+	$("#map").css("height", bodyHeight); //set with CSS also...
 	
+	bodyWidth = $("section[data-role='main']").width();
+	$("#map").css("width", bodyWidth); //set with CSS also...
+	
+	var map = L.map('map',
+	{
+		maxZoom: 20,
+		maxBounds: bounds,
+		fullscreenControl: true,
+		fullscreenControlOptions: { // optional
+			title:"Show me the fullscreen !"
+		}
+	})<?php  if ( ($busqueda == 'vacia') || ($total_registros_censo == 0) ) echo '.setView([-34.618, -58.44], 12)' ?>;
+	
+	// detect fullscreen toggling
+	map.on('enterFullscreen', function(){
+		if(window.console) window.console.log('enterFullscreen');
+	});
+	map.on('exitFullscreen', function(){
+		if(window.console) window.console.log('exitFullscreen');
+	});
+		
+		
 	// MAPAS
 	
-	var osm = new L.TileLayer("http://{s}.tile.cloudmade.com/a33ede6a9595478ba1025f20398c0341/998/256/{z}/{x}/{y}.png", {
-		maxZoom: 17,
-		attribution: 'mapa <a href="http://openstreetmap.org">OpenStreetMap</a>'
-		});
 	var stm = new L.TileLayer("http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png", {
 		minZoom: 2,
 		maxZoom: 20,
@@ -249,7 +273,7 @@ $(document).ready(function(){
 	var ggr = new L.Google('ROADMAP');
 	var ggs = new L.Google('SATELLITE');
 	var ggh = new L.Google('HYBRID');
-	map.addControl(new L.Control.Layers({'Google Roadmap':ggr, 'Google Satélite':ggs, 'Google Hybrid':ggh, 'Stamen':stm, 'OpenStreetMap':osm, 'Nokia':Nokia_normalDay}));
+	map.addControl(new L.Control.Layers({'Google Roadmap':ggr, 'Google Satélite':ggs, 'Google Hybrid':ggh, 'Stamen':stm, 'Nokia':Nokia_normalDay}));
 	map.addLayer(ggr);
 	
 	
@@ -290,8 +314,12 @@ $(document).ready(function(){
 		this._div = L.DomUtil.create('div', 'leaflet-bar');
 		this._div.innerHTML = '<a href="#menu" title="Buscar" class="menu-button"><i class="fa fa-search"></i></a>';
 		$(this._div).click(function(e) {
+			setInterval(function(){
+				map.invalidateSize() // GRACIAS!
+			}, 5);
+			
 			e.preventDefault();
-			showMenu();							
+			showMenu();
 		});	
 		return this._div;
 	};
