@@ -1,9 +1,14 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway:300,400,500,700);
 
+
 html,
 body,
 .full-height {
 	height: 100%;
+}
+
+body {
+	padding-top: 40px;
 }
 
 label {
@@ -30,44 +35,6 @@ nav#menu a.title h1 {
 	margin-bottom: 20px;
 	padding-top: 21px;
 	padding-left: 37px;
-}
-
-/* Small devices (tablets, 768px and up) */
-@media (min-width: 768px) { 
-	nav#menu a.title h1 {
-		
-	}
-	
-	.full-height {
-		height: 500px !important;
-	}
-}
-
-/* Medium devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-	nav#menu a.title h1 {
-		background-image: url(../icons/logo-120x120.png);
-		background-position: -36px -7px;
-		font-size: 1.55em;
-		height: 106px;
-		margin-bottom: 20px;
-		padding-top: 40px;
-		padding-left: 60px;
-	}	
-}
-
-/* Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-	nav#menu a.title h1 {
-		background-image: url(../icons/logo-152x152.png);	
-		background-position: -36px -7px;
-		padding-top: 50px;
-		padding-left: 80px;
-		
-		font-size: 2.1em;
-		
-		height: 136px;
-	}
 }
 
 nav#menu h4.results-text {
@@ -136,5 +103,41 @@ form#busca_arboles {
 
 form#busca_arboles .radio label {
 	margin-right: 7px;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+	body {
+		padding-top: 0;
+	}
+	
+	
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+	nav#menu a.title h1 {
+		background-image: url(../icons/logo-120x120.png);
+		background-position: -36px -7px;
+		font-size: 1.55em;
+		height: 106px;
+		margin-bottom: 20px;
+		padding-top: 40px;
+		padding-left: 60px;
+	}	
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+	nav#menu a.title h1 {
+		background-image: url(../icons/logo-152x152.png);	
+		background-position: -36px -7px;
+		padding-top: 50px;
+		padding-left: 80px;
+		
+		font-size: 2.1em;
+		
+		height: 136px;
+	}
 }
 
