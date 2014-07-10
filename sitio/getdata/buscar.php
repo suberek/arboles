@@ -44,13 +44,17 @@ if (strlen($search_string) >= 1 && $search_string !== ' ' ) {
 	$html = '';
 	$html .= '<li class="result">';
 	$html .= '<a href="urlString">';
-	$html .= '<h3>nombre científico</h3>';
-	$html .= '<h4>nombre común</h4>';
+	$html .= '<h4>nombre científico</h4>';
+	$html .= '<h5>nombre común</h5>';
 	$html .= '</a>';
 	$html .= '</li>';
 
 	// Build Query
-	$query = 'SELECT nombre_cientifico, nombre_comun, id_especie FROM x_especies_provisorio WHERE nombre_cientifico LIKE "%'.$search_string.'%" OR nombre_comun LIKE "%'.$search_string.'%"';
+	
+	$query = 'select NOMBRE_CIE, NOMBRE_COM, id_especie
+		from 2_especies
+		WHERE NOMBRE_CIE LIKE "%'.$search_string.'%" OR NOMBRE_COM LIKE "%'.$search_string.'%"
+	';
 
 	// Do Search
 	$result = $tutorial_db->query($query);
@@ -63,8 +67,8 @@ if (strlen($search_string) >= 1 && $search_string !== ' ' ) {
 		foreach ($result_array as $result) {
 
 			// Format Output Strings And Hightlight Matches
-			$display_cient = preg_replace("/".$search_string."/i", "<b class='highlight'>".$search_string."</b>", $result['nombre_cientifico']);
-			$display_comun = preg_replace("/".$search_string."/i", "<b class='highlight'>".$search_string."</b>", $result['nombre_comun']);
+			$display_cient = preg_replace("/".$search_string."/i", "<b class='highlight'>".$search_string."</b>", $result['NOMBRE_CIE']);
+			$display_comun = preg_replace("/".$search_string."/i", "<b class='highlight'>".$search_string."</b>", $result['NOMBRE_COM']);
 			$display_url = 'index.php?id_especie='.urlencode($result['id_especie']);
 
 			// Insert Name

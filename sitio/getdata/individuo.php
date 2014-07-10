@@ -19,21 +19,12 @@ $pass   = "contraseña";
 
 require_once('../includes/funciones.php');
 
-/*$query		= "
-SELECT i.lat, i.lng, i.calle, i.alt_ini, i.ALTURA_TOT, e.nombre_cientifico, e.nombre_comun, e.tipo_follaje, e.origen, b.barrio_nombre
-FROM 1_individuos i
-JOIN x_especies_provisorio e ON i.id_especie=e.id_especie
-JOIN a_barrios b ON i.id_barrio=b.id_barrio
-WHERE id_individuo = $id
-LIMIT 1;
-";*/
-
 //die($query);
 
 $query		= "
-SELECT i.ALTURA_TOT, i.lat, i.lng, i.calle, i.alt_ini, i.espacio_verde, i.donde, e.nombre_cientifico, e.nombre_comun, e.tipo_follaje, e.origen
+SELECT i.ALTURA_TOT, i.lat, i.lng, i.calle, i.alt_ini, i.espacio_verde, i.donde, e.NOMBRE_CIE, e.NOMBRE_COM, e.TIPO_FOLLA, e.ORIGEN
 FROM 1_individuos i
-JOIN x_especies_provisorio e ON i.id_especie=e.id_especie
+JOIN 2_especies e ON i.id_especie=e.id_especie
 WHERE id_individuo = $id
 LIMIT 1;
 ";
@@ -41,10 +32,10 @@ LIMIT 1;
 $results			= GetRS($query);
 $row				= mysql_fetch_array($results);
 
-$nombre_cientifico	= $row['nombre_cientifico'];
-$nombre_comun		= $row['nombre_comun'];
-$tipo_follaje		= $row['tipo_follaje'];
-$origen				= $row['origen'];
+$nombre_cientifico	= $row['NOMBRE_CIE'];
+$nombre_comun		= $row['NOMBRE_COM'];
+$tipo_follaje		= $row['TIPO_FOLLA'];
+$origen				= $row['ORIGEN'];
 $barrio				= $row['barrio_nombre'];
 $altura				= $row['ALTURA_TOT'];
 

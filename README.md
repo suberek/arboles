@@ -19,6 +19,7 @@ http://www.disenowebeficaz.es/blog/solucionar-error-al-importar-una-base-de-dato
 Custom Google Map<br>
 http://czaplewski.wordpress.com/2012/05/14/custom-google-maps-in-leaflet/ <br>
 http://gmaps-samples-v3.googlecode.com/svn/trunk/styledmaps/wizard/index.html <br>
+http://howto-use-mysql-spatial-ext.blogspot.com.ar/ <br>
 
 Inspiración
 ===========
@@ -99,3 +100,8 @@ Crear una tabla individuos, especies, generos, familias para luego relacionarlas
 
 11
 Con excel obtener especies únicas eliminando duplicados
+
+12
+Creación de campo coordenadas (mysql poit).
+Para ello crear campo vacío y actualizar la tabla para que vueque los valores que están en campos separados.
+UPDATE 1_individuos SET `coordenadas`=  GeomFromText(CONCAT('POINT(',lat, ' ',lng,')'));
