@@ -32,28 +32,33 @@ nav#menu a.title h1 {
 	background-position: -21px -5px;
 	font-size: 1.35em;
 	height: 63px;
-	margin-bottom: 20px;
+	margin-bottom: 0px;
 	padding-top: 21px;
 	padding-left: 37px;
 }
 
-nav#menu h4.results-text {
+#especies-lista { position: relative; }
+
+nav#menu h6.results-text {
 	display: none;
 }
+
 nav#menu ul.results {
 	display: none;
-	width: 360px;
-	margin-top: 4px;
 	border: 1px solid #ababab;
 	background-color: #FFF;
 	overflow: auto;
-	width: 90%;
-	height: 210px;
+	
+	z-index: 2000;
+	
+	width: 100%;
 	position: absolute;
-	z-index: 1;
+	bottom: 54px;
+	max-height: 190px;
+	
 }
 nav#menu ul.results li {
-	padding: 8px;
+	padding: 5px;
 	cursor: pointer;
 	border-top: 1px solid #cdcdcd;
 	transition: background-color .3s ease-in-out;
@@ -67,7 +72,7 @@ nav#menu ul.results li:first-child {
 	border-top: none;
 }
 nav#menu ul.results li h4, ul#results li h5 {
-	line-height: 1.2em;
+	line-height: 0.9em;
 }
 nav#menu ul.results li:hover h4, ul#results li:hover h5  {
 	font-weight: bold;
@@ -101,6 +106,10 @@ form#busca_arboles {
 	margin-bottom: 20px;
 }
 
+form#busca_arboles h3 {
+	font-size: 1.2em;
+}
+
 form#busca_arboles .radio label {
 	margin-right: 7px;
 }
@@ -110,8 +119,13 @@ form#busca_arboles .radio label {
 	body {
 		padding-top: 0;
 	}
-	
-	
+	nav#menu ul.results {
+		position: absolute;
+		top: auto;
+		bottom: auto;
+		width: 100%;
+		max-height: 300px;
+	}
 }
 
 /* Medium devices (desktops, 992px and up) */
@@ -124,6 +138,10 @@ form#busca_arboles .radio label {
 		margin-bottom: 20px;
 		padding-top: 40px;
 		padding-left: 60px;
+	}
+	
+	form#busca_arboles h3 {
+		font-size: 1.7em;
 	}	
 }
 

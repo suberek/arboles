@@ -1,22 +1,12 @@
 /********************************************************************************* FUNCIONES GLOBALES */
 
-/*
-var showHideMenu = function() {
-	$('body').toggleClass("active-nav");	
-}
-
-var showMenu = function() {
-	$('body').removeClass().addClass("active-nav");	
-}
-*/
-
 // Mostrar todas las especies
 function muestraTodasLasEspecies() {
 	$('input#id_especie').val(null);
 	$('input#muestra-especie').val(null);
 	
 	$("ul#results").fadeOut();
-	$('h4#results-text').fadeOut();
+	$('h6#results-text').fadeOut();
 	
 	$('input#respecies-todas').prop('checked', true);
 }
@@ -149,7 +139,7 @@ $(document).ready(function() {
 			muestraTodasLasEspecies();
 		}else{
 			$("ul#results").fadeIn();
-			$('h4#results-text').fadeIn();
+			$('h6#results-text').fadeIn();
 			$(this).data('timer', setTimeout(muestraEspecie, 100));
 			
 			$('input#respecies-una').prop('checked', true);
@@ -178,7 +168,7 @@ $(document).ready(function() {
 		$('input#id_especie').val(number);
 		
 		$("ul#results").fadeOut();
-		$('h4#results-text').fadeOut();
+		$('h6#results-text').fadeOut();
 		
 		var texto = $(this).find('h4').text();
 		

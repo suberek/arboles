@@ -17,7 +17,7 @@ require_once('includes/funciones.php');
 //// Defino el default
 $parametro	= "WHERE 1";
 $busqueda	= "vacia";
-$radius		= "0.0019"; // Valor por default
+$radius		= "0.0029"; // Valor por default
 $user_latlng_default = array("-34.60371794474704","-58.38157095015049"); // El Obelisco
 
 //// Veo qué vino en el form
@@ -92,8 +92,8 @@ if ($busqueda == "especie todas donde ciudad") {
 	$busqueda = "vacia";
 }
 
-//echo("<br>".$busqueda);
-
+//echo("<br>".$user_lat);
+//echo("<br>".$user_lng);
 
 ?>
 <!DOCTYPE html>
@@ -151,9 +151,9 @@ GeoCoder... próximamente...
 <!-- Latest compiled and minified JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/la-magia.css" media="all">
-<?php if ($busqueda !== 'vacia') {
+<?php
 
-	
+if ($busqueda !== 'vacia') {
 	
 	// Hago LA consulta
 	$censo_query = "
@@ -164,7 +164,6 @@ GeoCoder... próximamente...
 	$count = true;
 	$censo_results	= GetRS($censo_query);
 	$total_registros_censo = $total_registros;
-	$count = false;
 	
 	// Armo el array con los individuos
 	if ($total_registros_censo >= 1) {
@@ -190,11 +189,13 @@ GeoCoder... próximamente...
 	// sin búsqueda
 }
 
+//echo("<br>".$busqueda);
 
 ?>
 </head>
 
 <body>
+
 <nav class="navbar navbar-default navbar-fixed-top visible-xs" role="navigation">
 	<div class="container-fluid">
 		<a type="button" class="btn btn-default navbar-btn" href="#"><i class="fa fa-caret-up"></i> Buscar</a>
@@ -212,6 +213,11 @@ GeoCoder... próximamente...
 						Buenos Aires</h1>
 					</a>
 					<form action="index.php" method="post" id="busca_arboles" role="form">
+					
+						<div class="row">
+						
+							<div class="col-xs-6 col-sm-12">
+						
 						<div class="form-group">
 							<h3>¿Qué especies?</h3>
 							<div class="radio">
@@ -222,14 +228,17 @@ GeoCoder... próximamente...
 									<input type="radio" id="respecies-una" name="respecie" value="1" <?php if (stripos($busqueda,'una') > 0) echo 'checked' ?> />
 									una </label>
 							</div>
-							<div id="especies-lista" class="hide">
-								<input type="text" id="muestra-especie" autocomplete="off" class="form-control input-lg" value="<?php echo $nombre_cientifico; ?>"  onClick="this.setSelectionRange(0, this.value.length)">
-								<h4 id="results-text" class="results-text">Mostrando resultados para: <b id="muestra-especie-string">Array</b></h4>
+							<div id="especies-lista" <?php if (  strpos($busqueda,'especie una') === false  ) echo 'class="hide"'?>>
+								<input type="text" id="muestra-especie" autocomplete="off" class="form-control" value="<?php echo $nombre_cientifico; ?>" onClick="this.setSelectionRange(0, this.value.length)">
+								<h6 id="results-text" class="results-text">Mostrando resultados para: <b id="muestra-especie-string">Array</b></h6>
 								<ul id="results" class="results list-unstyled">
 								</ul>
 							</div>
 							<input type="hidden" value="<?php echo $id_especie_busqueda ?>" name="id_especie" id="id_especie">
 						</div>
+						
+							</div>
+							<div class="col-xs-6 col-sm-12">
 						
 						<div class="form-group">
 							<h3>¿Dónde?</h3>
@@ -244,64 +253,11 @@ GeoCoder... próximamente...
 							<input type="hidden" value="<?php echo($user_lat.' '.$user_lng); ?>" name="user_latlng" id="user_latlng">
 						</div>
 						
+							</div>
+							
+						</div>
+						
 						<input name="Buscar" type="submit" value="Buscar" class="btn btn-primary btn-lg btn-block">
-						
-						<!-- Modal: seleccionar una especie -->
-						<div class="modal fade" id="respecies-una-modal" tabindex="-1" role="dialog" aria-hidden="true">
-						  <div class="modal-dialog modal-sm">
-							<div class="modal-content">
-							  <div class="modal-body">
-								<div class="row">
-									<div class="col-sm-2"><i class="fa fa-exclamation-triangle fa-3x"></i></div>
-									<div class="col-sm-10"><p>Escribí algunas letras en el cuadro de búsqueda y aparecerá un listado con las posibles especies.</p>
-								<p><small>Podés buscar todas las especies mezcladas, pero antes debes limitar la zona marcando un punto en el mapa.</small></p></div>
-								</div>
-								 
-								</div>
-							  <div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-							  </div>
-							</div>
-						  </div>
-						</div>
-						
-						<!-- Modal: marcar un punto -->
-						<div class="modal fade" id="respecies-todas-modal" tabindex="-1" role="dialog" aria-hidden="true">
-						  <div class="modal-dialog modal-sm">
-							<div class="modal-content">
-							  <div class="modal-body">
-								<div class="row">
-									<div class="col-sm-2"><i class="fa fa-map-marker fa-3x"></i></div>
-									<div class="col-sm-10"><p>Para buscar todas las especies tenés que seleccionar alguna zona marcando un punto en el mapa.</p>
-								<p><small>O podés buscar en toda la ciudad seleccionado una especie.</small></p></div>
-								</div>
-								 
-								</div>
-							  <div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-							  </div>
-							</div>
-						  </div>
-						</div>
-						
-						<!-- Modal: o todas las especies o toda la ciudad -->
-						<div class="modal fade" id="rdonde-ciudad-modal" tabindex="-1" role="dialog" aria-hidden="true">
-						  <div class="modal-dialog modal-sm">
-							<div class="modal-content">
-							  <div class="modal-body">
-								<div class="row">
-									<div class="col-sm-2"><i class="fa fa-map-marker fa-3x"></i></div>
-									<div class="col-sm-10">Marcá un punto en el mapa para limitar la búsqueda <br>
-								<small>Podés buscar en toda la ciudad seleccionado una especie.</small></div>
-								</div>
-								 
-								</div>
-							  <div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-							  </div>
-							</div>
-						  </div>
-						</div>						
 						
 					</form>
 				</div>
@@ -310,10 +266,96 @@ GeoCoder... próximamente...
 		<div class="col-sm-9 full-height" id="map"> </div>
 	</div>
 </div>
+
+<!-- Modal: seleccionar una especie -->
+<div class="modal fade" id="respecies-una-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+	<div class="modal-content">
+	  <div class="modal-body">
+		<div class="row">
+			<div class="col-sm-2"><i class="fa fa-exclamation-triangle fa-3x"></i></div>
+			<div class="col-sm-10"><p>Escribí algunas letras en el cuadro de búsqueda y aparecerá un listado con las posibles especies.</p>
+		<p><small>Podés buscar todas las especies mezcladas, pero antes debes limitar la zona marcando un punto en el mapa.</small></p></div>
+		</div>
+		 
+		</div>
+	  <div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+	  </div>
+	</div>
+  </div>
+</div>
+
+<!-- Modal: marcar un punto -->
+<div class="modal fade" id="respecies-todas-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+	<div class="modal-content">
+	  <div class="modal-body">
+		<div class="row">
+			<div class="col-sm-2"><i class="fa fa-map-marker fa-3x"></i></div>
+			<div class="col-sm-10"><p>Para buscar todas las especies tenés que seleccionar alguna zona marcando un punto en el mapa.</p>
+		<p><small>O podés buscar en toda la ciudad seleccionado una especie.</small></p></div>
+		</div>
+		 
+		</div>
+	  <div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+	  </div>
+	</div>
+  </div>
+</div>
+
+<!-- Modal: o todas las especies o toda la ciudad -->
+<div class="modal fade" id="rdonde-ciudad-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+	<div class="modal-content">
+	  <div class="modal-body">
+		<div class="row">
+			<div class="col-sm-2"><i class="fa fa-map-marker fa-3x"></i></div>
+			<div class="col-sm-10">Marcá un punto en el mapa para limitar la búsqueda <br>
+		<small>Podés buscar en toda la ciudad seleccionado una especie.</small></div>
+		</div>
+		 
+		</div>
+	  <div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+	  </div>
+	</div>
+  </div>
+</div>
+
+
+
+<?php
+if ($total_registros_censo === 0) { ?>
+<!-- Modal: sin resultados -->
+<div class="modal fade" id="sin-resultados" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+	<div class="modal-content">
+	  <div class="modal-body">
+		<div class="row">
+			<div class="col-sm-2"><i class="fa fa-search fa-3x"></i></div>
+			<div class="col-sm-10"><p>Tu búsqueda no arrojó resultados.</p>
+		<p><small>Probá buscando la especie que te interesa en toda la ciudad, o cambiando la zona de búsqueda marcando otro lugar en el mapa.</small></p></div>
+		</div>
+		 
+		</div>
+	  <div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+	  </div>
+	</div>
+  </div>
+</div>
+<? } ?>
+						
 <script type="text/javascript" src="js/buscar.js"></script> 
 <script type="text/javascript">
 
 $(document).ready(function(){
+	
+	<?php if ($total_registros_censo === 0) { ?>
+		$('#sin-resultados').modal('show');
+	<? } ?>
 	
 	// Límite del mapa puesto a Ciudad de Buenos Aires
 	var southWest	= new L.LatLng(-34.7260, -58.5605),
@@ -399,56 +441,52 @@ $(document).ready(function(){
 	map.on('locationerror', onLocationError);
 	
 
-	// buscar
-	/*myButton.onAdd = function (map) {
-		this._div = L.DomUtil.create('div', 'leaflet-bar');
-		this._div.innerHTML = '<a href="#menu" title="Buscar" class="menu-button"><i class="fa fa-search"></i></a>';
-		$(this._div).click(function(e) {
-			setInterval(function(){
-				map.invalidateSize() // GRACIAS!
-			}, 5);
-			
-			e.preventDefault();
-			showHideMenu();
-		});	
-		return this._div;
-	};
-	
-	// Agrega botones
-	myButton.addTo(map);
-	*/
-	
 	// COPY
 	map.attributionControl.addAttribution('Proyecto: <a href="http://martinsimonyan.com.ar/arboles-de-buenos-aires/">Martín Simonyan</a> | Árboles gracias a <a href="http://data.buenosaires.gob.ar/dataset/censo-arbolado/" target="_blank">data.buenosaires.gob.ar</a>');
 	
-
-	
 	map.on('click', function(e) {
-		onLocationFound(e);
+		onLocationFound(e,'','');
 	})
 	
+	<?php if (stripos($busqueda,'marker') > 0) { ?>
+	// AGREGAR MARKER CUANDO HAY BÚSQUEDA POR ZONA AL CARGA EL MAPA.
+	<?php } ?>
 	
 	
 	// Variable que contendrá al Marker con ubicación del usuario.
 	var new_user_marker;
 	var new_user_circle;
 	
-	function onLocationFound(e) {
+	function onLocationFound(e,lat,lng) {
+		// Me fijo de dónde viene la lat y lng. Si es del evento del mouse (e) o si es del form (lat, lng)
+		
+		lat = lat || 0;
+		lng = lng || 0;
+		
+		if( lat == 0 ) {
+			//alert('estoy bien');
+			var nuevoLat = e.latlng.lat;
+			var nuevoLng = e.latlng.lng;
+		} else {
+			//alert('estoy mal');
+			var nuevoLat = lat;
+			var nuevoLng = lng
+		}
+		
 		// Si el marker no existe, lo creo y si existe lo muevo.
 		if(typeof(new_user_marker)==='undefined') {
-			new_user_marker = new L.marker(e.latlng,{
+			new_user_marker = new L.marker([nuevoLat,nuevoLng],{
 				draggable: true,
 				title: "",
 	 	        alt: "",
 				riseOnHover: true
 			});
 			
-			new_user_circle = new L.circle(e.latlng,200,{
+			new_user_circle = new L.circle([nuevoLat,nuevoLng],300,{
 				color: '#000',
 				fillColor: '#ddd',
 				fillOpacity: 0.3
 			});
-			
 			
 			// Creo un elemento para el contenido
 			var container = $('<div />');
@@ -457,11 +495,10 @@ $(document).ready(function(){
 			container.on('click', '#buscar_en_toda_la_ciudad', function(e) {
 			    e.preventDefault();
 				muestraTodaLaCiudad();
-				//showMenu();
 				map.removeLayer(new_user_marker);
 				map.removeLayer(new_user_circle);
 				new_user_marker = undefined;
-				new_user_circle = undefined;
+				new_user_circle = undefined;				
 			});
 
 			// Contenido html del Popup
@@ -474,11 +511,11 @@ $(document).ready(function(){
 			new_user_marker.addTo(map);
 			
 			// disparo función que modifica el form
-			muestraPorAca(e.latlng.lat, e.latlng.lng);
+			muestraPorAca(nuevoLat, nuevoLng);
 			
 		 } else {
-			new_user_marker.setLatLng(e.latlng);
-			new_user_circle.setLatLng(e.latlng);
+			new_user_marker.setLatLng([nuevoLat,nuevoLng]);
+			new_user_circle.setLatLng([nuevoLat,nuevoLng]);
 		}
 		
 		// Update marker on changing it's position
@@ -495,14 +532,15 @@ $(document).ready(function(){
 		});
 		
 		// centrar el mapa al click
-		map.panTo(new L.LatLng(e.latlng.lat, e.latlng.lng));
+		map.panTo(new L.LatLng(nuevoLat, nuevoLng));
 		// cambiar el valor del lat y lng en el form al hacer click en un punto
-		$('input#user_latlng').val(e.latlng.lat + ' ' +e.latlng.lng);
+		$('input#user_latlng').val(nuevoLat + ' ' +nuevoLng);
 		
 	}
 	
 	
-	<?php if (($busqueda !== 'vacia') || ($total_registros_censo >= 1) ) { ?>
+	
+	<?php if (($busqueda !== 'vacia') && ($total_registros_censo >= 1) ) { ?>
 	
 	var progress = document.getElementById('progress');
 	var progressBar = document.getElementById('progress-bar');
@@ -525,7 +563,7 @@ $(document).ready(function(){
 		chunkProgress: updateProgressBar,
 		showCoverageOnHover: false,
 		disableClusteringAtZoom: 18,
-		maxClusterRadius: 28
+		maxClusterRadius: 20
 	});
 	
 	var markerList = [];
@@ -533,9 +571,9 @@ $(document).ready(function(){
 
 	var LeafIcon  = L.Icon.extend({
 		options: {
-			iconSize:     [29, 31],
-			iconAnchor:   [15, 25],
-			popupAnchor:  [0, -15]
+			iconSize:     [30, 34],
+			iconAnchor:   [15, 31],
+			popupAnchor:  [1, -20]
 		}
 	});
 	var arbolIcon			= new LeafIcon({iconUrl: 'images/marker.png'});
@@ -545,23 +583,52 @@ $(document).ready(function(){
 	var arbolIconRosa		= new LeafIcon({iconUrl: 'images/marker-rosa.png'});
 	var arbolIconNaranja	= new LeafIcon({iconUrl: 'images/marker-naranja.png'});
 	
+	var frutaIconNaranja	= new LeafIcon({iconUrl: 'images/marker-naranja-fruta.png'});
+	var frutaIconLimon		= new LeafIcon({iconUrl: 'images/marker-limon.png'});
+	var frutaIconPalta		= new LeafIcon({iconUrl: 'images/marker-palta.png'});
+	
+	var hojaIconGinkgo		= new LeafIcon({iconUrl: 'images/marker-ginkgo.png'});
+	
 	for (var i = 0; i < individuos.length; i++) {
 		var a = individuos[i];
 		var content = 'cargando...';
 		var especie	= a[3];
-		if (especie === 11) { // jacarandá
-			marker_color = arbolIconVioleta;
-		} else if ((especie === 249) || (especie === 145) || (especie === 41) ) { //tecoma, limonero y ginkgo
-			marker_color = arbolIconAmarillo;
-		} else if ((especie === 25) || (especie === 340)) { // palo borracho
-			marker_color = arbolIconRosa;
-		} else if ((especie === 148) || (especie === 144)) { // naranjo amargo y dule
-			marker_color = arbolIconNaranja;
-		} else {
-			marker_color = arbolIcon;
+		
+		
+		switch (especie) {
+			case 11: // Jacarandá mimosifolia
+				marker_icon = arbolIconVioleta;
+				break;
+			case 25: // Ceiba speciosa
+			case 38: // Tabebuia impetiginosa
+				marker_icon = arbolIconRosa;
+				break;
+			case 24: // Liquidambar  styraciflua
+			case 101: // Acer palmatum
+				marker_icon = arbolIconRojo;
+				break;
+			case 23: // Persea americana
+				marker_icon = frutaIconPalta;
+				break;
+			case 145: // Citrus limon
+				marker_icon = frutaIconLimon;
+				break;
+			case 41: // Ginkgo biloba
+				marker_icon = hojaIconGinkgo;
+				break;
+			case 249: // Tecoma stans
+			case 39: // Tabebuia chrysotricha
+				marker_icon = arbolIconAmarillo;
+				break;
+			case 144: // Citrus aurantium
+			case 148: // Citrus sinensis
+				marker_icon = frutaIconNaranja;
+				break;
+			default:
+				marker_icon = arbolIcon;
 		}
 				
-		var individuo = L.marker([a[0], a[1]], {icon: marker_color});
+		var individuo = L.marker([a[0], a[1]], {icon: marker_icon});
 
 		individuo.individuoId = a[2];
 		
@@ -587,7 +654,26 @@ $(document).ready(function(){
 		});
 	}
 	
+	/*
+	Cambiar el tamaño del ícono dependiendo del zoom
+	map.on('zoomend', function() {
+		if(map.getZoom() < 19){
+			$('.leaflet-marker-icon').css({ "width": "15px", "height": "17px", "marginLeft": "-8px", "marginTop": "-18px" });
+		}	 else {
+			$('.leaflet-marker-icon').css({ "width": "30px", "height": "34px","marginLeft": "-15px", "marginTop": "-31px" });
+		}
+	});
+	*/
+	
+	<?php }
+	
+	// Si la búsqueda incluye posición, marco el círculo con el marker de esa posición.
+	
+	if(  stripos($busqueda,'donde marker') > 0  ) {	
+	?>
+	onLocationFound(this.event,'<?= $user_lat ?>','<?= $user_lng ?>');	
 	<?php } ?>
+
 	
 });
 
@@ -602,5 +688,9 @@ $(document).ready(function(){
   ga('send', 'pageview');
 
 </script>
+
+<?
+echo('aaaaa:' . stripos($busqueda,'donde marker') );
+?>
 </body>
 </html>
