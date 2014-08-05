@@ -221,7 +221,10 @@ $(document).ready(function() {
 	
 	
 	// Lista de Nombre científico
-	$('.selectpicker').selectpicker();
+	$('.selectpicker').selectpicker({
+		noneSelectedText: 'No hay selección',
+		noneResultsText: 'No hay resultados'
+	});
 	
 	muestraBorrarIdEspecie();
 	
