@@ -1,7 +1,7 @@
 /********************************************************************************* FUNCIONES GLOBALES */
 
 // Mostrar todas las especies
-function muestraTodasLasEspecies() {
+/*function muestraTodasLasEspecies() {
 	$('input#id_especie').val(null);
 	$('input#muestra-especie').val(null);
 	
@@ -9,22 +9,46 @@ function muestraTodasLasEspecies() {
 	$('h6#results-text').fadeOut();
 	
 	$('input#respecies-todas').prop('checked', true);
-}
+}*/
 
 function muestraTodaLaCiudad() {
 	$('input#user_latlng').val(null);
 	$('input#rdonde-ciudad').prop('checked', true);
+	
+	if (window.new_user_marker) {
+		window.map.removeLayer(window.new_user_marker);
+		window.map.removeLayer(window.new_user_circle);
+		window.new_user_marker = undefined;
+		window.new_user_circle = undefined;	
+	}
+
 }
 
-function muestraPorAca(lat,lng) {
-	if (lat) {
-		$('input#user_latlng').val(lat+' '+lng);
-	} else {
-		//alert('no hay lat');
-		//var latlng_default = $('input#rdonde-mapa').val();
-		//$('input#user_latlng').val(latlng_default);
-	}
+function muestraPorAca(lat,lng,map) {
 	$('input#rdonde-mapa').prop('checked', true);
+	
+	if (lat) {
+		// cambiar el valor del lat y lng en el form al hacer click en un punto
+		$('input#user_latlng').val(lat+' '+lng);
+	}
+	
+	if (map) {
+		// centrar el mapa al click
+		map.panTo(new L.LatLng(lat, lng));
+	}
+	
+}
+
+function scrollAnimado(anchorHash){
+	// animate
+	$('html, body').animate({
+		scrollTop: $(anchorHash).offset().top
+		}, 300, function(){
+	
+		// when done, add hash to url
+		// (default click behaviour)
+		window.location.hash = anchorHash;
+	});
 }
 
 function validarBusqueda(){
@@ -33,9 +57,22 @@ function validarBusqueda(){
 	var hacerSubmit = false;
 	
 	/********************************************************************* Relevamiento de variables */
-	var especieUnaCheck		= $('input#respecies-una').prop('checked');
-	var especieTodasCheck	= $('input#respecies-todas').prop('checked');
-	var especieId			= $('input#id_especie').val();
+	//var especieUnaCheck	= $('input#respecies-una').prop('checked');
+	//var especieTodasCheck	= $('input#respecies-todas').prop('checked');
+	
+	var especieUnaCheck;
+	var especieTodasCheck;
+	
+	var especieId			= $('select#id_especie').val();
+	
+	if (especieId > 0) {
+		especieUnaCheck = true;
+		especieTodasCheck = false;
+	} else {
+		especieUnaCheck = false;
+		especieTodasCheck = true;
+	}
+	
 	var dondeMarkerCheck	= $('input#rdonde-mapa').prop('checked');
 	var dondeCiudadCheck	= $('input#rdonde-ciudad').prop('checked');
 	var dondeLatLng			= $('input#user_latlng').val();
@@ -91,12 +128,25 @@ function validarBusqueda(){
 	
 	/********************************************************************* Propuesta */
 	
-	if(hacerSubmit == true) {
+	if(hacerSubmit == true) {		
+
+		// Levanto modal para los ansiosos como yo.
+		$('#empieza-busqueda').modal('show');
+		
 		// Pasó todas las validaciones, envío el form.
 		$('form#busca_arboles').submit();
 	}
 	
 }
+
+function muestraBorrarIdEspecie(){
+	if( $('#id_especie').val() == 0 ) {
+		$('#borrar_id_especie').addClass('hidden');
+	}else{
+		$('#borrar_id_especie').removeClass('hidden');
+	}
+}
+
 
 
 
@@ -112,7 +162,7 @@ $(document).ready(function() {
 		if(query_value !== ''){
 			$.ajax({
 				type: "POST",
-				url: "getdata/buscar.php",
+				url: "tirameladata/buscar.php",
 				data: { query: query_value },
 				cache: false,
 				success: function(html){
@@ -126,26 +176,6 @@ $(document).ready(function() {
 	/********************************************************************************* INTERACCIONES */
 
 	
-	$("input#muestra-especie").live("keyup click", function(e) {
-		// Set Timeout
-		clearTimeout($.data(this, 'timer'));
-
-		// Set Search String
-		var search_string = $(this).val();
-
-		// buscar
-		if (search_string == '') {
-			// si está vacío vacío todo
-			muestraTodasLasEspecies();
-		}else{
-			$("ul#results").fadeIn();
-			$('h6#results-text').fadeIn();
-			$(this).data('timer', setTimeout(muestraEspecie, 100));
-			
-			$('input#respecies-una').prop('checked', true);
-		};
-	});
-	
 	// radio button de todas las especies
 	$("input#respecies-todas").click(function(e) {
 		muestraTodasLasEspecies();
@@ -155,24 +185,6 @@ $(document).ready(function() {
 	$("a#vaciar-posicion").click(function(e) {
 		e.preventDefault();
 		muestraTodaLaCiudad();
-	});
-	
-	// click en un resultado de la búsqueda de especies
-	$("ul#results").on("click","a", function(e){
-		e.preventDefault();
-
-		var link = $(this).attr('href');
-		var equalPosition = link.indexOf('='); //Get the position of '='
-		var number = link.substring(equalPosition + 1); //Split the string
-		
-		$('input#id_especie').val(number);
-		
-		$("ul#results").fadeOut();
-		$('h6#results-text').fadeOut();
-		
-		var texto = $(this).find('h4').text();
-		
-		$('input#muestra-especie').val(texto);
 	});
 	
 	
@@ -190,6 +202,7 @@ $(document).ready(function() {
 			if( $(this).attr("value") == 0 ) {
 				muestraTodaLaCiudad();
 			} else {
+				scrollAnimado('#mapa');
 				muestraPorAca();
 			}
 		}
@@ -201,4 +214,28 @@ $(document).ready(function() {
 		e.preventDefault();
 	});
 	
+	$("nav a.scroll").on('click', function(e) {
+		e.preventDefault();
+		scrollAnimado(this.hash);
+	});
+	
+	
+	// Lista de Nombre científico
+	$('.selectpicker').selectpicker();
+	
+	muestraBorrarIdEspecie();
+	
+	$( "#id_especie" ).change(function() {
+		muestraBorrarIdEspecie();
+	});
+	
+	/*if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+		$('.selectpicker').selectpicker('mobile');
+	}*/
+	
+	$('#borrar_id_especie').click(function(e){
+		e.preventDefault();
+		$('#id_especie').selectpicker('val', 0);
+	});
+
 });

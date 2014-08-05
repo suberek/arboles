@@ -8,7 +8,7 @@ $server = "servidor";
 $user   = "usuario";
 $pass   = "contraseña";
 */
-require_once('../includes/funciones.php');
+require_once('funciones.php');
 
 $dbhost = $server;
 $dbname = $schema;

@@ -7,23 +7,25 @@ body,
 	height: 100%;
 }
 
+.no-padding { padding: 0; margin: 0; }
+
 body {
-	padding-top: 40px;
+	padding-bottom: 40px;
 }
 
 label {
 	font-weight: normal;
 }
 
-nav#menu a.title {
+#menu nav a.title {
 	text-decoration: none;
 }
 
-nav#menu a.title:hover h1 {
+#menu nav a.title:hover h1 {
 	color: #6dddbb;
 }
 
-nav#menu a.title h1 {
+#menu nav a.title h1 {
 	background-repeat: no-repeat;
 	line-height: 1.1em;
 	font-weight: 400;
@@ -37,13 +39,23 @@ nav#menu a.title h1 {
 	padding-left: 37px;
 }
 
-#especies-lista { position: relative; }
+#menu nav a.title h1 small {
+	display: block;
+	margin-top: 0.1em;
+}
 
-nav#menu h6.results-text {
+
+#menu nav a.title h1 br {
 	display: none;
 }
 
-nav#menu ul.results {
+#especies-lista { position: relative; }
+
+#menu nav h6.results-text {
+	display: none;
+}
+
+#menu nav ul.results {
 	display: none;
 	border: 1px solid #ababab;
 	background-color: #FFF;
@@ -57,7 +69,7 @@ nav#menu ul.results {
 	max-height: 190px;
 	
 }
-nav#menu ul.results li {
+#menu nav ul.results li {
 	padding: 5px;
 	cursor: pointer;
 	border-top: 1px solid #cdcdcd;
@@ -65,41 +77,38 @@ nav#menu ul.results li {
 	-moz-transition: background-color .3s ease-in-out;
 	-webkit-transition: background-color .3s ease-in-out;
 }
-nav#menu ul.results li:hover {
+#menu nav ul.results li:hover {
 	background-color: #F7F7F7;
 }
-nav#menu ul.results li:first-child {
+#menu nav ul.results li:first-child {
 	border-top: none;
 }
-nav#menu ul.results li h4, ul#results li h5 {
+#menu nav ul.results li h4, ul#results li h5 {
 	line-height: 0.9em;
 }
-nav#menu ul.results li:hover h4, ul#results li:hover h5  {
+#menu nav ul.results li:hover h4, ul#results li:hover h5  {
 	font-weight: bold;
 }
 
-nav#menu ul.results li a {
+#menu nav ul.results li a {
 	text-decoration: none !important;
 }
 
-
-#progress {
-    display: none;
-    position: absolute;
-    z-index: 1000;
-    top: 0;
-    width: 100%;
-    height: 9px;
-    background-color: #fff;
-    background-color: rgba(255, 255, 255, 0.7);
-	-webkit-box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.3);
-	box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.3);
-}
-
-#progress-bar {
-    width: 0;
-    height: 100%;
-    background-color: #5cba9d;
+.progress {
+	display: none;
+	
+	/*position: absolute;
+	z-index: 4000;
+	top: 0;*/
+	
+	width: 100%;
+	height: 50px;
+	
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	
+	margin-bottom: 0;
 }
 
 form#busca_arboles {
@@ -114,12 +123,29 @@ form#busca_arboles .radio label {
 	margin-right: 7px;
 }
 
+.bootstrap-select.btn-group .dropdown-menu li:not(.disabled) > a:hover small, .bootstrap-select.btn-group .dropdown-menu li:not(.disabled) > a:focus small, .bootstrap-select.btn-group .dropdown-menu li.active:not(.disabled) > a small {
+	color: #FFF !important;
+}
+
+#mapa {
+	margin-bottom: 50px;
+}
+
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) { 
 	body {
-		padding-top: 0;
+		padding: 0;
 	}
-	nav#menu ul.results {
+	
+	#mapa {
+		margin: 0;
+	}
+	
+	#menu nav a.title h1 br {
+		display: block;
+	}
+
+	#menu nav ul.results {
 		position: absolute;
 		top: auto;
 		bottom: auto;
@@ -130,7 +156,7 @@ form#busca_arboles .radio label {
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-	nav#menu a.title h1 {
+	#menu nav a.title h1 {
 		background-image: url(../icons/logo-120x120.png);
 		background-position: -36px -7px;
 		font-size: 1.55em;
@@ -147,7 +173,7 @@ form#busca_arboles .radio label {
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-	nav#menu a.title h1 {
+	#menu nav a.title h1 {
 		background-image: url(../icons/logo-152x152.png);	
 		background-position: -36px -7px;
 		padding-top: 50px;
@@ -158,4 +184,3 @@ form#busca_arboles .radio label {
 		height: 136px;
 	}
 }
-
