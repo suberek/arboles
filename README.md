@@ -1,7 +1,7 @@
 Árboles de Buenos Aires
 =======================
 
-http://martinsimonyan.com.ar/proyectos/arbolesdebuenosaires/
+http://arboladourbano.com.ar/
 
 
 
@@ -29,7 +29,7 @@ http://arbolesciudad.com.ar/ <br>
 http://unahormiga.com/2013/06/mapaverde-como-lo-hice/
 
 
-Pasos (tengo que actualizar esto)
+Cómo fue realizado
 =================================
 
 1
