@@ -1,4 +1,10 @@
 sitio/_db.php
+<<<<<<< HEAD
 sitio/_esri-leaflet-geocoder-master/
 sitio/_leaflet-control-geocoder-master/
 sitio/_msd1.24.4
+=======
+sitio/_leaflet-control-geocoder-master/
+sitio/_msd1.24.4/
+sitio/_esri-leaflet-geocoder-master/
+>>>>>>> origin/dev
