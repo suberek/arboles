@@ -52,7 +52,7 @@ if (strlen($search_string) >= 1 && $search_string !== ' ' ) {
 	// Build Query
 	
 	$query = 'select NOMBRE_CIE, NOMBRE_COM, id_especie
-		from 2_especies
+		from especies
 		WHERE NOMBRE_CIE LIKE "%'.$search_string.'%" OR NOMBRE_COM LIKE "%'.$search_string.'%"
 	';
 

@@ -17,12 +17,13 @@ require_once('tirameladata/funciones.php');
 //// Defino el default
 $parametro	= "WHERE 1";
 $busqueda	= "vacia";
-$radius		= "150"; // Radui de búsqueda en Metros
+$radius		= "300"; // Radio de búsqueda en Metros
 $user_latlng_default = array("-34.60371794474704","-58.38157095015049"); // El Obelisco
 
 //// Veo qué vino en el form
 $id_especie_busqueda	= $_REQUEST['id_especie'];
 $user_latlng			= $_REQUEST['user_latlng'];
+$user_sabores			= $_REQUEST['user_sabores'];
 
 /**************************************************************** PARÁMETRO ESPECIE */
 if ((is_numeric($id_especie_busqueda)) && ($id_especie_busqueda > 0)) {
@@ -30,7 +31,7 @@ if ((is_numeric($id_especie_busqueda)) && ($id_especie_busqueda > 0)) {
 	
 	$especie_query	= "
 	SELECT NOMBRE_CIE
-	FROM 2_especies
+	FROM especies
 	WHERE id_especie = $id_especie_busqueda
 	LIMIT 1;
 	";
@@ -52,9 +53,9 @@ if (  !empty($user_latlng) && (strlen($user_latlng) > 1 )  ) {
 	//echo("me está llegando esto:" . $user_latlng);
 	
 	// Parsear lat y lng
-    $arr_user_latlng = explode(" ", $user_latlng);
-    $user_lat = $arr_user_latlng[0];
-    $user_lng = $arr_user_latlng[1];
+	$arr_user_latlng = explode(" ", $user_latlng);
+	$user_lat = $arr_user_latlng[0];
+	$user_lng = $arr_user_latlng[1];
 	
 	if (  is_numeric($user_lat) && is_numeric($user_lng)  ) {
 		$busqueda	.= " donde marker";
@@ -68,6 +69,13 @@ if (  !empty($user_latlng) && (strlen($user_latlng) > 1 )  ) {
 
 if ($busqueda == "especie todas donde ciudad") {
 	$busqueda = "vacia";
+}
+
+
+/**************************************************************** PARÁMETRO SABORES */
+if ((is_numeric($user_sabores)) && ($user_sabores > 0)) {
+	$parametro .= " AND id_usuario = 3";
+	$busqueda .= " con sabores";
 }
 
 //echo("<br>".$user_lat);
@@ -85,68 +93,61 @@ if ($busqueda == "especie todas donde ciudad") {
 
 <!-- /ht Andy Clarke - http://front.ie/lkCwyf -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon" />
-<link rel="apple-touch-icon" href="icons/logo.png" />
-<link rel="apple-touch-icon" sizes="57x57" href="icons/logo-57x57.png" />
-<link rel="apple-touch-icon" sizes="72x72" href="icons/logo-72x72.png" />
-<link rel="apple-touch-icon" sizes="76x76" href="icons/logo-76x76.png" />
-<link rel="apple-touch-icon" sizes="114x114" href="icons/logo-114x114.png" />
-<link rel="apple-touch-icon" sizes="120x120" href="icons/logo-120x120.png" />
-<link rel="apple-touch-icon" sizes="144x144" href="icons/logo-144x144.png" />
-<link rel="apple-touch-icon" sizes="152x152" href="icons/logo-152x152.png" />
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<link rel="apple-touch-icon" href="images/logo.png" />
+<link rel="apple-touch-icon" sizes="57x57" href="images/logo-57x57.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="images/logo-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="images/logo-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="images/logo-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="images/logo-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="images/logo-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="images/logo-152x152.png" />
 
-<!-- Leaflet 0.7.2: https://github.com/CloudMade/Leaflet-->
-<link rel="stylesheet" href="css/leaflet.css" />
-<script src="js/leaflet.js"></script>
+<!-- jQuery -->
+<script src="third-party/jquery/jquery-2.1.1.min.js"></script>
+<!-- jQuery Plugins-->
+<script src="third-party/jquery/jquery-migrate-1.2.1.min.js"></script>
 
-<!-- Google Maps -->
+<!-- Bootstrap -->
+<script src="third-party/bootstrap/js/bootstrap.min.js"></script>
+<!-- Bootstrap Plugins-->
+<script src="third-party/bootstrap-plugins/bootstrap-select.min.js"></script>
+
+<!-- Leaflet -->
+<script src="third-party/leaflet/leaflet.js"></script>
+<!-- Leaflet Plugins -->
 <script src="http://maps.google.com/maps/api/js?v=3.2&amp;sensor=false"></script>
-<script src="js/leaflet.google.js"></script>
-<link rel="stylesheet" href="css/leaflet.markercluster.css" />
-<script src="js/leaflet.markercluster-src.js"></script>
-<script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js'></script>
-<link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.css' rel='stylesheet' />
+<script src="third-party/leaflet-plugins/Google/leaflet.google.min.js"></script>
+<script src="third-party/leaflet-plugins/MarkerCluster/leaflet.markercluster-src.js"></script>
+<script src="third-party/leaflet-plugins/Locate/L.Control.Locate.min.js" ></script>
+<script src="third-party/leaflet-plugins/Geocoder/Control.Geocoder.min.js"></script>
+
+<!-- Custom -->
+<link rel="stylesheet" type="text/css" href="custom/css/estilos.css" media="all">
 
 <!--[if lt IE 9]>
-  <link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.21.0/L.Control.Locate.ie.css' rel='stylesheet' />
+    <link rel="stylesheet" href="third-party/leaflet-plugins/Locate/L.Control.Locate.ie.min.css"/>
 <![endif]-->
 
-<!--
-GeoCoder... próximamente...
-<script src="esri-leaflet-geocoder-master/dist/esri-leaflet-geocoder.js"></script>
-<link rel="stylesheet" href="esri-leaflet-geocoder-master/dist/esri-leaflet-geocoder.css" />
--->
-
-<script src="js/jquery-2.1.1.min.js"></script>
-<script src="js/jquery-migrate-1.2.1.min.js"></script>
-
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="css/bootstrap.min.css">
-
-<!-- Font Awesome 4.1.0 -->
-<link rel="stylesheet" href="css/font-awesome.min.css">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="css/la-magia.css" media="all">
-
-<!-- Bootstrap Select -->
-<script src="js/bootstrap-select.min.js"></script>
-<link rel="stylesheet" type="text/css" href="css/bootstrap-select.min.css">
 <?php
 
 if ($busqueda !== 'vacia') {
 	
 	// Hago LA consulta
-	$censo_query = "
+	/*$censo_query = "
 		SELECT id_individuo, id_especie, X(`coordenadas`) as lat, Y(`coordenadas`) as lng
-		FROM 1_individuos
+		FROM individuos
+		$parametro";*/
+
+	$censo_query = "
+		SELECT id_individuo, id_especie, lat, lng
+		FROM individuos
 		$parametro";
 		
 	if (stripos($busqueda,'marker') > 0) {
 
 		// Definir el centro y buscar en el radio.
-		$censo_query = "
+		/*$censo_query = "
 		SELECT id_individuo, id_especie, X(`coordenadas`) as lat, Y(`coordenadas`) as lng ,(
 			6371 * acos (
 			  cos ( radians( $user_lat ) )
@@ -156,7 +157,21 @@ if ($busqueda !== 'vacia') {
 			  * sin( radians( lat ) )
 			)
 		  ) AS distance
-		FROM 1_individuos
+		FROM individuos
+		$parametro
+		HAVING distance < ($radius/1000);";*/
+
+		$censo_query = "
+		SELECT id_individuo, id_especie, lat, lng ,(
+			6371 * acos (
+			  cos ( radians( $user_lat ) )
+			  * cos( radians( lat ) )
+			  * cos( radians( lng ) - radians( $user_lng ) )
+			  + sin ( radians( $user_lat ) )
+			  * sin( radians( lat ) )
+			)
+		  ) AS distance
+		FROM individuos
 		$parametro
 		HAVING distance < ($radius/1000);";
 	}
@@ -165,6 +180,8 @@ if ($busqueda !== 'vacia') {
 	$count = true;
 	$censo_results	= GetRS($censo_query);
 	$total_registros_censo = $total_registros;
+
+	//die($censo_query);
 	
 	// Armo el array con los individuos
 	if ($total_registros_censo >= 1) {
@@ -214,91 +231,132 @@ if ($busqueda !== 'vacia') {
 		  </div>
 		</div>
 
-
-		<div class="col-sm-3" id="menu">
+		<div class="col-sm-3 full-height" id="menu">
 			<nav role="navigation">
-				<div id="main"> <a class="title" href="./">
-					<h1>Arbolado<br>
-						Urbano
-						<small>Buenos Aires</small></h1>
-					</a>
-					<form action="index.php#mapa" method="post" id="busca_arboles" role="form">
+				<a class="title" href="./">
+				<h1>Arbolado<br>
+					Urbano
+					<small>Buenos Aires</small></h1>
+				</a>
+				<form action="index.php#mapa" method="post" id="busca_arboles" role="form">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="form-group">
+								<h3>¿Dónde?</h3>
+								<div class="radio"> 
+									<label>
+										<input type="radio" id="rdonde-ciudad" name="rdonde" value="0"  <?php if (stripos($busqueda,'marker') == 0) echo 'checked' ?>  />
+										en toda la ciudad </label>
+									<label>
+										<input type="radio" id="rdonde-mapa" name="rdonde" value="<? echo $user_latlng_default[0].' '.$user_latlng_default[1] ?>"  <?php if (stripos($busqueda,'marker') > 0) echo 'checked' ?>  />
+										marcar en el mapa </label>
+								</div>
+								<input type="hidden" value="<?php echo($user_lat.' '.$user_lng); ?>" name="user_latlng" id="user_latlng">
+							</div>
+						</div>
 					
-						<div class="row">
-						
-							<div class="col-xs-12">
-						
-								<div class="form-group">
-									<h3>¿Dónde?</h3>
-									<div class="radio"> 
-										<label>
-											<input type="radio" id="rdonde-ciudad" name="rdonde" value="0"  <?php if (stripos($busqueda,'marker') == 0) echo 'checked' ?>  />
-											en toda la ciudad </label>
-										<label>
-											<input type="radio" id="rdonde-mapa" name="rdonde" value="<? echo $user_latlng_default[0].' '.$user_latlng_default[1] ?>"  <?php if (stripos($busqueda,'marker') > 0) echo 'checked' ?>  />
-											marcar en el mapa </label>
-									</div>
-									<input type="hidden" value="<?php echo($user_lat.' '.$user_lng); ?>" name="user_latlng" id="user_latlng">
-								</div>
-						
-							</div>
-						
-							<div class="col-xs-12">
-						
-								<div class="form-group">
-									<h3>¿Qué especie? <a href="#" id="borrar_id_especie"><i class="fa fa-trash-o"></i></a></h3>
-									
-									<select class="form-control input-lg selectpicker" data-style="btn-default" name="id_especie" id="id_especie" data-live-search="true">
-										<option value="0">Todas</option>
-										<?php
-											// Consulto especies y cantidad
-											/*$especies_query = "SELECT count(i.id_especie) as CANT, e.id_especie, e.NOMBRE_CIE, e.NOMBRE_COM
-														FROM 1_individuos AS i, 2_especies AS e
-														WHERE i.id_especie = e.id_especie
-														GROUP BY e.id_especie
-														ORDER BY e.NOMBRE_CIE";*/
-											
-											// Consulto especies sin cantidad
-											$especies_query = "SELECT e.id_especie, e.NOMBRE_CIE, e.NOMBRE_COM
-														FROM 2_especies AS e
-														ORDER BY e.NOMBRE_CIE";
-											
-											$especies_results	= GetRS($especies_query);
-											
-											// Armo el array con los individuos
-											while ($especies_row = mysql_fetch_array($especies_results)) {
-												$i++;
-													
-												$lista_NCIE		= $especies_row['NOMBRE_CIE'];
-												$lista_NCOM		= $especies_row['NOMBRE_COM'];
-												$lista_ID		= $especies_row['id_especie'];
-												//$lista_CANT		= $especies_row['CANT'];
+						<div class="col-xs-12">
+					
+							<div class="form-group">
+								<h3>¿Qué especie? <a href="#" id="borrar_id_especie"><i class="fa fa-trash-o"></i></a></h3>
+								
+								<select class="form-control input-lg selectpicker" data-style="btn-default" name="id_especie" id="id_especie" data-live-search="true">
+									<option value="0">Todas</option>
+									<?php
+										// Consulto especies y cantidad
+										/*$especies_query = "SELECT count(i.id_especie) as CANT, e.id_especie, e.NOMBRE_CIE, e.NOMBRE_COM
+													FROM individuos AS i, especies AS e
+													WHERE i.id_especie = e.id_especie
+													GROUP BY e.id_especie
+													ORDER BY e.NOMBRE_CIE";*/
+										
+										// Consulto especies sin cantidad
+										$especies_query = "SELECT e.id_especie, e.NOMBRE_CIE, e.NOMBRE_COM
+													FROM especies AS e
+													ORDER BY e.NOMBRE_CIE";
+										
+										$especies_results	= GetRS($especies_query);
+										
+										// Armo el array con los individuos
+										while ($especies_row = mysql_fetch_array($especies_results)) {
+											$i++;
 												
-												$selected = '';
-												if ($id_especie_busqueda===$lista_ID) $selected = ' selected';
-												echo '
-													<option value="'.$lista_ID.'" '.$selected.' data-subtext="'. $lista_NCOM.'">' . $lista_NCIE . ' </option>
-												';
-											}
+											$lista_NCIE		= $especies_row['NOMBRE_CIE'];
+											$lista_NCOM		= $especies_row['NOMBRE_COM'];
+											$lista_ID		= $especies_row['id_especie'];
+											//$lista_CANT		= $especies_row['CANT'];
 											
-											
-										?>
-									</select>
-									
-								</div>
-						
+											$selected = '';
+											if ($id_especie_busqueda===$lista_ID) $selected = ' selected';
+											echo '
+												<option value="'.$lista_ID.'" '.$selected.' data-subtext="'. $lista_NCOM.'">' . $lista_NCIE . ' </option>
+											';
+										}
+										
+										
+									?>
+								</select>
+								
 							</div>
-							
-							
+					
+						</div>
+
+						<div class="col-xs-12">
+							<div class="form-group">
+								<h3>Frutales y medicinales</h3>
+								<label for="user_sabores"> <input type="checkbox" name="user_sabores" id="user_sabores" value="1"  <?php if ($user_sabores > 0) echo 'checked' ?> > Probar este filtro <span class="label label-warning">beta</span></label>
+							</div>
 						</div>
 						
-						<input name="Buscar" type="submit" value="Buscar" class="btn btn-primary btn-lg btn-block">
 						
-					</form>
-				</div>
+					</div>
+					
+					<input name="Buscar" type="submit" value="Buscar" class="btn btn-primary btn-lg btn-block">
+					
+				</form>
+		
+			<button class="btn btn-default btn-small btn-block que-es-esto" data-toggle="modal" data-target="#que-es-esto">¿Qué es esto?</a>
+			
 			</nav>
 		</div>
+	
 		<div class="col-sm-9 full-height" id="mapa"> </div>
+	</div>
+</div>
+
+<!-- Modal: ¿Qué es esto? -->
+<div class="modal fade" id="que-es-esto" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4>¿Qué es esto?</h4>
+			 </div>
+			<div class="modal-body">
+				<p>
+					Este mapa surge gracias a la publicación de una información increíble: el <a href="http://data.buenosaires.gob.ar/dataset/censo-arbolado" target="_blank">censo del arbolado de la Ciudad de Buenos Aires.</a></p>
+				<p>El objetivo principal de este sitio es simplificar el acceso a esta valiosa información esperando que colabore con el conocimiento y el cuidado de nuestro arbolado urbano.</p>
+					
+				<a href="http://martinsimonyan.com.ar/arboles-de-buenos-aires/" class="btn btn-default" target="_blank">Más información <i class="fa fa-caret-right fa-sm"></i></a>
+			<hr>
+				<h5>¿Con qué seguir?</h5>
+
+				<p>Podés dejar tu opinión y tus idas para seguir mejorando esta herramienta haciendo click en la lamparita que está arriba a la derecha.</p>
+				<p>Por ejemplo:
+					<ul>
+						<li>permitir seleccionar el radio de búsqueda</li>
+						<li>buscar por barrio o comuna</li>
+						<li>incorporar otras fuentes y no tan sólo las del censo del gobierno</li>
+						<li>incorporar a otras ciudades</li>
+						<li>permitir interacción con usuarios para que carguen ejemplares, fotografías y reporten errores</li>
+						<li>etc, etc.</li>
+					</ul>
+				</p>
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			</div>
+		</div>
 	</div>
 </div>
 
@@ -376,8 +434,6 @@ if ($busqueda !== 'vacia') {
 </div>
 
 
-
-
 <?php
 if ($total_registros_censo === 0) { ?>
 <!-- Modal: sin resultados -->
@@ -399,8 +455,8 @@ if ($total_registros_censo === 0) { ?>
   </div>
 </div>
 <? } ?>
-						
-<script type="text/javascript" src="js/buscar.js"></script> 
+	
+<script type="text/javascript" src="custom/js/buscar.min.js"></script>
 <script type="text/javascript">
 
 $(document).ready(function(){
@@ -410,9 +466,9 @@ $(document).ready(function(){
 	<? } ?>
 	
 	// Límite del mapa puesto a Ciudad de Buenos Aires
-	var southWest	= new L.LatLng(-34.7260, -58.5605),
-    northEast		= new L.LatLng(-34.5096, -58.3192),
-    bounds = new L.LatLngBounds(southWest, northEast);
+	var southWest	= new L.LatLng(-35.052109 , -58.72673),
+	northEast	= new L.LatLng(-34.192115 , -58.064804),
+	bounds = new L.LatLngBounds(southWest, northEast);
 	
 	bodyHeight = $("section[data-role='main']").height();
 	$("#mapa").css("height", bodyHeight); //set with CSS also...
@@ -430,7 +486,7 @@ $(document).ready(function(){
 		
 	// MAPAS
 	
-	var stm = new L.TileLayer("http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png", {
+	/*var stm = new L.TileLayer("http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png", {
 		minZoom: 2,
 		maxZoom: 20,
 		subdomains: 'abcd',
@@ -443,31 +499,14 @@ $(document).ready(function(){
 		devID: 'xyz',
 		appID: 'abc',
 		attribution: 'mapa <a href="http://developer.here.com">Nokia</a>'
-		});
+		});*/
 		
 	
 	var ggr = new L.Google('ROADMAP');
-	var ggs = new L.Google('SATELLITE');
-	var ggh = new L.Google('HYBRID');
-	map.addControl(new L.Control.Layers({'Google Roadmap':ggr, 'Google Satélite':ggs, 'Google Hybrid':ggh, 'Stamen':stm, 'Nokia':Nokia_normalDay}));
+	//var ggs = new L.Google('SATELLITE');
+	//var ggh = new L.Google('HYBRID');
+	//map.addControl(new L.Control.Layers({'Google Roadmap':ggr, 'Google Satélite':ggs, 'Google Hybrid':ggh, 'Stamen':stm, 'Nokia':Nokia_normalDay}));
 	map.addLayer(ggr);
-	
-	
-	/*
-	GeoCoder... próximamente...
-	
-	var GeoSearchOptions = {
-	  'useMapBounds': true,
-	  'maxResults': 3
-	}
-
-	var searchControl = new L.esri.Controls.Geosearch(GeoSearchOptions).addTo(map);
-	
-	searchControl.on("error", function(e){
-        console.log(e);
-	});
-	*/ 
-	 
 	
 	// Barra de botones
 	var myButton = L.control({ position: 'topleft' });
@@ -475,7 +514,7 @@ $(document).ready(function(){
 	// localizame
 	L.control.locate({
 		locateOptions: {
-			maxZoom: 20
+			maxZoom: 17
 		},
 		keepCurrentZoomLevel: true,
 		strings: {
@@ -484,6 +523,7 @@ $(document).ready(function(){
 			outsideMapBoundsMsg: "Me parece que estás fuera de la ciudad. Si no es así, por favor mové el mapa manualmente." // default message for onLocationOutsideMapBounds
 		}
 	}).addTo(map);
+
 	
 	function onLocationError(e) {
 		alert(e.message);
@@ -491,10 +531,25 @@ $(document).ready(function(){
 
 	map.on('locationfound', onLocationFound);
 	map.on('locationerror', onLocationError);
+
+
+	// Buscador Geocoder
+	var geocoder = L.Control.geocoder({
+		position:'topleft',
+		showResultIcons:true,
+		collapsed: true,
+		placeholder: 'Buscá un lugar en la Ciudad',
+		errorMessage: 'Nada, che. Buscá otra vez.',
+	}).addTo(map);
+
+	geocoder.markGeocode = function(result) {
+		var bboxcenter = result.center;
+		muestraPorAca(bboxcenter.lat, bboxcenter.lng, map, true)
+	};
 	
 
 	// COPY
-	map.attributionControl.addAttribution('Proyecto: <a href="http://martinsimonyan.com.ar/arboles-de-buenos-aires/">Martín Simonyan</a> | Árboles gracias a <a href="http://data.buenosaires.gob.ar/dataset/censo-arbolado/" target="_blank">data.buenosaires.gob.ar</a>');
+	map.attributionControl.addAttribution('Proyecto: <a href="http://martinsimonyan.com.ar/arboles-de-buenos-aires/">Martín Simonyan</a>');
 	
 	map.on('click', function(e) {
 		onLocationFound(e,'','');
@@ -530,7 +585,7 @@ $(document).ready(function(){
 			window.new_user_marker = new L.marker([nuevoLat,nuevoLng],{
 				draggable: true,
 				title: "",
-	 	        alt: "",
+				alt: "",
 				riseOnHover: true
 			});
 			
@@ -545,7 +600,7 @@ $(document).ready(function(){
 
 			// Acción asociada al link dentro del popup
 			container.on('click', '#buscar_en_toda_la_ciudad', function(e) {
-			    e.preventDefault();
+				e.preventDefault();
 				muestraTodaLaCiudad();
 			});
 
@@ -554,9 +609,10 @@ $(document).ready(function(){
 			
 			window.new_user_marker.bindPopup(container[0]);
 			 
-			// Agrego el círculo, el marker y abro el popup
+			// Agrego el círculo, el marker
 			window.new_user_circle.addTo(map);
 			window.new_user_marker.addTo(map);
+
 			
 		} else {
 			window.new_user_marker.setLatLng([nuevoLat,nuevoLng]);
@@ -626,7 +682,7 @@ $(document).ready(function(){
 		
 		switch (especie) {
 <?php
-	$iconos_query	= "SELECT DISTINCT id_especie, ICONO FROM 2_especies WHERE ICONO != ''";
+	$iconos_query	= "SELECT DISTINCT id_especie, ICONO FROM especies WHERE ICONO != ''";
 	$iconos_results	= GetRS($iconos_query);
 	
 	while ($iconos_row = mysql_fetch_array($iconos_results)) {
@@ -647,7 +703,7 @@ $(document).ready(function(){
 		
 		var popupOptions =
 		{
-			'maxWidth': '250'
+			'maxWidth': '400'
 		}
 		
 		individuo.bindPopup(content, popupOptions);
@@ -702,17 +758,53 @@ $(document).ready(function(){
 	
 });
 
-</script> 
-<script>
+
+// Include the UserVoice JavaScript SDK (only needed once on a page)
+UserVoice=window.UserVoice||[];
+(function(){
+  var uv=document.createElement('script');
+  uv.type='text/javascript';
+  uv.async=true;
+  uv.src='//widget.uservoice.com/Eq8cib0TB3FmGnxB0NRmw.js';
+  var s=document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(uv,s)
+})();
+
+UserVoice.push(['addTrigger', {
+  mode: 'smartvote', // Modes: contact (default), smartvote, satisfaction
+  trigger_position: 'top-right',
+  trigger_color: 'white',
+  trigger_background_color: '#5cba9d',
+  accent_color: '#5cba9d',
+  contact_enabled: false,
+  trigger_style: 'icon',
+  smartvote_title: '¿Con qué seguir?',
+  menu_enabled : true
+}]);
+
+
+
+
+// GOOGLE ANALYTICS
+
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-678413-6', 'martinsimonyan.com.ar');
+  ga('create', 'UA-678413-17', 'auto');
+  ga('require', 'displayfeatures');
+  ga('require', 'linkid', 'linkid.js');
   ga('send', 'pageview');
+  <?php if ($busqueda !== 'vacia') {
+  // Seguimiento Conversiones (búsquedas)
+  ?>
+  ga("send", "formulario posteado", "buscar", "arboles", <?php echo $total_registros_censo?> );
+  <?php } ?>
+
+
 
 </script>
+
 
 <?
 //echo('MARKER LATLNG:' . stripos($busqueda,'donde marker') );
