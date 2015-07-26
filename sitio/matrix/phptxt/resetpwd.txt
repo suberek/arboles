@@ -1,0 +1,20 @@
+Subject: Password Reset Request
+From: <!--$From-->
+To: <!--$To-->
+Cc:
+Bcc:
+Format: TEXT
+
+Dear Sir/Madam,
+
+To initiate the password reset process for your Account (User Name: <!--$UserName-->), please click the link below:
+
+<!--$ActivateLink-->
+
+If clicking the link above does not work, please copy and paste the URL in a new browser window to perform the password reset.
+
+You can safely disregard this email if you did not initiate the password reset request. Another user may have entered your email address by mistake when trying to reset his password.
+
+Best Regards,
+Support
+

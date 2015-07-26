@@ -22,10 +22,10 @@ require_once('funciones.php');
 //die($query);
 
 $query		= "
-SELECT i.ALTURA_TOT, i.calle, i.alt_ini, i.espacio_verde, e.NOMBRE_CIE, e.NOMBRE_COM, e.TIPO_FOLLA, e.ORIGEN, f.autor, f.descripcion, f.url
-FROM 1_individuos i
-INNER JOIN 2_especies e ON i.id_especie=e.id_especie
-INNER JOIN 3_fuentes f ON f.id=i.id_fuente
+SELECT i.ALTURA_TOT, i.calle, i.alt_ini, i.espacio_verde, e.NOMBRE_CIE, e.NOMBRE_COM, e.TIPO_FOLLA, e.ORIGEN, u.nombre_completo, u.descripcion, u.url
+FROM individuos i
+INNER JOIN especies e ON i.id_especie=e.id_especie
+INNER JOIN usuarios u ON u.id=i.id_usuario
 WHERE id_individuo = $id
 LIMIT 1;
 ";
@@ -42,9 +42,9 @@ $altura				= $row['ALTURA_TOT'];
 
 $espacio_verde		= $row['espacio_verde'];
 
-$fuente_autor		= $row['autor'];
-$fuente_desc		= $row['descripcion'];
-$fuente_url			= $row['url'];
+$usuario_autor		= $row['nombre_completo'];
+$usuario_desc		= $row['descripcion'];
+$usuario_url		= $row['url'];
 
 if ( empty($espacio_verde) ) {
 	$alt_ini			= $row['alt_ini'];
@@ -60,8 +60,9 @@ echo "
 	<p>$origen</p>
 	<p>Altura: $altura m</p>
 	<p><i class=\"fa fa-map-marker fa-fw\"></i> $ubicacion</p>
-	<p><small> Autor: $fuente_autor. <br>
-	$fuente_desc <br>
-	<a href=\"$fuente_url\" target=\"_blank\">Ir a la fuente</a></small></p>";
-
+	<p><small> Autor: $usuario_autor. </small></p>
+	<small>
+		$usuario_desc
+		<p><a href=\"$usuario_url\" target=\"_blank\">Ir a la fuente</a></p>
+	</small>";
 ?>

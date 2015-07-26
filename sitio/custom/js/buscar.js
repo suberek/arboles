@@ -81,6 +81,8 @@ function validarBusqueda(){
 		especieUnaCheck = false;
 		especieTodasCheck = true;
 	}
+
+	var especieSaboresCheck	= $('input#user_sabores').prop('checked'); // devuelve true o false
 	
 	var dondeMarkerCheck	= $('input#rdonde-mapa').prop('checked');
 	var dondeCiudadCheck	= $('input#rdonde-ciudad').prop('checked');
@@ -93,7 +95,7 @@ function validarBusqueda(){
 		if (especieId > 0) {
 			var especieUnaCheckOK = true;
 		}
-	}
+	} 
 	
 	if(dondeMarkerCheck == true) {
 		if (dondeLatLng.length > 1) {			
@@ -101,13 +103,15 @@ function validarBusqueda(){
 		}
 	}
 	
-	if( (especieTodasCheck == false) || (dondeCiudadCheck == false) ) {
-		var especieOdondeCheckOK = true;
+	// Para seguir, se tiene que dar alguna de las 3 condiciones:
+	// hay alguna especie -ó- se marcó un sitio -ó- se filtra por frutales)
+	if( (especieTodasCheck == false) || (dondeCiudadCheck == false) || (especieSaboresCheck == true) ) {
+		var especieOdondeOsaboresCheckOK = true;
 	}
 	
 	/********************************************************************* Diagnóstico */
 	
-	if (especieOdondeCheckOK == true) {
+	if (especieOdondeOsaboresCheckOK == true) {
 		
 		if (especieUnaCheck == true) {
 			if (especieUnaCheckOK == true) {
@@ -127,6 +131,10 @@ function validarBusqueda(){
 				$('#rdonde-ciudad-modal').modal('show');
 				hacerSubmit = false;
 			}
+		}
+
+		if (especieSaboresCheck == true) {
+			hacerSubmit = true;
 		}
 		 
 	} else {
@@ -148,13 +156,13 @@ function validarBusqueda(){
 	} else {
 		return false;
 	}
-	
 }
 
 function muestraBorrarIdEspecie(){
 	if( $('#id_especie').val() == 0 ) {
 		$('#borrar_id_especie').addClass('hidden');
 	}else{
+		$('input#user_sabores').prop('checked', false);
 		$('#borrar_id_especie').removeClass('hidden');
 	}
 }
@@ -256,5 +264,15 @@ $(document).ready(function() {
 		e.preventDefault();
 		$('#id_especie').selectpicker('val', 0);
 	});
+
+
+	$('input#user_sabores').click(function(){
+		
+		if ( $(this).prop('checked') == true ) {
+			$('#id_especie').selectpicker('val', 0);
+		}
+	
+	});
+
 
 });

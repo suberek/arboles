@@ -1,0 +1,8 @@
+/* 
+	CSS for mobile devices
+	- Put your codes here to override default CSS settings for mobile devices
+	- Refer to <project>.css for default CSS settings
+*/
+.ui-li .ui-btn-inner a.ui-link-inherit.ewIndent {
+	padding-left: 30px;
+}

@@ -23,6 +23,7 @@ $user_latlng_default = array("-34.60371794474704","-58.38157095015049"); // El O
 //// Veo qué vino en el form
 $id_especie_busqueda	= $_REQUEST['id_especie'];
 $user_latlng			= $_REQUEST['user_latlng'];
+$user_sabores			= $_REQUEST['user_sabores'];
 
 /**************************************************************** PARÁMETRO ESPECIE */
 if ((is_numeric($id_especie_busqueda)) && ($id_especie_busqueda > 0)) {
@@ -30,7 +31,7 @@ if ((is_numeric($id_especie_busqueda)) && ($id_especie_busqueda > 0)) {
 	
 	$especie_query	= "
 	SELECT NOMBRE_CIE
-	FROM 2_especies
+	FROM especies
 	WHERE id_especie = $id_especie_busqueda
 	LIMIT 1;
 	";
@@ -68,6 +69,13 @@ if (  !empty($user_latlng) && (strlen($user_latlng) > 1 )  ) {
 
 if ($busqueda == "especie todas donde ciudad") {
 	$busqueda = "vacia";
+}
+
+
+/**************************************************************** PARÁMETRO SABORES */
+if ((is_numeric($user_sabores)) && ($user_sabores > 0)) {
+	$parametro .= " AND id_usuario = 3";
+	$busqueda .= " con sabores";
 }
 
 //echo("<br>".$user_lat);
@@ -126,15 +134,20 @@ if ($busqueda == "especie todas donde ciudad") {
 if ($busqueda !== 'vacia') {
 	
 	// Hago LA consulta
-	$censo_query = "
+	/*$censo_query = "
 		SELECT id_individuo, id_especie, X(`coordenadas`) as lat, Y(`coordenadas`) as lng
-		FROM 1_individuos
+		FROM individuos
+		$parametro";*/
+
+	$censo_query = "
+		SELECT id_individuo, id_especie, lat, lng
+		FROM individuos
 		$parametro";
 		
 	if (stripos($busqueda,'marker') > 0) {
 
 		// Definir el centro y buscar en el radio.
-		$censo_query = "
+		/*$censo_query = "
 		SELECT id_individuo, id_especie, X(`coordenadas`) as lat, Y(`coordenadas`) as lng ,(
 			6371 * acos (
 			  cos ( radians( $user_lat ) )
@@ -144,7 +157,21 @@ if ($busqueda !== 'vacia') {
 			  * sin( radians( lat ) )
 			)
 		  ) AS distance
-		FROM 1_individuos
+		FROM individuos
+		$parametro
+		HAVING distance < ($radius/1000);";*/
+
+		$censo_query = "
+		SELECT id_individuo, id_especie, lat, lng ,(
+			6371 * acos (
+			  cos ( radians( $user_lat ) )
+			  * cos( radians( lat ) )
+			  * cos( radians( lng ) - radians( $user_lng ) )
+			  + sin ( radians( $user_lat ) )
+			  * sin( radians( lat ) )
+			)
+		  ) AS distance
+		FROM individuos
 		$parametro
 		HAVING distance < ($radius/1000);";
 	}
@@ -153,6 +180,8 @@ if ($busqueda !== 'vacia') {
 	$count = true;
 	$censo_results	= GetRS($censo_query);
 	$total_registros_censo = $total_registros;
+
+	//die($censo_query);
 	
 	// Armo el array con los individuos
 	if ($total_registros_censo >= 1) {
@@ -236,14 +265,14 @@ if ($busqueda !== 'vacia') {
 									<?php
 										// Consulto especies y cantidad
 										/*$especies_query = "SELECT count(i.id_especie) as CANT, e.id_especie, e.NOMBRE_CIE, e.NOMBRE_COM
-													FROM 1_individuos AS i, 2_especies AS e
+													FROM individuos AS i, especies AS e
 													WHERE i.id_especie = e.id_especie
 													GROUP BY e.id_especie
 													ORDER BY e.NOMBRE_CIE";*/
 										
 										// Consulto especies sin cantidad
 										$especies_query = "SELECT e.id_especie, e.NOMBRE_CIE, e.NOMBRE_COM
-													FROM 2_especies AS e
+													FROM especies AS e
 													ORDER BY e.NOMBRE_CIE";
 										
 										$especies_results	= GetRS($especies_query);
@@ -270,6 +299,13 @@ if ($busqueda !== 'vacia') {
 								
 							</div>
 					
+						</div>
+
+						<div class="col-xs-12">
+							<div class="form-group">
+								<h3>Frutales y medicinales</h3>
+								<label for="user_sabores"> <input type="checkbox" name="user_sabores" id="user_sabores" value="1"  <?php if ($user_sabores > 0) echo 'checked' ?> > Probar este filtro <span class="label label-warning">beta</span></label>
+							</div>
 						</div>
 						
 						
@@ -419,8 +455,8 @@ if ($total_registros_censo === 0) { ?>
   </div>
 </div>
 <? } ?>
-						
-<script type="text/javascript" src="custom/js/buscar.min.js"></script> 
+	
+<script type="text/javascript" src="custom/js/buscar.min.js"></script>
 <script type="text/javascript">
 
 $(document).ready(function(){
@@ -646,7 +682,7 @@ $(document).ready(function(){
 		
 		switch (especie) {
 <?php
-	$iconos_query	= "SELECT DISTINCT id_especie, ICONO FROM 2_especies WHERE ICONO != ''";
+	$iconos_query	= "SELECT DISTINCT id_especie, ICONO FROM especies WHERE ICONO != ''";
 	$iconos_results	= GetRS($iconos_query);
 	
 	while ($iconos_row = mysql_fetch_array($iconos_results)) {

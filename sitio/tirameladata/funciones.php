@@ -24,8 +24,6 @@ function GetRS($sSql){
 }
 
 
-
-
 function sanear_string($cadena)
 {
     $cadena = trim($cadena);
