@@ -466,8 +466,8 @@ $(document).ready(function(){
 	<? } ?>
 	
 	// Límite del mapa puesto a Ciudad de Buenos Aires
-	var southWest	= new L.LatLng(-34.7260, -58.5605),
-	northEast		= new L.LatLng(-34.5096, -58.3192),
+	var southWest	= new L.LatLng(-35.052109 , -58.72673),
+	northEast	= new L.LatLng(-34.192115 , -58.064804),
 	bounds = new L.LatLngBounds(southWest, northEast);
 	
 	bodyHeight = $("section[data-role='main']").height();
@@ -703,7 +703,7 @@ $(document).ready(function(){
 		
 		var popupOptions =
 		{
-			'maxWidth': '250'
+			'maxWidth': '400'
 		}
 		
 		individuo.bindPopup(content, popupOptions);
