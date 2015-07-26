@@ -58,7 +58,7 @@ if ($donde == 0 ) {
 }
 
 echo "
-	<h3><small>$nombre_cientifico<br> <i>$nombre_comun</i></a></small></h3>
+	<h1>$nombre_cientifico<br> <small>$nombre_comun</small></h1>
 	<p>$tipo_follaje</p>
 	<p>$origen</p>
 	<p>Altura: $altura m</p>
