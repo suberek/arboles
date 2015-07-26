@@ -22,13 +22,15 @@ require_once('funciones.php');
 //die($query);
 
 $query		= "
-SELECT i.ALTURA_TOT, i.lat, i.lng, i.calle, i.alt_ini, i.espacio_verde, i.donde, e.NOMBRE_CIE, e.NOMBRE_COM, e.TIPO_FOLLA, e.ORIGEN, f.autor, f.descripcion, f.url
+SELECT i.ALTURA_TOT, i.lat, i.lng, i.calle, i.alt_ini, i.espacio_verde, e.NOMBRE_CIE, e.NOMBRE_COM, e.TIPO_FOLLA, e.ORIGEN, f.autor, f.descripcion, f.url
 FROM 1_individuos i
 INNER JOIN 2_especies e ON i.id_especie=e.id_especie
 INNER JOIN 3_fuentes f ON f.id=i.id_fuente
 WHERE id_individuo = $id
 LIMIT 1;
 ";
+
+// saqué i.donde,
 
 $results			= GetRS($query);
 $row				= mysql_fetch_array($results);
@@ -43,13 +45,15 @@ $altura				= $row['ALTURA_TOT'];
 $lat				= $row['lat'];
 $lng				= $row['lng'];
 
-$donde				= $row['donde'];
+$espacio_verde		= $row['espacio_verde'];
+
+//$donde				= $row['donde'];
 
 $fuente_autor		= $row['autor'];
 $fuente_desc		= $row['descripcion'];
 $fuente_url			= $row['url'];
 
-if ($donde == 0 ) {
+if ( empty($espacio_verde) ) {
 	$alt_ini			= $row['alt_ini'];
 	if ($alt_ini == 0) $alt_ini = "s/n" ;
 	$ubicacion = $row['calle'] .' '. $alt_ini;
