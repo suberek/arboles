@@ -7437,6 +7437,11 @@ form#busca_arboles .radio label {
   font-size: 50%;
   font-style: italic;
 }
+a.lcnrs {
+  display: block;
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   body {

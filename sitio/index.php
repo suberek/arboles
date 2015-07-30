@@ -337,7 +337,9 @@ if ($busqueda !== 'vacia') {
 					
 				</form>
 		
-			<button class="btn btn-default btn-small btn-block que-es-esto" data-toggle="modal" data-target="#que-es-esto">¿Qué es esto?</a>
+				<button class="btn btn-default btn-small btn-block que-es-esto" data-toggle="modal" data-target="#que-es-esto">¿Qué es esto?</button>
+
+				<a class="lcnrs" href="https://www.facebook.com/LaCiudadNosRegalaSabores" target="_blank"><img src="images/complot-lcnrs.png" alt="La ciudad nos regala sabores"></a>
 			
 			</nav>
 		</div>
@@ -354,8 +356,7 @@ if ($busqueda !== 'vacia') {
 				<h4>¿Qué es esto?</h4>
 			 </div>
 			<div class="modal-body">
-				<p>
-					Este mapa surge gracias a la publicación de una información increíble: el <a href="http://data.buenosaires.gob.ar/dataset/censo-arbolado" target="_blank">censo del arbolado de la Ciudad de Buenos Aires.</a></p>
+				<p>Este mapa surge gracias a la publicación de una información increíble: el <a href="http://data.buenosaires.gob.ar/dataset/censo-arbolado" target="_blank">censo del arbolado de la Ciudad de Buenos Aires.</a></p>
 				<p>El objetivo principal de este sitio es simplificar el acceso a esta valiosa información esperando que colabore con el conocimiento y el cuidado de nuestro arbolado urbano.</p>
 					
 				<a href="http://martinsimonyan.com.ar/arboles-de-buenos-aires/" class="btn btn-default" target="_blank">Más información <i class="fa fa-caret-right fa-sm"></i></a>
