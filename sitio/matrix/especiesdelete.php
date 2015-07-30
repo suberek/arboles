@@ -376,7 +376,7 @@ class cespecies_delete extends cespecies {
 		$this->medicinal->setDbValue($rs->fields('medicinal'));
 		$this->comestible->setDbValue($rs->fields('comestible'));
 		$this->perfume->setDbValue($rs->fields('perfume'));
-		$this->avejas->setDbValue($rs->fields('avejas'));
+		$this->abejas->setDbValue($rs->fields('abejas'));
 		$this->mariposas->setDbValue($rs->fields('mariposas'));
 	}
 
@@ -399,7 +399,7 @@ class cespecies_delete extends cespecies {
 		$this->medicinal->DbValue = $row['medicinal'];
 		$this->comestible->DbValue = $row['comestible'];
 		$this->perfume->DbValue = $row['perfume'];
-		$this->avejas->DbValue = $row['avejas'];
+		$this->abejas->DbValue = $row['abejas'];
 		$this->mariposas->DbValue = $row['mariposas'];
 	}
 
@@ -432,7 +432,7 @@ class cespecies_delete extends cespecies {
 		// medicinal
 		// comestible
 		// perfume
-		// avejas
+		// abejas
 		// mariposas
 
 		if ($this->RowType == EW_ROWTYPE_VIEW) { // View row
@@ -532,15 +532,54 @@ class cespecies_delete extends cespecies {
 			$this->comestible->ViewCustomAttributes = "";
 
 			// perfume
-			$this->perfume->ViewValue = $this->perfume->CurrentValue;
+			if (strval($this->perfume->CurrentValue) <> "") {
+				switch ($this->perfume->CurrentValue) {
+					case $this->perfume->FldTagValue(1):
+						$this->perfume->ViewValue = $this->perfume->FldTagCaption(1) <> "" ? $this->perfume->FldTagCaption(1) : $this->perfume->CurrentValue;
+						break;
+					case $this->perfume->FldTagValue(2):
+						$this->perfume->ViewValue = $this->perfume->FldTagCaption(2) <> "" ? $this->perfume->FldTagCaption(2) : $this->perfume->CurrentValue;
+						break;
+					default:
+						$this->perfume->ViewValue = $this->perfume->CurrentValue;
+				}
+			} else {
+				$this->perfume->ViewValue = NULL;
+			}
 			$this->perfume->ViewCustomAttributes = "";
 
-			// avejas
-			$this->avejas->ViewValue = $this->avejas->CurrentValue;
-			$this->avejas->ViewCustomAttributes = "";
+			// abejas
+			if (strval($this->abejas->CurrentValue) <> "") {
+				switch ($this->abejas->CurrentValue) {
+					case $this->abejas->FldTagValue(1):
+						$this->abejas->ViewValue = $this->abejas->FldTagCaption(1) <> "" ? $this->abejas->FldTagCaption(1) : $this->abejas->CurrentValue;
+						break;
+					case $this->abejas->FldTagValue(2):
+						$this->abejas->ViewValue = $this->abejas->FldTagCaption(2) <> "" ? $this->abejas->FldTagCaption(2) : $this->abejas->CurrentValue;
+						break;
+					default:
+						$this->abejas->ViewValue = $this->abejas->CurrentValue;
+				}
+			} else {
+				$this->abejas->ViewValue = NULL;
+			}
+			$this->abejas->ViewCustomAttributes = "";
 
 			// mariposas
-			$this->mariposas->ViewValue = $this->mariposas->CurrentValue;
+			if (strval($this->mariposas->CurrentValue) <> "") {
+				switch ($this->mariposas->CurrentValue) {
+					case $this->mariposas->FldTagValue(1):
+						$this->mariposas->ViewValue = $this->mariposas->FldTagCaption(1) <> "" ? $this->mariposas->FldTagCaption(1) : $this->mariposas->CurrentValue;
+						break;
+					case $this->mariposas->FldTagValue(2):
+						$this->mariposas->ViewValue = $this->mariposas->FldTagCaption(2) <> "" ? $this->mariposas->FldTagCaption(2) : $this->mariposas->CurrentValue;
+						break;
+					default:
+						$this->mariposas->ViewValue = $this->mariposas->CurrentValue;
+				}
+			} else {
+				$this->mariposas->ViewValue = NULL;
+			}
 			$this->mariposas->ViewCustomAttributes = "";
 
 			// id_especie
@@ -563,11 +602,6 @@ class cespecies_delete extends cespecies {
 			$this->NOMBRE_COM->HrefValue = "";
 			$this->NOMBRE_COM->TooltipValue = "";
 
-			// TIPO_FOLLA
-			$this->TIPO_FOLLA->LinkCustomAttributes = "";
-			$this->TIPO_FOLLA->HrefValue = "";
-			$this->TIPO_FOLLA->TooltipValue = "";
-
 			// ORIGEN
 			$this->ORIGEN->LinkCustomAttributes = "";
 			$this->ORIGEN->HrefValue = "";
@@ -585,18 +619,6 @@ class cespecies_delete extends cespecies {
 			$this->imagen_completo->HrefValue2 = $this->imagen_completo->UploadPath . $this->imagen_completo->Upload->DbValue;
 			$this->imagen_completo->TooltipValue = "";
 
-			// imagen_hoja
-			$this->imagen_hoja->LinkCustomAttributes = "";
-			$this->imagen_hoja->HrefValue = "";
-			$this->imagen_hoja->HrefValue2 = $this->imagen_hoja->UploadPath . $this->imagen_hoja->Upload->DbValue;
-			$this->imagen_hoja->TooltipValue = "";
-
-			// imagen_flor
-			$this->imagen_flor->LinkCustomAttributes = "";
-			$this->imagen_flor->HrefValue = "";
-			$this->imagen_flor->HrefValue2 = $this->imagen_flor->UploadPath . $this->imagen_flor->Upload->DbValue;
-			$this->imagen_flor->TooltipValue = "";
-
 			// medicinal
 			$this->medicinal->LinkCustomAttributes = "";
 			$this->medicinal->HrefValue = "";
@@ -612,10 +634,10 @@ class cespecies_delete extends cespecies {
 			$this->perfume->HrefValue = "";
 			$this->perfume->TooltipValue = "";
 
-			// avejas
-			$this->avejas->LinkCustomAttributes = "";
-			$this->avejas->HrefValue = "";
-			$this->avejas->TooltipValue = "";
+			// abejas
+			$this->abejas->LinkCustomAttributes = "";
+			$this->abejas->HrefValue = "";
+			$this->abejas->TooltipValue = "";
 
 			// mariposas
 			$this->mariposas->LinkCustomAttributes = "";
@@ -879,9 +901,6 @@ $especies_delete->ShowMessage();
 <?php if ($especies->NOMBRE_COM->Visible) { // NOMBRE_COM ?>
 		<td><span id="elh_especies_NOMBRE_COM" class="especies_NOMBRE_COM"><?php echo $especies->NOMBRE_COM->FldCaption() ?></span></td>
 <?php } ?>
-<?php if ($especies->TIPO_FOLLA->Visible) { // TIPO_FOLLA ?>
-		<td><span id="elh_especies_TIPO_FOLLA" class="especies_TIPO_FOLLA"><?php echo $especies->TIPO_FOLLA->FldCaption() ?></span></td>
-<?php } ?>
 <?php if ($especies->ORIGEN->Visible) { // ORIGEN ?>
 		<td><span id="elh_especies_ORIGEN" class="especies_ORIGEN"><?php echo $especies->ORIGEN->FldCaption() ?></span></td>
 <?php } ?>
@@ -890,12 +909,6 @@ $especies_delete->ShowMessage();
 <?php } ?>
 <?php if ($especies->imagen_completo->Visible) { // imagen_completo ?>
 		<td><span id="elh_especies_imagen_completo" class="especies_imagen_completo"><?php echo $especies->imagen_completo->FldCaption() ?></span></td>
-<?php } ?>
-<?php if ($especies->imagen_hoja->Visible) { // imagen_hoja ?>
-		<td><span id="elh_especies_imagen_hoja" class="especies_imagen_hoja"><?php echo $especies->imagen_hoja->FldCaption() ?></span></td>
-<?php } ?>
-<?php if ($especies->imagen_flor->Visible) { // imagen_flor ?>
-		<td><span id="elh_especies_imagen_flor" class="especies_imagen_flor"><?php echo $especies->imagen_flor->FldCaption() ?></span></td>
 <?php } ?>
 <?php if ($especies->medicinal->Visible) { // medicinal ?>
 		<td><span id="elh_especies_medicinal" class="especies_medicinal"><?php echo $especies->medicinal->FldCaption() ?></span></td>
@@ -906,8 +919,8 @@ $especies_delete->ShowMessage();
 <?php if ($especies->perfume->Visible) { // perfume ?>
 		<td><span id="elh_especies_perfume" class="especies_perfume"><?php echo $especies->perfume->FldCaption() ?></span></td>
 <?php } ?>
-<?php if ($especies->avejas->Visible) { // avejas ?>
-		<td><span id="elh_especies_avejas" class="especies_avejas"><?php echo $especies->avejas->FldCaption() ?></span></td>
+<?php if ($especies->abejas->Visible) { // abejas ?>
+		<td><span id="elh_especies_abejas" class="especies_abejas"><?php echo $especies->abejas->FldCaption() ?></span></td>
 <?php } ?>
 <?php if ($especies->mariposas->Visible) { // mariposas ?>
 		<td><span id="elh_especies_mariposas" class="especies_mariposas"><?php echo $especies->mariposas->FldCaption() ?></span></td>
@@ -965,14 +978,6 @@ while (!$especies_delete->Recordset->EOF) {
 </span>
 </td>
 <?php } ?>
-<?php if ($especies->TIPO_FOLLA->Visible) { // TIPO_FOLLA ?>
-		<td<?php echo $especies->TIPO_FOLLA->CellAttributes() ?>>
-<span id="el<?php echo $especies_delete->RowCnt ?>_especies_TIPO_FOLLA" class="control-group especies_TIPO_FOLLA">
-<span<?php echo $especies->TIPO_FOLLA->ViewAttributes() ?>>
-<?php echo $especies->TIPO_FOLLA->ListViewValue() ?></span>
-</span>
-</td>
-<?php } ?>
 <?php if ($especies->ORIGEN->Visible) { // ORIGEN ?>
 		<td<?php echo $especies->ORIGEN->CellAttributes() ?>>
 <span id="el<?php echo $especies_delete->RowCnt ?>_especies_ORIGEN" class="control-group especies_ORIGEN">
@@ -1023,48 +1028,6 @@ while (!$especies_delete->Recordset->EOF) {
 </span>
 </td>
 <?php } ?>
-<?php if ($especies->imagen_hoja->Visible) { // imagen_hoja ?>
-		<td<?php echo $especies->imagen_hoja->CellAttributes() ?>>
-<span id="el<?php echo $especies_delete->RowCnt ?>_especies_imagen_hoja" class="control-group especies_imagen_hoja">
-<span>
-<?php if ($especies->imagen_hoja->LinkAttributes() <> "") { ?>
-<?php if (!empty($especies->imagen_hoja->Upload->DbValue)) { ?>
-<img src="<?php echo $especies->imagen_hoja->ListViewValue() ?>" alt="" style="border: 0;"<?php echo $especies->imagen_hoja->ViewAttributes() ?>>
-<?php } elseif (!in_array($especies->CurrentAction, array("I", "edit", "gridedit"))) { ?>	
-&nbsp;
-<?php } ?>
-<?php } else { ?>
-<?php if (!empty($especies->imagen_hoja->Upload->DbValue)) { ?>
-<img src="<?php echo $especies->imagen_hoja->ListViewValue() ?>" alt="" style="border: 0;"<?php echo $especies->imagen_hoja->ViewAttributes() ?>>
-<?php } elseif (!in_array($especies->CurrentAction, array("I", "edit", "gridedit"))) { ?>	
-&nbsp;
-<?php } ?>
-<?php } ?>
-</span>
-</span>
-</td>
-<?php } ?>
-<?php if ($especies->imagen_flor->Visible) { // imagen_flor ?>
-		<td<?php echo $especies->imagen_flor->CellAttributes() ?>>
-<span id="el<?php echo $especies_delete->RowCnt ?>_especies_imagen_flor" class="control-group especies_imagen_flor">
-<span>
-<?php if ($especies->imagen_flor->LinkAttributes() <> "") { ?>
-<?php if (!empty($especies->imagen_flor->Upload->DbValue)) { ?>
-<img src="<?php echo $especies->imagen_flor->ListViewValue() ?>" alt="" style="border: 0;"<?php echo $especies->imagen_flor->ViewAttributes() ?>>
-<?php } elseif (!in_array($especies->CurrentAction, array("I", "edit", "gridedit"))) { ?>	
-&nbsp;
-<?php } ?>
-<?php } else { ?>
-<?php if (!empty($especies->imagen_flor->Upload->DbValue)) { ?>
-<img src="<?php echo $especies->imagen_flor->ListViewValue() ?>" alt="" style="border: 0;"<?php echo $especies->imagen_flor->ViewAttributes() ?>>
-<?php } elseif (!in_array($especies->CurrentAction, array("I", "edit", "gridedit"))) { ?>	
-&nbsp;
-<?php } ?>
-<?php } ?>
-</span>
-</span>
-</td>
-<?php } ?>
 <?php if ($especies->medicinal->Visible) { // medicinal ?>
 		<td<?php echo $especies->medicinal->CellAttributes() ?>>
 <span id="el<?php echo $especies_delete->RowCnt ?>_especies_medicinal" class="control-group especies_medicinal">
@@ -1089,11 +1052,11 @@ while (!$especies_delete->Recordset->EOF) {
 </span>
 </td>
 <?php } ?>
-<?php if ($especies->avejas->Visible) { // avejas ?>
-		<td<?php echo $especies->avejas->CellAttributes() ?>>
-<span id="el<?php echo $especies_delete->RowCnt ?>_especies_avejas" class="control-group especies_avejas">
-<span<?php echo $especies->avejas->ViewAttributes() ?>>
-<?php echo $especies->avejas->ListViewValue() ?></span>
+<?php if ($especies->abejas->Visible) { // abejas ?>
+		<td<?php echo $especies->abejas->CellAttributes() ?>>
+<span id="el<?php echo $especies_delete->RowCnt ?>_especies_abejas" class="control-group especies_abejas">
+<span<?php echo $especies->abejas->ViewAttributes() ?>>
+<?php echo $especies->abejas->ListViewValue() ?></span>
 </span>
 </td>
 <?php } ?>

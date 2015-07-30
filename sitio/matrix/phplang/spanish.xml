@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" standalone="yes"?>
-<ew-language date="2015/7/30" version="10.0.1" id="en" name="English" desc="English" author="e.World Technology Ltd.">
+<ew-language date="2015/7/30" version="10.0.1" id="es" name="Español" desc="Español" author="e.World Technology Ltd.">
 	<locale>
 		<phrase id="locale" value=""/><!-- *** system locale for this language -->
 		<phrase id="use_system_locale" value="1"/><!-- *** change to "0" to disable system locale and use the following settings *** -->
@@ -20,18 +20,18 @@
 		<phrase id="time_zone" value="US/Pacific"/><!-- *** used for multi-language site only *** -->
 	</locale>
 	<global>
-		<phrase id="actiondeleted" value="Deleted"/>
-		<phrase id="actioninserted" value="Inserted"/>
-		<phrase id="actioninsertedgridadd" value="Inserted (Grid-Add)"/>
-		<phrase id="actionupdated" value="Updated"/>
-		<phrase id="actionupdatedgridedit" value="Updated (Grid-Edit)"/>
-		<phrase id="actionupdatedmultiupdate" value="Updated (Multi-Update)"/>
-		<phrase id="activateaccount" value="Your account is activated"/>
-		<phrase id="activatefailed" value="Activation failed"/>
-		<phrase id="add" value="Add"/>
+		<phrase id="actiondeleted" value="Eliminado"/>
+		<phrase id="actioninserted" value="Insertado"/>
+		<phrase id="actioninsertedgridadd" value="Insertado (Grid-Add)"/>
+		<phrase id="actionupdated" value="Actualizado"/>
+		<phrase id="actionupdatedgridedit" value="Actualizado (Grid-Edit)"/>
+		<phrase id="actionupdatedmultiupdate" value="Actualizado (Multi-Update)"/>
+		<phrase id="activateaccount" value="Tu cuenta está activa"/>
+		<phrase id="activatefailed" value="Activación fallida"/>
+		<phrase id="add" value="Agregar"/>
 		<phrase id="addblankrow" value="Add Blank Row" imageurl="phpimages/addblankrow.gif" imagewidth="16" imageheight="16"/>
-		<phrase id="addbtn" value="Add"/>
-		<phrase id="addlink" value="Add"/>
+		<phrase id="addbtn" value="Agregar"/>
+		<phrase id="addlink" value="Agregar"/>
 		<phrase id="addmasterdetaillink" value="Add Master/Detail"/>
 		<phrase id="addsuccess" value="Add succeeded"/>
 		<phrase id="advancedsearch" value="Advanced Search"/>
@@ -67,28 +67,28 @@
 		<phrase id="buttonlistoptions" value="Options"/>
 		<phrase id="cancelbtn" value="Cancel"/>
 		<phrase id="cancellink" value="Cancel" imageurl="phpimages/cancel.gif" imagewidth="16" imageheight="16"/>
-		<phrase id="changepwd" value="Change Password"/>
-		<phrase id="changepwdpage" value="Change Password"/>
-		<phrase id="changepwdbtn" value="Change"/>
-		<phrase id="choosefile" value="Choose..."/>
-		<phrase id="confirm" value="Confirm"/>
-		<phrase id="confirmbtn" value="Confirm"/>
-		<phrase id="confirmpassword" value="Confirm Password"/>
-		<phrase id="conflictcancellink" value="Cancel"/>
-		<phrase id="copy" value="Copy"/>
-		<phrase id="copylink" value="Copy" imageurl="phpimages/copy.gif" imagewidth="16" imageheight="16"/>
+		<phrase id="changepwd" value="Cambiar Password"/>
+		<phrase id="changepwdpage" value="Cambiar Password"/>
+		<phrase id="changepwdbtn" value="Cambiar"/>
+		<phrase id="choosefile" value="Elegir..."/>
+		<phrase id="confirm" value="Confirmar"/>
+		<phrase id="confirmbtn" value="Confirmar"/>
+		<phrase id="confirmpassword" value="Confirmar Password"/>
+		<phrase id="conflictcancellink" value="Cancelar"/>
+		<phrase id="copy" value="Copiar"/>
+		<phrase id="copylink" value="Copiar" imageurl="phpimages/copy.gif" imagewidth="16" imageheight="16"/>
 		<phrase id="count" value="Count"/>
 		<phrase id="customactioncompleted" value="Action '%s' is completed"/>
 		<phrase id="customactioncancelled" value="Action '%s' is cancelled"/>
 		<phrase id="customview" value="CUSTOM VIEW"/>
 		<phrase id="delete" value="Delete"/>
-		<phrase id="deletebtn" value="Delete"/>
-		<phrase id="deletecancelled" value="Delete cancelled"/>
+		<phrase id="deletebtn" value="Eliminar"/>
+		<phrase id="deletecancelled" value="Eliminar cancelled"/>
 		<phrase id="deleteconfirmmsg" value="Do you want to delete this record?" client="1"/>
-		<phrase id="deletelink" value="Delete" imageurl="phpimages/delete.gif" imagewidth="16" imageheight="16"/>
+		<phrase id="deletelink" value="Eliminar" imageurl="phpimages/delete.gif" imagewidth="16" imageheight="16"/>
 		<phrase id="deletemulticonfirmmsg" value="Do you want to delete the selected records?" client="1"/>
-		<phrase id="deleteselectedlink" value="Delete Selected Records"/>
-		<phrase id="deletesuccess" value="Delete succeeded"/>
+		<phrase id="deleteselectedlink" value="Eliminar Selected Records"/>
+		<phrase id="deletesuccess" value="Eliminar succeeded"/>
 		<phrase id="detaillink" value=""/>
 		<phrase id="detailcount" value="(%c)"/>
 		<phrase id="masterdetailcopylink" value="Master/Detail Copy"/>
@@ -156,7 +156,7 @@
 		<phrase id="gridinsertlink" value="Insert" imageurl="phpimages/insert.gif" imagewidth="16" imageheight="16"/>
 		<phrase id="gridsavelink" value="Save" imageurl="phpimages/update.gif" imagewidth="16" imageheight="16"/>
 		<phrase id="hidehighlight" value="Hide highlight" client="1"/>
-		<phrase id="homepage" value="Home"/>
+		<phrase id="homepage" value="Inicio"/>
 		<phrase id="incorrectcreditcard" value="Incorrect credit card number"/>
 		<phrase id="incorrectdateymd" value="Incorrect date, format = yyyy%smm%sdd"/>
 		<phrase id="incorrectdatemdy" value="Incorrect date, format = mm%sdd%syyyy"/>
@@ -227,7 +227,7 @@
 		<phrase id="old" value="Old"/>
 		<phrase id="oldpassword" value="Old Password"/>
 		<phrase id="optionalreadyexist" value="Option already exists"/>
-		<phrase id="page" value="Page"/>
+		<phrase id="page" value="Página"/>
 		<phrase id="pagerfirst" value="First"/>
 		<phrase id="pagerlast" value="Last"/>
 		<phrase id="pagernext" value="Next"/>
@@ -238,11 +238,11 @@
 		<phrase id="passwordexpired" value="Password Expired. Please change password."/>
 		<phrase id="permission" value="Permissions"/>
 		<phrase id="permissionaddcopy" value="Add/Copy"/>
-		<phrase id="permissiondelete" value="Delete"/>
+		<phrase id="permissiondelete" value="Eliminar"/>
 		<phrase id="permissionedit" value="Edit"/>
 		<phrase id="permissionlistsearchview" value="List/Search/View"/>
 		<phrase id="permissionlist" value="List"/>
-		<phrase id="permissionsearch" value="Search"/>
+		<phrase id="permissionsearch" value="Búsqueda"/>
 		<phrase id="permissionview" value="View"/>
 		<phrase id="pickdate" value="Pick a date"/>
 		<phrase id="pleaseselect" value="Please Select"/>
@@ -253,16 +253,16 @@
 		<phrase id="prev" value="Prev"/>
 		<phrase id="pwdemailsent" value="Password sent to your email"/>
 		<phrase id="resetpwdemailsent" value="The reset password email has been sent to you"/>
-		<phrase id="quicksearch" value="Quick Search"/>
-		<phrase id="quicksearchbtn" value="Search"/>
-		<phrase id="record" value="Records"/>
+		<phrase id="quicksearch" value="Búsqueda rápida"/>
+		<phrase id="quicksearchbtn" value="Búsqueda"/>
+		<phrase id="record" value="Registros"/>
 		<phrase id="recordchangedbyotheruser" value="Data has been changed by other user. Click [Reload] to retrieve the changed data (your data in the form will be overwritten) or click [Overwrite] to overwrite the changed data."/>
-		<phrase id="recorddeleted" value="record(s) deleted"/>
-		<phrase id="recordinserted" value="record(s) inserted"/>
-		<phrase id="recordupdated" value="record(s) updated"/>
-		<phrase id="recordsperpage" value="Page Size"/>
-		<phrase id="register" value="Register"/>
-		<phrase id="registerbtn" value="Register"/>
+		<phrase id="recorddeleted" value="registro(s) eliminado"/>
+		<phrase id="recordinserted" value="registro(s) insertado"/>
+		<phrase id="recordupdated" value="registro(s) actualizado"/>
+		<phrase id="recordsperpage" value="Tamaño de Página"/>
+		<phrase id="register" value="Registro"/>
+		<phrase id="registerbtn" value="Registro"/>
 		<phrase id="registersuccess" value="Registration succeeded"/>
 		<phrase id="registersuccessactivate" value="Registration succeeded. An email has been sent to your email address, please click the link in the email to activate your account."/>
 		<phrase id="registerpage" value="Registration"/>
@@ -285,7 +285,7 @@
 		<phrase id="rptsum" value="Sum"/>
 		<phrase id="rptsumhead" value="Summary for"/>
 		<phrase id="saveusername" value="Save my user name"/>
-		<phrase id="search" value="Search"/>
+		<phrase id="search" value="Búsqueda"/>
 		<phrase id="sendemailbtn" value="Send"/>
 		<phrase id="sendemailsuccess" value="Email sent successfully" client="1"/>
 		<phrase id="sendpwd" value="Send"/>
@@ -314,7 +314,7 @@
 		<phrase id="uploading" value="Uploading..." client="1"/>
 		<phrase id="uploadstart" value="Start" client="1"/>
 		<phrase id="uploadcancel" value="Cancel" client="1"/>
-		<phrase id="uploaddelete" value="Delete" client="1"/>
+		<phrase id="uploaddelete" value="Eliminar" client="1"/>
 		<phrase id="uploadoverwrite" value="Overwrite old file?" client="1"/>
 		<phrase id="uploaderrmsg1" value="The uploaded file exceeds the upload_max_filesize directive in php.ini"/>
 		<phrase id="uploaderrmsg2" value="The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form"/>
@@ -348,9 +348,9 @@
 		<phrase id="userprofilecorrupted" value="User profile is corrupted. Please logout and login again"/>
 		<phrase id="view" value="View"/>
 		<phrase id="viewlink" value="View" imageurl="phpimages/view.gif" imagewidth="16" imageheight="16"/>
-		<phrase id="viewpageaddlink" value="Add"/>
+		<phrase id="viewpageaddlink" value="Agregar"/>
 		<phrase id="viewpagecopylink" value="Copy"/>
-		<phrase id="viewpagedeletelink" value="Delete"/>
+		<phrase id="viewpagedeletelink" value="Eliminar"/>
 		<phrase id="viewpagedetaillink" value=""/>
 		<phrase id="viewpageeditlink" value="Edit"/>
 		<phrase id="wrongfiletype" value="File type is not allowed." client="1"/>
@@ -448,7 +448,7 @@
 <phrase id="fldtagvalue2" value="0"/>
 <phrase id="fldtagcaption2" value="No"/>
 </field>
-<field id="abejas"><phrase id="fldcaption" value="Avejas"/>
+<field id="abejas"><phrase id="fldcaption" value="Abejas"/>
 <phrase id="fldtagvalue1" value="1"/>
 <phrase id="fldtagcaption1" value="Sí"/>
 <phrase id="fldtagvalue2" value="0"/>

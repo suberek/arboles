@@ -57,12 +57,13 @@ if ( empty($espacio_verde) ) {
 echo "
 	<h1>$nombre_cientifico<br> <small>$nombre_comun</small></h1>
 	<p>$tipo_follaje<br>
-	$origen</p>";
+	Origen: $origen";
 
 if (!empty($altura))
-	echo "<p>Altura: $altura m</p>";
+	echo "<br>Altura: $altura m";
 
 echo "
+	</p>
 	<p><i class=\"fa fa-map-marker fa-fw\"></i> $ubicacion</p>
 	<p><small> Autor: $usuario_autor. </small></p>
 	<small>

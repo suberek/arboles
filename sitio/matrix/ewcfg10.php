@@ -26,7 +26,7 @@ define("EW_CONFIG_FILE_FOLDER", EW_PROJECT_NAME . "", TRUE); // Config file name
 define("EW_PROJECT_ID", "{E8FDA5CE-82C7-4B68-84A5-21FD1A691C43}", TRUE); // Project ID (GUID)
 $EW_RELATED_PROJECT_ID = "";
 $EW_RELATED_LANGUAGE_FOLDER = "";
-define("EW_RANDOM_KEY", 'kWsx4ddA0Z5jILtz', TRUE); // Random key for encryption
+define("EW_RANDOM_KEY", 'otjxRoukJpoxoeOs', TRUE); // Random key for encryption
 define("EW_PROJECT_STYLESHEET_FILENAME", "phpcss/phpMaker.css", TRUE); // Project stylesheet file name
 define("EW_CHARSET", "utf-8", TRUE); // Project charset
 define("EW_EMAIL_CHARSET", EW_CHARSET, TRUE); // Email charset
@@ -129,8 +129,8 @@ define("EW_SESSION_BREADCRUMB", EW_PROJECT_NAME . "_Breadcrumb", TRUE); // Bread
 // Language settings
 define("EW_LANGUAGE_FOLDER", "phplang/", TRUE);
 $EW_LANGUAGE_FILE = array();
-$EW_LANGUAGE_FILE[] = array("en", "", "english.xml");
-define("EW_LANGUAGE_DEFAULT_ID", "en", TRUE);
+$EW_LANGUAGE_FILE[] = array("es", "", "spanish.xml");
+define("EW_LANGUAGE_DEFAULT_ID", "es", TRUE);
 define("EW_SESSION_LANGUAGE_ID", EW_PROJECT_NAME . "_LanguageId", TRUE); // Language ID
 
 // Data types

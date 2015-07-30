@@ -17,7 +17,7 @@ require_once('tirameladata/funciones.php');
 //// Defino el default
 $parametro	= "WHERE 1";
 $busqueda	= "vacia";
-$radius		= "300"; // Radio de búsqueda en Metros
+$radius		= "1000"; // Radio de búsqueda en Metros
 $user_latlng_default = array("-34.60371794474704","-58.38157095015049"); // El Obelisco
 
 //// Veo qué vino en el form
@@ -30,9 +30,10 @@ if ((is_numeric($id_especie_busqueda)) && ($id_especie_busqueda > 0)) {
 	$parametro .= " AND id_especie=$id_especie_busqueda";
 	
 	$especie_query	= "
-	SELECT NOMBRE_CIE
-	FROM especies
-	WHERE id_especie = $id_especie_busqueda
+	SELECT e.NOMBRE_CIE
+	FROM especies e
+	$parametroJoin
+	WHERE e.id_especie = $id_especie_busqueda
 	LIMIT 1;
 	";
 	$especie_results	= GetRS($especie_query);
@@ -74,7 +75,11 @@ if ($busqueda == "especie todas donde ciudad") {
 
 /**************************************************************** PARÁMETRO SABORES */
 if ((is_numeric($user_sabores)) && ($user_sabores > 0)) {
-	$parametro .= " AND id_usuario = 3";
+	//$parametro .= " AND ( id_especie = 23 )";
+	$parametroJoin = " INNER JOIN especies e ON i.id_especie=e.id_especie";
+	$parametro .= " AND ( e.comestible <> '' OR e.medicinal <> '' )";
+
+
 	$busqueda .= " con sabores";
 }
 
@@ -134,20 +139,33 @@ if ((is_numeric($user_sabores)) && ($user_sabores > 0)) {
 if ($busqueda !== 'vacia') {
 	
 	// Hago LA consulta
-	/*$censo_query = "
-		SELECT id_individuo, id_especie, X(`coordenadas`) as lat, Y(`coordenadas`) as lng
-		FROM individuos
-		$parametro";*/
+
+	/*
+	Usando el campo GEOESPACIAL puedo buscar así:
+	$censo_query = "
+	SELECT id_individuo, id_especie, X(`coordenadas`) as lat, Y(`coordenadas`) as lng
+	FROM individuos
+	$parametro";
+	*/
+
+	/*
+	Como PHPMaker no permite la creación de campos GEOESPACIALES,
+	busco por los campos comunes lat y lng
+	*/
 
 	$censo_query = "
-		SELECT id_individuo, id_especie, lat, lng
-		FROM individuos
+		SELECT i.id_individuo, i.id_especie, lat, lng
+		FROM individuos i
+		$parametroJoin 
 		$parametro";
 		
 	if (stripos($busqueda,'marker') > 0) {
 
 		// Definir el centro y buscar en el radio.
-		/*$censo_query = "
+		
+		/*
+		Usando el campo GEOESPACIAL puedo buscar así:
+		$censo_query = "
 		SELECT id_individuo, id_especie, X(`coordenadas`) as lat, Y(`coordenadas`) as lng ,(
 			6371 * acos (
 			  cos ( radians( $user_lat ) )
@@ -159,10 +177,16 @@ if ($busqueda !== 'vacia') {
 		  ) AS distance
 		FROM individuos
 		$parametro
-		HAVING distance < ($radius/1000);";*/
+		HAVING distance < ($radius/1000);";
+		*/
+
+		/*
+		Como PHPMaker no permite la creación de campos GEOESPACIALES,
+		busco por los campos comunes lat y lng
+		*/
 
 		$censo_query = "
-		SELECT id_individuo, id_especie, lat, lng ,(
+		SELECT i.id_individuo, i.id_especie, lat, lng ,(
 			6371 * acos (
 			  cos ( radians( $user_lat ) )
 			  * cos( radians( lat ) )
@@ -171,17 +195,15 @@ if ($busqueda !== 'vacia') {
 			  * sin( radians( lat ) )
 			)
 		  ) AS distance
-		FROM individuos
+		FROM individuos i
+		$parametroJoin
 		$parametro
 		HAVING distance < ($radius/1000);";
 	}
 	
-	
 	$count = true;
 	$censo_results	= GetRS($censo_query);
 	$total_registros_censo = $total_registros;
-
-	//die($censo_query);
 	
 	// Armo el array con los individuos
 	if ($total_registros_censo >= 1) {
@@ -203,7 +225,7 @@ if ($busqueda !== 'vacia') {
 		echo ']; </script>';
 	}
 	
-}else{	
+} else {	
 	// sin búsqueda
 }
 
@@ -689,12 +711,12 @@ $(document).ready(function(){
 		$icono_id_especie	= $iconos_row['id_especie'];
 		$icono_icono		= $iconos_row['ICONO'];
 		echo "case ". $icono_id_especie . ":
-			marker_icon = new LeafIcon({iconUrl: 'images/". $icono_icono ."'});
+			marker_icon = new LeafIcon({iconUrl: 'uploads/". $icono_icono ."'});
 			break;";
 	}
 ?>	
 			default:
-				marker_icon = new LeafIcon({iconUrl: 'images/marker.png'});
+				marker_icon = new LeafIcon({iconUrl: 'uploads/marker.png'});
 		}
 				
 		var individuo = L.marker([a[0], a[1]], {icon: marker_icon});

@@ -535,7 +535,7 @@ class cespecies_view extends cespecies {
 		$this->medicinal->setDbValue($rs->fields('medicinal'));
 		$this->comestible->setDbValue($rs->fields('comestible'));
 		$this->perfume->setDbValue($rs->fields('perfume'));
-		$this->avejas->setDbValue($rs->fields('avejas'));
+		$this->abejas->setDbValue($rs->fields('abejas'));
 		$this->mariposas->setDbValue($rs->fields('mariposas'));
 	}
 
@@ -558,7 +558,7 @@ class cespecies_view extends cespecies {
 		$this->medicinal->DbValue = $row['medicinal'];
 		$this->comestible->DbValue = $row['comestible'];
 		$this->perfume->DbValue = $row['perfume'];
-		$this->avejas->DbValue = $row['avejas'];
+		$this->abejas->DbValue = $row['abejas'];
 		$this->mariposas->DbValue = $row['mariposas'];
 	}
 
@@ -594,7 +594,7 @@ class cespecies_view extends cespecies {
 		// medicinal
 		// comestible
 		// perfume
-		// avejas
+		// abejas
 		// mariposas
 
 		if ($this->RowType == EW_ROWTYPE_VIEW) { // View row
@@ -698,15 +698,54 @@ class cespecies_view extends cespecies {
 			$this->comestible->ViewCustomAttributes = "";
 
 			// perfume
-			$this->perfume->ViewValue = $this->perfume->CurrentValue;
+			if (strval($this->perfume->CurrentValue) <> "") {
+				switch ($this->perfume->CurrentValue) {
+					case $this->perfume->FldTagValue(1):
+						$this->perfume->ViewValue = $this->perfume->FldTagCaption(1) <> "" ? $this->perfume->FldTagCaption(1) : $this->perfume->CurrentValue;
+						break;
+					case $this->perfume->FldTagValue(2):
+						$this->perfume->ViewValue = $this->perfume->FldTagCaption(2) <> "" ? $this->perfume->FldTagCaption(2) : $this->perfume->CurrentValue;
+						break;
+					default:
+						$this->perfume->ViewValue = $this->perfume->CurrentValue;
+				}
+			} else {
+				$this->perfume->ViewValue = NULL;
+			}
 			$this->perfume->ViewCustomAttributes = "";
 
-			// avejas
-			$this->avejas->ViewValue = $this->avejas->CurrentValue;
-			$this->avejas->ViewCustomAttributes = "";
+			// abejas
+			if (strval($this->abejas->CurrentValue) <> "") {
+				switch ($this->abejas->CurrentValue) {
+					case $this->abejas->FldTagValue(1):
+						$this->abejas->ViewValue = $this->abejas->FldTagCaption(1) <> "" ? $this->abejas->FldTagCaption(1) : $this->abejas->CurrentValue;
+						break;
+					case $this->abejas->FldTagValue(2):
+						$this->abejas->ViewValue = $this->abejas->FldTagCaption(2) <> "" ? $this->abejas->FldTagCaption(2) : $this->abejas->CurrentValue;
+						break;
+					default:
+						$this->abejas->ViewValue = $this->abejas->CurrentValue;
+				}
+			} else {
+				$this->abejas->ViewValue = NULL;
+			}
+			$this->abejas->ViewCustomAttributes = "";
 
 			// mariposas
-			$this->mariposas->ViewValue = $this->mariposas->CurrentValue;
+			if (strval($this->mariposas->CurrentValue) <> "") {
+				switch ($this->mariposas->CurrentValue) {
+					case $this->mariposas->FldTagValue(1):
+						$this->mariposas->ViewValue = $this->mariposas->FldTagCaption(1) <> "" ? $this->mariposas->FldTagCaption(1) : $this->mariposas->CurrentValue;
+						break;
+					case $this->mariposas->FldTagValue(2):
+						$this->mariposas->ViewValue = $this->mariposas->FldTagCaption(2) <> "" ? $this->mariposas->FldTagCaption(2) : $this->mariposas->CurrentValue;
+						break;
+					default:
+						$this->mariposas->ViewValue = $this->mariposas->CurrentValue;
+				}
+			} else {
+				$this->mariposas->ViewValue = NULL;
+			}
 			$this->mariposas->ViewCustomAttributes = "";
 
 			// id_especie
@@ -783,10 +822,10 @@ class cespecies_view extends cespecies {
 			$this->perfume->HrefValue = "";
 			$this->perfume->TooltipValue = "";
 
-			// avejas
-			$this->avejas->LinkCustomAttributes = "";
-			$this->avejas->HrefValue = "";
-			$this->avejas->TooltipValue = "";
+			// abejas
+			$this->abejas->LinkCustomAttributes = "";
+			$this->abejas->HrefValue = "";
+			$this->abejas->TooltipValue = "";
 
 			// mariposas
 			$this->mariposas->LinkCustomAttributes = "";
@@ -1193,13 +1232,13 @@ $especies_view->ShowMessage();
 </td>
 	</tr>
 <?php } ?>
-<?php if ($especies->avejas->Visible) { // avejas ?>
-	<tr id="r_avejas">
-		<td><span id="elh_especies_avejas"><?php echo $especies->avejas->FldCaption() ?></span></td>
-		<td<?php echo $especies->avejas->CellAttributes() ?>>
-<span id="el_especies_avejas" class="control-group">
-<span<?php echo $especies->avejas->ViewAttributes() ?>>
-<?php echo $especies->avejas->ViewValue ?></span>
+<?php if ($especies->abejas->Visible) { // abejas ?>
+	<tr id="r_abejas">
+		<td><span id="elh_especies_abejas"><?php echo $especies->abejas->FldCaption() ?></span></td>
+		<td<?php echo $especies->abejas->CellAttributes() ?>>
+<span id="el_especies_abejas" class="control-group">
+<span<?php echo $especies->abejas->ViewAttributes() ?>>
+<?php echo $especies->abejas->ViewValue ?></span>
 </span>
 </td>
 	</tr>

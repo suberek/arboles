@@ -22,7 +22,7 @@ class cespecies extends cTable {
 	var $medicinal;
 	var $comestible;
 	var $perfume;
-	var $avejas;
+	var $abejas;
 	var $mariposas;
 
 	//
@@ -112,10 +112,10 @@ class cespecies extends cTable {
 		$this->perfume->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
 		$this->fields['perfume'] = &$this->perfume;
 
-		// avejas
-		$this->avejas = new cField('especies', 'especies', 'x_avejas', 'avejas', '`avejas`', '`avejas`', 16, -1, FALSE, '`avejas`', FALSE, FALSE, FALSE, 'FORMATTED TEXT');
-		$this->avejas->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
-		$this->fields['avejas'] = &$this->avejas;
+		// abejas
+		$this->abejas = new cField('especies', 'especies', 'x_abejas', 'abejas', '`abejas`', '`abejas`', 16, -1, FALSE, '`abejas`', FALSE, FALSE, FALSE, 'FORMATTED TEXT');
+		$this->abejas->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
+		$this->fields['abejas'] = &$this->abejas;
 
 		// mariposas
 		$this->mariposas = new cField('especies', 'especies', 'x_mariposas', 'mariposas', '`mariposas`', '`mariposas`', 16, -1, FALSE, '`mariposas`', FALSE, FALSE, FALSE, 'FORMATTED TEXT');
@@ -594,7 +594,7 @@ class cespecies extends cTable {
 		$this->medicinal->setDbValue($rs->fields('medicinal'));
 		$this->comestible->setDbValue($rs->fields('comestible'));
 		$this->perfume->setDbValue($rs->fields('perfume'));
-		$this->avejas->setDbValue($rs->fields('avejas'));
+		$this->abejas->setDbValue($rs->fields('abejas'));
 		$this->mariposas->setDbValue($rs->fields('mariposas'));
 	}
 
@@ -624,7 +624,7 @@ class cespecies extends cTable {
 		// medicinal
 		// comestible
 		// perfume
-		// avejas
+		// abejas
 		// mariposas
 		// id_especie
 
@@ -730,15 +730,54 @@ class cespecies extends cTable {
 		$this->comestible->ViewCustomAttributes = "";
 
 		// perfume
-		$this->perfume->ViewValue = $this->perfume->CurrentValue;
+		if (strval($this->perfume->CurrentValue) <> "") {
+			switch ($this->perfume->CurrentValue) {
+				case $this->perfume->FldTagValue(1):
+					$this->perfume->ViewValue = $this->perfume->FldTagCaption(1) <> "" ? $this->perfume->FldTagCaption(1) : $this->perfume->CurrentValue;
+					break;
+				case $this->perfume->FldTagValue(2):
+					$this->perfume->ViewValue = $this->perfume->FldTagCaption(2) <> "" ? $this->perfume->FldTagCaption(2) : $this->perfume->CurrentValue;
+					break;
+				default:
+					$this->perfume->ViewValue = $this->perfume->CurrentValue;
+			}
+		} else {
+			$this->perfume->ViewValue = NULL;
+		}
 		$this->perfume->ViewCustomAttributes = "";
 
-		// avejas
-		$this->avejas->ViewValue = $this->avejas->CurrentValue;
-		$this->avejas->ViewCustomAttributes = "";
+		// abejas
+		if (strval($this->abejas->CurrentValue) <> "") {
+			switch ($this->abejas->CurrentValue) {
+				case $this->abejas->FldTagValue(1):
+					$this->abejas->ViewValue = $this->abejas->FldTagCaption(1) <> "" ? $this->abejas->FldTagCaption(1) : $this->abejas->CurrentValue;
+					break;
+				case $this->abejas->FldTagValue(2):
+					$this->abejas->ViewValue = $this->abejas->FldTagCaption(2) <> "" ? $this->abejas->FldTagCaption(2) : $this->abejas->CurrentValue;
+					break;
+				default:
+					$this->abejas->ViewValue = $this->abejas->CurrentValue;
+			}
+		} else {
+			$this->abejas->ViewValue = NULL;
+		}
+		$this->abejas->ViewCustomAttributes = "";
 
 		// mariposas
-		$this->mariposas->ViewValue = $this->mariposas->CurrentValue;
+		if (strval($this->mariposas->CurrentValue) <> "") {
+			switch ($this->mariposas->CurrentValue) {
+				case $this->mariposas->FldTagValue(1):
+					$this->mariposas->ViewValue = $this->mariposas->FldTagCaption(1) <> "" ? $this->mariposas->FldTagCaption(1) : $this->mariposas->CurrentValue;
+					break;
+				case $this->mariposas->FldTagValue(2):
+					$this->mariposas->ViewValue = $this->mariposas->FldTagCaption(2) <> "" ? $this->mariposas->FldTagCaption(2) : $this->mariposas->CurrentValue;
+					break;
+				default:
+					$this->mariposas->ViewValue = $this->mariposas->CurrentValue;
+			}
+		} else {
+			$this->mariposas->ViewValue = NULL;
+		}
 		$this->mariposas->ViewCustomAttributes = "";
 
 		// id_especie
@@ -820,10 +859,10 @@ class cespecies extends cTable {
 		$this->perfume->HrefValue = "";
 		$this->perfume->TooltipValue = "";
 
-		// avejas
-		$this->avejas->LinkCustomAttributes = "";
-		$this->avejas->HrefValue = "";
-		$this->avejas->TooltipValue = "";
+		// abejas
+		$this->abejas->LinkCustomAttributes = "";
+		$this->abejas->HrefValue = "";
+		$this->abejas->TooltipValue = "";
 
 		// mariposas
 		$this->mariposas->LinkCustomAttributes = "";
@@ -866,7 +905,7 @@ class cespecies extends cTable {
 				if ($this->medicinal->Exportable) $Doc->ExportCaption($this->medicinal);
 				if ($this->comestible->Exportable) $Doc->ExportCaption($this->comestible);
 				if ($this->perfume->Exportable) $Doc->ExportCaption($this->perfume);
-				if ($this->avejas->Exportable) $Doc->ExportCaption($this->avejas);
+				if ($this->abejas->Exportable) $Doc->ExportCaption($this->abejas);
 				if ($this->mariposas->Exportable) $Doc->ExportCaption($this->mariposas);
 			} else {
 				if ($this->id_especie->Exportable) $Doc->ExportCaption($this->id_especie);
@@ -882,7 +921,7 @@ class cespecies extends cTable {
 				if ($this->medicinal->Exportable) $Doc->ExportCaption($this->medicinal);
 				if ($this->comestible->Exportable) $Doc->ExportCaption($this->comestible);
 				if ($this->perfume->Exportable) $Doc->ExportCaption($this->perfume);
-				if ($this->avejas->Exportable) $Doc->ExportCaption($this->avejas);
+				if ($this->abejas->Exportable) $Doc->ExportCaption($this->abejas);
 				if ($this->mariposas->Exportable) $Doc->ExportCaption($this->mariposas);
 			}
 			$Doc->EndExportRow();
@@ -927,7 +966,7 @@ class cespecies extends cTable {
 					if ($this->medicinal->Exportable) $Doc->ExportField($this->medicinal);
 					if ($this->comestible->Exportable) $Doc->ExportField($this->comestible);
 					if ($this->perfume->Exportable) $Doc->ExportField($this->perfume);
-					if ($this->avejas->Exportable) $Doc->ExportField($this->avejas);
+					if ($this->abejas->Exportable) $Doc->ExportField($this->abejas);
 					if ($this->mariposas->Exportable) $Doc->ExportField($this->mariposas);
 				} else {
 					if ($this->id_especie->Exportable) $Doc->ExportField($this->id_especie);
@@ -943,7 +982,7 @@ class cespecies extends cTable {
 					if ($this->medicinal->Exportable) $Doc->ExportField($this->medicinal);
 					if ($this->comestible->Exportable) $Doc->ExportField($this->comestible);
 					if ($this->perfume->Exportable) $Doc->ExportField($this->perfume);
-					if ($this->avejas->Exportable) $Doc->ExportField($this->avejas);
+					if ($this->abejas->Exportable) $Doc->ExportField($this->abejas);
 					if ($this->mariposas->Exportable) $Doc->ExportField($this->mariposas);
 				}
 				$Doc->EndExportRow();

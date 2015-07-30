@@ -427,8 +427,8 @@ class cespecies_add extends cespecies {
 		$this->comestible->OldValue = $this->comestible->CurrentValue;
 		$this->perfume->CurrentValue = NULL;
 		$this->perfume->OldValue = $this->perfume->CurrentValue;
-		$this->avejas->CurrentValue = NULL;
-		$this->avejas->OldValue = $this->avejas->CurrentValue;
+		$this->abejas->CurrentValue = NULL;
+		$this->abejas->OldValue = $this->abejas->CurrentValue;
 		$this->mariposas->CurrentValue = NULL;
 		$this->mariposas->OldValue = $this->mariposas->CurrentValue;
 	}
@@ -469,8 +469,8 @@ class cespecies_add extends cespecies {
 		if (!$this->perfume->FldIsDetailKey) {
 			$this->perfume->setFormValue($objForm->GetValue("x_perfume"));
 		}
-		if (!$this->avejas->FldIsDetailKey) {
-			$this->avejas->setFormValue($objForm->GetValue("x_avejas"));
+		if (!$this->abejas->FldIsDetailKey) {
+			$this->abejas->setFormValue($objForm->GetValue("x_abejas"));
 		}
 		if (!$this->mariposas->FldIsDetailKey) {
 			$this->mariposas->setFormValue($objForm->GetValue("x_mariposas"));
@@ -491,7 +491,7 @@ class cespecies_add extends cespecies {
 		$this->medicinal->CurrentValue = $this->medicinal->FormValue;
 		$this->comestible->CurrentValue = $this->comestible->FormValue;
 		$this->perfume->CurrentValue = $this->perfume->FormValue;
-		$this->avejas->CurrentValue = $this->avejas->FormValue;
+		$this->abejas->CurrentValue = $this->abejas->FormValue;
 		$this->mariposas->CurrentValue = $this->mariposas->FormValue;
 	}
 
@@ -544,7 +544,7 @@ class cespecies_add extends cespecies {
 		$this->medicinal->setDbValue($rs->fields('medicinal'));
 		$this->comestible->setDbValue($rs->fields('comestible'));
 		$this->perfume->setDbValue($rs->fields('perfume'));
-		$this->avejas->setDbValue($rs->fields('avejas'));
+		$this->abejas->setDbValue($rs->fields('abejas'));
 		$this->mariposas->setDbValue($rs->fields('mariposas'));
 	}
 
@@ -567,7 +567,7 @@ class cespecies_add extends cespecies {
 		$this->medicinal->DbValue = $row['medicinal'];
 		$this->comestible->DbValue = $row['comestible'];
 		$this->perfume->DbValue = $row['perfume'];
-		$this->avejas->DbValue = $row['avejas'];
+		$this->abejas->DbValue = $row['abejas'];
 		$this->mariposas->DbValue = $row['mariposas'];
 	}
 
@@ -619,7 +619,7 @@ class cespecies_add extends cespecies {
 		// medicinal
 		// comestible
 		// perfume
-		// avejas
+		// abejas
 		// mariposas
 
 		if ($this->RowType == EW_ROWTYPE_VIEW) { // View row
@@ -723,15 +723,54 @@ class cespecies_add extends cespecies {
 			$this->comestible->ViewCustomAttributes = "";
 
 			// perfume
-			$this->perfume->ViewValue = $this->perfume->CurrentValue;
+			if (strval($this->perfume->CurrentValue) <> "") {
+				switch ($this->perfume->CurrentValue) {
+					case $this->perfume->FldTagValue(1):
+						$this->perfume->ViewValue = $this->perfume->FldTagCaption(1) <> "" ? $this->perfume->FldTagCaption(1) : $this->perfume->CurrentValue;
+						break;
+					case $this->perfume->FldTagValue(2):
+						$this->perfume->ViewValue = $this->perfume->FldTagCaption(2) <> "" ? $this->perfume->FldTagCaption(2) : $this->perfume->CurrentValue;
+						break;
+					default:
+						$this->perfume->ViewValue = $this->perfume->CurrentValue;
+				}
+			} else {
+				$this->perfume->ViewValue = NULL;
+			}
 			$this->perfume->ViewCustomAttributes = "";
 
-			// avejas
-			$this->avejas->ViewValue = $this->avejas->CurrentValue;
-			$this->avejas->ViewCustomAttributes = "";
+			// abejas
+			if (strval($this->abejas->CurrentValue) <> "") {
+				switch ($this->abejas->CurrentValue) {
+					case $this->abejas->FldTagValue(1):
+						$this->abejas->ViewValue = $this->abejas->FldTagCaption(1) <> "" ? $this->abejas->FldTagCaption(1) : $this->abejas->CurrentValue;
+						break;
+					case $this->abejas->FldTagValue(2):
+						$this->abejas->ViewValue = $this->abejas->FldTagCaption(2) <> "" ? $this->abejas->FldTagCaption(2) : $this->abejas->CurrentValue;
+						break;
+					default:
+						$this->abejas->ViewValue = $this->abejas->CurrentValue;
+				}
+			} else {
+				$this->abejas->ViewValue = NULL;
+			}
+			$this->abejas->ViewCustomAttributes = "";
 
 			// mariposas
-			$this->mariposas->ViewValue = $this->mariposas->CurrentValue;
+			if (strval($this->mariposas->CurrentValue) <> "") {
+				switch ($this->mariposas->CurrentValue) {
+					case $this->mariposas->FldTagValue(1):
+						$this->mariposas->ViewValue = $this->mariposas->FldTagCaption(1) <> "" ? $this->mariposas->FldTagCaption(1) : $this->mariposas->CurrentValue;
+						break;
+					case $this->mariposas->FldTagValue(2):
+						$this->mariposas->ViewValue = $this->mariposas->FldTagCaption(2) <> "" ? $this->mariposas->FldTagCaption(2) : $this->mariposas->CurrentValue;
+						break;
+					default:
+						$this->mariposas->ViewValue = $this->mariposas->CurrentValue;
+				}
+			} else {
+				$this->mariposas->ViewValue = NULL;
+			}
 			$this->mariposas->ViewCustomAttributes = "";
 
 			// id_especie
@@ -808,10 +847,10 @@ class cespecies_add extends cespecies {
 			$this->perfume->HrefValue = "";
 			$this->perfume->TooltipValue = "";
 
-			// avejas
-			$this->avejas->LinkCustomAttributes = "";
-			$this->avejas->HrefValue = "";
-			$this->avejas->TooltipValue = "";
+			// abejas
+			$this->abejas->LinkCustomAttributes = "";
+			$this->abejas->HrefValue = "";
+			$this->abejas->TooltipValue = "";
 
 			// mariposas
 			$this->mariposas->LinkCustomAttributes = "";
@@ -914,18 +953,24 @@ class cespecies_add extends cespecies {
 
 			// perfume
 			$this->perfume->EditCustomAttributes = "";
-			$this->perfume->EditValue = ew_HtmlEncode($this->perfume->CurrentValue);
-			$this->perfume->PlaceHolder = ew_HtmlEncode(ew_RemoveHtml($this->perfume->FldCaption()));
+			$arwrk = array();
+			$arwrk[] = array($this->perfume->FldTagValue(1), $this->perfume->FldTagCaption(1) <> "" ? $this->perfume->FldTagCaption(1) : $this->perfume->FldTagValue(1));
+			$arwrk[] = array($this->perfume->FldTagValue(2), $this->perfume->FldTagCaption(2) <> "" ? $this->perfume->FldTagCaption(2) : $this->perfume->FldTagValue(2));
+			$this->perfume->EditValue = $arwrk;
 
-			// avejas
-			$this->avejas->EditCustomAttributes = "";
-			$this->avejas->EditValue = ew_HtmlEncode($this->avejas->CurrentValue);
-			$this->avejas->PlaceHolder = ew_HtmlEncode(ew_RemoveHtml($this->avejas->FldCaption()));
+			// abejas
+			$this->abejas->EditCustomAttributes = "";
+			$arwrk = array();
+			$arwrk[] = array($this->abejas->FldTagValue(1), $this->abejas->FldTagCaption(1) <> "" ? $this->abejas->FldTagCaption(1) : $this->abejas->FldTagValue(1));
+			$arwrk[] = array($this->abejas->FldTagValue(2), $this->abejas->FldTagCaption(2) <> "" ? $this->abejas->FldTagCaption(2) : $this->abejas->FldTagValue(2));
+			$this->abejas->EditValue = $arwrk;
 
 			// mariposas
 			$this->mariposas->EditCustomAttributes = "";
-			$this->mariposas->EditValue = ew_HtmlEncode($this->mariposas->CurrentValue);
-			$this->mariposas->PlaceHolder = ew_HtmlEncode(ew_RemoveHtml($this->mariposas->FldCaption()));
+			$arwrk = array();
+			$arwrk[] = array($this->mariposas->FldTagValue(1), $this->mariposas->FldTagCaption(1) <> "" ? $this->mariposas->FldTagCaption(1) : $this->mariposas->FldTagValue(1));
+			$arwrk[] = array($this->mariposas->FldTagValue(2), $this->mariposas->FldTagCaption(2) <> "" ? $this->mariposas->FldTagCaption(2) : $this->mariposas->FldTagValue(2));
+			$this->mariposas->EditValue = $arwrk;
 
 			// Edit refer script
 			// id_especie
@@ -975,8 +1020,8 @@ class cespecies_add extends cespecies {
 			// perfume
 			$this->perfume->HrefValue = "";
 
-			// avejas
-			$this->avejas->HrefValue = "";
+			// abejas
+			$this->abejas->HrefValue = "";
 
 			// mariposas
 			$this->mariposas->HrefValue = "";
@@ -1022,15 +1067,6 @@ class cespecies_add extends cespecies {
 		}
 		if (!$this->ORIGEN->FldIsDetailKey && !is_null($this->ORIGEN->FormValue) && $this->ORIGEN->FormValue == "") {
 			ew_AddMessage($gsFormError, $Language->Phrase("EnterRequiredField") . " - " . $this->ORIGEN->FldCaption());
-		}
-		if (!ew_CheckInteger($this->perfume->FormValue)) {
-			ew_AddMessage($gsFormError, $this->perfume->FldErrMsg());
-		}
-		if (!ew_CheckInteger($this->avejas->FormValue)) {
-			ew_AddMessage($gsFormError, $this->avejas->FldErrMsg());
-		}
-		if (!ew_CheckInteger($this->mariposas->FormValue)) {
-			ew_AddMessage($gsFormError, $this->mariposas->FldErrMsg());
 		}
 
 		// Return validate result
@@ -1121,8 +1157,8 @@ class cespecies_add extends cespecies {
 		// perfume
 		$this->perfume->SetDbValueDef($rsnew, $this->perfume->CurrentValue, NULL, FALSE);
 
-		// avejas
-		$this->avejas->SetDbValueDef($rsnew, $this->avejas->CurrentValue, NULL, FALSE);
+		// abejas
+		$this->abejas->SetDbValueDef($rsnew, $this->abejas->CurrentValue, NULL, FALSE);
 
 		// mariposas
 		$this->mariposas->SetDbValueDef($rsnew, $this->mariposas->CurrentValue, NULL, FALSE);
@@ -1399,15 +1435,6 @@ fespeciesadd.Validate = function() {
 			elm = this.GetElements("x" + infix + "_ORIGEN");
 			if (elm && !ew_HasValue(elm))
 				return this.OnError(elm, ewLanguage.Phrase("EnterRequiredField") + " - <?php echo ew_JsEncode2($especies->ORIGEN->FldCaption()) ?>");
-			elm = this.GetElements("x" + infix + "_perfume");
-			if (elm && !ew_CheckInteger(elm.value))
-				return this.OnError(elm, "<?php echo ew_JsEncode2($especies->perfume->FldErrMsg()) ?>");
-			elm = this.GetElements("x" + infix + "_avejas");
-			if (elm && !ew_CheckInteger(elm.value))
-				return this.OnError(elm, "<?php echo ew_JsEncode2($especies->avejas->FldErrMsg()) ?>");
-			elm = this.GetElements("x" + infix + "_mariposas");
-			if (elm && !ew_CheckInteger(elm.value))
-				return this.OnError(elm, "<?php echo ew_JsEncode2($especies->mariposas->FldErrMsg()) ?>");
 
 			// Set up row object
 			ew_ElementsToRow(fobj);
@@ -1663,19 +1690,59 @@ fespeciesadd.AutoSuggests["x_id_familia"] = oas;
 		<td><span id="elh_especies_perfume"><?php echo $especies->perfume->FldCaption() ?></span></td>
 		<td<?php echo $especies->perfume->CellAttributes() ?>>
 <span id="el_especies_perfume" class="control-group">
-<input type="text" data-field="x_perfume" name="x_perfume" id="x_perfume" size="30" placeholder="<?php echo $especies->perfume->PlaceHolder ?>" value="<?php echo $especies->perfume->EditValue ?>"<?php echo $especies->perfume->EditAttributes() ?>>
+<div id="tp_x_perfume" class="<?php echo EW_ITEM_TEMPLATE_CLASSNAME ?>"><input type="radio" name="x_perfume" id="x_perfume" value="{value}"<?php echo $especies->perfume->EditAttributes() ?>></div>
+<div id="dsl_x_perfume" data-repeatcolumn="5" class="ewItemList">
+<?php
+$arwrk = $especies->perfume->EditValue;
+if (is_array($arwrk)) {
+	$rowswrk = count($arwrk);
+	$emptywrk = TRUE;
+	for ($rowcntwrk = 0; $rowcntwrk < $rowswrk; $rowcntwrk++) {
+		$selwrk = (strval($especies->perfume->CurrentValue) == strval($arwrk[$rowcntwrk][0])) ? " checked=\"checked\"" : "";
+		if ($selwrk <> "") $emptywrk = FALSE;
+
+		// Note: No spacing within the LABEL tag
+?>
+<?php echo ew_RepeatColumnTable($rowswrk, $rowcntwrk, 5, 1) ?>
+<label class="radio"><input type="radio" data-field="x_perfume" name="x_perfume" id="x_perfume_<?php echo $rowcntwrk ?>" value="<?php echo ew_HtmlEncode($arwrk[$rowcntwrk][0]) ?>"<?php echo $selwrk ?><?php echo $especies->perfume->EditAttributes() ?>><?php echo $arwrk[$rowcntwrk][1] ?></label>
+<?php echo ew_RepeatColumnTable($rowswrk, $rowcntwrk, 5, 2) ?>
+<?php
+	}
+}
+?>
+</div>
 </span>
 <?php echo $especies->perfume->CustomMsg ?></td>
 	</tr>
 <?php } ?>
-<?php if ($especies->avejas->Visible) { // avejas ?>
-	<tr id="r_avejas">
-		<td><span id="elh_especies_avejas"><?php echo $especies->avejas->FldCaption() ?></span></td>
-		<td<?php echo $especies->avejas->CellAttributes() ?>>
-<span id="el_especies_avejas" class="control-group">
-<input type="text" data-field="x_avejas" name="x_avejas" id="x_avejas" size="30" placeholder="<?php echo $especies->avejas->PlaceHolder ?>" value="<?php echo $especies->avejas->EditValue ?>"<?php echo $especies->avejas->EditAttributes() ?>>
+<?php if ($especies->abejas->Visible) { // abejas ?>
+	<tr id="r_abejas">
+		<td><span id="elh_especies_abejas"><?php echo $especies->abejas->FldCaption() ?></span></td>
+		<td<?php echo $especies->abejas->CellAttributes() ?>>
+<span id="el_especies_abejas" class="control-group">
+<div id="tp_x_abejas" class="<?php echo EW_ITEM_TEMPLATE_CLASSNAME ?>"><input type="radio" name="x_abejas" id="x_abejas" value="{value}"<?php echo $especies->abejas->EditAttributes() ?>></div>
+<div id="dsl_x_abejas" data-repeatcolumn="5" class="ewItemList">
+<?php
+$arwrk = $especies->abejas->EditValue;
+if (is_array($arwrk)) {
+	$rowswrk = count($arwrk);
+	$emptywrk = TRUE;
+	for ($rowcntwrk = 0; $rowcntwrk < $rowswrk; $rowcntwrk++) {
+		$selwrk = (strval($especies->abejas->CurrentValue) == strval($arwrk[$rowcntwrk][0])) ? " checked=\"checked\"" : "";
+		if ($selwrk <> "") $emptywrk = FALSE;
+
+		// Note: No spacing within the LABEL tag
+?>
+<?php echo ew_RepeatColumnTable($rowswrk, $rowcntwrk, 5, 1) ?>
+<label class="radio"><input type="radio" data-field="x_abejas" name="x_abejas" id="x_abejas_<?php echo $rowcntwrk ?>" value="<?php echo ew_HtmlEncode($arwrk[$rowcntwrk][0]) ?>"<?php echo $selwrk ?><?php echo $especies->abejas->EditAttributes() ?>><?php echo $arwrk[$rowcntwrk][1] ?></label>
+<?php echo ew_RepeatColumnTable($rowswrk, $rowcntwrk, 5, 2) ?>
+<?php
+	}
+}
+?>
+</div>
 </span>
-<?php echo $especies->avejas->CustomMsg ?></td>
+<?php echo $especies->abejas->CustomMsg ?></td>
 	</tr>
 <?php } ?>
 <?php if ($especies->mariposas->Visible) { // mariposas ?>
@@ -1683,7 +1750,27 @@ fespeciesadd.AutoSuggests["x_id_familia"] = oas;
 		<td><span id="elh_especies_mariposas"><?php echo $especies->mariposas->FldCaption() ?></span></td>
 		<td<?php echo $especies->mariposas->CellAttributes() ?>>
 <span id="el_especies_mariposas" class="control-group">
-<input type="text" data-field="x_mariposas" name="x_mariposas" id="x_mariposas" size="30" placeholder="<?php echo $especies->mariposas->PlaceHolder ?>" value="<?php echo $especies->mariposas->EditValue ?>"<?php echo $especies->mariposas->EditAttributes() ?>>
+<div id="tp_x_mariposas" class="<?php echo EW_ITEM_TEMPLATE_CLASSNAME ?>"><input type="radio" name="x_mariposas" id="x_mariposas" value="{value}"<?php echo $especies->mariposas->EditAttributes() ?>></div>
+<div id="dsl_x_mariposas" data-repeatcolumn="5" class="ewItemList">
+<?php
+$arwrk = $especies->mariposas->EditValue;
+if (is_array($arwrk)) {
+	$rowswrk = count($arwrk);
+	$emptywrk = TRUE;
+	for ($rowcntwrk = 0; $rowcntwrk < $rowswrk; $rowcntwrk++) {
+		$selwrk = (strval($especies->mariposas->CurrentValue) == strval($arwrk[$rowcntwrk][0])) ? " checked=\"checked\"" : "";
+		if ($selwrk <> "") $emptywrk = FALSE;
+
+		// Note: No spacing within the LABEL tag
+?>
+<?php echo ew_RepeatColumnTable($rowswrk, $rowcntwrk, 5, 1) ?>
+<label class="radio"><input type="radio" data-field="x_mariposas" name="x_mariposas" id="x_mariposas_<?php echo $rowcntwrk ?>" value="<?php echo ew_HtmlEncode($arwrk[$rowcntwrk][0]) ?>"<?php echo $selwrk ?><?php echo $especies->mariposas->EditAttributes() ?>><?php echo $arwrk[$rowcntwrk][1] ?></label>
+<?php echo ew_RepeatColumnTable($rowswrk, $rowcntwrk, 5, 2) ?>
+<?php
+	}
+}
+?>
+</div>
 </span>
 <?php echo $especies->mariposas->CustomMsg ?></td>
 	</tr>
