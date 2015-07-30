@@ -358,6 +358,8 @@ if ($busqueda !== 'vacia') {
 			<div class="modal-body">
 				<p>Este mapa surge gracias a la publicación de una información increíble: el <a href="http://data.buenosaires.gob.ar/dataset/censo-arbolado" target="_blank">censo del arbolado de la Ciudad de Buenos Aires.</a></p>
 				<p>El objetivo principal de este sitio es simplificar el acceso a esta valiosa información esperando que colabore con el conocimiento y el cuidado de nuestro arbolado urbano.</p>
+				<p><a href="https://github.com/suberek/arboles" target="_blank"><i class="fa fw fa-github"></i> Ver en GitHub</a></p>
+				<p><a href="https://www.facebook.com/arboladourbanomapa" target="_blank"><i class="fa fw fa-facebook"></i> Seguir en facebook</a></p>
 					
 				<a href="http://martinsimonyan.com.ar/arboles-de-buenos-aires/" class="btn btn-default" target="_blank">Más información <i class="fa fa-caret-right fa-sm"></i></a>
 			<hr>
@@ -374,6 +376,9 @@ if ($busqueda !== 'vacia') {
 						<li>etc, etc.</li>
 					</ul>
 				</p>
+			<hr>
+				<p><a href=""></a></p>
+
 				
 			</div>
 			<div class="modal-footer">
