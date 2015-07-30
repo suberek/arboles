@@ -1,9 +1,0 @@
-﻿<?xml version="1.0"?>
-<configuration date="2015/07/30" author="e.World Technology Ltd.">
-<project id="{E8FDA5CE-82C7-4B68-84A5-21FD1A691C43}" file="E:\Copy\Arbolado Urbano\phpMaker.pmp" name="phpMaker" product="PHPMaker" version="10.0" datetime="2015/07/30 03:33:08" languagefolder="phplang" userlevel="0,&quot;Default&quot;,0;1,&quot;Editor&quot;,0">
-<table id="individuos" name="individuos" caption="Individuos" userlevel="0,&quot;Default&quot;,0;1,&quot;Editor&quot;,105" priv="1"/>
-<table id="especies" name="especies" caption="Especies" userlevel="0,&quot;Default&quot;,0;1,&quot;Editor&quot;,105" priv="1"/>
-<table id="familias" name="familias" caption="Familias" userlevel="0,&quot;Default&quot;,0;1,&quot;Editor&quot;,105" priv="1"/>
-<table id="barrios" name="barrios" caption="Barrios" userlevel="0,&quot;Default&quot;,0;1,&quot;Editor&quot;,0" priv="1"/>
-<table id="usuarios" name="usuarios" caption="Usuarios" userlevel="0,&quot;Default&quot;,0;1,&quot;Editor&quot;,0" priv="1"/>
-</project></configuration>
