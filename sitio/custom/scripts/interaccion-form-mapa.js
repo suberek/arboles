@@ -182,7 +182,7 @@ $(document).ready(function() {
 		if(query_value !== ''){
 			$.ajax({
 				type: "POST",
-				url: "tirameladata/buscar.php",
+				url: "custom/scripts/interaccion-form-ajax-especies.php",
 				data: { query: query_value },
 				cache: false,
 				success: function(html){

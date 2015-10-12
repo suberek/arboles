@@ -83,7 +83,7 @@ if (strlen($search_string) >= 1 && $search_string !== ' ' ) {
 			// Output
 			echo($output);
 		}
-	}else{
+	} else {
 
 		// Format No Results Output
 		$output = str_replace('urlString', 'javascript:void(0);', $html);
