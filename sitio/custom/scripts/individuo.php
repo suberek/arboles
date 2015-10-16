@@ -8,7 +8,7 @@ if ((is_numeric($id)) && ($id > 0)) {
 	header("Location: /index.php");
 }
 
-require_once('../_db.php');
+require_once('../../_db.php');
 /*
 Acá van los datos de conexión
 $schema = "nombre de la base de datos";
@@ -17,7 +17,7 @@ $user   = "usuario";
 $pass   = "contraseña";
 */
 
-require_once('funciones.php');
+require_once('funciones-db.php');
 
 //die($query);
 
@@ -55,6 +55,8 @@ if ( empty($espacio_verde) ) {
 }
 
 echo "
+	<div class=\"box\">
+	<a href='#' class='cerrar'>  <i class=\"fa fa-times \"></i> cerrar </a>
 	<h1>$nombre_cientifico<br> <small>$nombre_comun</small></h1>
 	<p>$tipo_follaje<br>
 	Origen: $origen";
@@ -69,5 +71,6 @@ echo "
 	<small>
 		$usuario_desc
 		<p><a href=\"$usuario_url\" target=\"_blank\">Ir a la fuente</a></p>
-	</small>";
+	</small>
+	</div>";
 ?>

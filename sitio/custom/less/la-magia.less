@@ -15,86 +15,89 @@ label {
 	font-weight: normal;
 }
 
-#menu nav a.title {
-	text-decoration: none;
-}
+#menu {
 
-#menu nav a.title:hover h1 {
-	color: lighten(@verde, 20%);
-}
+	nav {
+		a {
+			&.title {
+				text-decoration: none;
+				h1 {
+					background-repeat: no-repeat;
+					line-height: 1.1em;
+					font-weight: 400;
+					
+					background-image: url(../../images/logo-72x72-blanco.png);
+					background-position: -19px -5px;
+					font-size: 1.35em;
+					height: 63px;
+					margin-bottom: 0px;
+					padding-top: 21px;
+					padding-left: 42px;
+					small {
+						display: block;
+						margin-top: 0.1em;
+					}
+					br {
+						display: none;
+					}
+				}
+				&:hover {
+					h1 {
+						color: lighten(@verde, 20%);
+					}
+				}
+			}
+		}
 
-#menu nav a.title h1 {
-	background-repeat: no-repeat;
-	line-height: 1.1em;
-	font-weight: 400;
-	
-	background-image: url(../../images/logo-72x72-blanco.png);
-	background-position: -19px -5px;
-	font-size: 1.35em;
-	height: 63px;
-	margin-bottom: 0px;
-	padding-top: 21px;
-	padding-left: 42px;
-}
+		h6.results-text {
+			display: none;
+		}
 
-#menu nav a.title h1 small {
-	display: block;
-	margin-top: 0.1em;
-}
+		ul.results {
+			display: none;
+			border: 1px solid #ababab;
+			background-color: #FFF;
+			overflow: auto;
+			
+			z-index: 2000;
+			
+			width: 100%;
+			position: absolute;
+			bottom: 54px;
+			max-height: 190px;
+			li {
+				padding: 5px;
+				cursor: pointer;
+				border-top: 1px solid #cdcdcd;
+				transition: background-color .3s ease-in-out;
+				-moz-transition: background-color .3s ease-in-out;
+				-webkit-transition: background-color .3s ease-in-out;
+				&:hover {
+					background-color: #F7F7F7;
+					h4, h5 {
+						font-weight: bold;
+					}
+				}
+				&:first-child {
+					border-top: none;
+				}
+				a {
+					text-decoration: none !important;
+				}
+			}
+			h4, h5 {
+				line-height: 0.9em;
+			}
+			
+		}
+	}
 
-
-#menu nav a.title h1 br {
-	display: none;
+	.que-es-esto {
+		margin-top: 5em;
+	}
 }
 
 #especies-lista { position: relative; }
-
-#menu nav h6.results-text {
-	display: none;
-}
-
-#menu nav ul.results {
-	display: none;
-	border: 1px solid #ababab;
-	background-color: #FFF;
-	overflow: auto;
-	
-	z-index: 2000;
-	
-	width: 100%;
-	position: absolute;
-	bottom: 54px;
-	max-height: 190px;
-	
-}
-#menu nav ul.results li {
-	padding: 5px;
-	cursor: pointer;
-	border-top: 1px solid #cdcdcd;
-	transition: background-color .3s ease-in-out;
-	-moz-transition: background-color .3s ease-in-out;
-	-webkit-transition: background-color .3s ease-in-out;
-}
-#menu nav ul.results li:hover {
-	background-color: #F7F7F7;
-}
-#menu nav ul.results li:first-child {
-	border-top: none;
-}
-#menu nav ul.results li h4, ul#results li h5 {
-	line-height: 0.9em;
-}
-#menu nav ul.results li:hover h4, ul#results li:hover h5  {
-	font-weight: bold;
-}
-
-#menu nav ul.results li a {
-	text-decoration: none !important;
-}
-
-#menu .que-es-esto {
-	margin-top: 5em;
-}
 
 .progress {
 	display: none;
@@ -115,17 +118,38 @@ label {
 
 form#busca_arboles {
 	margin-bottom: 20px;
+	h3 {
+		font-size: 1.2em;
+	}
+	.radio label {
+		margin-right: 7px;
+	}
 }
 
-form#busca_arboles h3 {
-	font-size: 1.2em;
+#info-individuo {
+	display: none;
+	position: absolute;
+	z-index: 7000;
+	background-color: #FFF;
+	-webkit-box-shadow: 0px 10px 21px -3px rgba(0,0,0,0.12);
+	-moz-box-shadow: 0px 10px 21px -3px rgba(0,0,0,0.12);
+	box-shadow: 0px 10px 21px -3px rgba(0,0,0,0.12);
+
+	border-bottom: 1px solid lighten(@gris2, 20%);
+	.box {
+		padding: 1em 0 2em;
+		
+	}
+	.cerrar {
+		display: block;
+		text-align: right;
+		text-decoration: none;
+	}
 }
 
-form#busca_arboles .radio label {
-	margin-right: 7px;
-}
-
-.bootstrap-select.btn-group .dropdown-menu li:not(.disabled) > a:hover small, .bootstrap-select.btn-group .dropdown-menu li:not(.disabled) > a:focus small, .bootstrap-select.btn-group .dropdown-menu li.active:not(.disabled) > a small {
+.bootstrap-select.btn-group .dropdown-menu li:not(.disabled) > a:hover small,
+.bootstrap-select.btn-group .dropdown-menu li:not(.disabled) > a:focus small,
+.bootstrap-select.btn-group .dropdown-menu li.active:not(.disabled) > a small {
 	color: #FFF !important;
 }
 
@@ -135,11 +159,13 @@ form#busca_arboles .radio label {
 
 .leaflet-control-container {
 	.leaflet-control-geocoder {
+		/*
 		.leaflet-control-geocoder-icon {
 			width: 29px;
 			line-height: 29px;
 			background-position: 1px 0;
 		}
+		*/
 
 		form.leaflet-control-geocoder-form {
 			input {
@@ -168,29 +194,41 @@ a.lcnrs {
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) { 
+	
+	
+	
+
+	
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
 	body {
 		padding: 0;
 	}
 	
 	#mapa {
 		margin: 0;
-	}
-	
-	#menu nav a.title h1 br {
-		display: block;
+		position: fixed;
+		right: 0;
 	}
 
-	#menu nav ul.results {
-		position: absolute;
-		top: auto;
-		bottom: auto;
-		width: 100%;
-		max-height: 300px;
-	}
-}
+	#menu nav {
+		a.title h1 br {
+			display: block;
+		}
 
-/* Medium devices (desktops, 992px and up) */
-@media (min-width: 992px) {
+		ul.results {
+			position: absolute;
+			top: auto;
+			bottom: auto;
+			width: 100%;
+			max-height: 300px;
+		}
+
+	}
+
 	#menu nav a.title h1 {
 		background-image: url(../../images/logo-120x120-blanco.png);
 		background-position: -25px -12px;
