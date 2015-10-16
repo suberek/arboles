@@ -274,10 +274,13 @@ $(document).ready(function(){
 				url: "custom/scripts/individuo.php?id="+oMarkerId,
 				success: function(datos){
 					$('#info-individuo').html(datos);
+					$('#info-individuo').slideDown();
+					//window.location.href = '#info-individuo';
 					//oPop.setContent(datos);
 					//oPop.update();
-					$('.cerrar').click(function () {
-						$('#info-individuo').html("");
+					$('.cerrar').click(function (e) {
+						e.preventDefault();
+						$('#info-individuo').slideUp();
 					})
 
 				}

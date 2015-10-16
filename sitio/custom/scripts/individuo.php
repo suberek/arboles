@@ -55,7 +55,8 @@ if ( empty($espacio_verde) ) {
 }
 
 echo "
-	<a href='#' class='cerrar'>CERRAR</a>
+	<div class=\"box\">
+	<a href='#' class='cerrar'>  <i class=\"fa fa-times \"></i> cerrar </a>
 	<h1>$nombre_cientifico<br> <small>$nombre_comun</small></h1>
 	<p>$tipo_follaje<br>
 	Origen: $origen";
@@ -70,5 +71,6 @@ echo "
 	<small>
 		$usuario_desc
 		<p><a href=\"$usuario_url\" target=\"_blank\">Ir a la fuente</a></p>
-	</small>";
+	</small>
+	</div>";
 ?>

@@ -13,7 +13,7 @@ $user_sabores			= $_REQUEST['user_sabores'];
 
 /**************************************************************** PARÁMETRO ESPECIE */
 if ((is_numeric($id_especie_busqueda)) && ($id_especie_busqueda > 0)) {
-	$parametro .= " AND id_especie=$id_especie_busqueda";
+	$parametro .= " AND i.id_especie=$id_especie_busqueda";
 	
 	$especie_query	= "
 	SELECT e.NOMBRE_CIE

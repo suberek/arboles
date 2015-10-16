@@ -16,6 +16,7 @@ label {
 }
 
 #menu {
+
 	nav {
 		a {
 			&.title {
@@ -126,7 +127,24 @@ form#busca_arboles {
 }
 
 #info-individuo {
+	display: none;
+	position: absolute;
+	z-index: 7000;
+	background-color: #FFF;
+	-webkit-box-shadow: 0px 10px 21px -3px rgba(0,0,0,0.12);
+	-moz-box-shadow: 0px 10px 21px -3px rgba(0,0,0,0.12);
+	box-shadow: 0px 10px 21px -3px rgba(0,0,0,0.12);
 
+	border-bottom: 1px solid lighten(@gris2, 20%);
+	.box {
+		padding: 1em 0 2em;
+		
+	}
+	.cerrar {
+		display: block;
+		text-align: right;
+		text-decoration: none;
+	}
 }
 
 .bootstrap-select.btn-group .dropdown-menu li:not(.disabled) > a:hover small,
@@ -141,11 +159,13 @@ form#busca_arboles {
 
 .leaflet-control-container {
 	.leaflet-control-geocoder {
+		/*
 		.leaflet-control-geocoder-icon {
 			width: 29px;
 			line-height: 29px;
 			background-position: 1px 0;
 		}
+		*/
 
 		form.leaflet-control-geocoder-form {
 			input {
@@ -174,12 +194,24 @@ a.lcnrs {
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) { 
+	
+	
+	
+
+	
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
 	body {
 		padding: 0;
 	}
 	
 	#mapa {
 		margin: 0;
+		position: fixed;
+		right: 0;
 	}
 
 	#menu nav {
@@ -196,10 +228,7 @@ a.lcnrs {
 		}
 
 	}
-}
 
-/* Medium devices (desktops, 992px and up) */
-@media (min-width: 992px) {
 	#menu nav a.title h1 {
 		background-image: url(../../images/logo-120x120-blanco.png);
 		background-position: -25px -12px;

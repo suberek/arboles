@@ -51,6 +51,7 @@ require_once('custom/scripts/funciones-db.php');
 <script src="third-party/leaflet-plugins/MarkerCluster/leaflet.markercluster.js"></script>
 <script src="third-party/leaflet-plugins/Locate/L.Control.Locate.min.js" ></script>
 <script src="third-party/leaflet-plugins/Geocoder/Control.Geocoder.min.js"></script>
+<script src="third-party/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 
 <!-- Custom -->
 <link href="custom/css/estilos.css" rel="stylesheet" type="text/css" media="all">
@@ -71,7 +72,7 @@ echo "<div>QUERY: <br><br><pre>$censo_query</pre></div>";
 */
 ?>
 
-<nav class="navbar navbar-default navbar-fixed-bottom visible-xs" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-bottom visible-sm visible-xs" role="navigation">
 	<div class="container-fluid">
 		<a type="button" class="btn btn-default navbar-btn scroll" href="#busca_arboles"><i class="fa fa-search fa-sm"></i> Buscador <i class="fa fa-caret-up fa-sm"></i> </a>
 		<a type="button" class="btn btn-default navbar-btn scroll" href="#mapa"><i class="fa fa-map-marker fa-sm"></i> Mapa <i class="fa fa-caret-down fa-sm"></i></a>
@@ -84,15 +85,19 @@ echo "<div>QUERY: <br><br><pre>$censo_query</pre></div>";
 			
 		  </div>
 		</div>
+		
+		<div class="col-md-3" id="info-individuo">
+			
+		</div>
 
-		<div class="col-sm-3 full-height" id="menu">
+		<div class="col-md-3" id="menu">
 			<nav role="navigation">
 				<a class="title" href="./">
 				<h1>Arbolado<br>
 					Urbano
 					<small>Buenos Aires</small></h1>
 				</a>
-				<div id="info-individuo"> </div>
+				
 				<form action="index.php#mapa" method="post" id="busca_arboles" role="form">
 					<div class="row">
 						<div class="col-xs-12">
@@ -176,7 +181,7 @@ echo "<div>QUERY: <br><br><pre>$censo_query</pre></div>";
 			</nav>
 		</div>
 	
-		<div class="col-sm-9 full-height" id="mapa"> </div>
+		<div class="col-md-9 full-height" id="mapa"> </div>
 	</div>
 </div>
 
