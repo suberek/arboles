@@ -120,7 +120,8 @@ echo "<div>QUERY: <br><br><pre>$censo_query</pre></div>";
 						<div class="col-xs-12">
 					
 							<div class="form-group">
-								<h3>¿Qué especie? <a href="#" id="borrar_id_especie"><i class="fa fa-trash-o"></i></a></h3>
+								<h3 class="pull-left">¿Qué especie?</h3>
+								<a href="#" id="borrar_id_especie"><i class="fa fa-trash-o"></i></a>
 								
 								<select class="form-control input-lg selectpicker" data-style="btn-default" name="id_especie" id="id_especie" data-live-search="true">
 									<option value="0">Todas</option>
@@ -179,9 +180,7 @@ echo "<div>QUERY: <br><br><pre>$censo_query</pre></div>";
 									<label>
 										<input type="radio" id="rorigen-exoticas" name="user_origen" value="Exótico" <?php if (stripos($busqueda,'Exótico') > 0) echo 'checked' ?>  />
 										exóticas </label>
-									<label>
-										<input type="radio" id="rorigen-todas" name="user_origen" value="Todas" <?php if (  (stripos($busqueda,'Nativo') == 0)  && (stripos($busqueda,'Exótico') == 0)) echo 'checked' ?>  />
-										todas </label>
+									<a href="#" id="borrar_origen"><i class="fa fa-trash-o"></i></a>
 								</div>
 							</div>
 						</div>
