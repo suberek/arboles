@@ -2,7 +2,7 @@
 // Parámetros de búsqueda
 //// Defino el default
 $parametro	= "WHERE 1";
-$busqueda	= "vacia";
+$busqueda	= "";
 $radius		= "1000"; // Radio de búsqueda en Metros
 $user_latlng_default = array("-34.60371794474704","-58.38157095015049"); // El Obelisco
 
@@ -10,6 +10,10 @@ $user_latlng_default = array("-34.60371794474704","-58.38157095015049"); // El O
 $id_especie_busqueda	= $_REQUEST['id_especie'];
 $user_latlng			= $_REQUEST['user_latlng'];
 $user_sabores			= $_REQUEST['user_sabores'];
+$user_origen			= $_REQUEST['user_origen'];
+if (empty($user_origen)) {
+	$user_origen = 'Todas';
+}
 
 /**************************************************************** PARÁMETRO ESPECIE */
 if ((is_numeric($id_especie_busqueda)) && ($id_especie_busqueda > 0)) {
@@ -26,11 +30,11 @@ if ((is_numeric($id_especie_busqueda)) && ($id_especie_busqueda > 0)) {
 	$especie_row		= mysql_fetch_array($especie_results);
 	$nombre_cientifico	= $especie_row['NOMBRE_CIE'];
 	
-	$busqueda	= "especie una";
+	$busqueda	.= "especie una /";
 	
 } else {
 	$id_especie_busqueda = '';
-	$busqueda	= "especie todas";
+	$busqueda	.= "especie todas /";
 }
 
 /**************************************************************** PARÁMETRO ZONA */
@@ -45,28 +49,50 @@ if (  !empty($user_latlng) && (strlen($user_latlng) > 1 )  ) {
 	$user_lng = $arr_user_latlng[1];
 	
 	if (  is_numeric($user_lat) && is_numeric($user_lng)  ) {
-		$busqueda	.= " donde marker";
+		$busqueda	.= " donde marker /";
 	} else {
-		$busqueda	.= " donde ciudad";
+		$busqueda	.= " donde ciudad /";
 	}
 	
 } else {
-	$busqueda	.= " donde ciudad";
+	$busqueda	.= " donde ciudad /";
 }
 
-if ($busqueda == "especie todas donde ciudad") {
-	$busqueda = "vacia";
+if ($busqueda == "especie todas / donde ciudad /") {
+	$busqueda = "";
 }
 
+/**************************************************************** JOIN con especies */
+if (
+		(  (is_numeric($user_sabores)) && ($user_sabores > 0)  ) 
+		||
+		( $user_origen !== 'Todas' )
+   )
+{
+	$parametroJoin = " INNER JOIN especies e ON i.id_especie=e.id_especie";
+
+	$masFiltrosCss = "visible";
+
+} else {
+
+	$masFiltrosCss = "oculto";
+
+}
 
 /**************************************************************** PARÁMETRO SABORES */
 if ((is_numeric($user_sabores)) && ($user_sabores > 0)) {
 	//$parametro .= " AND ( id_especie = 23 )";
-	$parametroJoin = " INNER JOIN especies e ON i.id_especie=e.id_especie";
 	$parametro .= " AND ( e.comestible <> '' OR e.medicinal <> '' )";
 
+	$busqueda .= " con sabores /";
+}
 
-	$busqueda .= " con sabores";
+
+/**************************************************************** PARÁMETRO ORIGEN */
+if ( $user_origen !== 'Todas' ) {
+	$parametro .= " AND ( e.ORIGEN = '".$user_origen."'  )";
+
+	$busqueda .= " con origen ".$user_origen." /";
 }
 
 //echo("<br>".$user_lat);
@@ -75,7 +101,7 @@ if ((is_numeric($user_sabores)) && ($user_sabores > 0)) {
 
 
 
-if ($busqueda !== 'vacia') {
+if ($busqueda !== '') {
 	
 	/**********************************************************************  Hago LA consulta */
 

@@ -67,10 +67,8 @@ if (!empty($altura))
 echo "
 	</p>
 	<p><i class=\"fa fa-map-marker fa-fw\"></i> $ubicacion</p>
-	<p><small> Autor: $usuario_autor. </small></p>
-	<small>
-		$usuario_desc
-		<p><a href=\"$usuario_url\" target=\"_blank\">Ir a la fuente</a></p>
+	<small class=\"autor\">
+		<p>Fuente: <a href=\"$usuario_url\" target=\"_blank\">$usuario_autor</a>.</p>
 	</small>
 	</div>";
 ?>

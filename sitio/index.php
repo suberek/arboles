@@ -67,8 +67,10 @@ require_once('custom/scripts/funciones-db.php');
 
 <?php
 /*
-echo("CONSULTA: <br>".$busqueda);
+
+echo("CONSULTA: <br>" . $busqueda);
 echo "<div>QUERY: <br><br><pre>$censo_query</pre></div>";
+
 */
 ?>
 
@@ -86,11 +88,11 @@ echo "<div>QUERY: <br><br><pre>$censo_query</pre></div>";
 		  </div>
 		</div>
 		
-		<div class="col-md-3" id="info-individuo">
+		<div class="col-md-4 col-lg-3" id="info-individuo">
 			
 		</div>
 
-		<div class="col-md-3" id="menu">
+		<div class="col-md-4 col-lg-3" id="menu">
 			<nav role="navigation">
 				<a class="title" href="./">
 				<h1>Arbolado<br>
@@ -105,7 +107,7 @@ echo "<div>QUERY: <br><br><pre>$censo_query</pre></div>";
 								<h3>¿Dónde?</h3>
 								<div class="radio"> 
 									<label>
-										<input type="radio" id="rdonde-ciudad" name="rdonde" value="0"  <?php if (stripos($busqueda,'marker') == 0) echo 'checked' ?>  />
+										<input type="radio" id="rdonde-ciudad" name="rdonde" value="0" <?php if (stripos($busqueda,'marker') == 0) echo 'checked' ?>  />
 										en toda la ciudad </label>
 									<label>
 										<input type="radio" id="rdonde-mapa" name="rdonde" value="<? echo $user_latlng_default[0].' '.$user_latlng_default[1] ?>"  <?php if (stripos($busqueda,'marker') > 0) echo 'checked' ?>  />
@@ -160,12 +162,33 @@ echo "<div>QUERY: <br><br><pre>$censo_query</pre></div>";
 							</div>
 					
 						</div>
+											
 
-						<div class="col-xs-12">
+						<div class="col-xs-12 <?php echo $masFiltrosCss; ?>" id="mas-filtros">
 							<div class="form-group">
-								<h3>Frutales y medicinales</h3>
-								<label for="user_sabores"> <input type="checkbox" name="user_sabores" id="user_sabores" value="1"  <?php if ($user_sabores > 0) echo 'checked' ?> > Probar este filtro <span class="label label-warning">beta</span></label>
+								<h3>Sabores</h3>
+								<label for="user_sabores"> <input type="checkbox" name="user_sabores" id="user_sabores" value="1"  <?php if ($user_sabores > 0) echo 'checked' ?> > frutales y medicinales <span class="label label-warning">beta</span></label>
 							</div>
+					
+							<div class="form-group">
+								<h3>Origen</h3>
+								<div class="radio"> 
+									<label>
+										<input type="radio" id="rorigen-nativas" name="user_origen" value="Nativo/Autóctono" <?php if (stripos($busqueda,'Nativo') > 0) echo 'checked' ?>  />
+										nativas </label>
+									<label>
+										<input type="radio" id="rorigen-exoticas" name="user_origen" value="Exótico" <?php if (stripos($busqueda,'Exótico') > 0) echo 'checked' ?>  />
+										exóticas </label>
+									<label>
+										<input type="radio" id="rorigen-todas" name="user_origen" value="Todas" <?php if (  (stripos($busqueda,'Nativo') == 0)  && (stripos($busqueda,'Exótico') == 0)) echo 'checked' ?>  />
+										todas </label>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="col-xs-12" id="mas-filtros-btn-container">
+							<a href="#" class="btn btn-default mas-filtros"><?php if ($masFiltrosCss == 'oculto') { echo "más"; }else{ echo "menos";} ?> filtros</a>
 						</div>
 						
 						
@@ -173,15 +196,15 @@ echo "<div>QUERY: <br><br><pre>$censo_query</pre></div>";
 					
 					<input name="Buscar" type="submit" value="Buscar" class="btn btn-primary btn-lg btn-block">
 				</form>
-		
-				<button class="btn btn-default btn-small btn-block que-es-esto" data-toggle="modal" data-target="#que-es-esto">¿Qué es esto?</button>
 
 				<a class="lcnrs" href="https://www.facebook.com/LaCiudadNosRegalaSabores" target="_blank"><img src="images/complot-lcnrs.png" alt="La ciudad nos regala sabores"></a>
+
+				<button class="btn btn-default btn-small btn-block que-es-esto" data-toggle="modal" data-target="#que-es-esto">¿Qué es esto?</button>
 			
 			</nav>
 		</div>
 	
-		<div class="col-md-9 full-height" id="mapa"> </div>
+		<div class="col-md-8 col-lg-9 full-height" id="mapa"> </div>
 	</div>
 </div>
 
