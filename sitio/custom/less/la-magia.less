@@ -16,7 +16,6 @@ label {
 }
 
 #menu {
-
 	nav {
 		a {
 			&.title {
@@ -92,8 +91,31 @@ label {
 		}
 	}
 
+	form#busca_arboles {
+		margin-bottom: 20px;
+		h3 {
+			font-size: 1.2em;
+		}
+		.radio label {
+			margin-right: 7px;
+		}
+	}
+
+	#mas-filtros {
+		&.oculto {
+			display: none;
+		}
+		&.visible {
+			display: block;
+		}
+	}
+
+	#mas-filtros-btn-container {
+		margin-bottom: 2em;
+	}
+
 	.que-es-esto {
-		margin-top: 5em;
+		margin-bottom: 2em;
 	}
 }
 
@@ -116,34 +138,48 @@ label {
 	margin-bottom: 0;
 }
 
-form#busca_arboles {
-	margin-bottom: 20px;
-	h3 {
-		font-size: 1.2em;
-	}
-	.radio label {
-		margin-right: 7px;
-	}
-}
-
 #info-individuo {
 	display: none;
-	position: absolute;
+	position: fixed;
 	z-index: 7000;
-	background-color: #FFF;
+	background-color: @gris2;
+	color: @blanco;
 	-webkit-box-shadow: 0px 10px 21px -3px rgba(0,0,0,0.12);
 	-moz-box-shadow: 0px 10px 21px -3px rgba(0,0,0,0.12);
 	box-shadow: 0px 10px 21px -3px rgba(0,0,0,0.12);
 
-	border-bottom: 1px solid lighten(@gris2, 20%);
+	border-bottom: 4px solid @gris3;
+
+	h1 small {
+		line-height: 1em;
+		display: block;
+		padding: 0.5em 0;
+		color: @gris1;
+	}
 	.box {
 		padding: 1em 0 2em;
 		
 	}
 	.cerrar {
 		display: block;
-		text-align: right;
+		//text-align: right;
 		text-decoration: none;
+
+		color: @gris3;
+		&:hover {
+			color: @blanco;
+		}
+	}
+	.autor {
+		display: block;
+		padding-top: 2em;
+	}
+
+	a {
+		color: lighten(@gris2,20);
+		&:hover {
+			color: @blanco;
+		}
 	}
 }
 
@@ -189,15 +225,12 @@ form#busca_arboles {
 a.lcnrs {
 	display: block;
 	margin-top: 3em;
-	margin-bottom: 3em;
+	margin-bottom: 2em;
 }
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) { 
 	
-	
-	
-
 	
 }
 
