@@ -33,7 +33,7 @@ ga('create', 'UA-678413-17', 'auto');
 ga('require', 'displayfeatures');
 ga('require', 'linkid', 'linkid.js');
 ga('send', 'pageview');
-<?php if ($busqueda !== 'vacia') {
+<?php if (  !empty($busqueda)  ) {
 // Seguimiento Conversiones (búsquedas)
 ?>
 ga("send", "formulario posteado", "buscar", "arboles", <?php echo $total_registros_censo?> );
