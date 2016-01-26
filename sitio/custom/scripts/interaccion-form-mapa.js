@@ -167,6 +167,19 @@ function muestraBorrarIdEspecie(){
 	}
 }
 
+function muestraBorrarOrigen(){
+	if (
+			($('#rorigen-nativas').prop('checked') == false)
+			&&
+			($('#rorigen-exoticas').prop('checked') == false)
+		)
+	{
+		$('#borrar_origen').addClass('hidden');
+	} else {
+		$('#borrar_origen').removeClass('hidden');
+	}
+}
+
 
 
 
@@ -256,10 +269,6 @@ $(document).ready(function() {
 		muestraBorrarIdEspecie();
 	});
 	
-	/*if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
-		$('.selectpicker').selectpicker('mobile');
-	}*/
-	
 	$('#borrar_id_especie').click(function(e){
 		e.preventDefault();
 		$('#id_especie').selectpicker('val', 0);
@@ -273,6 +282,19 @@ $(document).ready(function() {
 		}
 	
 	});
+
+	muestraBorrarOrigen();
+	
+	$( "#rorigen-nativas, #rorigen-exoticas" ).change(function() {
+		muestraBorrarOrigen();
+	});
+
+
+	$('#borrar_origen').click(function(e){
+		e.preventDefault();
+		$('#rorigen-nativas, #rorigen-exoticas').prop('checked', false);
+	});
+
 
 	$('.mas-filtros').click(function(){
 		//alert($('#mas-filtros').css('display'));
