@@ -4,4 +4,4 @@ RewriteEngine on
 #	Reescribir la URL solicitada por el usuario
 #	Entrada:  ID/NOMBRE
 #	Salida: index.php?id_especie=ID
-Rewriterule ^arbol/(.+)/(.+) index.php?id_especie=$1
+Rewriterule ^q/(.+)/(.+) index.php?id_especie=$1

@@ -5,7 +5,7 @@ if ((is_numeric($id)) && ($id > 0)) {
 	// sigo...
 }else{
 	// redirecciono...
-	header("Location: /index.php");
+	header("Location: ".$APP_URL."/index.php");
 }
 
 require_once('../../_db.php');

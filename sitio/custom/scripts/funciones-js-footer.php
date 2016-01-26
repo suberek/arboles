@@ -1,6 +1,6 @@
 <script type="text/javascript">
 
-window.history.pushState("ekisde","OMG LOL", "<?php echo $especie_URL ; ?>");
+window.history.pushState("abolado","urbano", "<?php echo $especie_URL ; ?>");
 
 // Include the UserVoice JavaScript SDK (only needed once on a page)
 UserVoice=window.UserVoice||[];

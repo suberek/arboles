@@ -120,7 +120,7 @@ $(document).ready(function(){
 		// Si el marker no existe, lo creo y si existe lo muevo.
 		if(typeof(window.new_user_marker)==='undefined') {
 			
-			L.Icon.Default.imagePath = 'images/';
+			L.Icon.Default.imagePath = '<?php echo $APP_URL; ?>/images/';
 			
 			
 			window.new_user_marker = new L.marker([nuevoLat,nuevoLng],{
@@ -234,12 +234,12 @@ $(document).ready(function(){
 					$icono_id_especie	= $iconos_row['id_especie'];
 					$icono_icono		= $iconos_row['ICONO'];
 					echo "case ". $icono_id_especie . ":
-						marker_icon = new LeafIcon({iconUrl: 'uploads/". $icono_icono ."'});
+						marker_icon = new LeafIcon({iconUrl: '". $APP_URL . "/uploads/". $icono_icono ."'});
 						break;";
 				}
 				?>	
 				default:
-					marker_icon = new LeafIcon({iconUrl: '/uploads/marker.png'});
+					marker_icon = new LeafIcon({iconUrl: '<?php echo $APP_URL; ?>/uploads/marker.png'});
 			}
 			
 			//var individuo = L.marker([a[0], a[1]], {icon: marker_icon})
@@ -271,7 +271,7 @@ $(document).ready(function(){
 			//alert(oMarkerId);
 			
 			$.ajax({
-				url: "/custom/scripts/individuo.php?id="+oMarkerId,
+				url: "<?php echo $APP_URL; ?>/custom/scripts/individuo.php?id="+oMarkerId,
 				success: function(datos){
 					$('#info-individuo').html(datos);
 					$('#info-individuo').slideDown();
