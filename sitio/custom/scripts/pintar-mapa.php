@@ -7,9 +7,9 @@ $(document).ready(function(){
 	<? } ?>
 	
 	// Límite del mapa puesto a Ciudad de Buenos Aires
-	var southWest	= new L.LatLng(-35.052109 , -58.72673),
-	northEast	= new L.LatLng(-34.192115 , -58.064804),
-	bounds = new L.LatLngBounds(southWest, northEast);
+	//var southWest	= new L.LatLng(-35.052109 , -58.72673),
+	//northEast	= new L.LatLng(-34.192115 , -58.064804),
+	//bounds = new L.LatLngBounds(southWest, northEast);
 	
 	bodyHeight = $("section[data-role='main']").height();
 	$("#mapa").css("height", bodyHeight); //set with CSS also...
@@ -20,8 +20,8 @@ $(document).ready(function(){
 	var map = L.map('mapa',
 	{
 		maxZoom: 20,
-		minZoom: 12,
-		maxBounds: bounds
+		minZoom: 7
+		//maxBounds: bounds
 	})<?php  if ( ($busqueda == 'vacia') || ($total_registros_censo == 0) ) echo '.setView([-34.618, -58.44], 12)' ?>;
 			
 		

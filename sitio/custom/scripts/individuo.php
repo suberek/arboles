@@ -71,4 +71,10 @@ echo "
 		<p>Fuente: <a href=\"$usuario_url\" target=\"_blank\">$usuario_autor</a>.</p>
 	</small>
 	</div>";
+
+	if (   ( strstr($_SERVER['SCRIPT_FILENAME'], 'GitHub') ) || ( strstr($_SERVER['SCRIPT_FILENAME'], 'Dropbox') ) || ( strstr($_SERVER['SCRIPT_FILENAME'], 'Copy')  )   ) {
+	echo "<div>
+		<a href='http://localhost/arbolado/matrix/individuosedit.php?id_individuo=$id' target='_blank'>EDITAR</a>
+	</div>";
+}
 ?>
