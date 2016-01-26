@@ -16,28 +16,46 @@ if (empty($user_origen)) {
 
 //// Veo qué vino en el form o en la URL
 
-if (  isset($_POST['id_especie'])  ) {
-	$id_especie_busqueda	= $_POST['id_especie'];
+if (  isset($_GET['especie_url'])  ) {
+
+	$especie_url = $_GET['especie_url'];
+
+	$url_query	= "
+	SELECT id_especie
+	FROM especies
+	WHERE url = '$especie_url'
+	LIMIT 1;
+	";
+	$url_results			= GetRS($url_query);
+	$url_row				= mysql_fetch_array($url_results);
+	$id_especie_busqueda	= $url_row['id_especie'];
+
 } else {
-	$id_especie_busqueda	= $_GET['id_especie'];
+
+	if (  isset($_POST['id_especie'])  ) {
+		$id_especie_busqueda	= $_POST['id_especie'];
+	} else {
+		$id_especie_busqueda	= $_GET['id_especie'];
+	}
+
 }
 
 if (  isset($_POST['user_latlng'])  ) {
-	$user_latlng			= $_POST['user_latlng'];
+	$user_latlng			= $_POST['user_latlng']; // "lat lng"
 } else {
-	$user_latlng			= $_GET['lat']." ".$_GET['lng'];
+	$user_latlng			= $_GET['user_latlng'];
 }
 
 if (  isset($_POST['user_sabores'])  ) {
 	$user_sabores		= $_POST['user_sabores'];
 } else {
-	$user_sabores		= $_GET['sabores'];
+	$user_sabores		= $_GET['user_sabores'];
 }
 
 if (  isset($_POST['user_origen'])  ) {
 	$user_origen		= $_POST['user_origen'];
 } else {
-	$user_origen		= $_GET['origen'];
+	$user_origen		= $_GET['user_origen'];
 }
 
 if (empty($user_origen)) {

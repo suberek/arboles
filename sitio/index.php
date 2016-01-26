@@ -154,11 +154,14 @@ echo "<br><br><div>$_POST: <br><br><pre>". print_r($_POST) ."</pre></div>";
 												// Me guardo la variable para cambiar la URL
 												$especie_URL = sanear_string($lista_NCIE);
 												$especie_URL = strtolower(str_replace(" ", "-", $especie_URL));
-												$especie_URL = "/q/" . $id_especie_busqueda . "/" . $especie_URL;
+												//$especie_URL = "/q/" . $id_especie_busqueda . "/" . $especie_URL;
+												$especie_URL = "/q/" . $especie_URL;
 											} 
-											echo '
-												<option value="'.$lista_ID.'" '.$selected.' data-subtext="'. $lista_NCOM.'">' . $lista_NCIE . ' </option>
+											echo '<option value="'.$lista_ID.'" '.$selected.' data-subtext="'. $lista_NCOM.'">' . $lista_NCIE . ' </option>
 											';
+
+											/*$SQL = "UPDATE especies SET url = '"  .$especie_URL.  "' WHERE id_especie=".$lista_ID.";";
+											echo($SQL . "<br>");*/
 										}
 										
 										
