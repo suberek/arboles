@@ -1,6 +1,4 @@
-<?php header('Content-Type: text/html; charset=UTF-8'); ?>
-<?php
-
+﻿<?php
 require_once('_db.php');
 /*
 Acá van los datos de conexión
@@ -23,38 +21,38 @@ require_once('custom/scripts/funciones-db.php');
 
 <!-- /ht Andy Clarke - http://front.ie/lkCwyf -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-<link rel="apple-touch-icon" href="images/logo.png" />
-<link rel="apple-touch-icon" sizes="57x57" href="images/logo-57x57.png" />
-<link rel="apple-touch-icon" sizes="72x72" href="images/logo-72x72.png" />
-<link rel="apple-touch-icon" sizes="76x76" href="images/logo-76x76.png" />
-<link rel="apple-touch-icon" sizes="114x114" href="images/logo-114x114.png" />
-<link rel="apple-touch-icon" sizes="120x120" href="images/logo-120x120.png" />
-<link rel="apple-touch-icon" sizes="144x144" href="images/logo-144x144.png" />
-<link rel="apple-touch-icon" sizes="152x152" href="images/logo-152x152.png" />
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+<link rel="apple-touch-icon" href="/images/logo.png" />
+<link rel="apple-touch-icon" sizes="57x57" href="/images/logo-57x57.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/images/logo-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/images/logo-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/images/logo-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/images/logo-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/images/logo-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/images/logo-152x152.png" />
 
 <!-- jQuery -->
-<script src="third-party/jquery/jquery-2.1.1.min.js"></script>
+<script src="/third-party/jquery/jquery-2.1.1.min.js"></script>
 <!-- jQuery Plugins-->
-<script src="third-party/jquery/jquery-migrate-1.2.1.min.js"></script>
+<script src="/third-party/jquery/jquery-migrate-1.2.1.min.js"></script>
 
 <!-- Bootstrap -->
-<script src="third-party/bootstrap/js/bootstrap.min.js"></script>
+<script src="/third-party/bootstrap/js/bootstrap.min.js"></script>
 <!-- Bootstrap Plugins-->
-<script src="third-party/bootstrap-plugins/bootstrap-select.min.js"></script>
+<script src="/third-party/bootstrap-plugins/bootstrap-select.min.js"></script>
 
 <!-- Leaflet -->
-<script src="third-party/leaflet/leaflet.js"></script>
+<script src="/third-party/leaflet/leaflet.js"></script>
 <!-- Leaflet Plugins -->
 <script src="http://maps.google.com/maps/api/js?v=3.2&amp;sensor=false"></script>
-<script src="third-party/leaflet-plugins/Google/leaflet.google.min.js"></script>
-<script src="third-party/leaflet-plugins/MarkerCluster/leaflet.markercluster.js"></script>
-<script src="third-party/leaflet-plugins/Locate/L.Control.Locate.min.js" ></script>
-<script src="third-party/leaflet-plugins/Geocoder/Control.Geocoder.min.js"></script>
-<script src="third-party/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="/third-party/leaflet-plugins/Google/leaflet.google.min.js"></script>
+<script src="/third-party/leaflet-plugins/MarkerCluster/leaflet.markercluster.js"></script>
+<script src="/third-party/leaflet-plugins/Locate/L.Control.Locate.min.js" ></script>
+<script src="/third-party/leaflet-plugins/Geocoder/Control.Geocoder.min.js"></script>
+<script src="/third-party/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 
 <!-- Custom -->
-<link href="custom/css/estilos.css" rel="stylesheet" type="text/css" media="all">
+<link href="/custom/css/estilos.css" rel="stylesheet" type="text/css" media="all">
 
 <!--[if lt IE 9]>
     <link rel="stylesheet" href="third-party/leaflet-plugins/Locate/L.Control.Locate.ie.min.css"/>
@@ -67,10 +65,10 @@ require_once('custom/scripts/funciones-db.php');
 
 <?php
 /*
-
 echo("CONSULTA: <br>" . $busqueda);
 echo "<div>QUERY: <br><br><pre>$censo_query</pre></div>";
 
+echo "<br><br><div>$_POST: <br><br><pre>". print_r($_POST) ."</pre></div>";
 */
 ?>
 
@@ -94,13 +92,13 @@ echo "<div>QUERY: <br><br><pre>$censo_query</pre></div>";
 
 		<div class="col-md-4 col-lg-3" id="menu">
 			<nav role="navigation">
-				<a class="title" href="./">
+				<a class="title" href="/">
 				<h1>Arbolado<br>
 					Urbano
 					<small>Buenos Aires</small></h1>
 				</a>
 				
-				<form action="index.php#mapa" method="post" id="busca_arboles" role="form">
+				<form action="/index.php#mapa" method="post" id="busca_arboles" role="form">
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="form-group">
@@ -150,7 +148,14 @@ echo "<div>QUERY: <br><br><pre>$censo_query</pre></div>";
 											//$lista_CANT		= $especies_row['CANT'];
 											
 											$selected = '';
-											if ($id_especie_busqueda===$lista_ID) $selected = ' selected';
+											if ($id_especie_busqueda===$lista_ID) {
+												$selected = ' selected';
+
+												// Me guardo la variable para cambiar la URL
+												$especie_URL = sanear_string($lista_NCIE) . "+" . sanear_string($lista_NCOM);
+												$especie_URL = str_replace(" ", "-", $especie_URL);
+												$especie_URL = "/arbol/" . $id_especie_busqueda . "/" . $especie_URL;
+											} 
 											echo '
 												<option value="'.$lista_ID.'" '.$selected.' data-subtext="'. $lista_NCOM.'">' . $lista_NCIE . ' </option>
 											';

@@ -6,11 +6,40 @@ $busqueda	= "";
 $radius		= "1000"; // Radio de búsqueda en Metros
 $user_latlng_default = array("-34.60371794474704","-58.38157095015049"); // El Obelisco
 
-//// Veo qué vino en el form
-$id_especie_busqueda	= $_REQUEST['id_especie'];
-$user_latlng			= $_REQUEST['user_latlng'];
-$user_sabores			= $_REQUEST['user_sabores'];
-$user_origen			= $_REQUEST['user_origen'];
+
+$user_latlng			= $_GET['user_latlng'];
+$user_sabores			= $_GET['sabores'];
+$user_origen			= $_GET['origen'];
+if (empty($user_origen)) {
+	$user_origen = 'Todas';
+}
+
+//// Veo qué vino en el form o en la URL
+
+if (  isset($_POST['id_especie'])  ) {
+	$id_especie_busqueda	= $_POST['id_especie'];
+} else {
+	$id_especie_busqueda	= $_GET['id_especie'];
+}
+
+if (  isset($_POST['user_latlng'])  ) {
+	$user_latlng			= $_POST['user_latlng'];
+} else {
+	$user_latlng			= $_GET['lat']." ".$_GET['lng'];
+}
+
+if (  isset($_POST['user_sabores'])  ) {
+	$user_sabores		= $_POST['user_sabores'];
+} else {
+	$user_sabores		= $_GET['sabores'];
+}
+
+if (  isset($_POST['user_origen'])  ) {
+	$user_origen		= $_POST['user_origen'];
+} else {
+	$user_origen		= $_GET['origen'];
+}
+
 if (empty($user_origen)) {
 	$user_origen = 'Todas';
 }

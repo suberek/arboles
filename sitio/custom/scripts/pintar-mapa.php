@@ -239,7 +239,7 @@ $(document).ready(function(){
 				}
 				?>	
 				default:
-					marker_icon = new LeafIcon({iconUrl: 'uploads/marker.png'});
+					marker_icon = new LeafIcon({iconUrl: '/uploads/marker.png'});
 			}
 			
 			//var individuo = L.marker([a[0], a[1]], {icon: marker_icon})
@@ -271,7 +271,7 @@ $(document).ready(function(){
 			//alert(oMarkerId);
 			
 			$.ajax({
-				url: "custom/scripts/individuo.php?id="+oMarkerId,
+				url: "/custom/scripts/individuo.php?id="+oMarkerId,
 				success: function(datos){
 					$('#info-individuo').html(datos);
 					$('#info-individuo').slideDown();
