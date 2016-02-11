@@ -55,7 +55,7 @@ require_once('custom/scripts/funciones-db.php');
 <link href="<?php echo $APP_URL; ?>/custom/css/estilos.css" rel="stylesheet" type="text/css" media="all">
 
 <!--[if lt IE 9]>
-    <link rel="stylesheet" href="third-party/leaflet-plugins/Locate/L.Control.Locate.ie.min.css"/>
+	<link rel="stylesheet" href="third-party/leaflet-plugins/Locate/L.Control.Locate.ie.min.css"/>
 <![endif]-->
 
 <?php require_once('custom/scripts/individuos.php'); ?>
@@ -207,6 +207,19 @@ echo "<br><br><div>$_POST: <br><br><pre>". print_r($_POST) ."</pre></div>";
 				<a class="lcnrs" href="https://www.facebook.com/LaCiudadNosRegalaSabores" target="_blank"><img src="<?php echo $APP_URL; ?>/images/complot-lcnrs.png" alt="La ciudad nos regala sabores"></a>
 
 				<button class="btn btn-default btn-small btn-block que-es-esto" data-toggle="modal" data-target="#que-es-esto">¿Qué es esto?</button>
+
+				<div id="adsense">
+					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+					<!-- arbolado auto -->
+					<ins class="adsbygoogle"
+						style="display:block"
+						data-ad-client="ca-pub-7228206495347837"
+						data-ad-slot="4469149174"
+						data-ad-format="auto"></ins>
+					<script>
+						(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				</div>
 			
 			</nav>
 		</div>
