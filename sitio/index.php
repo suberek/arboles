@@ -15,6 +15,13 @@ require_once('custom/scripts/funciones-db.php');
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
 <meta charset="utf-8">
+
+<!-- meta pal' face -->
+<meta property="og:url" content="http://arboladourbano.com.ar/" />
+<meta property="og:title" content="Mapa del Arbolado Urbano" />
+<meta property="og:description" content="Buscador de árboles para la Ciudad de Buenos Aires. Datos recolectados en el censo de arbolado realizado por el GCBA entre el año 2011 y 2014. El objetivo principal de este sitio es simplificar el acceso a esta valiosa información esperando que colabore con el conocimiento y el cuidado de nuestro arbolado urbano." />
+<meta property="og:image" content="http://arboladourbano.com.ar/images/logo-152x152.png" />
+
 <title>Arbolado Urbano - árboles de la Ciudad Autónoma de Buenos Aires</title>
 <meta name="description" content="Buscador de árboles para la Ciudad de Buenos Aires. Datos recolectados en el censo de arbolado realizado por el GCBA entre el año 2011 y 2014.">
 <meta name="author" content="Martín Simonyan">
@@ -164,7 +171,6 @@ echo "<br><br><div>$_POST: <br><br><pre>". print_r($_POST) ."</pre></div>";
 											echo($SQL . "<br>");*/
 										}
 										
-										
 									?>
 								</select>
 								
@@ -198,13 +204,18 @@ echo "<br><br><div>$_POST: <br><br><pre>". print_r($_POST) ."</pre></div>";
 							<a href="#" class="btn btn-default mas-filtros"><?php if ($masFiltrosCss == 'oculto') { echo "más"; }else{ echo "menos";} ?> filtros</a>
 						</div>
 						
-						
 					</div>
 					
 					<input name="Buscar" type="submit" value="Buscar" class="btn btn-primary btn-lg btn-block">
 				</form>
 
-				<a class="lcnrs" href="https://www.facebook.com/LaCiudadNosRegalaSabores" target="_blank"><img src="<?php echo $APP_URL; ?>/images/complot-lcnrs.png" alt="La ciudad nos regala sabores"></a>
+				<div class="red">
+					<div class="row">
+						<a class="col-xs-12 col-sm-6 col-md-12 lcnrs" href="https://www.facebook.com/LaCiudadNosRegalaSabores" target="_blank"><img src="<?php echo $APP_URL; ?>/images/complot-lcnrs.png" alt="La ciudad nos regala sabores"></a>
+
+						<a class="col-xs-12 col-sm-6 col-md-12 facebook" href="https://www.facebook.com/arboladourbanomapa" target="_blank"><i class="fa fw fa-facebook-official"></i> Seguinos en facebook</a>
+					</div>
+				</div>
 
 				<button class="btn btn-default btn-small btn-block que-es-esto" data-toggle="modal" data-target="#que-es-esto">¿Qué es esto?</button>
 

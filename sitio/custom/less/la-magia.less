@@ -236,10 +236,22 @@ label {
 	font-style: italic;
 }
 
-a.lcnrs {
-	display: block;
-	margin-top: 3em;
-	margin-bottom: 2em;
+.red {
+	text-align: center;
+
+
+	a.lcnrs {
+		display: block;
+		//margin-top: 2rem;
+		margin-bottom: 2rem;
+	}
+
+	a.facebook {
+		font-size: 1.2em;
+		display: block;
+		margin-bottom: 2rem;
+	}
+
 }
 
 #adsense {
@@ -249,7 +261,9 @@ a.lcnrs {
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) { 
-	
+	.red .facebook {
+		margin-top: 3.75rem;
+	}
 	
 }
 
@@ -294,6 +308,10 @@ a.lcnrs {
 	form#busca_arboles h3 {
 		font-size: 1.7em;
 	}	
+
+	.red .facebook {
+		margin-top: 0;
+	}
 }
 
 /* Large devices (large desktops, 1200px and up) */
