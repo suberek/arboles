@@ -3,7 +3,7 @@
 //// Defino el default
 $parametro	= "WHERE 1";
 $busqueda	= "";
-$radius		= "1000"; // Radio de búsqueda en Metros
+$radius		= "300"; // Radio de búsqueda en Metros
 $user_latlng_default = array("-34.60371794474704","-58.38157095015049"); // El Obelisco
 
 

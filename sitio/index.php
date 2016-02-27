@@ -176,7 +176,7 @@ echo "<br><br><div>$_POST: <br><br><pre>". print_r($_POST) ."</pre></div>";
 						<div class="col-xs-12 <?php echo $masFiltrosCss; ?>" id="mas-filtros">
 							<div class="form-group">
 								<h3>Sabores</h3>
-								<label for="user_sabores"> <input type="checkbox" name="user_sabores" id="user_sabores" value="1"  <?php if ($user_sabores > 0) echo 'checked' ?> > frutales y medicinales <span class="label label-warning">beta</span></label>
+								<label for="user_sabores"> <input type="checkbox" name="user_sabores" id="user_sabores" value="1"  <?php if ($user_sabores > 0) echo 'checked' ?> > frutales y medicinales <!-- <span class="label label-warning">beta</span> --></label>
 							</div>
 					
 							<div class="form-group">
