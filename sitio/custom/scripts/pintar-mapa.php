@@ -20,7 +20,7 @@ $(document).ready(function(){
 	var map = L.map('mapa',
 	{
 		maxZoom: 20,
-		minZoom: 7
+		minZoom: 5
 		//maxBounds: bounds
 	})<?php  if ( ($busqueda == 'vacia') || ($total_registros_censo == 0) ) echo '.setView([-34.618, -58.44], 12)' ?>;
 			
@@ -55,7 +55,7 @@ $(document).ready(function(){
 	// localizame
 	L.control.locate({
 		locateOptions: {
-			maxZoom: 17
+			maxZoom: 20
 		},
 		keepCurrentZoomLevel: true,
 		strings: {
