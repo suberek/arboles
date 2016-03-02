@@ -56,7 +56,6 @@ require_once('custom/scripts/funciones-db.php');
 <script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/MarkerCluster/leaflet.markercluster.js"></script>
 <script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/Locate/L.Control.Locate.min.js" ></script>
 <script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/Geocoder/Control.Geocoder.min.js"></script>
-<script src="<?php echo $APP_URL; ?>/third-party/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 
 <!-- Custom -->
 <link href="<?php echo $APP_URL; ?>/custom/css/estilos.css" rel="stylesheet" type="text/css" media="all">
