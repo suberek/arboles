@@ -4,4 +4,7 @@ RewriteEngine on
 #	Reescribir la URL solicitada por el usuario
 #	Entrada:  q/[especie.url]
 #	Salida: index.php?especie_url=[especie.url]
-Rewriterule ^q/(.+) index.php?especie_url=$1
+Rewriterule ^q/(.+)$ index.php?especie_url=$1
+
+# sin q/ Directamente /especie
+Rewriterule ^([a-zA-Z0-9-]*)$ 	index.php?especie_url=$1
