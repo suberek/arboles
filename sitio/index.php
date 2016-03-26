@@ -22,7 +22,7 @@ require_once('custom/scripts/funciones-db.php');
 <meta property="og:description" content="Buscador de árboles para la Ciudad de Buenos Aires. Datos recolectados en el censo de arbolado realizado por el GCBA entre el año 2011 y 2014. El objetivo principal de este sitio es simplificar el acceso a esta valiosa información esperando que colabore con el conocimiento y el cuidado de nuestro arbolado urbano." />
 <meta property="og:image" content="http://arboladourbano.com.ar/images/logo-152x152.png" />
 
-<title>Arbolado Urbano - árboles de la Ciudad Autónoma de Buenos Aires</title>
+<title>1 Arbolado Urbano - árboles de la Ciudad Autónoma de Buenos Aires</title>
 <meta name="description" content="Buscador de árboles para la Ciudad de Buenos Aires. Datos recolectados en el censo de arbolado realizado por el GCBA entre el año 2011 y 2014.">
 <meta name="author" content="Martín Simonyan">
 
