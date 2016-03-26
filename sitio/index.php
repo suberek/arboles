@@ -160,7 +160,7 @@ echo "<br><br><div>$_POST: <br><br><pre>". print_r($_POST) ."</pre></div>";
 												// Me guardo la variable para cambiar la URL
 												$especie_URL = sanear_string($lista_NCIE);
 												$especie_URL = strtolower(str_replace(" ", "-", $especie_URL));
-												$especie_URL = "/" . $especie_URL;
+												$especie_URL = "./" . $especie_URL;
 											} 
 											echo '<option value="'.$lista_ID.'" '.$selected.' data-subtext="'. $lista_NCOM.'">' . $lista_NCIE . ' </option>
 											';
