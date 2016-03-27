@@ -12,9 +12,10 @@ require_once('custom/scripts/funciones-db.php');
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
+
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- meta pal' face -->
 <meta property="og:url" content="http://arboladourbano.com.ar/" />
@@ -22,7 +23,7 @@ require_once('custom/scripts/funciones-db.php');
 <meta property="og:description" content="Buscador de árboles para la Ciudad de Buenos Aires. Datos recolectados en el censo de arbolado realizado por el GCBA entre el año 2011 y 2014. El objetivo principal de este sitio es simplificar el acceso a esta valiosa información esperando que colabore con el conocimiento y el cuidado de nuestro arbolado urbano." />
 <meta property="og:image" content="http://arboladourbano.com.ar/images/logo-152x152.png" />
 
-<title>2 Arbolado Urbano - árboles de la Ciudad Autónoma de Buenos Aires</title>
+<title>Arbolado Urbano - árboles de la Ciudad Autónoma de Buenos Aires</title>
 <meta name="description" content="Buscador de árboles para la Ciudad de Buenos Aires. Datos recolectados en el censo de arbolado realizado por el GCBA entre el año 2011 y 2014.">
 <meta name="author" content="Martín Simonyan">
 
@@ -30,12 +31,6 @@ require_once('custom/scripts/funciones-db.php');
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <link rel="shortcut icon" href="<?php echo $APP_URL; ?>/images/favicon.ico" type="image/x-icon" />
 <link rel="apple-touch-icon" href="<?php echo $APP_URL; ?>/images/logo.png" />
-<link rel="apple-touch-icon" sizes="57x57" href="<?php echo $APP_URL; ?>/images/logo-57x57.png" />
-<link rel="apple-touch-icon" sizes="72x72" href="<?php echo $APP_URL; ?>/images/logo-72x72.png" />
-<link rel="apple-touch-icon" sizes="76x76" href="<?php echo $APP_URL; ?>/images/logo-76x76.png" />
-<link rel="apple-touch-icon" sizes="114x114" href="<?php echo $APP_URL; ?>/images/logo-114x114.png" />
-<link rel="apple-touch-icon" sizes="120x120" href="<?php echo $APP_URL; ?>/images/logo-120x120.png" />
-<link rel="apple-touch-icon" sizes="144x144" href="<?php echo $APP_URL; ?>/images/logo-144x144.png" />
 <link rel="apple-touch-icon" sizes="152x152" href="<?php echo $APP_URL; ?>/images/logo-152x152.png" />
 
 <!-- jQuery -->
@@ -78,10 +73,10 @@ echo "<br><br><div>$_POST: <br><br><pre>". print_r($_POST) ."</pre></div>";
 */
 ?>
 
-<nav class="navbar navbar-default navbar-fixed-bottom visible-sm visible-xs" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-bottom visible-sm visible-xs">
 	<div class="container-fluid">
-		<a type="button" class="btn btn-default navbar-btn scroll" href="#busca_arboles"><i class="fa fa-search fa-sm"></i> Buscador <i class="fa fa-caret-up fa-sm"></i> </a>
-		<a type="button" class="btn btn-default navbar-btn scroll" href="#mapa"><i class="fa fa-map-marker fa-sm"></i> Mapa <i class="fa fa-caret-down fa-sm"></i></a>
+		<a class="btn btn-default navbar-btn scroll" href="#busca_arboles"><i class="fa fa-search fa-sm"></i> Buscador <i class="fa fa-caret-up fa-sm"></i> </a>
+		<a class="btn btn-default navbar-btn scroll" href="#mapa"><i class="fa fa-map-marker fa-sm"></i> Mapa <i class="fa fa-caret-down fa-sm"></i></a>
 	</div>
 </nav>
 <div class="container-fluid full-height">
@@ -97,14 +92,14 @@ echo "<br><br><div>$_POST: <br><br><pre>". print_r($_POST) ."</pre></div>";
 		</div>
 
 		<div class="col-md-4 col-lg-3" id="menu">
-			<nav role="navigation">
+			<nav>
 				<a class="title" href="<?php echo $APP_URL; ?>/">
 				<h1>Arbolado<br>
 					Urbano
 					<small>Buenos Aires</small></h1>
 				</a>
 				
-				<form action="<?php echo $APP_URL; ?>/index.php#mapa" method="post" id="busca_arboles" role="form">
+				<form action="<?php echo $APP_URL; ?>/index.php#mapa" method="post" id="busca_arboles">
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="form-group">
@@ -131,14 +126,16 @@ echo "<br><br><div>$_POST: <br><br><pre>". print_r($_POST) ."</pre></div>";
 									<option value="0">Todas</option>
 									<?php
 										// Consulto especies y cantidad
-										/*$especies_query = "SELECT count(i.id_especie) as CANT, e.id_especie, e.NOMBRE_CIE, e.NOMBRE_COM
+										/*$especies_query = "SELECT count(i.id_especie) as CANT,
+										e.id_especie, e.NOMBRE_CIE, e.NOMBRE_COM
 													FROM individuos AS i, especies AS e
 													WHERE i.id_especie = e.id_especie
 													GROUP BY e.id_especie
 													ORDER BY e.NOMBRE_CIE";*/
 										
 										// Consulto especies sin cantidad
-										$especies_query = "SELECT e.id_especie, e.NOMBRE_CIE, e.NOMBRE_COM
+										$especies_query = "SELECT 
+										e.id_especie, e.NOMBRE_CIE, e.NOMBRE_COM
 													FROM especies AS e
 													ORDER BY e.NOMBRE_CIE";
 										
@@ -162,11 +159,8 @@ echo "<br><br><div>$_POST: <br><br><pre>". print_r($_POST) ."</pre></div>";
 												$especie_URL = strtolower(str_replace(" ", "-", $especie_URL));
 												$especie_URL = "./" . $especie_URL;
 											} 
-											echo '<option value="'.$lista_ID.'" '.$selected.' data-subtext="'. $lista_NCOM.'">' . $lista_NCIE . ' </option>
+											echo '<option value="'.$lista_ID.'" '.$selected.' data-subtext="'. $lista_NCOM.'">' . $lista_NCIE . '</option>
 											';
-
-											/*$SQL = "UPDATE especies SET url = '"  .$especie_URL.  "' WHERE id_especie=".$lista_ID.";";
-											echo($SQL . "<br>");*/
 										}
 										
 									?>

@@ -9,3 +9,11 @@
 .leaflet-control-locate.active.following a {
   color: #FC8428;
 }
+
+/* Mapbox specific adjustments */
+.leaflet-control-locate a {
+  padding: 3px 0 0 8px;
+}
+.leaflet-control-locate.requesting a {
+  padding: 3px 0 0 4px;
+}

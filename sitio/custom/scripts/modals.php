@@ -14,7 +14,7 @@
 				<h5>¿Con qué seguir?</h5>
 
 				<p>Podés dejar tu opinión y tus idas para seguir mejorando esta herramienta haciendo click en la lamparita que está arriba a la derecha.</p>
-				<p>Por ejemplo:
+				<p>Por ejemplo:</p>
 					<ul>
 						<li>permitir seleccionar el radio de búsqueda</li>
 						<li>buscar por barrio o comuna</li>
@@ -23,7 +23,7 @@
 						<li>permitir interacción con usuarios para que carguen ejemplares, fotografías y reporten errores</li>
 						<li>etc, etc.</li>
 					</ul>
-				</p>
+				
 				<hr>
 				<p class="text-center"><a href="https://github.com/suberek/arboles" target="_blank"><i class="fa fw fa-github"></i> Ver en GitHub</a></p>
 				<p class="text-center"><a href="https://www.facebook.com/arboladourbanomapa" target="_blank"><i class="fa fw fa-facebook"></i> Seguir en facebook</a></p>
