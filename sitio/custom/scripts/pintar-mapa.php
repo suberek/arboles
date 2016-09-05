@@ -19,7 +19,7 @@ $(document).ready(function(){
 	
 	var map = L.map('mapa',
 	{
-		maxZoom: 20,
+		maxZoom: 21,
 		minZoom: 5
 		//maxBounds: bounds
 	})<?php  if ( ($busqueda == 'vacia') || ($total_registros_censo == 0) ) echo '.setView([-34.618, -58.44], 12)' ?>;
@@ -76,11 +76,17 @@ $(document).ready(function(){
 
 	// Buscador Geocoder
 	var geocoder = L.Control.geocoder({
-		position:'topleft',
-		showResultIcons:true,
-		collapsed: true,
-		placeholder: 'Buscá un lugar en la Ciudad',
+		collapsed: false,
+		placeholder: 'Buscá un lugar',
 		errorMessage: 'Nada, che. Buscá otra vez.',
+		geocoder: new L.Control.Geocoder.Nominatim(
+			{
+				geocodingQueryParams: {
+					countrycodes: 'ar' // limito a Argentina
+
+				}
+    		}
+    	)
 	}).addTo(map);
 
 	geocoder.markGeocode = function(result) {
@@ -200,10 +206,18 @@ $(document).ready(function(){
 		var markers = L.markerClusterGroup({
 			chunkedLoading: true,
 			chunkProgress: updateProgressBar,
-			showCoverageOnHover: false,
+			showCoverageOnHover: true,
 			zoomToBoundsOnClick: true,
 			spiderfyDistanceMultiplier: 2,
-			maxClusterRadius: 50
+			maxClusterRadius: <?php echo $radius; ?>,
+			disableClusteringAtZoom: 19,
+			polygonOptions: {
+		        fillColor: '#5cba9d',
+		        color: '#5cba9d',
+		        weight: 1,
+		        opacity: 1,
+		        fillOpacity: 0.1
+		     }
 		});
 		
 		var markerList = [];
@@ -248,8 +262,7 @@ $(document).ready(function(){
 			// Paso al individuo la propiedad de ID para hacer búsquedas dentro del popup.
 			individuo.individuoId = a[2];
 			
-			var popupOptions = { 'maxWidth': '400' }
-			
+			//var popupOptions = { 'maxWidth': '400' }
 			//individuo.bindPopup(content, popupOptions);
 			//individuo.on('popupopen', onMarkerClick);
 
@@ -312,6 +325,39 @@ $(document).ready(function(){
 	// Por ejemplo las que tengo definidas en buscar.js.
 	window.map = map;
 	
+
+	//************ PUNTOS
+
+	if (typeof individuos != 'undefined') {
+
+		function drawingOnCanvas(canvasOverlay, params) {
+			var ctx = params.canvas.getContext('2d');
+			ctx.clearRect(0, 0, params.canvas.width, params.canvas.height);
+			ctx.fillStyle   = "#4f7663";
+			// ctx.strokeStyle = "#ffffff";
+			for (var i = 0; i < data.length; i++) {
+				var d = data[i];
+				if (params.bounds.contains([d[0], d[1]])) {
+					dot = canvasOverlay._map.latLngToContainerPoint([d[0], d[1]]);
+					ctx.beginPath();
+					ctx.arc(dot.x, dot.y, 2.5, 0, Math.PI * 2);
+					ctx.fill();
+					//ctx.stroke();
+					ctx.closePath();
+				}
+			}
+		}
+
+		var data = individuos; // data loaded from data.js
+		L.canvasOverlay()
+			.drawing(drawingOnCanvas)
+			.addTo(map);
+		
+	} // end if
+	
+
+	// *********** FIN PUNTOS
+
 });
 
 </script>

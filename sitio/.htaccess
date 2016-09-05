@@ -6,5 +6,8 @@ RewriteEngine on
 #	Salida: index.php?especie_url=[especie.url]
 Rewriterule ^q/(.+)$ index.php?especie_url=$1
 
-# sin q/ Directamente /especie
-Rewriterule ^([a-zA-Z0-9-]*)$ 	index.php?especie_url=$1
+# /especie letras y -
+Rewriterule ^([a-zA-Z-]*)$ 	index.php?especie_url=$1
+
+# /idEspecie números
+RewriteRule ^([0-9]+)$ index.php?id_individuo=$1

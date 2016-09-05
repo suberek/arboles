@@ -21,7 +21,6 @@ function muestraTodaLaCiudad() {
 		window.new_user_marker = undefined;
 		window.new_user_circle = undefined;	
 	}
-
 }
 
 function muestraPorAca(lat,lng,map,buscar) {
@@ -45,7 +44,6 @@ function muestraPorAca(lat,lng,map,buscar) {
 			e.preventDefault();	
 		}
 	}
-	
 }
 
 function scrollAnimado(anchorHash){
@@ -181,30 +179,12 @@ function muestraBorrarOrigen(){
 }
 
 
-
-
 // Start Ready
 $(document).ready(function() {  
 
 	/********************************************************************************* FUNCIONES */
 	
-	// Live Search. Resultados de especies mientras tipeo
-	function muestraEspecie() {
-		var query_value = $('input#muestra-especie').val();
-		$('b#muestra-especie-string').html(query_value);
-		if(query_value !== ''){
-			$.ajax({
-				type: "POST",
-				url: "custom/scripts/interaccion-form-ajax-especies.php",
-				data: { query: query_value },
-				cache: false,
-				success: function(html){
-					$("ul#results").html(html);
-				}
-			});
-		}return false;    
-	}
-
+	
 	
 	/********************************************************************************* INTERACCIONES */
 

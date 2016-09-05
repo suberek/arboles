@@ -138,9 +138,11 @@ label {
 .progress {
 	display: none;
 	
-	/*position: absolute;
+	/*
+	position: absolute;
 	z-index: 4000;
-	top: 0;*/
+	top: 0;
+	*/
 	
 	width: 100%;
 	height: 50px;
@@ -156,43 +158,51 @@ label {
 	display: none;
 	position: fixed;
 	z-index: 7000;
-	background-color: @gris2;
-	color: @blanco;
-	-webkit-box-shadow: 0px 10px 21px -3px rgba(0,0,0,0.12);
-	-moz-box-shadow: 0px 10px 21px -3px rgba(0,0,0,0.12);
-	box-shadow: 0px 10px 21px -3px rgba(0,0,0,0.12);
+	//border: 0.4em solid @gris5;
+	background-color: fadeout(@blanco, 5%);
+	color: @gris5;
+	-webkit-box-shadow: 0px 10px 21px -3px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0px 10px 21px -3px rgba(0,0,0,0.5);
+	box-shadow: 0px 10px 21px -3px rgba(0,0,0,0.5);
 
-	border-bottom: 4px solid @gris3;
+	border-bottom: 0.5em solid @gris5;
 
-	h1 small {
-		line-height: 1em;
-		display: block;
-		padding: 0.5em 0;
-		color: @gris1;
+	h1 {
+		margin-top: 1em;
+		small {
+			line-height: 1em;
+			display: block;
+			padding: 0.5em 0;
+			color: @gris5;
+		}
 	}
 	.box {
 		padding: 1em 0 2em;
 		
 	}
 	.cerrar {
-		display: block;
+		display: inline-block;
+		float: right;
 		//text-align: right;
 		text-decoration: none;
 
-		color: @gris3;
+		color: lighten(@gris3,20);
 		&:hover {
-			color: @blanco;
+			color: @gris5;
 		}
 	}
 	.autor {
 		display: block;
 		padding-top: 2em;
 	}
+	.enlace-directo {
+		padding-top: 1.6em;
+	}
 
 	a {
-		color: lighten(@gris2,20);
+		color: lighten(@gris3,20);
 		&:hover {
-			color: @blanco;
+			color: @gris5;
 		}
 	}
 }
@@ -207,30 +217,6 @@ label {
 	margin-bottom: 50px;
 }
 
-.leaflet-control-container {
-	.leaflet-control-geocoder {
-		/*
-		.leaflet-control-geocoder-icon {
-			width: 29px;
-			line-height: 29px;
-			background-position: 1px 0;
-		}
-		*/
-
-		form.leaflet-control-geocoder-form {
-			input {
-				font-size: 14px;
-			}
-		}
-		ul.leaflet-control-geocoder-alternatives {
-			a {
-				font-size: 14px;
-				text-decoration: none !important;
-			}
-		}
-	}
-}
-
 .leaflet-popup-content h1 small {
 	font-size:  50%;
 	font-style: italic;
@@ -239,17 +225,33 @@ label {
 .red {
 	text-align: center;
 
+	.este-mapa {
+		color: @gris2;
+		font-size: 0.9em;
+	}
 
-	a.lcnrs {
+	a.lcnrs,
+	a.arn {
 		display: block;
 		//margin-top: 2rem;
 		margin-bottom: 2rem;
+		img {
+			height: 14rem;
+		}
+		&:hover {
+			opacity: 0.7;
+		}
+	}
+
+	a.arn {
+		display: block;
 	}
 
 	a.facebook {
 		font-size: 1.2em;
 		display: block;
 		margin-bottom: 2rem;
+		line-height: 1.1em;
 	}
 
 }
@@ -262,7 +264,12 @@ label {
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) { 
 	.red .facebook {
-		margin-top: 3.75rem;
+		margin-top: 5rem;
+	}
+
+	.red .este-mapa {
+		text-align: right;
+		margin-top: 5rem;
 	}
 	
 }
@@ -311,6 +318,11 @@ label {
 
 	.red .facebook {
 		margin-top: 0;
+	}
+
+	.red .este-mapa {
+		margin-top: 0;
+		text-align: center;
 	}
 }
 

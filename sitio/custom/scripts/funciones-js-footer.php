@@ -2,7 +2,9 @@
 
 window.history.pushState("abolado","urbano", "<?php echo $especie_URL ; ?>");
 
+<?php
 // Include the UserVoice JavaScript SDK (only needed once on a page)
+/*
 UserVoice=window.UserVoice||[];
 (function(){
   var uv=document.createElement('script');
@@ -24,7 +26,8 @@ UserVoice.push(['addTrigger', {
   smartvote_title: '¿Con qué seguir?',
   menu_enabled : true
 }]);
-
+*/
+?>
 
 // GOOGLE ANALYTICS
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
