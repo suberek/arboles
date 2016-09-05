@@ -101,7 +101,7 @@
 					<a href="#" id="borrar_origen"><i class="fa fa-trash-o"></i></a>
 				</div>
 
-				<div>
+				<div class="regiones">
 					
 					<h3>Región de origen</h3>
 					<label for="borigen_pampeana"> <input type="checkbox" name="borigen_pampeana" id="borigen_pampeana" value="1"  <?php if ($borigen_pampeana > 0) echo 'checked' ?> > Pampeana </label>
