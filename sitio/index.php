@@ -100,13 +100,17 @@ echo "<br><br><div>$_POST: <br><br><pre>". print_r($_POST) ."</pre></div>";
 
 				<div class="red">
 					<div class="row">
+
+						hola
+
+						
 						<a class="col-xs-12 col-sm-3 col-md-12 facebook" href="https://www.facebook.com/arboladourbanomapa" target="_blank"><i class="fa fw fa-facebook-official"></i> Seguinos en facebook</a>
 
 						<p class="col-xs-12 col-sm-3 col-md-12 este-mapa">Este mapa cuenta con<br> la valiosa colaboración de:</p>
 
 						<a class="col-xs-6 col-sm-3 col-md-6 lcnrs" href="https://www.facebook.com/LaCiudadNosRegalaSabores" target="_blank"><img src="<?php echo $APP_URL; ?>/images/colaborador-lcnrs.png" alt="La ciudad nos regala sabores"></a>
 
-						<a class="col-xs-6 col-sm-3 col-md-6 arn" href="http://www.arn.org.ar/ConservacionFloraNativa.php" target="_blank"><img src="<?php echo $APP_URL; ?>/images/colaborador-arn.png" alt="Asociación Ribera Norte"></a>
+						<a class="col-xs-6 col-sm-3 col-md-6 arn" href="https://www.facebook.com/AsociacionRiberaNorte/" target="_blank"><img src="<?php echo $APP_URL; ?>/images/colaborador-arn.png" alt="Asociación Ribera Norte"></a>
 
 						
 					</div>
