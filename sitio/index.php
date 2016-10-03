@@ -100,6 +100,10 @@ echo "<br><br><div>$_POST: <br><br><pre>". print_r($_POST) ."</pre></div>";
 
 				<div class="red">
 					<div class="row">
+
+						hola
+
+						
 						<a class="col-xs-12 col-sm-3 col-md-12 facebook" href="https://www.facebook.com/arboladourbanomapa" target="_blank"><i class="fa fw fa-facebook-official"></i> Seguinos en facebook</a>
 
 						<p class="col-xs-12 col-sm-3 col-md-12 este-mapa">Este mapa cuenta con<br> la valiosa colaboración de:</p>
