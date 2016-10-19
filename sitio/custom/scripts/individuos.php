@@ -3,7 +3,7 @@
 //// Defino el default
 $parametro	= "WHERE 1";
 $busqueda	= "";
-$radius		= "300"; // Radio de búsqueda en Metros
+$radius		= "500"; // Radio de búsqueda en Metros
 $user_latlng_default = array("-34.60371794474704","-58.38157095015049"); // El Obelisco
 
 
@@ -29,6 +29,15 @@ if (  isset($_GET['especie_url'])  ) {
 	$url_results			= GetRS($url_query);
 	$url_row				= mysql_fetch_array($url_results);
 	$id_especie_busqueda	= $url_row['id_especie'];
+
+} elseif
+	(
+		( isset($_GET['id_individuo']) ) && 
+		( is_numeric($_GET['id_individuo']) ) &&
+		( $_GET['id_individuo'] > 0 )
+	)
+{
+	$id_individuo = $_GET['id_individuo'];
 
 } else {
 
@@ -60,6 +69,56 @@ if (  isset($_POST['user_origen'])  ) {
 
 if (empty($user_origen)) {
 	$user_origen = 'Todas';
+}
+
+if (  isset($_POST['borigen_pampeana'])  ) {
+	$borigen_pampeana	= $_POST['borigen_pampeana'];
+} else {
+	$borigen_pampeana	= $_GET['borigen_pampeana'];
+}
+
+if (empty($borigen_pampeana)) {
+	$borigen_pampeana = 0;
+}
+
+if (  isset($_POST['borigen_nea'])  ) {
+	$borigen_nea	= $_POST['borigen_nea'];
+} else {
+	$borigen_nea	= $_GET['borigen_nea'];
+}
+
+if (empty($borigen_nea)) {
+	$borigen_nea = 0;
+}
+
+if (  isset($_POST['borigen_noa'])  ) {
+	$borigen_noa	= $_POST['borigen_noa'];
+} else {
+	$borigen_noa	= $_GET['borigen_noa'];
+}
+
+if (empty($borigen_noa)) {
+	$borigen_noa = 0;
+}
+
+if (  isset($_POST['borigen_cuyana'])  ) {
+	$borigen_cuyana	= $_POST['borigen_cuyana'];
+} else {
+	$borigen_cuyana	= $_GET['borigen_cuyana'];
+}
+
+if (empty($borigen_cuyana)) {
+	$borigen_cuyana = 0;
+}
+
+if (  isset($_POST['borigen_patagonica'])  ) {
+	$borigen_patagonica	= $_POST['borigen_patagonica'];
+} else {
+	$borigen_patagonica	= $_GET['borigen_patagonica'];
+}
+
+if (empty($borigen_patagonica)) {
+	$borigen_patagonica = 0;
 }
 
 /**************************************************************** PARÁMETRO ESPECIE */
@@ -114,6 +173,17 @@ if (
 		(  (is_numeric($user_sabores)) && ($user_sabores > 0)  ) 
 		||
 		( $user_origen !== 'Todas' )
+		||
+		( $borigen_pampeana > 0 )
+		||
+		( $borigen_nea > 0 )
+		||
+		( $borigen_noa > 0 )
+		||
+		( $borigen_cuyana > 0 )
+		||
+		( $borigen_patagonica > 0 )
+
    )
 {
 	$parametroJoin = " INNER JOIN especies e ON i.id_especie=e.id_especie";
@@ -142,6 +212,48 @@ if ( $user_origen !== 'Todas' ) {
 	$busqueda .= " con origen ".$user_origen." /";
 }
 
+/**************************************************************** PARÁMETRO R Pampeana */
+if ( $borigen_pampeana > 0 ) {
+	$parametro .= " AND ( e.region_pampeana = ".$borigen_pampeana."  )";
+
+	$busqueda .= " con pampeana ".$borigen_pampeana." /";
+}
+
+/**************************************************************** PARÁMETRO R Pampeana */
+if ( $borigen_nea > 0 ) {
+	$parametro .= " AND ( e.region_nea = ".$borigen_nea."  )";
+
+	$busqueda .= " con nea ".$borigen_nea." /";
+}
+
+/**************************************************************** PARÁMETRO R Pampeana */
+if ( $borigen_noa > 0 ) {
+	$parametro .= " AND ( e.region_noa = ".$borigen_noa."  )";
+
+	$busqueda .= " con noa ".$borigen_noa." /";
+}
+
+/**************************************************************** PARÁMETRO R Pampeana */
+if ( $borigen_cuyana > 0 ) {
+	$parametro .= " AND ( e.region_cuyana = ".$borigen_cuyana."  )";
+
+	$busqueda .= " con cuyana ".$borigen_cuyana." /";
+}
+
+/**************************************************************** PARÁMETRO R Pampeana */
+if ( $borigen_patagonica > 0 ) {
+	$parametro .= " AND ( e.region_patagonica = ".$borigen_patagonica."  )";
+
+	$busqueda .= " con patagonica ".$borigen_patagonica." /";
+}
+
+/**************************************************************** PARÁMETRO INDIVIDUO */
+if ( $id_individuo > 0 ) {
+	$parametro .= " AND ( i.id_individuo = " . $id_individuo . "  )";
+
+	$busqueda = " un individuo";
+}
+
 //echo("<br>".$user_lat);
 //echo("<br>".$user_lng);
 
@@ -150,7 +262,7 @@ if ( $user_origen !== 'Todas' ) {
 
 if ($busqueda !== '') {
 	
-	/**********************************************************************  Hago LA consulta */
+	/********************************************************  Hago LA consulta que trae el resultado de la búsqueda */
 
 	/*
 	Usando el campo GEOESPACIAL puedo buscar así:

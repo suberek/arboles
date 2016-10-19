@@ -13,15 +13,13 @@
 			<hr>
 				<h5>¿Con qué seguir?</h5>
 
-				<p>Podés dejar tu opinión y tus idas para seguir mejorando esta herramienta haciendo click en la lamparita que está arriba a la derecha.</p>
-				<p>Por ejemplo:</p>
+				<p>Podés dejar tu opinión y tus idas para seguir mejorando esta herramienta. Estas son algunas de las ideas que están en curso:</p>
 					<ul>
 						<li>permitir seleccionar el radio de búsqueda</li>
 						<li>buscar por barrio o comuna</li>
 						<li>incorporar otras fuentes y no tan sólo las del censo del gobierno</li>
 						<li>incorporar a otras ciudades</li>
 						<li>permitir interacción con usuarios para que carguen ejemplares, fotografías y reporten errores</li>
-						<li>etc, etc.</li>
 					</ul>
 				
 				<hr>
@@ -29,7 +27,7 @@
 				<p class="text-center"><a href="https://www.facebook.com/arboladourbanomapa" target="_blank"><i class="fa fw fa-facebook"></i> Seguir en facebook</a></p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Gracias por leer</button>
 			</div>
 		</div>
 	</div>
