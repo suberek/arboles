@@ -101,14 +101,14 @@ if (empty($borigen_noa)) {
 	$borigen_noa = 0;
 }
 
-if (  isset($_POST['borigen_chaquena'])  ) {
-	$borigen_chaquena	= $_POST['borigen_chaquena'];
+if (  isset($_POST['borigen_cuyana'])  ) {
+	$borigen_cuyana	= $_POST['borigen_cuyana'];
 } else {
-	$borigen_chaquena	= $_GET['borigen_chaquena'];
+	$borigen_cuyana	= $_GET['borigen_cuyana'];
 }
 
-if (empty($borigen_chaquena)) {
-	$borigen_chaquena = 0;
+if (empty($borigen_cuyana)) {
+	$borigen_cuyana = 0;
 }
 
 if (  isset($_POST['borigen_patagonica'])  ) {
