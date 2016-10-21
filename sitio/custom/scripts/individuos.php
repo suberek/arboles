@@ -7,12 +7,12 @@ $radius		= "500"; // Radio de búsqueda en Metros
 $user_latlng_default = array("-34.60371794474704","-58.38157095015049"); // El Obelisco
 
 
-$user_latlng			= $_GET['user_latlng'];
-$user_sabores			= $_GET['sabores'];
-$user_origen			= $_GET['origen'];
+//$user_latlng			= $_GET['user_latlng'];
+//$user_sabores			= $_GET['user_sabores'];
+/*$user_origen			= $_GET['origen'];
 if (empty($user_origen)) {
 	$user_origen = 'Todas';
-}
+}*/
 
 //// Veo qué vino en el form o en la URL
 

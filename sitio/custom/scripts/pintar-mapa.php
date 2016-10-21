@@ -146,13 +146,19 @@ $(document).ready(function(){
 			var container = $('<div />');
 
 			// Acción asociada al link dentro del popup
+			container.on('click', '#buscar_aca', function(e) {
+				e.preventDefault();
+				muestraPorAca(false,false,false,true);
+				//buscar();
+			});
+
 			container.on('click', '#buscar_en_toda_la_ciudad', function(e) {
 				e.preventDefault();
 				muestraTodaLaCiudad();
 			});
 
 			// Contenido html del Popup
-			container.html('<a href="#buscar_en_toda_la_ciudad" id="buscar_en_toda_la_ciudad" class="btn btn-default btn-block"><i class="fa fa-trash-o fa-lg"></i> Borrar marcador de posición</a>');
+			container.html('<a href="#buscar_aca" id="buscar_aca" class="btn btn-primary btn-block"><i class="fa fa-search fa-lg fa-fw"></i> Buscar acá</a><a href="#buscar_en_toda_la_ciudad" id="buscar_en_toda_la_ciudad" class="btn btn-default btn-block"><i class="fa fa-trash-o fa-lg fa-fw"></i> Borrar marcador de posición <br><small>para buscar en todo el mapa</small></a>');
 			
 			window.new_user_marker.bindPopup(container[0]);
 			 

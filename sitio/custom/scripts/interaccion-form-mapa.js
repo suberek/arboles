@@ -36,7 +36,7 @@ function muestraPorAca(lat,lng,map,buscar) {
 		map.panTo(new L.LatLng(lat, lng));
 	}
 
-	if(buscar) {
+	if (buscar) {
 		valida = validarBusqueda();
 		if (valida) {
 			document.getElementById("busca_arboles").submit();

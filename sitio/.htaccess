@@ -1,13 +1,17 @@
 # Activar RewriteEngine
 RewriteEngine on
 
+#	Rutas exclusivas y amigables
+RewriteRule ^sabores/?$			index.php?user_sabores=1
+
 #	Reescribir la URL solicitada por el usuario
 #	Entrada:  q/[especie.url]
 #	Salida: index.php?especie_url=[especie.url]
 Rewriterule ^q/(.+)$ index.php?especie_url=$1
 
-# /especie letras y -
-Rewriterule ^([a-zA-Z-]*)$ 	index.php?especie_url=$1
+#	/especie letras y -
+Rewriterule ^([a-zA-Z-]+)/?$	index.php?especie_url=$1
 
-# /idEspecie números
-RewriteRule ^([0-9]+)$ index.php?id_individuo=$1
+#	/idIndividuo números
+RewriteRule ^([/0-9]+)$			index.php?id_individuo=$1
+

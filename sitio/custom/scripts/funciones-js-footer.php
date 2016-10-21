@@ -1,8 +1,14 @@
 <script type="text/javascript">
 
-window.history.pushState("abolado","urbano", "<?php echo $especie_URL ; ?>");
+//
 
 <?php
+
+if (  (isset($_POST['id_especie']))  || (isset($_GET['id_especie'] ))  ) {
+?>
+  window.history.pushState("abolado","urbano", "<?php echo $especie_URL ; ?>");
+<?
+}
 // Include the UserVoice JavaScript SDK (only needed once on a page)
 /*
 UserVoice=window.UserVoice||[];

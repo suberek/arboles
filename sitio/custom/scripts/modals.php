@@ -59,10 +59,10 @@
 		<div class="modal-content">
 			<div class="modal-body">
 				<div class="row">
-					<div class="col-sm-2"><i class="fa fa-map-marker fa-3x"></i></div>
+					<div class="col-sm-2"><i class="fa fa-lightbulb-o fa-3x"></i></div>
 					<div class="col-sm-10">
-						<p>Para buscar todas las especies tenés que seleccionar alguna zona marcando un punto en el mapa.</p>
-						<p><small>O podés buscar en toda la ciudad seleccionado una especie.</small></p>
+						<p>Opa, ¡esos son muchos árboles! Para buscar, empezá marcando un punto en el mapa.</p>
+						<p><small>Consejo piola: Podés buscar en toda la ciudad si seleccionás alguna especie.</small></p>
 					</div>
 				</div>
 			</div>

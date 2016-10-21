@@ -98,10 +98,28 @@ echo "<br><br><div>$_POST: <br><br><pre>". print_r($_POST) ."</pre></div>";
 				
 				<? require_once 'custom/scripts/form.php'; ?>
 
-				<div class="red">
+				<div class="red red1">
 					<div class="row">
-						<a class="col-xs-12 col-sm-3 col-md-12 facebook" href="https://www.facebook.com/arboladourbanomapa" target="_blank"><i class="fa fw fa-facebook-official"></i> Seguinos en facebook</a>
+						<a class="col-xs-12 col-sm-3 col-md-12 facebook" href="https://www.facebook.com/arboladourbanomapa" target="_blank"><i class="fa fw fa-facebook-official"></i> Seguinos en facebook</a>			
+					</div>
+				</div>
 
+				<div id="adsense">
+					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+					<!-- arbolado1 -->
+					<ins class="adsbygoogle"
+					     style="display:block"
+					     data-ad-client="ca-pub-7228206495347837"
+					     data-ad-slot="8591261973"
+					     data-ad-format="auto"></ins>
+					<script>
+					(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				</div>
+
+				<div class="red red2">
+					<div class="row">
+						
 						<p class="col-xs-12 col-sm-3 col-md-12 este-mapa">Este mapa cuenta con<br> la valiosa colaboración de:</p>
 
 						<a class="col-xs-6 col-sm-3 col-md-6 lcnrs" href="https://www.facebook.com/LaCiudadNosRegalaSabores" target="_blank"><img src="<?php echo $APP_URL; ?>/images/colaborador-lcnrs.png" alt="La ciudad nos regala sabores"></a>
@@ -114,14 +132,7 @@ echo "<br><br><div>$_POST: <br><br><pre>". print_r($_POST) ."</pre></div>";
 
 				<button class="btn btn-default btn-small btn-block que-es-esto" data-toggle="modal" data-target="#que-es-esto">¿Qué es esto?</button>
 
-				<div id="adsense">
-					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-					<script>
-						(adsbygoogle = window.adsbygoogle || []).push({
-							google_ad_client: "ca-pub-7228206495347837",enable_page_level_ads: true
-						});
-					</script>
-				</div>
+				
 			
 			</nav>
 		</div>
