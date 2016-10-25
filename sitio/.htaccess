@@ -3,6 +3,7 @@ RewriteEngine on
 
 #	Rutas exclusivas y amigables
 RewriteRule ^sabores/?$			index.php?user_sabores=1
+RewriteRule ^nativas/?$			index.php?user_origen=Nativo/Autóctono
 
 #	Reescribir la URL solicitada por el usuario
 #	Entrada:  q/[especie.url]
@@ -13,5 +14,4 @@ Rewriterule ^q/(.+)$ index.php?especie_url=$1
 Rewriterule ^([a-zA-Z-]+)/?$	index.php?especie_url=$1
 
 #	/idIndividuo números
-RewriteRule ^([/0-9]+)$			index.php?id_individuo=$1
-
+RewriteRule ^([/0-9]+)$		index.php?id_individuo=$1
