@@ -48,7 +48,24 @@ $(document).ready(function(){
 	//var ggh = new L.Google('HYBRID');
 	//map.addControl(new L.Control.Layers({'Google Roadmap':ggr, 'Google Satélite':ggs, 'Google Hybrid':ggh, 'Stamen':stm, 'Nokia':Nokia_normalDay}));
 	map.addLayer(ggr);
-	
+
+
+	// Agregar un árbol
+	var agregarArbol = L.easyButton({
+		states: [{
+			stateName: 'agregar-arbol',
+			icon: '<i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar árbol',
+			title: 'Agregar un árbol',
+			onClick: function(btn, map) {
+				$('#agregar-arbol').find('.modal-content').css('min-width', '550px');
+				$('#agregar-arbol').modal('show');
+			}
+		}]
+	});
+	agregarArbol.addTo(map);
+
+
+
 	// Barra de botones
 	var myButton = L.control({ position: 'topleft' });
 	
@@ -85,8 +102,8 @@ $(document).ready(function(){
 					countrycodes: 'ar' // limito a Argentina
 
 				}
-    		}
-    	)
+			}
+		)
 	}).addTo(map);
 
 	geocoder.markGeocode = function(result) {
@@ -158,7 +175,7 @@ $(document).ready(function(){
 			});
 
 			// Contenido html del Popup
-			container.html('<a href="#buscar_aca" id="buscar_aca" class="btn btn-primary btn-block"><i class="fa fa-search fa-lg fa-fw"></i> Buscar acá</a><a href="#buscar_en_toda_la_ciudad" id="buscar_en_toda_la_ciudad" class="btn btn-default btn-block"><i class="fa fa-trash-o fa-lg fa-fw"></i> Borrar marcador de posición <br><small>para buscar en todo el mapa</small></a>');
+			container.html('<a href="#buscar_aca" id="buscar_aca" class="btn btn-primary btn-block"><i class="fa fa-search fa-lg fa-fw"></i> Buscar en esta zona</a><a href="#buscar_en_toda_la_ciudad" id="buscar_en_toda_la_ciudad" class="btn btn-default btn-block"><i class="fa fa-trash-o fa-lg fa-fw"></i> Borrar marcador de posición <br><small>para buscar en todo el mapa</small></a>');
 			
 			window.new_user_marker.bindPopup(container[0]);
 			 
@@ -215,15 +232,14 @@ $(document).ready(function(){
 			showCoverageOnHover: true,
 			zoomToBoundsOnClick: true,
 			spiderfyDistanceMultiplier: 2,
-			maxClusterRadius: <?php echo $radius; ?>,
-			disableClusteringAtZoom: 19,
+			disableClusteringAtZoom: 18,
 			polygonOptions: {
-		        fillColor: '#5cba9d',
-		        color: '#5cba9d',
-		        weight: 1,
-		        opacity: 1,
-		        fillOpacity: 0.1
-		     }
+				fillColor: '#5cba9d',
+				color: '#5cba9d',
+				weight: 1,
+				opacity: 1,
+				fillOpacity: 0.1
+			 }
 		});
 		
 		var markerList = [];
@@ -239,40 +255,22 @@ $(document).ready(function(){
 		});
 		
 		// Iconos customizados por especie (algunas tienen)
-	
-		for (var i = 0; i < individuos.length; i++) {
-			var a = individuos[i];
-			var content = 'cargando...';
-			var especie	= a[3];
-			
-			switch (especie) {
-				<?php
-				$iconos_query	= "SELECT DISTINCT id_especie, ICONO FROM especies WHERE ICONO != ''";
-				$iconos_results	= GetRS($iconos_query);
-		
-				while ($iconos_row = mysql_fetch_array($iconos_results)) {
-					$icono_id_especie	= $iconos_row['id_especie'];
-					$icono_icono		= $iconos_row['ICONO'];
-					echo "case ". $icono_id_especie . ":
-						marker_icon = new LeafIcon({iconUrl: '". $APP_URL . "/uploads/". $icono_icono ."'});
-						break;";
-				}
-				?>	
-				default:
-					marker_icon = new LeafIcon({iconUrl: '<?php echo $APP_URL; ?>/uploads/marker.png'});
-			}
-			
-			//var individuo = L.marker([a[0], a[1]], {icon: marker_icon})
-			var individuo = L.marker([a[0], a[1]], {icon: marker_icon}).on('click', onMarkerClick);
-			
-			// Paso al individuo la propiedad de ID para hacer búsquedas dentro del popup.
-			individuo.individuoId = a[2];
-			
-			//var popupOptions = { 'maxWidth': '400' }
-			//individuo.bindPopup(content, popupOptions);
-			//individuo.on('popupopen', onMarkerClick);
 
-			markerList.push(individuo);
+		var arboles = [<?php echo $arboles_para_mapa; ?>];
+	
+		for (var i = 0; i < arboles.length; i++) {
+			var a = arboles[i];
+			var content = 'cargando...';
+			
+			var marker_icon = new LeafIcon({iconUrl: '<?php echo $APP_URL; ?>/uploads/'+a[3]});
+			
+			//var arbol = L.marker([a[0], a[1]], {icon: marker_icon})
+			var arbol = L.marker([a[0], a[1]], {icon: marker_icon}).on('click', onMarkerClick);
+			
+			// Paso al arbol la propiedad de ID para hacer búsquedas dentro del popup.
+			arbol.arbolId = a[2];
+
+			markerList.push(arbol);
 		}
 	
 		// Todos los markers a un layer
@@ -283,23 +281,21 @@ $(document).ready(function(){
 		map.fitBounds(markers.getBounds());
 		
 		function onMarkerClick(e) {
-			//var oPop		= e.popup;
-			//var oMarkerId	= e.popup._source.individuoId
-			var oMarkerId = this.individuoId;
+			var oMarkerId = this.arbolId;
 
 			//alert(oMarkerId);
 			
 			$.ajax({
-				url: "<?php echo $APP_URL; ?>/custom/scripts/individuo.php?id="+oMarkerId,
+				url: "<?php echo $APP_URL; ?>/custom/scripts/arbol.php?id="+oMarkerId,
 				success: function(datos){
-					$('#info-individuo').html(datos);
-					$('#info-individuo').slideDown();
-					//window.location.href = '#info-individuo';
+					$('#info-arbol').html(datos);
+					$('#info-arbol').slideDown();
+					//window.location.href = '#info-arbol';
 					//oPop.setContent(datos);
 					//oPop.update();
 					$('.cerrar').click(function (e) {
 						e.preventDefault();
-						$('#info-individuo').slideUp();
+						$('#info-arbol').slideUp();
 					})
 
 				}
@@ -334,7 +330,7 @@ $(document).ready(function(){
 
 	//************ PUNTOS
 
-	if (typeof individuos != 'undefined') {
+	if (typeof arboles != 'undefined') {
 
 		function drawingOnCanvas(canvasOverlay, params) {
 			var ctx = params.canvas.getContext('2d');
@@ -354,7 +350,7 @@ $(document).ready(function(){
 			}
 		}
 
-		var data = individuos; // data loaded from data.js
+		var data = arboles; // data loaded from data.js
 		L.canvasOverlay()
 			.drawing(drawingOnCanvas)
 			.addTo(map);

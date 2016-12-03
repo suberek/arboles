@@ -18,25 +18,19 @@
 		<div class="col-xs-12">
 
 			<div class="form-group">
-				<h3 class="pull-left">¿Qué especie?</h3>
-				<a href="#" id="borrar_id_especie"><i class="fa fa-trash-o"></i></a>
+				<h3 class="pull-left">¿Qué especie? <a href="#" id="borrar_especie_id"><i class="fa fa-trash-o"></i></a></h3>
 				
-				<select class="form-control input-lg selectpicker" data-style="btn-default" name="id_especie" id="id_especie" data-live-search="true">
+				
+				<select class="form-control input-lg selectpicker" data-style="btn-default" name="especie_id" id="especie_id" data-live-search="true">
 					<option value="0">Todas</option>
 					<?php
 						// Consulto especies y cantidad
-						$especies_query = "SELECT count(i.id_especie) as CANT,
-						e.id_especie, e.NOMBRE_CIE, e.NOMBRE_COM
-									FROM individuos AS i, especies AS e
-									WHERE i.id_especie = e.id_especie
-									GROUP BY e.id_especie
-									ORDER BY e.NOMBRE_CIE";
-						
-						// Consulto especies sin cantidad
-						/*$especies_query = "SELECT 
-						e.id_especie, e.NOMBRE_CIE, e.NOMBRE_COM
-									FROM especies AS e
-									ORDER BY e.NOMBRE_CIE";*/
+						$especies_query = "SELECT COUNT(i.especie_id) as CANT,
+						e.id as especie_id, e.nombre_cientifico, e.nombre_comun
+									FROM t_registros AS i, t_especies AS e
+									WHERE i.especie_id = e.id
+									GROUP BY e.id
+									ORDER BY e.nombre_cientifico";
 						
 						$especies_results	= GetRS($especies_query);
 						
@@ -44,13 +38,13 @@
 						while ($especies_row = mysql_fetch_array($especies_results)) {
 							$i++;
 								
-							$lista_NCIE		= $especies_row['NOMBRE_CIE'];
-							$lista_NCOM		= $especies_row['NOMBRE_COM'];
-							$lista_ID		= $especies_row['id_especie'];
+							$lista_NCIE		= $especies_row['nombre_cientifico'];
+							$lista_NCOM		= $especies_row['nombre_comun'];
+							$lista_ID		= $especies_row['especie_id'];
 							$lista_CANT		= $especies_row['CANT'];
 							
 							$selected = '';
-							if ($id_especie_busqueda===$lista_ID) {
+							if ($especie_id_busqueda===$lista_ID) {
 								$selected = ' selected';
 
 								// Me guardo la variable para cambiar la URL

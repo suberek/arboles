@@ -106,6 +106,23 @@
 	</div>
 </div>
 
+<!-- Modal: Formulario -->
+
+<div class="modal fade" id="agregar-arbol" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+	<div class="modal-content">
+	  <div class="modal-body">
+		<div class="row">
+			<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdT1-TNDDN7Gau_798r4EIMCqKLR58VHfsPpP6LrHUg7SEIXw/viewform?embedded=true" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0">Cargando...</iframe>
+		</div>
+		 
+	   </div>
+	  <div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+	  </div>
+	</div>
+  </div>
+</div>
 
 <?php
 if ($total_registros_censo === 0) { ?>
@@ -117,10 +134,10 @@ if ($total_registros_censo === 0) { ?>
 		<div class="row">
 			<div class="col-sm-2"><i class="fa fa-search fa-3x"></i></div>
 			<div class="col-sm-10"><p>Tu búsqueda no arrojó resultados.</p>
-		<p><small>Probá buscando la especie que te interesa en toda la ciudad, o cambiando la zona de búsqueda marcando otro lugar en el mapa.</small></p></div>
+				<p><small>Probá buscando la especie que te interesa en toda la ciudad, o cambiando la zona de búsqueda marcando otro lugar en el mapa.</small></p></div>
 		</div>
 		 
-		</div>
+	   </div>
 	  <div class="modal-footer">
 		<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 	  </div>

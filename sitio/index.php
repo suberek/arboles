@@ -51,6 +51,7 @@ require_once('custom/scripts/funciones-db.php');
 <script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/Locate/L.Control.Locate.min.js" ></script>
 <script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/Geocoder/Control.Geocoder.min.js"></script>
 <script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/CanvasOverlay/L.CanvasOverlay.js"></script>
+<script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/EasyButton/easy-button.js"></script>
 
 <!-- Custom -->
 <link href="<?php echo $APP_URL; ?>/custom/css/estilos.css" rel="stylesheet" type="text/css" media="all">
@@ -59,7 +60,7 @@ require_once('custom/scripts/funciones-db.php');
 	<link rel="stylesheet" href="third-party/leaflet-plugins/Locate/L.Control.Locate.ie.min.css"/>
 <![endif]-->
 
-<?php require_once('custom/scripts/individuos.php'); ?>
+<?php require_once('custom/scripts/arboles.php'); ?>
 </head>
 
 <body>
@@ -85,8 +86,8 @@ echo "<br><br><div>$_POST: <br><br><pre>". print_r($_POST) ."</pre></div>";
 			<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" style="width: 0%"> </div>
 		</div>
 		
-		<!-- modal individuo (container) -->
-		<div class="col-xs-12 col-sm-9 col-md-6" id="info-individuo"> </div>
+		<!-- modal arbol (container) -->
+		<div class="col-xs-12 col-sm-9 col-md-6" id="info-arbol"> </div>
 
 		<!-- left slide bar -->
 		<div class="col-md-4 col-lg-3" id="menu">
@@ -98,42 +99,47 @@ echo "<br><br><div>$_POST: <br><br><pre>". print_r($_POST) ."</pre></div>";
 				
 				<? require_once 'custom/scripts/form.php'; ?>
 
-				<div class="red red1">
-					<div class="row">
-						<a class="col-xs-12 col-sm-3 col-md-12 facebook" href="https://www.facebook.com/arboladourbanomapa" target="_blank"><i class="fa fw fa-facebook-official"></i> Seguinos en facebook</a>			
+				
+				<div class="row red">
+					<div class="col-xs-12 col-sm-3 col-md-6">
+						<a class="btn btn-default btn-small btn-block facebook" href="https://www.facebook.com/arboladourbanomapa" target="_blank"><i class="fa fw fa-facebook-official"></i> Seguinos</a></div>
+					<div class="col-xs-12 col-sm-3 col-md-6">
+						<button class="btn btn-default btn-small btn-block que-es-esto" data-toggle="modal" data-target="#que-es-esto">Sobre el mapa</button></div>	
+				</div>
+
+				<div id="ads" class="row">
+					<div class="col-xs-12">
+						<p>publicidad</p>
+						<a href="https://valeriamicou.com.ar/" target="_blank"><img src="<?php echo $APP_URL; ?>/ads/vale-micou.gif" alt="Valeria Micou - Paisajismo Urbano Sustentable"></a>
 					</div>
 				</div>
 
-				<div id="adsense">
-					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-					<!-- arbolado1 -->
-					<ins class="adsbygoogle"
-					     style="display:block"
-					     data-ad-client="ca-pub-7228206495347837"
-					     data-ad-slot="8591261973"
-					     data-ad-format="auto"></ins>
-					<script>
-					(adsbygoogle = window.adsbygoogle || []).push({});
-					</script>
+				<div id="adsense" class="row">
+					<div class="col-xs-12">
+						<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+						<!-- arbolado1 -->
+						<ins class="adsbygoogle"
+						     style="display:block"
+						     data-ad-client="ca-pub-7228206495347837"
+						     data-ad-slot="8591261973"
+						     data-ad-format="auto"></ins>
+						<script>
+						(adsbygoogle = window.adsbygoogle || []).push({});
+						</script>
+					</div>
 				</div>
 
-				<div class="red red2">
-					<div class="row">
-						
+				
+				<div class="red red2 row">
+					<div class="col-xs-12">	
 						<p class="col-xs-12 col-sm-3 col-md-12 este-mapa">Este mapa cuenta con<br> la valiosa colaboración de:</p>
 
 						<a class="col-xs-6 col-sm-3 col-md-6 lcnrs" href="https://www.facebook.com/LaCiudadNosRegalaSabores" target="_blank"><img src="<?php echo $APP_URL; ?>/images/colaborador-lcnrs.png" alt="La ciudad nos regala sabores"></a>
 
-						<a class="col-xs-6 col-sm-3 col-md-6 arn" href="https://www.facebook.com/AsociacionRiberaNorte/" target="_blank"><img src="<?php echo $APP_URL; ?>/images/colaborador-arn.png" alt="Asociación Ribera Norte"></a>
-
-						
+						<a class="col-xs-6 col-sm-3 col-md-6 arn" href="https://www.facebook.com/AsociacionRiberaNorte/" target="_blank"><img src="<?php echo $APP_URL; ?>/images/colaborador-arn.png" alt="Asociación Ribera Norte"></a>	
 					</div>
 				</div>
 
-				<button class="btn btn-default btn-small btn-block que-es-esto" data-toggle="modal" data-target="#que-es-esto">¿Qué es esto?</button>
-
-				
-			
 			</nav>
 		</div>
 		

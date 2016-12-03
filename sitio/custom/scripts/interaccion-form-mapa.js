@@ -2,7 +2,7 @@
 
 // Mostrar todas las especies
 /*function muestraTodasLasEspecies() {
-	$('input#id_especie').val(null);
+	$('input#especie_id').val(null);
 	$('input#muestra-especie').val(null);
 	
 	$("ul#results").fadeOut();
@@ -70,7 +70,7 @@ function validarBusqueda(){
 	var especieUnaCheck;
 	var especieTodasCheck;
 	
-	var especieId			= $('select#id_especie').val();
+	var especieId			= $('select#especie_id').val();
 	
 	if (especieId > 0) {
 		especieUnaCheck = true;
@@ -157,11 +157,11 @@ function validarBusqueda(){
 }
 
 function muestraBorrarIdEspecie(){
-	if( $('#id_especie').val() == 0 ) {
-		$('#borrar_id_especie').addClass('hidden');
+	if( $('#especie_id').val() == 0 ) {
+		$('#borrar_especie_id').addClass('hidden');
 	}else{
 		$('input#user_sabores').prop('checked', false);
-		$('#borrar_id_especie').removeClass('hidden');
+		$('#borrar_especie_id').removeClass('hidden');
 	}
 }
 
@@ -245,20 +245,20 @@ $(document).ready(function() {
 	
 	muestraBorrarIdEspecie();
 	
-	$( "#id_especie" ).change(function() {
+	$( "#especie_id" ).change(function() {
 		muestraBorrarIdEspecie();
 	});
 	
-	$('#borrar_id_especie').click(function(e){
+	$('#borrar_especie_id').click(function(e){
 		e.preventDefault();
-		$('#id_especie').selectpicker('val', 0);
+		$('#especie_id').selectpicker('val', 0);
 	});
 
 
 	$('input#user_sabores').click(function(){
 		
 		if ( $(this).prop('checked') == true ) {
-			$('#id_especie').selectpicker('val', 0);
+			$('#especie_id').selectpicker('val', 0);
 		}
 	
 	});

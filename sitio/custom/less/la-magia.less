@@ -130,7 +130,7 @@ label {
 	}
 
 	.que-es-esto {
-		margin-bottom: 2em;
+		margin-bottom: 1.2em;
 	}
 }
 
@@ -155,7 +155,7 @@ label {
 	margin-bottom: 0;
 }
 
-#info-individuo {
+#info-arbol {
 	display: none;
 	position: fixed;
 	z-index: 7000;
@@ -168,6 +168,8 @@ label {
 
 	border-bottom: 0.5em solid @gris5;
 
+	height: 100%;
+
 	h1 {
 		margin-top: 1em;
 		small {
@@ -179,6 +181,8 @@ label {
 	}
 	.box {
 		padding: 1em 0 2em;
+		max-height: 100%;
+		overflow-y: auto;
 		
 	}
 	.cerrar {
@@ -194,10 +198,10 @@ label {
 	}
 	.autor {
 		display: block;
-		padding-top: 2em;
+		margin-top: 2em;
 	}
 	.enlace-directo {
-		padding-top: 1.6em;
+		//padding-top: 1.6em;
 	}
 
 	a {
@@ -218,12 +222,28 @@ label {
 	margin-bottom: 50px;
 }
 
+#agregar-arbol {
+
+	.modal-body {
+		padding-top: 0;
+		padding-bottom: 0; 
+	}
+}
+
+#agregar-arbol-btn {
+	position: absolute;
+	top: 4em;
+	right: 1em;
+	z-index: 99999999999;
+}
+
 .leaflet-popup-content h1 small {
 	font-size:  50%;
 	font-style: italic;
 }
 
-.leaflet-container a.btn-primary {
+.leaflet-container a.btn-primary,
+.leaflet-container a.btn-warning {
 	color: @blanco;
 }
 
@@ -253,24 +273,42 @@ label {
 	}
 
 	a.facebook {
-		font-size: 1.2em;
-		display: block;
-		margin-bottom: 2rem;
-		line-height: 1.1em;
+		//font-size: 1.2em;
+		//display: block;
+		margin-bottom: 1.2em;
+		//line-height: 1.1em;
 	}
 
 }
 
+#ads {
+	//width: 100%;
+	margin-bottom: 1.2em;
+	img {
+		width: 100%;
+		max-width: 500px;
+	}
+	p {
+		color: @blanco;
+		font-size: 0.7em;
+		position: absolute;
+		background-color: rgba(0,0,0,0.8);
+		display: inline-block;
+		padding: 0.05em 0.3em;
+		opacity: 0.5;
+	}
+}
+
 #adsense {
-	width: 100%;
-	margin-bottom: 2em;
+	//width: 100%;
+	margin-bottom: 1.5em;
 }
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) { 
-	.red .facebook {
+	/*.red .facebook {
 		margin-top: 5rem;
-	}
+	}*/
 
 	.red .este-mapa {
 		text-align: right;
@@ -309,11 +347,11 @@ label {
 
 	#menu nav a.title h1 {
 		background-image: url(../../images/logo-120x120-blanco.png);
-		background-position: -25px -12px;
+		background-position: -25px -9px;
 		font-size: 1.55em;
 		height: 106px;
 		margin-bottom: 20px;
-		padding-top: 40px;
+		padding-top: 43px;
 		padding-left: 70px;
 	}
 	
@@ -321,9 +359,9 @@ label {
 		font-size: 1.7em;
 	}	
 
-	.red .facebook {
+	/*.red .facebook {
 		margin-top: 0;
-	}
+	}*/
 
 	.red .este-mapa {
 		margin-top: 0;

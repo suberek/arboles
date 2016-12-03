@@ -4,7 +4,7 @@
 
 <?php
 
-if (  (isset($_POST['id_especie']))  || (isset($_GET['id_especie'] ))  ) {
+if (  (isset($_POST['especie_id']))  || (isset($_GET['especie_id'] ))  ) {
 ?>
   window.history.pushState("abolado","urbano", "<?php echo $especie_URL ; ?>");
 <?

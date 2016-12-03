@@ -3,7 +3,7 @@
 //// Defino el default
 $parametro	= "WHERE 1";
 $busqueda	= "";
-$radius		= "500"; // Radio de búsqueda en Metros
+$radius		= "400"; // Radio de búsqueda en Metros
 $user_latlng_default = array("-34.60371794474704","-58.38157095015049"); // El Obelisco
 
 
@@ -21,30 +21,30 @@ if (  isset($_GET['especie_url'])  ) {
 	$especie_url = $_GET['especie_url'];
 
 	$url_query	= "
-	SELECT id_especie
-	FROM especies
+	SELECT id
+	FROM t_especies
 	WHERE url = '$especie_url'
 	LIMIT 1;
 	";
 	$url_results			= GetRS($url_query);
 	$url_row				= mysql_fetch_array($url_results);
-	$id_especie_busqueda	= $url_row['id_especie'];
+	$especie_id_busqueda	= $url_row['id'];
 
 } elseif
 	(
-		( isset($_GET['id_individuo']) ) && 
-		( is_numeric($_GET['id_individuo']) ) &&
-		( $_GET['id_individuo'] > 0 )
+		( isset($_GET['arbol_id']) ) && 
+		( is_numeric($_GET['arbol_id']) ) &&
+		( $_GET['arbol_id'] > 0 )
 	)
 {
-	$id_individuo = $_GET['id_individuo'];
+	$arbol_id = $_GET['arbol_id'];
 
 } else {
 
-	if (  isset($_POST['id_especie'])  ) {
-		$id_especie_busqueda	= $_POST['id_especie'];
+	if (  isset($_POST['especie_id'])  ) {
+		$especie_id_busqueda	= $_POST['especie_id'];
 	} else {
-		$id_especie_busqueda	= $_GET['id_especie'];
+		$especie_id_busqueda	= $_GET['especie_id'];
 	}
 
 }
@@ -121,25 +121,16 @@ if (empty($borigen_patagonica)) {
 	$borigen_patagonica = 0;
 }
 
+$parametroJoin = " INNER JOIN t_especies e ON r.especie_id=e.id";
+
 /**************************************************************** PARÁMETRO ESPECIE */
-if ((is_numeric($id_especie_busqueda)) && ($id_especie_busqueda > 0)) {
-	$parametro .= " AND i.id_especie=$id_especie_busqueda";
-	
-	$especie_query	= "
-	SELECT e.NOMBRE_CIE
-	FROM especies e
-	$parametroJoin
-	WHERE e.id_especie = $id_especie_busqueda
-	LIMIT 1;
-	";
-	$especie_results	= GetRS($especie_query);
-	$especie_row		= mysql_fetch_array($especie_results);
-	$nombre_cientifico	= $especie_row['NOMBRE_CIE'];
-	
+if ((is_numeric($especie_id_busqueda)) && ($especie_id_busqueda > 0)) {
+	$parametro .= " AND r.especie_id=$especie_id_busqueda";
+
 	$busqueda	.= "especie una /";
 	
 } else {
-	$id_especie_busqueda = '';
+	$especie_id_busqueda = '';
 	$busqueda	.= "especie todas /";
 }
 
@@ -186,8 +177,6 @@ if (
 
    )
 {
-	$parametroJoin = " INNER JOIN especies e ON i.id_especie=e.id_especie";
-
 	$masFiltrosCss = "visible";
 
 } else {
@@ -198,7 +187,7 @@ if (
 
 /**************************************************************** PARÁMETRO SABORES */
 if ((is_numeric($user_sabores)) && ($user_sabores > 0)) {
-	//$parametro .= " AND ( id_especie = 23 )";
+	//$parametro .= " AND ( especie_id = 23 )";
 	$parametro .= " AND ( e.comestible <> '' OR e.medicinal <> '' )";
 
 	$busqueda .= " con sabores /";
@@ -207,7 +196,7 @@ if ((is_numeric($user_sabores)) && ($user_sabores > 0)) {
 
 /**************************************************************** PARÁMETRO ORIGEN */
 if ( $user_origen !== 'Todas' ) {
-	$parametro .= " AND ( e.ORIGEN = '".$user_origen."'  )";
+	$parametro .= " AND ( e.origen = '".$user_origen."'  )";
 
 	$busqueda .= " con origen ".$user_origen." /";
 }
@@ -248,105 +237,72 @@ if ( $borigen_patagonica > 0 ) {
 }
 
 /**************************************************************** PARÁMETRO INDIVIDUO */
-if ( $id_individuo > 0 ) {
-	$parametro .= " AND ( i.id_individuo = " . $id_individuo . "  )";
+if ( $arbol_id > 0 ) {
+	$parametro .= " AND ( r.arbol_id = " . $arbol_id . "  )";
 
-	$busqueda = " un individuo";
+	$busqueda = " un arbol";
 }
 
 //echo("<br>".$user_lat);
 //echo("<br>".$user_lng);
 
-
-
-
 if ($busqueda !== '') {
-	
+
 	/********************************************************  Hago LA consulta que trae el resultado de la búsqueda */
 
-	/*
-	Usando el campo GEOESPACIAL puedo buscar así:
 	$censo_query = "
-	SELECT id_individuo, id_especie, X(`coordenadas`) as lat, Y(`coordenadas`) as lng
-	FROM individuos
-	$parametro";
-	*/
-
-	/*
-	Como PHPMaker no permite la creación de campos GEOESPACIALES,
-	busco por los campos comunes lat y lng
-	*/
-
-	$censo_query = "
-		SELECT i.id_individuo, i.id_especie, lat, lng
-		FROM individuos i
+		SELECT arbol_id, lat, lng, especie_id, e.icono
+		FROM t_registros r
 		$parametroJoin 
 		$parametro";
 		
 	if (stripos($busqueda,'marker') > 0) {
 
 		// Definir el centro y buscar en el radio.
-		
-		/*
-		Usando el campo GEOESPACIAL puedo buscar así:
-		$censo_query = "
-		SELECT id_individuo, id_especie, X(`coordenadas`) as lat, Y(`coordenadas`) as lng ,(
-			6371 * acos (
-			  cos ( radians( $user_lat ) )
-			  * cos( radians( lat ) )
-			  * cos( radians( lng ) - radians( $user_lng ) )
-			  + sin ( radians( $user_lat ) )
-			  * sin( radians( lat ) )
-			)
-		  ) AS distance
-		FROM individuos
-		$parametro
-		HAVING distance < ($radius/1000);";
-		*/
-
-		/*
-		Como PHPMaker no permite la creación de campos GEOESPACIALES,
-		busco por los campos comunes lat y lng
-		*/
 
 		$censo_query = "
-		SELECT i.id_individuo, i.id_especie, lat, lng ,(
-			6371 * acos (
-			  cos ( radians( $user_lat ) )
-			  * cos( radians( lat ) )
-			  * cos( radians( lng ) - radians( $user_lng ) )
-			  + sin ( radians( $user_lat ) )
-			  * sin( radians( lat ) )
-			)
-		  ) AS distance
-		FROM individuos i
-		$parametroJoin
-		$parametro
-		HAVING distance < ($radius/1000);";
+			SELECT arbol_id, lat, lng, especie_id, e.icono, (
+					6371 * acos (
+						cos ( radians( $user_lat ) )
+						* cos( radians( lat ) )
+						* cos( radians( lng ) - radians( $user_lng ) )
+						+ sin ( radians( $user_lat ) )
+						* sin( radians( lat ) )
+					)
+				) AS distance
+			FROM t_registros r
+			$parametroJoin
+			$parametro
+			GROUP BY arbol_id
+			HAVING distance < ($radius/1000);
+		";
 	}
-	
+
+	//echo $busqueda . " ---- ";
+	//echo $censo_query;
+	//die();
+
+
 	$count = true;
 	$censo_results	= GetRS($censo_query);
 	$total_registros_censo = $total_registros;
 	
-	// Armo el array con los individuos
+	// Armo el array con los árboles
 	if ($total_registros_censo >= 1) {
-		echo '<script> var individuos = [';
 		
 		while ($censo_row = mysql_fetch_array($censo_results)) {
 			$i++;
 				
+			$arbol_id		= $censo_row['arbol_id'];
 			$lat			= $censo_row['lat'];
 			$lng			= $censo_row['lng'];
-			$id_individuo	= $censo_row['id_individuo'];
-			$id_especie		= $censo_row['id_especie'];
+			$icono			= $censo_row['icono'];
+			if (empty($icono)) $icono = "marker.png";
 			
-			if ($i > 1) echo ',';
+			if ($i > 1) $arboles_para_mapa .= ',';
 			
-			echo '[' . $lat . ',' . $lng . ',' . $id_individuo. ',' . $id_especie . ']';
+			$arboles_para_mapa .= '[' . $lat . ',' . $lng . ',' . $arbol_id. ',"' . $icono . '"]';
 		}
-		
-		echo ']; </script>';
 	}
 	
 } else {	
