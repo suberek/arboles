@@ -8,6 +8,9 @@ RewriteRule ^matrix/$			matrix/index.php
 RewriteRule ^sabores/?$			index.php?user_sabores=1
 RewriteRule ^nativas/?$			index.php?user_origen=Nativo/Autóctono
 
+#	árboles de usuarios
+RewriteRule ^colaborativo/?$	index.php?colaborativo=1
+
 #	Reescribir la URL solicitada por el usuario
 #	Entrada:  q/[especie.url]
 #	Salida: index.php?especie_url=[especie.url]

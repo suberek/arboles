@@ -8,7 +8,7 @@
 	background-color: transparent;
 	}
 .marker-cluster-small div {
-	background-color: rgba(92, 187, 158, 0.4);
+	background-color: rgba(238, 162, 54, 0.4);
 	width: 30px;
 	height: 30px;
 	font-size: 10px;
@@ -17,7 +17,7 @@
 	border-radius: 15px;
 	}
 .marker-cluster-small:hover div{
-	background-color: rgba(92, 187, 158, 1);
+	background-color: rgba(238, 162, 54, 1);
 }
 .marker-cluster-small span {
 	line-height: 30px;
@@ -26,7 +26,7 @@
 	background-color: transparent;
 	}
 .marker-cluster-medium div {
-	background-color: rgba(92, 187, 158, 0.6);
+	background-color: rgba(238, 162, 54, 0.6);
 	width: 40px;
 	height: 40px;
 	font-size: 12px;
@@ -35,7 +35,7 @@
 	border-radius: 20px;
 	}
 .marker-cluster-medium:hover div{
-	background-color: rgba(92, 187, 158, 1);
+	background-color: rgba(238, 162, 54, 1);
 }
 .marker-cluster-medium span {
 	line-height: 40px;
@@ -44,7 +44,7 @@
 	background-color: transparent;
 	}
 .marker-cluster-large div {
-	background-color: rgba(92, 187, 158, 0.8);
+	background-color: rgba(238, 162, 54, 0.8);
 	width: 50px;
 	height: 50px;
 	font-size: 14px;
@@ -54,7 +54,7 @@
 	border-radius: 25px;
 	}
 .marker-cluster-large:hover div{
-	background-color: rgba(92, 187, 158, 1);
+	background-color: rgba(238, 162, 54, 1);
 }
 .marker-cluster-large span {
 	line-height: 50px;
@@ -66,7 +66,7 @@
     transition: 0.2s ease-in-out;
 	}
 .marker-cluster:hover {
-	border-color: rgb(92, 187, 158);
+	border-color: rgb(238, 162, 54);
 	}
 
 	/* IE 6-8 fallback colors */

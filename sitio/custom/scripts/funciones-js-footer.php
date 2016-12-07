@@ -4,35 +4,16 @@
 
 <?php
 
-if (  (isset($_POST['especie_id']))  || (isset($_GET['especie_id'] ))  ) {
+if ((is_numeric($especie_id_busqueda)) && ($especie_id_busqueda > 0)) {
+
 ?>
   window.history.pushState("abolado","urbano", "<?php echo $especie_URL ; ?>");
 <?
+} else if (  isset($_POST['user_sabores'])  ) {
+?>
+  window.history.pushState("abolado","urbano", "sabores");
+<?
 }
-// Include the UserVoice JavaScript SDK (only needed once on a page)
-/*
-UserVoice=window.UserVoice||[];
-(function(){
-  var uv=document.createElement('script');
-  uv.type='text/javascript';
-  uv.async=true;
-  uv.src='//widget.uservoice.com/Eq8cib0TB3FmGnxB0NRmw.js';
-  var s=document.getElementsByTagName('script')[0];
-  s.parentNode.insertBefore(uv,s)
-})();
-
-UserVoice.push(['addTrigger', {
-  mode: 'smartvote', // Modes: contact (default), smartvote, satisfaction
-  trigger_position: 'top-right',
-  trigger_color: 'white',
-  trigger_background_color: '#5cba9d',
-  accent_color: '#5cba9d',
-  contact_enabled: false,
-  trigger_style: 'icon',
-  smartvote_title: '¿Con qué seguir?',
-  menu_enabled : true
-}]);
-*/
 ?>
 
 // GOOGLE ANALYTICS

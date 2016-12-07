@@ -188,7 +188,6 @@ $(document).ready(function() {
 	
 	/********************************************************************************* INTERACCIONES */
 
-	
 	// radio button de todas las especies
 	$("input#respecies-todas").click(function(e) {
 		muestraTodasLasEspecies();
@@ -199,8 +198,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		muestraTodaLaCiudad();
 	});
-	
-	
+
 	$('input[type="radio"]').click(function(){
 		
 		if ($(this).attr("name")=="respecie") {
@@ -219,7 +217,6 @@ $(document).ready(function() {
 				muestraPorAca();
 			}
 		}
-	
 	});
 	
 	$('form#busca_arboles').submit(function(e) {
@@ -235,7 +232,6 @@ $(document).ready(function() {
 		e.preventDefault();
 		scrollAnimado(this.hash);
 	});
-	
 	
 	// Lista de Nombre científico
 	$('.selectpicker').selectpicker({
@@ -256,11 +252,9 @@ $(document).ready(function() {
 
 
 	$('input#user_sabores').click(function(){
-		
 		if ( $(this).prop('checked') == true ) {
 			$('#especie_id').selectpicker('val', 0);
 		}
-	
 	});
 
 	muestraBorrarOrigen();
@@ -285,7 +279,6 @@ $(document).ready(function() {
 			$('#mas-filtros').slideUp();
 			$(this).html('más filtros');
 		}
-		
 	})
 
 
