@@ -20,7 +20,7 @@ $pass   = "contraseña";
 require_once('funciones-db.php');
 
 $query = "
-	SELECT r.calle, r.calle_altura, r.altura, r.espacio_verde, e.nombre_cientifico, e.nombre_comun, e.follaje_tipo, e.origen, e.region_pampeana, e.region_nea, e.region_noa, e.region_cuyana, e.region_patagonica, e.procedencia_exotica, f.nombre, f.descripcion, f.url, f.facebook, f.twitter, COUNT(*) as registros
+	SELECT r.calle, r.calle_altura, r.altura, r.espacio_verde, r.especie_id, e.nombre_cientifico, e.nombre_comun, e.follaje_tipo, e.origen, e.region_pampeana, e.region_nea, e.region_noa, e.region_cuyana, e.region_patagonica, e.procedencia_exotica, f.nombre, f.descripcion, f.url, f.facebook, f.twitter, COUNT(*) as registros
 	FROM t_registros r
 	LEFT JOIN t_especies e ON r.especie_id = e.id
 	LEFT JOIN t_fuentes f ON r.fuente_id = f.id
@@ -32,6 +32,12 @@ $query = "
 //echo($query);
 $results			= GetRS($query);
 $row				= mysql_fetch_array($results);
+
+//// Parámetro para ver ID
+session_start();
+if ( !empty($_SESSION["ver_especie_id"]) ) {
+	$colaborador = $row['especie_id'] . " - ";
+}
 
 $nombre_cientifico	= $row['nombre_cientifico'];
 $nombre_comun		= $row['nombre_comun'];
@@ -69,7 +75,7 @@ if ( empty($espacio_verde) ) {
 echo "
 <div class=\"box\">
 	<a href='#' class='cerrar'> cerrar <i class=\"fa fa-times \"></i> </a>
-	<h1>$nombre_cientifico<br> <small>$nombre_comun</small></h1>
+	<h1>$colaborador $nombre_cientifico<br> <small>$nombre_comun</small></h1>
 	<p>$follaje_tipoje<br>
 	Origen: $origen";
 if (!empty($procedencia_exotica))
@@ -146,7 +152,7 @@ echo "
 	</div>
 
 	<div class=\"autor panel panel-default\">
-		<div class=\"panel-heading\"><h4> ¿Hay algún error?</h4></div>
+		<div class=\"panel-heading\"><h4> Este árbol</h4></div>
 		<div class=\"panel-body\">
 	
 		<p>

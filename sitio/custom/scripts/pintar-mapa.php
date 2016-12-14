@@ -232,7 +232,8 @@ $(document).ready(function(){
 			showCoverageOnHover: true,
 			zoomToBoundsOnClick: true,
 			spiderfyDistanceMultiplier: 2,
-			disableClusteringAtZoom: 18,
+			maxClusterRadius: <?php echo $radius/2 ?>,
+			disableClusteringAtZoom: <?php echo $disableClusteringAtZoom ?>,
 			polygonOptions: {
 				fillColor: '#5cba9d',
 				color: '#5cba9d',
@@ -303,16 +304,7 @@ $(document).ready(function(){
 		}
 	
 		<?php
-		/*
-		Cambiar el tamaño del ícono dependiendo del zoom
-		map.on('zoomend', function() {
-			if(map.getZoom() < 19){
-				$('.leaflet-marker-icon').css({ "width": "15px", "height": "17px", "marginLeft": "-8px", "marginTop": "-18px" });
-			}	 else {
-				$('.leaflet-marker-icon').css({ "width": "30px", "height": "34px","marginLeft": "-15px", "marginTop": "-31px" });
-			}
-		});
-		*/
+		
 	} // FIN búsqueda <> VACIA
 	
 	// Si la búsqueda incluye posición, marco el círculo con el marker de esa posición.
@@ -324,11 +316,12 @@ $(document).ready(function(){
 	?>
 
 	// Creo una variable dentro de window para poder llamar a map desde funciones externas.
-	// Por ejemplo las que tengo definidas en buscar.js.
 	window.map = map;
 	
 
 	//************ PUNTOS
+
+	
 
 	if (typeof arboles != 'undefined') {
 
@@ -336,18 +329,37 @@ $(document).ready(function(){
 			var ctx = params.canvas.getContext('2d');
 			ctx.clearRect(0, 0, params.canvas.width, params.canvas.height);
 			ctx.fillStyle   = "#4f7663";
-			// ctx.strokeStyle = "#ffffff";
-			for (var i = 0; i < data.length; i++) {
-				var d = data[i];
-				if (params.bounds.contains([d[0], d[1]])) {
-					dot = canvasOverlay._map.latLngToContainerPoint([d[0], d[1]]);
-					ctx.beginPath();
-					ctx.arc(dot.x, dot.y, 2.5, 0, Math.PI * 2);
-					ctx.fill();
-					//ctx.stroke();
-					ctx.closePath();
-				}
+			
+			var currentZoom = map.getZoom();
+			//alert(currentZoom);
+
+			if (currentZoom <= 12) var ctxradius = 0.5;
+			if (currentZoom == 13) var ctxradius = 1;
+			if (currentZoom == 14) var ctxradius = 1.5;
+			if (currentZoom == 15) var ctxradius = 2;
+			if (currentZoom == 16) var ctxradius = 3;
+			if (currentZoom == 17) var ctxradius = 4;
+
+			if (currentZoom <= 14) {
+				ctx.globalAlpha = 0.3;
+			} else {
+				ctx.globalAlpha = 0.5;
 			}
+
+			if (  currentZoom <= <?php echo $disableClusteringAtZoom - 1 ?>  ) {
+			
+				for (var i = 0; i < data.length; i++) {
+					var d = data[i];
+					if (params.bounds.contains([d[0], d[1]])) {
+						dot = canvasOverlay._map.latLngToContainerPoint([d[0], d[1]]);
+						ctx.beginPath();
+						//1.5 es el radio en píxeles del punto
+						ctx.arc(dot.x, dot.y, ctxradius, 0, Math.PI * 2);
+						ctx.fill();
+						ctx.closePath();
+					}
+				}
+			} // end if currentZoom
 		}
 
 		var data = arboles; // data loaded from data.js
@@ -355,7 +367,7 @@ $(document).ready(function(){
 			.drawing(drawingOnCanvas)
 			.addTo(map);
 		
-	} // end if
+	} // end if undefined
 	
 
 	// *********** FIN PUNTOS
