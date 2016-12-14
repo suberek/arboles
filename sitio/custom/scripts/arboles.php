@@ -1,21 +1,9 @@
 <?php
 
-//// Parámetro para ver ID
-session_start();
-
-if ( isset($_GET['ver_especie_id'])  ) {
-	$_SESSION['ver_especie_id']  = $_GET['ver_especie_id'];
-
-	if($_GET['ver_especie_id'] == 0) {
-		unset($_SESSION["ver_especie_id"]); 
-		session_destroy();
-	}
-}
-
 //// Defino el default
 $busqueda	= "";
 $radius		= "400"; // Radio de búsqueda en Metros
-$disableClusteringAtZoom = 18;
+$disableClusteringAtZoom = 19;
 $user_latlng_default = array("-34.60371794474704","-58.38157095015049"); // El Obelisco
 
 // Armo la consulta

@@ -52,9 +52,15 @@
 								$especie_URL = strtolower(str_replace(" ", "-", $especie_URL));
 								$especie_URL = "./" . $especie_URL;
 							} 
+
+							// ver especie ID
+							if ( isset($_SESSION["ver_especie_id"]) ) {
+								$voluntario_especie_id = $lista_ID . " - ";
+							}
+
 							echo '<option value="'.$lista_ID.'" '.$selected.' data-content="
 									<div class=\'pull-left\'>'
-										. $lista_NCIE .
+										. $voluntario_especie_id . $lista_NCIE .
 										'<small class=\'muted text-muted\'> '
 											. $lista_NCOM.
 										'</small>

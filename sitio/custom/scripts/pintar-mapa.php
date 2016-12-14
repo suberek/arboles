@@ -333,20 +333,21 @@ $(document).ready(function(){
 			var currentZoom = map.getZoom();
 			//alert(currentZoom);
 
-			if (currentZoom <= 12) var ctxradius = 0.5;
-			if (currentZoom == 13) var ctxradius = 1;
-			if (currentZoom == 14) var ctxradius = 1.5;
-			if (currentZoom == 15) var ctxradius = 2;
-			if (currentZoom == 16) var ctxradius = 3;
-			if (currentZoom == 17) var ctxradius = 4;
+			if (currentZoom <= <?php echo $disableClusteringAtZoom - 6; ?>) var ctxradius = 0.5;
+			if (currentZoom == <?php echo $disableClusteringAtZoom - 5; ?>) var ctxradius = 1;
+			if (currentZoom == <?php echo $disableClusteringAtZoom - 4; ?>) var ctxradius = 1.5;
+			if (currentZoom == <?php echo $disableClusteringAtZoom - 3; ?>) var ctxradius = 2;
+			if (currentZoom == <?php echo $disableClusteringAtZoom - 2; ?>) var ctxradius = 3;
+			if (currentZoom == <?php echo $disableClusteringAtZoom - 1; ?>) var ctxradius = 4;
+			if (currentZoom >= <?php echo $disableClusteringAtZoom; ?>) var ctxradius = 5;
 
-			if (currentZoom <= 14) {
+			if (currentZoom <= <?php echo $disableClusteringAtZoom - 4; ?>) {
 				ctx.globalAlpha = 0.3;
 			} else {
 				ctx.globalAlpha = 0.5;
 			}
 
-			if (  currentZoom <= <?php echo $disableClusteringAtZoom - 1 ?>  ) {
+			if (  currentZoom < <?php echo $disableClusteringAtZoom; ?>  ) {
 			
 				for (var i = 0; i < data.length; i++) {
 					var d = data[i];

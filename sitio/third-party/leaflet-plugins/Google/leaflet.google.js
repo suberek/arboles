@@ -18,7 +18,7 @@ var styler = [
 		"elementType": "all",
 		"stylers": [
 			{
-				"color": "#f2f2f2"
+				"color": "#f5f5f5"
 			}
 		]
 	},
@@ -78,7 +78,7 @@ var styler = [
 				"color": "#5cba9d"
 			},
 			{
-				"lightness": "78"
+				"lightness": "85"
 			}
 		]
 	},

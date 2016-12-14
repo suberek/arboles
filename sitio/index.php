@@ -72,6 +72,29 @@ echo "<div>QUERY: <br><br><pre>$censo_query</pre></div>";
 
 echo "<br><br><div>$_POST: <br><br><pre>". print_r($_POST) ."</pre></div>";
 */
+
+
+//// Parámetro para ver ID especie
+session_start();
+
+if ( isset($_GET['ver_especie_id'])  ) {
+	$_SESSION['ver_especie_id'] = $_GET['ver_especie_id'];
+
+	if($_GET['ver_especie_id'] == 0) {
+		unset($_SESSION["ver_especie_id"]); 
+		session_destroy();
+	}
+}
+
+if (isset($_SESSION['ver_especie_id'])) {
+	echo "<div id='consola'><pre>";
+	echo "¡Hola voluntario!<br>";
+	echo "ver especie id activado";
+	echo "</pre></div>";
+}
+/// fin ver parametro ID especie
+
+
 ?>
 
 <nav class="navbar navbar-default navbar-fixed-bottom visible-sm visible-xs">

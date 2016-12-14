@@ -35,8 +35,8 @@ $row				= mysql_fetch_array($results);
 
 //// Parámetro para ver ID
 session_start();
-if ( !empty($_SESSION["ver_especie_id"]) ) {
-	$colaborador = $row['especie_id'] . " - ";
+if ( isset($_SESSION["ver_especie_id"]) ) {
+	$voluntario_especie_id = $row['especie_id'] . " - ";
 }
 
 $nombre_cientifico	= $row['nombre_cientifico'];
@@ -75,7 +75,7 @@ if ( empty($espacio_verde) ) {
 echo "
 <div class=\"box\">
 	<a href='#' class='cerrar'> cerrar <i class=\"fa fa-times \"></i> </a>
-	<h1>$colaborador $nombre_cientifico<br> <small>$nombre_comun</small></h1>
+	<h1>$voluntario_especie_id $nombre_cientifico<br> <small>$nombre_comun</small></h1>
 	<p>$follaje_tipoje<br>
 	Origen: $origen";
 if (!empty($procedencia_exotica))
