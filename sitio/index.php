@@ -116,10 +116,12 @@ if (isset($_SESSION['ver_especie_id'])) {
 		<div class="col-md-4 col-lg-3" id="menu">
 			<nav>
 				<a class="title" href="<?php echo $APP_URL; ?>/">
-				<h1>Arbolado Urbano
-					<small>Buenos Aires</small></h1>
+					<h1>
+						Arbolado Urbano
+						<small>Buenos Aires</small>
+					</h1>
+					<img src="images/logo-152x152-blanco.png" alt="Arbolado Urbano">
 				</a>
-				
 				<? require_once 'custom/scripts/form.php'; ?>
 
 				

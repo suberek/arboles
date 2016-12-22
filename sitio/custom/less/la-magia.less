@@ -27,13 +27,30 @@ label {
 		a {
 			&.title {
 				text-decoration: none;
+				position: relative;
+				display: block;
+				height: 72px;
+				margin-bottom: 20px;
+
+				img {
+					position: absolute;
+					height: 72px;
+					z-index: 1;
+					left: -19px;
+					top: 11px;
+				}
+
 				h1 {
-					background-repeat: no-repeat;
+					position: absolute;
+					z-index: 2;
+
 					line-height: 1.1em;
 					font-weight: 400;
 					
-					background-image: url(../../images/logo-72x72-blanco.png);
-					background-position: -19px -5px;
+					//background-image: url(../../images/logo-72x72-blanco.png);
+					//background-position: -19px -5px;
+					//background-repeat: no-repeat;
+
 					font-size: 1.35em;
 					height: 63px;
 					margin-bottom: 0px;
@@ -48,6 +65,9 @@ label {
 					}
 				}
 				&:hover {
+					img {
+						opacity: 0.7;
+					}
 					h1 {
 						color: lighten(@verde, 20%);
 					}
@@ -352,14 +372,25 @@ label {
 
 	}
 
-	#menu nav a.title h1 {
-		background-image: url(../../images/logo-120x120-blanco.png);
-		background-position: -25px -9px;
-		font-size: 1.55em;
-		height: 106px;
+	#menu nav a.title {
+		height: 120px;
 		margin-bottom: 20px;
-		padding-top: 43px;
-		padding-left: 70px;
+
+		img {
+			height: 120px;
+			left: -25px;
+			top: 11px;
+		}
+
+		h1 {
+			//background-image: url(../../images/logo-120x120-blanco.png);
+			//background-position: -25px -9px;
+			font-size: 1.55em;
+			height: 106px;
+			//margin-bottom: 20px;
+			padding-top: 43px;
+			padding-left: 70px;
+		}
 	}
 	
 	form#busca_arboles h3 {
@@ -378,14 +409,26 @@ label {
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-	#menu nav a.title h1 {
-		background-image: url(../../images/logo-152x152-blanco.png);	
-		background-position: -36px -9px;
-		padding-top: 50px;
-		padding-left: 90px;
-		
-		font-size: 2.1em;
-		
-		height: 136px;
+
+	#menu nav a.title {
+		height: 152px;
+		margin-bottom: 20px;
+
+		img {
+			height: 152px;
+			left: -36px;
+			top: 11px;
+		}
+
+		h1 {
+			//background-image: url(../../images/logo-152x152-blanco.png);	
+			//background-position: -36px -9px;
+			padding-top: 50px;
+			padding-left: 90px;
+			
+			font-size: 2.1em;
+			
+			height: 136px;
+		}
 	}
 }
