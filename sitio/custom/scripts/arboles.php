@@ -2,7 +2,7 @@
 
 //// Defino el default
 $busqueda	= "";
-$radius		= "400"; // Radio de búsqueda en Metros
+$radius		= "300"; // Radio de búsqueda en Metros
 $disableClusteringAtZoom = 19;
 $user_latlng_default = array("-34.60371794474704","-58.38157095015049"); // El Obelisco
 
@@ -267,10 +267,9 @@ if ($busqueda !== '') {
 						* sin( radians( lat ) )
 					)
 				) AS distance
-			FROM t_registros r
+			FROM ($vw_arboles_actualizaciones) r
 			LEFT JOIN t_especies e ON r.especie_id = e.id
 			$parametro
-			GROUP BY arbol_id
 			HAVING distance < ($radius/1000);
 		";
 	} else if ($busqueda == "SQL custom") {
@@ -281,10 +280,11 @@ if ($busqueda !== '') {
 
 		$censo_query = "
 		SELECT arbol_id, lat, lng, especie_id, e.icono
-		FROM t_registros r
+		FROM ($vw_arboles_actualizaciones) r
 		INNER JOIN t_especies e ON r.especie_id=e.id
 		$parametro";
 	}
+
 
 	//echo $busqueda . " ---- ";
 	//echo $censo_query;

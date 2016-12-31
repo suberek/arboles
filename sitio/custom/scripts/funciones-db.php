@@ -82,14 +82,18 @@ function sanear_string($cadena)
 }
 
 // Consulta para obtener sólo arboles y NO registros
-$vw_arboles = "SELECT arbol_id, lat, lng, especie_id, icono, COUNT(*) as registros FROM t_registros LEFT JOIN t_especies ON t_registros.especie_id = t_especies.id GROUP BY arbol_id";
+$vw_arboles_actualizaciones = "SELECT t_registros.*, t_act.actualizaciones
+  FROM t_registros JOIN (
+    SELECT max(id) AS registro_id, count(1) AS actualizaciones
+    FROM t_registros GROUP BY arbol_id
+    ) AS t_act ON t_registros.id = t_act.registro_id";
 
 // árboles de CABA
-$vw_frutales_caba = "SELECT arbol_id, lat, lng, especie_id, e.icono, ( 6371 * acos ( cos ( radians( -34.613148810142455 ) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians( -58.44383239746093 ) ) + sin ( radians( -34.613148810142455 ) ) * sin( radians( lat ) ) ) ) AS distance FROM t_registros r LEFT JOIN t_especies ON r.especie_id = t_especies.id INNER JOIN t_especies e ON r.especie_id=e.id WHERE 1 AND ( e.comestible <> '' OR e.medicinal <> '' ) GROUP BY arbol_id HAVING distance < (10000/1000)";
+$vw_frutales_caba = "SELECT arbol_id, lat, lng, especie_id, e.icono, ( 6371 * acos ( cos ( radians( -34.613148810142455 ) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians( -58.44383239746093 ) ) + sin ( radians( -34.613148810142455 ) ) * sin( radians( lat ) ) ) ) AS distance FROM ($vw_arboles_actualizaciones) r LEFT JOIN t_especies ON r.especie_id = t_especies.id INNER JOIN t_especies e ON r.especie_id=e.id WHERE 1 AND ( e.comestible <> '' OR e.medicinal <> '' ) GROUP BY arbol_id HAVING distance < (10000/1000)";
 
 // árboles de usuarios
 $vw_colaborativo = "SELECT arbol_id, lat, lng, especie_id, e.icono
-    FROM t_registros r
+    FROM ($vw_arboles_actualizaciones) r
     LEFT JOIN t_especies e ON r.especie_id = e.id
     WHERE r.fuente_id >= 4
     GROUP BY arbol_id";

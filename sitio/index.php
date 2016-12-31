@@ -48,7 +48,7 @@ require_once('custom/scripts/funciones-db.php');
 <script src="http://maps.google.com/maps/api/js?v=3.23&amp;key=AIzaSyBdRozBWsT2EOXOdF-6BQapQC_2GGz0qZQ"></script>
 <script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/Google/leaflet.google.min.js"></script>
 <script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/MarkerCluster/leaflet.markercluster.js"></script>
-<script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/Locate/L.Control.Locate.min.js" ></script>
+<!-- script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/Locate/L.Control.Locate.min.js" ></script -->
 <script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/Geocoder/Control.Geocoder.min.js"></script>
 <script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/CanvasOverlay/L.CanvasOverlay.js"></script>
 <script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/EasyButton/easy-button.js"></script>
@@ -93,6 +93,27 @@ if (isset($_SESSION['ver_especie_id'])) {
 	echo "</pre></div>";
 }
 /// fin ver parametro ID especie
+
+
+//// Parámetro para ver DEBUG
+
+if ( isset($_GET['debug'])  ) {
+	$_SESSION['debug'] = $_GET['debug'];
+
+	if($_GET['debug'] == 0) {
+		unset($_SESSION["debug"]); 
+		session_destroy();
+	}
+}
+
+if (isset($_SESSION['debug'])) {
+	echo "<div id='consola'><pre>";
+	echo "MODO DEBUG<br>";
+	echo $busqueda . "<br>---<br>";
+	echo $censo_query;
+	echo "</pre></div>";
+}
+/// fin ver parametro DEBUG
 
 
 ?>

@@ -70,7 +70,7 @@ $(document).ready(function(){
 	var myButton = L.control({ position: 'topleft' });
 	
 	// localizame
-	L.control.locate({
+	/*L.control.locate({
 		locateOptions: {
 			maxZoom: 20
 		},
@@ -81,6 +81,7 @@ $(document).ready(function(){
 			outsideMapBoundsMsg: "Me parece que estás fuera de la ciudad. Si no es así, por favor mové el mapa manualmente." // default message for onLocationOutsideMapBounds
 		}
 	}).addTo(map);
+	*/
 
 	
 	function onLocationError(e) {

@@ -27,7 +27,7 @@
 						// Consulto especies y cantidad
 						$especies_query = "SELECT COUNT(i.especie_id) as CANT,
 						e.id as especie_id, e.nombre_cientifico, e.nombre_comun
-									FROM t_registros AS i, t_especies AS e
+									FROM ($vw_arboles_actualizaciones) i, t_especies AS e
 									WHERE i.especie_id = e.id
 									GROUP BY e.id
 									ORDER BY e.nombre_cientifico";
