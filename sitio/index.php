@@ -33,25 +33,28 @@ require_once('custom/scripts/funciones-db.php');
 <link rel="apple-touch-icon" sizes="152x152" href="<?php echo $APP_URL; ?>/images/logo-152x152.png" />
 
 <!-- jQuery -->
-<script src="<?php echo $APP_URL; ?>/third-party/jquery/jquery-2.1.1.min.js"></script>
-<!-- jQuery Plugins-->
-<script src="<?php echo $APP_URL; ?>/third-party/jquery/jquery-migrate-1.2.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
 <!-- Bootstrap -->
-<script src="<?php echo $APP_URL; ?>/third-party/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <!-- Bootstrap Plugins-->
 <script src="<?php echo $APP_URL; ?>/third-party/bootstrap-plugins/bootstrap-select.min.js"></script>
+
+<!-- Google Maps API -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdRozBWsT2EOXOdF-6BQapQC_2GGz0qZQ" async defer></script>
 
 <!-- Leaflet -->
 <script src="<?php echo $APP_URL; ?>/third-party/leaflet/leaflet.js"></script>
 <!-- Leaflet Plugins -->
-<script src="http://maps.google.com/maps/api/js?v=3.23&amp;key=AIzaSyBdRozBWsT2EOXOdF-6BQapQC_2GGz0qZQ"></script>
-<script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/Google/leaflet.google.min.js"></script>
 <script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/MarkerCluster/leaflet.markercluster.js"></script>
+<script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/Google/leaflet.google.min.js"></script>
 <!-- script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/Locate/L.Control.Locate.min.js" ></script -->
 <script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/Geocoder/Control.Geocoder.min.js"></script>
 <script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/CanvasOverlay/L.CanvasOverlay.js"></script>
 <script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/EasyButton/easy-button.js"></script>
+
+<!-- Font Awesome -->
+<script src="https://use.fontawesome.com/10e53b9570.js"></script>
 
 <!-- Custom -->
 <link href="<?php echo $APP_URL; ?>/custom/css/estilos.css" rel="stylesheet" type="text/css" media="all">
@@ -107,7 +110,7 @@ if ( isset($_GET['debug'])  ) {
 }
 
 if (isset($_SESSION['debug'])) {
-	echo "<div id='consola'><pre>";
+	echo "<div id='consola' class='debug'><pre>";
 	echo "MODO DEBUG<br>";
 	echo $busqueda . "<br>---<br>";
 	echo $censo_query;

@@ -29,13 +29,6 @@ $query = "
 ";
 
 
-//// Parámetro para ver ID
-session_start();
-if ( isset($_SESSION["ver_especie_id"]) ) {
-	$voluntario_especie_id = $row['especie_id'] . " - ";
-}
-
-
 //echo($query);
 $count = true;
 $results			= GetRS($query);
@@ -53,6 +46,7 @@ while ($row = mysql_fetch_array($results)  ) {
 	/////////////////  BLOQUE INICIO
 	if ($i == 1) {
 
+		$especie_id 		= $row['especie_id'];
 		$nombre_cientifico	= $row['nombre_cientifico'];
 		$nombre_comun		= $row['nombre_comun'];
 		$follaje_tipo		= $row['follaje_tipo'];
@@ -77,6 +71,12 @@ while ($row = mysql_fetch_array($results)  ) {
 			$ubicacion = $row['calle'] .' '. $calle_altura;
 		} else {
 			$ubicacion = 'Espacio Verde: '. $row['espacio_verde'];
+		}
+
+		//// Parámetro para ver ID
+		session_start();
+		if ( isset($_SESSION["ver_especie_id"]) ) {
+			$voluntario_especie_id = $especie_id . " - ";
 		}
 
 		echo "
@@ -161,8 +161,7 @@ while ($row = mysql_fetch_array($results)  ) {
 	$fuente_url			= $row['url'];
 	$fuente_fb			= $row['facebook'];
 	$fuente_tw			= $row['twitter'];
-	$fuente_fecha		= $row['fecha_creacion'];
-	$fuente_fecha = date_create($fuente_fecha);
+	$fuente_fecha = date_create($row['fecha_creacion']);
 	$fuente_fecha = date_format($fuente_fecha, 'd/m/Y');
 
 
