@@ -35,7 +35,7 @@
 						$especies_results	= GetRS($especies_query);
 						
 						// Armo el array con los individuos
-						while ($especies_row = mysql_fetch_array($especies_results)) {
+						while ($especies_row = mysqli_fetch_array($especies_results)) {
 							$i++;
 								
 							$lista_NCIE		= $especies_row['nombre_cientifico'];

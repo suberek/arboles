@@ -151,7 +151,7 @@ if (isset($_SESSION['debug'])) {
 				
 				<div class="row red">
 					<div class="col-xs-12 col-sm-3 col-md-6">
-						<a class="btn btn-default btn-small btn-block facebook" href="https://www.facebook.com/arboladourbanomapa" target="_blank"><i class="fa fw fa-facebook-official"></i> Seguinos</a></div>
+						<a class="btn btn-default btn-small btn-block facebook" href="https://www.facebook.com/arboladomapa" target="_blank"><i class="fa fw fa-facebook-official"></i> Seguinos</a></div>
 					<div class="col-xs-12 col-sm-3 col-md-6">
 						<button class="btn btn-default btn-small btn-block que-es-esto" data-toggle="modal" data-target="#que-es-esto">Sobre el mapa</button></div>	
 				</div>

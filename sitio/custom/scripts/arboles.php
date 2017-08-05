@@ -31,7 +31,7 @@ if ( isset($_GET['colaborativo'])  ) {
 		LIMIT 1;
 		";
 		$url_results			= GetRS($url_query);
-		$url_row				= mysql_fetch_array($url_results);
+		$url_row				= mysqli_fetch_array($url_results);
 		$especie_id_busqueda	= $url_row['id'];
 
 	} elseif
@@ -298,7 +298,7 @@ if ($busqueda !== '') {
 	// Armo el array con los árboles
 	if ($total_registros_censo >= 1) {
 		
-		while ($censo_row = mysql_fetch_array($censo_results)) {
+		while ($censo_row = mysqli_fetch_array($censo_results)) {
 			$i++;
 				
 			$arbol_id		= $censo_row['arbol_id'];

@@ -2,24 +2,46 @@
 function GetRS($sSql){
     global $debug, $count, $schema, $server, $user, $pass;
 	
-	$link = mysql_connect($server, $user, $pass);
-	if (!$link) { die('Could not connect: ' . mysql_error()); }
-	mysql_select_db($schema, $link) or die("No se pudo seleccionar la base de datos");
+	//$link = mysql_connect($server, $user, $pass);
+    $mysqli = new mysqli($server, $user, $pass, $schema);
+
+    /* verificar la conexión */
+    if (mysqli_connect_errno()) {
+        //printf("Falló la conexión: %s\n", mysqli_connect_error());
+        exit();
+    }
+
+	//if (!$link) { die('Could not connect: ' . mysql_error()); }
+	//mysql_select_db($schema, $link) or die("No se pudo seleccionar la base de datos");
 	
-	mysql_query("SET NAMES 'utf8'");
+	//mysql_query("SET NAMES 'utf8'");
+
+    if (!$mysqli->set_charset("utf8")) {
+        //printf("Error cargando el conjunto de caracteres utf8: %s\n", $mysqli->error);
+        exit();
+    } else {
+        //printf("Conjunto de caracteres actual: %s\n", $mysqli->character_set_name());
+    }
 	
     if ($debug == 1)
 		echo "<div style='padding:10px; border: 1px dashed #505050;'>". $sSql . "<br /> \r\n</div>";
 
-	$result = mysql_query($sSql);
+	//$result = mysql_query($sSql);
+
+    if ($result = $mysqli->query($sSql)) {
+        //printf("La selección devolvió %d filas.\n", $result->num_rows);
+
+        /* liberar el conjunto de resultados */
+        //$result->close();
+    }
 	
 	if ($count == true) {
 		global $total_registros;
-		$total_registros = mysql_affected_rows();
+		$total_registros = $mysqli->affected_rows;
 		//die("registros: ".$total_registros);
 	}
 	
-	if (!$result) { die('Invalid query: ' . mysql_error()); }
+	if (!$result) { die('Invalid query: ' . mysqli_error($mysqli)); }
 	return $result;
 }
 

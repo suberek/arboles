@@ -20,7 +20,7 @@ $pass   = "contraseña";
 require_once('funciones-db.php');
 
 $query = "
-	SELECT r.calle, r.calle_altura, r.altura, r.espacio_verde, r.especie_id, r.fecha_creacion, e.nombre_cientifico, e.nombre_comun, e.follaje_tipo, e.origen, e.region_pampeana, e.region_nea, e.region_noa, e.region_cuyana, e.region_patagonica, e.procedencia_exotica, f.nombre, f.descripcion, f.url, f.facebook, f.twitter
+	SELECT r.calle, r.calle_altura, r.altura, r.espacio_verde, r.especie_id, r.fecha_creacion, r.streetview, r.lat, r.lng, e.nombre_cientifico, e.nombre_comun, e.follaje_tipo, e.origen, e.region_pampeana, e.region_nea, e.region_noa, e.region_cuyana, e.region_patagonica, e.procedencia_exotica, f.nombre, f.descripcion, f.url, f.facebook, f.twitter
 	FROM t_registros r
 	LEFT JOIN t_especies e ON r.especie_id = e.id
 	LEFT JOIN t_fuentes f ON r.fuente_id = f.id
@@ -39,7 +39,7 @@ echo "
 	<div class=\"box\">
 		<a href='#' class='cerrar'> cerrar <i class=\"fa fa-times \"></i> </a>";
 
-while ($row = mysql_fetch_array($results)  ) {
+while ($row = mysqli_fetch_array($results)  ) {
 
 	$i++;
 
@@ -52,6 +52,10 @@ while ($row = mysql_fetch_array($results)  ) {
 		$follaje_tipo		= $row['follaje_tipo'];
 		$origen				= $row['origen'];
 
+		$streetview			= $row['streetview'];
+		$lat 				= $row['lat'];
+		$lng				= $row['lng'];
+
 		$region_pampeana	= $row['region_pampeana'];
 		$region_nea			= $row['region_nea'];
 		$region_noa			= $row['region_noa'];
@@ -60,7 +64,7 @@ while ($row = mysql_fetch_array($results)  ) {
 
 		$procedencia_exotica = $row['procedencia_exotica'];
 
-		$barrio				= $row['barrio_nombre'];
+		//$barrio				= $row['barrio_nombre'];
 		$altura				= $row['altura'];
 
 		$espacio_verde		= $row['espacio_verde'];
@@ -197,6 +201,24 @@ while ($row = mysql_fetch_array($results)  ) {
 			</div>
 		</div>";
 
+		echo "<div class=\"panel panel-default\">";
+
+		if (!empty($streetview)) {
+			echo "<iframe src=\"$streetview\" width=\"100%\" height=\"250\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>";
+		} else {
+			echo "<iframe
+			  width=\"100%\"
+			  height=\"250\"
+			  frameborder=\"0\" style=\"border:0\"
+			  src=\"https://www.google.com/maps/embed/v1/streetview
+				?key=AIzaSyDfB7v0px8LqJ3UXBP4yNZ374KQZVEAZ-Y
+				&location=".$lat.",".$lng."
+				&heading=210
+				&pitch=10
+				&fov=35\" allowfullscreen></iframe>";
+		}
+		echo "</div>";
+
 
 		echo "
 			<div class=\"autor panel panel-default\">
@@ -209,7 +231,7 @@ while ($row = mysql_fetch_array($results)  ) {
 					<a href='$APP_URL/$arbol_id' target='_blank'><i class='fa fa-external-link'></i></a>
 				</p>
 
-				<p>Podés usarlo para reportar datos incorrectos enviando el código con los comentarios que quieras hacer por medio de <a class='text-primary' href='https://www.facebook.com/arboladourbanomapa/' target='_blank'> <i class='fa fa-facebook-square'></i>/arboladourbanomapa</a><br> ¡Gracias!</p>
+				<p>Podés usarlo para reportar datos incorrectos enviando el código con los comentarios que quieras hacer por medio de <a class='text-primary' href='https://www.facebook.com/arboladomapa/' target='_blank'> <i class='fa fa-facebook-square'></i>/arboladomapa</a><br> ¡Gracias!</p>
 			</div>
 		</div>";
 	}
