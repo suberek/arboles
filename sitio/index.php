@@ -155,13 +155,6 @@ if (isset($_SESSION['debug'])) {
 						<button class="btn btn-default btn-small btn-block que-es-esto" data-toggle="modal" data-target="#que-es-esto">Sobre el mapa</button></div>	
 				</div>
 
-				<div id="ads" class="row">
-					<div class="col-xs-12">
-						<p>publicidad</p>
-						<a href="https://valeriamicou.com.ar/" target="_blank"><img src="<?php echo $APP_URL; ?>/ads/vale-micou.gif" alt="Valeria Micou - Paisajismo Urbano Sustentable"></a>
-					</div>
-				</div>
-
 				<div id="adsense" class="row">
 					<div class="col-xs-12">
 						<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
