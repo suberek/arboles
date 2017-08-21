@@ -40,15 +40,18 @@ require_once('custom/scripts/funciones-db.php');
 <!-- Bootstrap Plugins-->
 <script src="<?php echo $APP_URL; ?>/third-party/bootstrap-plugins/bootstrap-select.min.js"></script>
 
-<!-- Google Maps API -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdRozBWsT2EOXOdF-6BQapQC_2GGz0qZQ" async defer></script>
 
 <!-- Leaflet -->
-<script src="<?php echo $APP_URL; ?>/third-party/leaflet/leaflet.js"></script>
-<!-- Leaflet Plugins -->
-<script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/MarkerCluster/leaflet.markercluster.js"></script>
-<script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/Google/leaflet.google.min.js"></script>
-<!-- script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/Locate/L.Control.Locate.min.js" ></script -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js" integrity="sha512-WXoSHqw/t26DszhdMhOXOkI7qCiv5QWXhH9R7CgvgZMHz1ImlkVQ3uNsiQKu5wwbbxtPzFXd1hK4tzno2VqhpA==" crossorigin=""></script>
+
+
+<!-- Leaflet Plugins: Marker Clusters -->
+<link href="https://unpkg.com/leaflet.markercluster@1.0.6/dist/MarkerCluster.css" rel="stylesheet" type="text/css" media="all">
+<link href="https://unpkg.com/leaflet.markercluster@1.0.6/dist/MarkerCluster.Default.css" rel="stylesheet" type="text/css" media="all">
+<script src="https://unpkg.com/leaflet.markercluster@1.0.6/dist/leaflet.markercluster.js"></script>
+
+<!-- Leaflet Plugins: Otros -->
 <script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/Geocoder/Control.Geocoder.min.js"></script>
 <script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/CanvasOverlay/L.CanvasOverlay.js"></script>
 <script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/EasyButton/easy-button.js"></script>
@@ -58,10 +61,6 @@ require_once('custom/scripts/funciones-db.php');
 
 <!-- Custom -->
 <link href="<?php echo $APP_URL; ?>/custom/css/estilos.css" rel="stylesheet" type="text/css" media="all">
-
-<!--[if lt IE 9]>
-	<link rel="stylesheet" href="third-party/leaflet-plugins/Locate/L.Control.Locate.ie.min.css"/>
-<![endif]-->
 
 <?php require_once('custom/scripts/arboles.php'); ?>
 </head>

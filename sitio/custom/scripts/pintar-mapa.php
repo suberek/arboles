@@ -25,29 +25,14 @@ $(document).ready(function(){
 	})<?php  if ( ($busqueda == 'vacia') || ($total_registros_censo == 0) ) echo '.setView([-34.618, -58.44], 12)' ?>;
 			
 		
-	// MAPAS
-	
-	/*var stm = new L.TileLayer("http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png", {
-		minZoom: 2,
-		maxZoom: 20,
-		subdomains: 'abcd',
-		attribution: 'mapa <a href="http://stamen.com">Stamen Design</a> y <a href="http://openstreetmap.org">OpenStreetMap</a>'
-		});
-	var Nokia_normalDay = new L.TileLayer("http://{s}.maptile.lbs.ovi.com/maptiler/v2/maptile/newest/normal.day/{z}/{x}/{y}/256/png8?token={devID}&app_id={appID}", {
-		minZoom: 2,
-		maxZoom: 20,
-		subdomains: '1234',
-		devID: 'xyz',
-		appID: 'abc',
-		attribution: 'mapa <a href="http://developer.here.com">Nokia</a>'
-		});*/
-		
-	
-	var ggr = new L.Google('ROADMAP');
-	//var ggs = new L.Google('SATELLITE');
-	//var ggh = new L.Google('HYBRID');
-	//map.addControl(new L.Control.Layers({'Google Roadmap':ggr, 'Google Satélite':ggs, 'Google Hybrid':ggh, 'Stamen':stm, 'Nokia':Nokia_normalDay}));
-	map.addLayer(ggr);
+	// MAPA
+	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		maxZoom: 18,
+		attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+		id: 'mapbox.streets'
+	}).addTo(map);
 
 
 	// Agregar un árbol
@@ -68,21 +53,6 @@ $(document).ready(function(){
 
 	// Barra de botones
 	var myButton = L.control({ position: 'topleft' });
-	
-	// localizame
-	/*L.control.locate({
-		locateOptions: {
-			maxZoom: 20
-		},
-		keepCurrentZoomLevel: true,
-		strings: {
-			title: "Buscar dónde estoy",  // title of the locate control
-			popup: "Creo que estás por acá...",  // text to appear if user clicks on circle
-			outsideMapBoundsMsg: "Me parece que estás fuera de la ciudad. Si no es así, por favor mové el mapa manualmente." // default message for onLocationOutsideMapBounds
-		}
-	}).addTo(map);
-	*/
-
 	
 	function onLocationError(e) {
 		alert(e.message);
@@ -322,7 +292,6 @@ $(document).ready(function(){
 
 	//************ PUNTOS
 
-	
 
 	if (typeof arboles != 'undefined') {
 

@@ -1,7 +1,8 @@
 /*
+ UPDATE July 2016 , moved and updated to here: https://github.com/Sumbera/gLayers.Leaflet
+ 
  Generic  Canvas Overlay for leaflet, 
  Stanislav Sumbera, April , 2014
-
  - added userDrawFunc that is called when Canvas need to be redrawn
  - added few useful params fro userDrawFunc callback
   - fixed resize map bug
@@ -9,10 +10,15 @@
   
   License: MIT
 
+  Leaflet 1.0.0rc1 or later
+    
+
+    PATCH (C) 2015-16 Alexander Schoedon <schoedon@uni-potsdam.de>
+
 */
 
 
-L.CanvasOverlay = L.Class.extend({
+L.CanvasOverlay = L.Layer.extend({
 
     initialize: function (userDrawFunc, options) {
         this._userDrawFunc = userDrawFunc;
