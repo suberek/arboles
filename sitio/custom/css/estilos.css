@@ -5920,22 +5920,23 @@ label {
 .red a.facebook {
   margin-bottom: 1.2em;
 }
-#ads {
-  margin-bottom: 1.2em;
-}
-#ads img {
-  width: 100%;
-  max-width: 500px;
-}
-#ads p {
-  color: #ffffff;
-  font-size: 0.7em;
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.8);
-  display: inline-block;
-  padding: 0.05em 0.3em;
-  opacity: 0.5;
-}
+/* #ads {
+	//width: 100%;
+	margin-bottom: 1.2em;
+	img {
+		width: 100%;
+		max-width: 500px;
+	}
+	p {
+		color: @blanco;
+		font-size: 0.7em;
+		position: absolute;
+		background-color: rgba(0,0,0,0.8);
+		display: inline-block;
+		padding: 0.05em 0.3em;
+		opacity: 0.5;
+	}
+} */
 #adsense {
   margin-bottom: 1.5em;
 }
