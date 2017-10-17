@@ -4,7 +4,7 @@ $(document).ready(function(){
 	
 	<?php if ($total_registros_censo === 0) { ?>
 		$('#sin-resultados').modal('show');
-	<? } ?>
+	<?php } ?>
 	
 	// Límite del mapa puesto a Ciudad de Buenos Aires
 	//var southWest	= new L.LatLng(-35.052109 , -58.72673),

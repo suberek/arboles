@@ -8,11 +8,11 @@ if ((is_numeric($especie_id_busqueda)) && ($especie_id_busqueda > 0)) {
 
 ?>
   window.history.pushState("abolado","urbano", "<?php echo $especie_URL ; ?>");
-<?
+<?php
 } else if (  isset($_POST['user_sabores'])  ) {
 ?>
   window.history.pushState("abolado","urbano", "sabores");
-<?
+<?php
 }
 ?>
 

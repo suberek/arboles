@@ -145,7 +145,7 @@ if (isset($_SESSION['debug'])) {
 					</h1>
 					<img src="images/logo-152x152-blanco.png" alt="Arbolado Urbano">
 				</a>
-				<? require_once 'custom/scripts/form.php'; ?>
+				<?php require_once 'custom/scripts/form.php'; ?>
 
 				
 				<div class="row red">
