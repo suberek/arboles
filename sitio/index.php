@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('_db.php');
 /*
 Acá van los datos de conexión
@@ -77,7 +78,6 @@ echo "<br><br><div>$_POST: <br><br><pre>". print_r($_POST) ."</pre></div>";
 
 
 //// Parámetro para ver ID especie
-session_start();
 
 if ( isset($_GET['ver_especie_id'])  ) {
 	$_SESSION['ver_especie_id'] = $_GET['ver_especie_id'];
