@@ -144,4 +144,4 @@ if ($total_registros_censo === 0) { ?>
 	</div>
   </div>
 </div>
-<? } ?>
+<?php } ?>
