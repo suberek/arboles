@@ -6,7 +6,7 @@
 				<div class="radio"> 
 					<label>
 						<input type="radio" id="rdonde-ciudad" name="rdonde" value="0" <?php if (stripos($busqueda,'marker') == 0) echo 'checked' ?>  />
-						en toda la ciudad </label>
+						en todo el mapa</label>
 					<label>
 						<input type="radio" id="rdonde-mapa" name="rdonde" value="<? echo $user_latlng_default[0].' '.$user_latlng_default[1] ?>"  <?php if (stripos($busqueda,'marker') > 0) echo 'checked' ?>  />
 						marcar en el mapa </label>
