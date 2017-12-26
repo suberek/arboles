@@ -20,7 +20,7 @@ $pass   = "contraseña";
 require_once('funciones-db.php');
 
 $query = "
-	SELECT r.calle, r.calle_altura, r.altura, r.espacio_verde, r.especie_id, r.fecha_creacion, r.streetview, r.lat, r.lng, e.nombre_cientifico, e.nombre_comun, e.follaje_tipo, e.origen, e.region_pampeana, e.region_nea, e.region_noa, e.region_cuyana, e.region_patagonica, e.procedencia_exotica, f.nombre, f.descripcion, f.url, f.facebook, f.twitter
+	SELECT r.calle, r.calle_altura, r.altura, r.espacio_verde, r.especie_id, r.fecha_creacion, r.streetview, r.lat, r.lng, e.nombre_cientifico, e.nombre_comun, e.follaje_tipo, e.origen, e.region_pampeana, e.region_nea, e.region_noa, e.region_cuyana, e.region_patagonica, e.procedencia_exotica, f.nombre, f.descripcion, f.url, f.facebook, f.twitter, f.instagram
 	FROM t_registros r
 	LEFT JOIN t_especies e ON r.especie_id = e.id
 	LEFT JOIN t_fuentes f ON r.fuente_id = f.id
@@ -165,6 +165,7 @@ while ($row = mysqli_fetch_array($results)  ) {
 	$fuente_url			= $row['url'];
 	$fuente_fb			= $row['facebook'];
 	$fuente_tw			= $row['twitter'];
+	$fuente_ig			= $row['instagram'];
 	$fuente_fecha = date_create($row['fecha_creacion']);
 	$fuente_fecha = date_format($fuente_fecha, 'd/m/Y');
 
@@ -175,11 +176,14 @@ while ($row = mysqli_fetch_array($results)  ) {
 	if (!empty($fuente_fb))
 		$fuente_fb = "<a href=\"$fuente_fb\" target=\"_blank\"><span class=\"fa-stack fa-lg\"><i class=\"fa fa-circle fa-stack-2x\"></i><i class=\"fa fa-facebook fa-stack-1x fa-inverse\"></i></span></a>";
 
+	if (!empty($fuente_ig))
+		$fuente_ig = "<a href=\"$fuente_ig\" target=\"_blank\"><span class=\"fa-stack fa-lg\"><i class=\"fa fa-circle fa-stack-2x\"></i><i class=\"fa fa-instagram fa-stack-1x fa-inverse\"></i></span></a>";
+
 	if (!empty($fuente_tw))
 		$fuente_tw = "<a href=\"$fuente_tw\" target=\"_blank\"><span class=\"fa-stack fa-lg\"><i class=\"fa fa-circle fa-stack-2x\"></i><i class=\"fa fa-twitter fa-stack-1x fa-inverse\"></i></span></a>";
 
 	if (   (!empty($fuente_url)) || (!empty($fuente_fb)) || (!empty($fuente_tw))   )
-		$enlaces = $fuente_url . " " . $fuente_fb . " " . $fuente_tw;
+		$enlaces = $fuente_url . " " . $fuente_fb . " " . $fuente_ig . " " . $fuente_tw;
 
 	$txt_accion = ($i == $total_registros ? "aportado" : "editado");
 	
