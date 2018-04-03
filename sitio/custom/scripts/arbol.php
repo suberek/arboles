@@ -208,11 +208,11 @@ while ($row = mysqli_fetch_array($results)  ) {
 		echo "<div class=\"panel panel-default\">";
 
 		if (!empty($streetview)) {
-			echo "<iframe src=\"$streetview\" width=\"100%\" height=\"250\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>";
+			echo "<iframe src=\"$streetview\" width=\"100%\" height=\"400\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>";
 		} else {
 			echo "<iframe
 			  width=\"100%\"
-			  height=\"250\"
+			  height=\"400\"
 			  frameborder=\"0\" style=\"border:0\"
 			  src=\"https://www.google.com/maps/embed/v1/streetview
 				?key=AIzaSyDfB7v0px8LqJ3UXBP4yNZ374KQZVEAZ-Y

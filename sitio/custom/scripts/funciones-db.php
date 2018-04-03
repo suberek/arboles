@@ -118,7 +118,6 @@ $vw_frutales_caba = "SELECT arbol_id, lat, lng, especie_id, e.icono, ( 6371 * ac
 $vw_colaborativo = "SELECT arbol_id, lat, lng, especie_id, e.icono
     FROM ($vw_arboles_actualizaciones) r
     LEFT JOIN t_especies e ON r.especie_id = e.id
-    WHERE r.fuente_id >= 4
-    GROUP BY arbol_id";
+    WHERE r.fuente_id >= 4";
 
 ?>
