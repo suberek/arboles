@@ -5902,19 +5902,26 @@ label {
   font-size: 0.9em;
 }
 .red a.lcnrs,
+.red a.laguna-fvet,
 .red a.arn {
   display: block;
   margin-bottom: 2rem;
 }
 .red a.lcnrs img,
+.red a.laguna-fvet img,
 .red a.arn img {
-  height: 14rem;
+  width: 100%;
+  max-width: 14rem;
 }
 .red a.lcnrs:hover,
+.red a.laguna-fvet:hover,
 .red a.arn:hover {
   opacity: 0.7;
 }
 .red a.arn {
+  display: block;
+}
+.red a.laguna-fvet {
   display: block;
 }
 .red a.facebook {
