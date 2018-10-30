@@ -111,8 +111,6 @@ $vw_arboles_actualizaciones = "SELECT t_registros.*, t_act.actualizaciones
     ) AS t_act ON t_registros.id = t_act.registro_id
     WHERE removido IS NULL or removido = ''";
 
-// árboles de CABA
-$vw_frutales_caba = "SELECT arbol_id, lat, lng, especie_id, e.icono, ( 6371 * acos ( cos ( radians( -34.613148810142455 ) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians( -58.44383239746093 ) ) + sin ( radians( -34.613148810142455 ) ) * sin( radians( lat ) ) ) ) AS distance FROM ($vw_arboles_actualizaciones) r LEFT JOIN t_especies ON r.especie_id = t_especies.id INNER JOIN t_especies e ON r.especie_id=e.id WHERE 1 AND ( e.comestible <> '' OR e.medicinal <> '' ) GROUP BY arbol_id HAVING distance < (10000/1000)";
 
 // árboles de usuarios
 $vw_colaborativo = "SELECT arbol_id, lat, lng, especie_id, e.icono
