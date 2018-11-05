@@ -48,9 +48,9 @@ require_once('custom/scripts/funciones-db.php');
 
 
 <!-- Leaflet Plugins: Marker Clusters -->
-<link href="https://unpkg.com/leaflet.markercluster@1.0.6/dist/MarkerCluster.css" rel="stylesheet" type="text/css" media="all">
-<link href="https://unpkg.com/leaflet.markercluster@1.0.6/dist/MarkerCluster.Default.css" rel="stylesheet" type="text/css" media="all">
-<script src="https://unpkg.com/leaflet.markercluster@1.0.6/dist/leaflet.markercluster.js"></script>
+<link href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" rel="stylesheet" type="text/css" media="all">
+<link href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" rel="stylesheet" type="text/css" media="all">
+<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
 
 <!-- Leaflet Plugins: Otros -->
 <script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/Geocoder/Control.Geocoder.min.js"></script>
