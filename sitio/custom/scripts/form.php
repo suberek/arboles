@@ -25,9 +25,16 @@
 					<option value="0">Todas</option>
 					<?php
 						// Consulto especies y cantidad
-						$especies_query = "SELECT COUNT(i.especie_id) as CANT,
+						/*$especies_query = "SELECT COUNT(i.especie_id) as CANT,
 						e.id as especie_id, e.nombre_cientifico, e.nombre_comun
 									FROM ($vw_arboles_actualizaciones) i, t_especies AS e
+									WHERE i.especie_id = e.id
+									GROUP BY e.id
+									ORDER BY e.nombre_cientifico";*/
+
+						$especies_query = "SELECT
+									e.id as especie_id, e.nombre_cientifico, e.nombre_comun
+									FROM t_registros i, t_especies AS e
 									WHERE i.especie_id = e.id
 									GROUP BY e.id
 									ORDER BY e.nombre_cientifico";
@@ -58,6 +65,8 @@
 								$voluntario_especie_id = $lista_ID . " - ";
 							}
 
+							/* Echo con cantidades
+
 							echo '<option value="'.$lista_ID.'" '.$selected.' data-content="
 									<div class=\'pull-left\'>'
 										. $voluntario_especie_id . $lista_NCIE .
@@ -73,6 +82,22 @@
 								. $lista_NCIE .
 								'</option>
 							';
+
+							Echo sin cantidades
+							*/
+							echo '<option value="'.$lista_ID.'" '.$selected.' data-content="
+									<div>'
+										. $voluntario_especie_id . $lista_NCIE .
+										'<small class=\'muted text-muted\'> '
+											. $lista_NCOM.
+										'</small>
+									</div>
+								">'
+								. $lista_NCIE .
+								'</option>
+							';
+
+
 						}
 						
 					?>

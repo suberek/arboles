@@ -204,7 +204,7 @@ $(document).ready(function(){
 			zoomToBoundsOnClick: true,
 			spiderfyDistanceMultiplier: 2,
 			maxClusterRadius: 100, // en pixeles
-			//disableClusteringAtZoom: <?php echo $disableClusteringAtZoom ?>,
+			disableClusteringAtZoom: <?php echo $disableClusteringAtZoom ?>,
 			polygonOptions: {
 				fillColor: '#5cba9d',
 				color: '#5cba9d',
