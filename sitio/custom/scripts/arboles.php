@@ -2,7 +2,7 @@
 
 //// Defino el default
 $busqueda	= "";
-$radius		= "300"; // Radio de búsqueda en Metros
+$radius		= "1000"; // Radio de búsqueda en Metros
 $disableClusteringAtZoom = 21;
 $user_latlng_default = array("-34.60371794474704","-58.38157095015049"); // El Obelisco
 
