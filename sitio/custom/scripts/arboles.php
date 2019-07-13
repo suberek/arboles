@@ -47,7 +47,7 @@ if ( isset($_GET['colaborativo'])  ) {
 
 		if (  isset($_POST['especie_id'])  ) {
 			$especie_id_busqueda	= $_POST['especie_id'];
-		} else {
+		} elseif (  isset($_GET['especie_id'])  ) {
 			$especie_id_busqueda	= $_GET['especie_id'];
 		}
 
@@ -55,19 +55,19 @@ if ( isset($_GET['colaborativo'])  ) {
 
 	if (  isset($_POST['user_latlng'])  ) {
 		$user_latlng			= $_POST['user_latlng']; // "lat lng"
-	} else {
+	} elseif (  isset($_GET['user_latlng'])  ) {
 		$user_latlng			= $_GET['user_latlng'];
 	}
 
 	if (  isset($_POST['user_sabores'])  ) {
 		$user_sabores		= $_POST['user_sabores'];
-	} else {
+	} elseif (  isset($_GET['user_sabores'])  ) {
 		$user_sabores		= $_GET['user_sabores'];
 	}
 
 	if (  isset($_POST['user_origen'])  ) {
 		$user_origen		= $_POST['user_origen'];
-	} else {
+	} elseif (  isset($_GET['user_origen'])  ) {
 		$user_origen		= $_GET['user_origen'];
 	}
 
@@ -77,7 +77,7 @@ if ( isset($_GET['colaborativo'])  ) {
 
 	if (  isset($_POST['borigen_pampeana'])  ) {
 		$borigen_pampeana	= $_POST['borigen_pampeana'];
-	} else {
+	} elseif (  isset($_GET['borigen_pampeana'])  ) {
 		$borigen_pampeana	= $_GET['borigen_pampeana'];
 	}
 
@@ -87,7 +87,7 @@ if ( isset($_GET['colaborativo'])  ) {
 
 	if (  isset($_POST['borigen_nea'])  ) {
 		$borigen_nea	= $_POST['borigen_nea'];
-	} else {
+	} elseif (  isset($_GET['borigen_nea'])  ) {
 		$borigen_nea	= $_GET['borigen_nea'];
 	}
 
@@ -97,7 +97,7 @@ if ( isset($_GET['colaborativo'])  ) {
 
 	if (  isset($_POST['borigen_noa'])  ) {
 		$borigen_noa	= $_POST['borigen_noa'];
-	} else {
+	} elseif (  isset($_GET['borigen_noa'])  ) {
 		$borigen_noa	= $_GET['borigen_noa'];
 	}
 
@@ -107,7 +107,7 @@ if ( isset($_GET['colaborativo'])  ) {
 
 	if (  isset($_POST['borigen_cuyana'])  ) {
 		$borigen_cuyana	= $_POST['borigen_cuyana'];
-	} else {
+	} elseif (  isset($_GET['borigen_cuyana'])  ) {
 		$borigen_cuyana	= $_GET['borigen_cuyana'];
 	}
 
@@ -117,7 +117,7 @@ if ( isset($_GET['colaborativo'])  ) {
 
 	if (  isset($_POST['borigen_patagonica'])  ) {
 		$borigen_patagonica	= $_POST['borigen_patagonica'];
-	} else {
+	} elseif (  isset($_GET['borigen_patagonica'])  ) {
 		$borigen_patagonica	= $_GET['borigen_patagonica'];
 	}
 
@@ -126,7 +126,7 @@ if ( isset($_GET['colaborativo'])  ) {
 	}
 
 	/**************************************************************** PARÁMETRO ESPECIE */
-	if ((is_numeric($especie_id_busqueda)) && ($especie_id_busqueda > 0)) {
+	if ( ( isset($especie_id_busqueda) ) && (is_numeric($especie_id_busqueda)) && ($especie_id_busqueda > 0)) {
 		$parametro .= " AND r.especie_id=$especie_id_busqueda";
 
 		$busqueda	.= "especie una /";
@@ -163,7 +163,7 @@ if ( isset($_GET['colaborativo'])  ) {
 
 	/**************************************************************** JOIN con especies */
 	if (
-			(  (is_numeric($user_sabores)) && ($user_sabores > 0)  ) 
+			(  (isset($user_sabores)) && (is_numeric($user_sabores)) && ($user_sabores > 0)  ) 
 			||
 			( $user_origen !== 'Todas' )
 			||
@@ -188,7 +188,7 @@ if ( isset($_GET['colaborativo'])  ) {
 	}
 
 	/**************************************************************** PARÁMETRO SABORES */
-	if ((is_numeric($user_sabores)) && ($user_sabores > 0)) {
+	if ( (isset($user_sabores)) && (is_numeric($user_sabores)) && ($user_sabores > 0)) {
 		//$parametro .= " AND ( especie_id = 23 )";
 		$parametro .= " AND ( e.comestible <> '' OR e.medicinal <> '' )";
 
@@ -198,7 +198,7 @@ if ( isset($_GET['colaborativo'])  ) {
 
 	/**************************************************************** PARÁMETRO ORIGEN */
 	if ( $user_origen !== 'Todas' ) {
-		$parametro .= " AND ( e.origen = '".$user_origen."'  )";
+		$parametro .= " AND ( e.origen LIKE '%".$user_origen."%'  )";
 
 		$busqueda .= " con origen ".$user_origen." /";
 	}
@@ -239,7 +239,7 @@ if ( isset($_GET['colaborativo'])  ) {
 	}
 
 	/**************************************************************** PARÁMETRO INDIVIDUO */
-	if ( $arbol_id > 0 ) {
+	if ( isset($arbol_id) && ($arbol_id > 0) ) {
 		$parametro .= " AND ( r.arbol_id = " . $arbol_id . "  )";
 
 		$busqueda = " un arbol";
@@ -299,7 +299,11 @@ if ($busqueda !== '') {
 	if ($total_registros_censo >= 1) {
 		
 		while ($censo_row = mysqli_fetch_array($censo_results)) {
-			$i++;
+			if ( isset($i) ) {
+				$i++;
+			} else {
+				$i = 1;
+			}
 				
 			$arbol_id		= $censo_row['arbol_id'];
 			$lat			= $censo_row['lat'];
@@ -307,9 +311,14 @@ if ($busqueda !== '') {
 			$icono			= $censo_row['icono'];
 			if (empty($icono)) $icono = "marker.png";
 			
-			if ($i > 1) $arboles_para_mapa .= ',';
+			//if ($i > 1) $arboles_para_mapa .= ',';
 			
-			$arboles_para_mapa .= '[' . $lat . ',' . $lng . ',' . $arbol_id. ',"' . $icono . '"]';
+			if (isset($arboles_para_mapa)) {
+				$arboles_para_mapa .= ',[' . $lat . ',' . $lng . ',' . $arbol_id. ',"' . $icono . '"]';
+			} else {
+				$arboles_para_mapa = '[' . $lat . ',' . $lng . ',' . $arbol_id. ',"' . $icono . '"]';
+			}
+			
 		}
 	}
 	

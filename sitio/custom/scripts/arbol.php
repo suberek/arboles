@@ -45,7 +45,12 @@ echo "
 
 while ($row = mysqli_fetch_array($results)  ) {
 
-	$i++;
+	if ( isset($i) ) {
+		$i++;	
+	} else {
+		$i = 1;
+	}
+	
 
 	/////////////////  BLOQUE INICIO
 	if ($i == 1) {
@@ -89,7 +94,9 @@ while ($row = mysqli_fetch_array($results)  ) {
 		}
 
 		echo "
-			<h1>$voluntario_especie_id $nombre_cientifico<br> <small>$nombre_comun</small></h1>
+			<h1>";
+		if ( isset($voluntario_especie_id)  ) echo $voluntario_especie_id;
+		echo "$nombre_cientifico<br> <small>$nombre_comun</small></h1>
 			<p>$tipo<br>
 			Familia: $familia<br>
 			Origen: $origen";
@@ -198,9 +205,8 @@ while ($row = mysqli_fetch_array($results)  ) {
 		<p><small>
 		$fuente_fecha <br>
 		". nl2br($fuente_desc) . " 
-		</small></p>
-		$enlaces
-	";
+		</small></p>";
+	if (isset($enlaces)) echo $enlaces;
 
 	// FIN BLOQUE QUE SE REPITE
 

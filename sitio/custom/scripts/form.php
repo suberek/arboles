@@ -11,7 +11,8 @@
 						<input type="radio" id="rdonde-mapa" name="rdonde" value="<? echo $user_latlng_default[0].' '.$user_latlng_default[1] ?>"  <?php if (stripos($busqueda,'marker') > 0) echo 'checked' ?>  />
 						marcar en el mapa </label>
 				</div>
-				<input type="hidden" value="<?php echo($user_lat.' '.$user_lng); ?>" name="user_latlng" id="user_latlng">
+				<input type="hidden" value="<?php if ( ( isset($user_lat) ) && ( isset($user_lng) ) 
+				 ) { echo($user_lat.' '.$user_lng); }  ?>" name="user_latlng" id="user_latlng">
 			</div>
 		</div>
 
@@ -43,12 +44,17 @@
 						
 						// Armo el array con los individuos
 						while ($especies_row = mysqli_fetch_array($especies_results)) {
-							$i++;
+							if ( isset($i) ) {
+								$i++;
+							} else {
+								$i = 1;
+							}
+							
 								
 							$lista_NCIE		= $especies_row['nombre_cientifico'];
 							$lista_NCOM		= $especies_row['nombre_comun'];
 							$lista_ID		= $especies_row['especie_id'];
-							$lista_CANT		= $especies_row['CANT'];
+							//$lista_CANT		= $especies_row['CANT'];
 							
 							$selected = '';
 							if ($especie_id_busqueda===$lista_ID) {
@@ -86,8 +92,13 @@
 							Echo sin cantidades
 							*/
 							echo '<option value="'.$lista_ID.'" '.$selected.' data-content="
-									<div>'
-										. $voluntario_especie_id . $lista_NCIE .
+									<div>';
+
+									if( isset($voluntario_especie_id) ) {
+										echo $voluntario_especie_id;
+									}
+
+							echo $lista_NCIE .
 										'<small class=\'muted text-muted\'> '
 											. $lista_NCOM.
 										'</small>
@@ -111,7 +122,7 @@
 		<div class="col-xs-12 <?php echo $masFiltrosCss; ?>" id="mas-filtros">
 			<div class="form-group">
 				<h3>Sabores</h3>
-				<label for="user_sabores"> <input type="checkbox" name="user_sabores" id="user_sabores" value="1"  <?php if ($user_sabores > 0) echo 'checked' ?> > frutales y medicinales <!-- <span class="label label-warning">beta</span> --></label>
+				<label for="user_sabores"> <input type="checkbox" name="user_sabores" id="user_sabores" value="1"  <?php if ( (isset($user_sabores)) && ($user_sabores > 0))  echo 'checked' ?> > frutales y medicinales <!-- <span class="label label-warning">beta</span> --></label>
 			</div>
 
 			<div class="form-group">

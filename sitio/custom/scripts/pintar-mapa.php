@@ -2,7 +2,7 @@
 
 $(document).ready(function(){
 	
-	<?php if ($total_registros_censo === 0) { ?>
+	<?php if (  (isset($total_registros_censo))  &&  ($total_registros_censo === 0)  ) { ?>
 		$('#sin-resultados').modal('show');
 	<?php } ?>
 	
@@ -21,8 +21,16 @@ $(document).ready(function(){
 	{
 		maxZoom: 21,
 		minZoom: 5
-		//maxBounds: bounds
-	})<?php  if ( ($busqueda == 'vacia') || ($total_registros_censo == 0) ) echo '.setView([-34.618, -58.44], 12)' ?>;
+	})<?php 
+		if (
+				( empty($busqueda) ) ||  (
+					(  isset($total_registros_censo)  )  &&  (  $total_registros_censo == 0  ) 
+				)
+			)
+		{
+			echo '.setView([-34.618, -58.44], 12)';
+		}
+	?>;
 			
 		
 	// MAPA
@@ -174,7 +182,10 @@ $(document).ready(function(){
 	
 	<?php
 
-	if (($busqueda !== 'vacia') && ($total_registros_censo >= 1) ) {
+	if (
+			( !empty($busqueda) )  &&  ( (isset($total_registros_censo))  &&  ($total_registros_censo >= 1) ) 
+		) 
+	{
 
 	?>
 	

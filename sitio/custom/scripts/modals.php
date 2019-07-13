@@ -125,7 +125,7 @@
 </div>
 
 <?php
-if ($total_registros_censo === 0) { ?>
+if (  (isset($total_registros_censo))  &&  ($total_registros_censo === 0)  ) { ?>
 <!-- Modal: sin resultados -->
 <div class="modal fade" id="sin-resultados" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-sm">

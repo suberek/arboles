@@ -1,4 +1,20 @@
 <?php
+
+	/*if (  isset($_POST['user_latlng'])  ) {
+		$user_latlng			= $_POST['user_latlng']; // "lat lng"
+	} elseif (  isset($_GET['user_latlng'])  ) {
+		$user_latlng			= $_GET['user_latlng'];
+	}
+
+
+	if (  !empty($user_latlng) && (strlen($user_latlng) > 1 )  )
+	{
+		echo $user_latlng;  
+		die();
+	}*/
+
+
+
 session_start();
 require_once('_db.php');
 /*
@@ -69,12 +85,12 @@ require_once('custom/scripts/funciones-db.php');
 <body>
 
 <?php
-/*
-echo("CONSULTA: <br>" . $busqueda);
-echo "<div>QUERY: <br><br><pre>$censo_query</pre></div>";
 
-echo "<br><br><div>$_POST: <br><br><pre>". print_r($_POST) ."</pre></div>";
-*/
+/*echo("CONSULTA: <br>" . $busqueda);
+if ( isset($censo_query)) {
+	echo "<div>QUERY: <br><br><pre>$censo_query</pre></div>";	
+}*/
+//echo "<br><br><div>POST : <br><br><pre>". print_r($_POST) ."</pre></div>";
 
 
 //// Parámetro para ver ID especie
@@ -112,11 +128,10 @@ if (isset($_SESSION['debug'])) {
 	echo "<div id='consola' class='debug'><pre>";
 	echo "MODO DEBUG<br>";
 	echo $busqueda . "<br>---<br>";
-	echo $censo_query;
+	if (isset($censo_query)) echo $censo_query;
 	echo "</pre></div>";
 }
 /// fin ver parametro DEBUG
-
 
 ?>
 
