@@ -227,7 +227,7 @@ while ($row = mysqli_fetch_array($results)  ) {
 			  height=\"400\"
 			  frameborder=\"0\" style=\"border:0\"
 			  src=\"https://www.google.com/maps/embed/v1/streetview
-				?key=AIzaSyDfB7v0px8LqJ3UXBP4yNZ374KQZVEAZ-Y
+				?key=".$googleAPI."
 				&location=".$lat.",".$lng."
 				&heading=210
 				&pitch=10
