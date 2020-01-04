@@ -26,6 +26,7 @@
 				<p class="text-center"><a href="https://github.com/suberek/arboles" target="_blank"><i class="fa fw fa-github"></i> Ver en GitHub</a></p>
 				<p class="text-center"><a href="https://www.facebook.com/arboladomapa" target="_blank"><i class="fa fw fa-facebook"></i> Seguir en Facebook</a></p>
 				<p class="text-center"><a href="https://www.instagram.com/arbolado.urbano/" target="_blank"><i class="fa fw fa-instagram"></i> Seguir en Instagram</a></p>
+				<p class="text-center"><a href="https://twitter.com/arboladomapa" target="_blank"><i class="fa fw fa-twitter"></i> Seguir en Twitter</a></p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Gracias por leer</button>
