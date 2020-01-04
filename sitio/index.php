@@ -77,7 +77,7 @@ require_once('custom/scripts/funciones-db.php');
 <script src="https://use.fontawesome.com/10e53b9570.js"></script>
 
 <!-- Custom -->
-<link href="<?php echo $APP_URL; ?>/custom/css/estilos3.css" rel="stylesheet" type="text/css" media="all">
+<link href="<?php echo $APP_URL; ?>/custom/css/estilos.css" rel="stylesheet" type="text/css" media="all">
 
 <?php require_once('custom/scripts/arboles.php'); ?>
 </head>
