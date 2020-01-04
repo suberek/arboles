@@ -255,6 +255,9 @@ label {
 
 #mapa {
 	margin-bottom: 50px;
+	height: 500px !important;
+	bottom: -200px;
+	//height: 100% !important;
 }
 
 #agregar-arbol {
@@ -346,13 +349,15 @@ label {
 	margin-bottom: 1.5em;
 }
 
-/* Small devices (tablets, 768px and up) */
+/**************
+
+ Small devices (tablets, 768px and up) 
+
+**************/
 @media (min-width: 768px) { 
-	/*.red .facebook {
-		margin-top: 5rem;
-	}*/
 	#mapa {
-		height: 600px;
+		//height: 100%;
+		bottom: 0;
 	}
 
 	.red .este-mapa {
@@ -370,10 +375,11 @@ label {
 	}
 	
 	#mapa {
-		margin: 0;
 		position: fixed;
+		margin: 0;
 		right: 0;
-		height: 100%;
+		top: 0;
+		height: 100% !important;
 	}
 
 	#menu nav {
@@ -388,7 +394,6 @@ label {
 			width: 100%;
 			max-height: 300px;
 		}
-
 	}
 
 	#menu nav a.title {
@@ -402,11 +407,8 @@ label {
 		}
 
 		h1 {
-			//background-image: url(../../images/logo-120x120-blanco.png);
-			//background-position: -25px -9px;
 			font-size: 1.55em;
 			height: 106px;
-			//margin-bottom: 20px;
 			padding-top: 43px;
 			padding-left: 70px;
 		}
@@ -414,11 +416,7 @@ label {
 	
 	form#busca_arboles h3 {
 		font-size: 1.7em;
-	}	
-
-	/*.red .facebook {
-		margin-top: 0;
-	}*/
+	}
 
 	.red .este-mapa {
 		margin-top: 0;
@@ -440,8 +438,6 @@ label {
 		}
 
 		h1 {
-			//background-image: url(../../images/logo-152x152-blanco.png);	
-			//background-position: -36px -9px;
 			padding-top: 50px;
 			padding-left: 90px;
 			
