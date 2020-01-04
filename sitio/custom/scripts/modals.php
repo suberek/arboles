@@ -6,8 +6,8 @@
 				<h4>¿Qué es esto?</h4>
 			 </div>
 			<div class="modal-body">
-				<p>Este mapa surge gracias a la publicación de una información increíble: el <a href="http://data.buenosaires.gob.ar/dataset/censo-arbolado" target="_blank">censo del arbolado de la Ciudad de Buenos Aires.</a></p>
-				<p>El objetivo principal de este sitio es simplificar el acceso a esta valiosa información esperando que colabore con el conocimiento y el cuidado de nuestro arbolado urbano.</p>
+				<p>Este mapa surge gracias a la publicación de una información increíble: el <a href="https://data.buenosaires.gob.ar/dataset?q=arbolado" target="_blank">censo del arbolado de la Ciudad de Buenos Aires</a> realizado durante el año 2011 y publicado en 2013.</p>
+				<p>El objetivo inicial fue simplificar el acceso a esta valiosa información pero rápidamente se expandió para incluir otros censos. Hoy en día el sitio ayuda a visualizar la posición de miles de árboles ubicados en varias ciudades. La mayor cantidad se concetra en la Ciudad de Buenos Aires, pero también existen registros en Rosario, La Plata y Montevideo entre otras esperando que colabore con el conocimiento y el cuidado de nuestro arbolado urbano.</p>
 					
 				<a href="http://martinsimonyan.com.ar/arboles-de-buenos-aires/" class="btn btn-default" target="_blank">Más información <i class="fa fa-caret-right fa-sm"></i></a>
 			<hr>
@@ -17,14 +17,15 @@
 					<ul>
 						<li>permitir seleccionar el radio de búsqueda</li>
 						<li>buscar por barrio o comuna</li>
-						<li>incorporar otras fuentes y no tan sólo las del censo del gobierno</li>
 						<li>incorporar a otras ciudades</li>
+						<li>incorporar otras fuentes y no tan sólo las del censo del GCBA y poder buscar filtrando por fuente</li>
 						<li>permitir interacción con usuarios para que carguen ejemplares, fotografías y reporten errores</li>
 					</ul>
 				
 				<hr>
 				<p class="text-center"><a href="https://github.com/suberek/arboles" target="_blank"><i class="fa fw fa-github"></i> Ver en GitHub</a></p>
-				<p class="text-center"><a href="https://www.facebook.com/arboladomapa" target="_blank"><i class="fa fw fa-facebook"></i> Seguir en facebook</a></p>
+				<p class="text-center"><a href="https://www.facebook.com/arboladomapa" target="_blank"><i class="fa fw fa-facebook"></i> Seguir en Facebook</a></p>
+				<p class="text-center"><a href="https://www.instagram.com/arbolado.urbano/" target="_blank"><i class="fa fw fa-instagram"></i> Seguir en Instagram</a></p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Gracias por leer</button>
