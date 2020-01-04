@@ -267,6 +267,7 @@ $(document).ready(function() {
 	$('#borrar_origen').click(function(e){
 		e.preventDefault();
 		$('#rorigen-nativas, #rorigen-exoticas').prop('checked', false);
+		$(this).addClass('hidden');
 	});
 
 
@@ -274,10 +275,10 @@ $(document).ready(function() {
 		//alert($('#mas-filtros').css('display'));
 		if  (  $('#mas-filtros').css('display') == 'none' ) {
 			$('#mas-filtros').slideDown();
-			$(this).html('menos filtros');
+			$(this).html('ocultar filtros');
 		}else{
 			$('#mas-filtros').slideUp();
-			$(this).html('más filtros');
+			$(this).html('mostrar filtros');
 		}
 	})
 

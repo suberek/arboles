@@ -155,7 +155,7 @@
 
 
 		<div class="col-xs-12" id="mas-filtros-btn-container">
-			<a href="#" class="btn btn-default mas-filtros"><?php if ($masFiltrosCss == 'oculto') { echo "más"; }else{ echo "menos";} ?> filtros</a>
+			<a href="#" class="btn btn-default mas-filtros"><?php if ($masFiltrosCss == 'oculto') { echo "mostrar"; }else{ echo "ocultar";} ?> filtros</a>
 		</div>
 	</div>
 
