@@ -9,7 +9,7 @@
 				<p>Este mapa surge gracias a la publicación de una información increíble: el <a href="https://data.buenosaires.gob.ar/dataset?q=arbolado" target="_blank">censo del arbolado de la Ciudad de Buenos Aires</a> realizado durante el año 2011 y publicado en 2013.</p>
 				<p>El objetivo inicial fue simplificar el acceso a esta valiosa información pero rápidamente se expandió para incluir otros censos. Hoy en día el sitio ayuda a visualizar la posición de miles de árboles ubicados en varias ciudades. La mayor cantidad se concetra en la Ciudad de Buenos Aires, pero también existen registros en Rosario, La Plata y Montevideo entre otras esperando que colabore con el conocimiento y el cuidado de nuestro arbolado urbano.</p>
 					
-				<a href="http://martinsimonyan.com.ar/arboles-de-buenos-aires/" class="btn btn-default" target="_blank">Más información <i class="fa fa-caret-right fa-sm"></i></a>
+				<a href="http://martinsimonyan.com/arboles-de-buenos-aires/" class="btn btn-default" target="_blank">Más información <i class="fa fa-caret-right fa-sm"></i></a>
 			<hr>
 				<h5>¿Con qué seguir?</h5>
 

@@ -92,7 +92,7 @@ $(document).ready(function(){
 	
 
 	// COPY
-	map.attributionControl.addAttribution('Proyecto: <a href="http://martinsimonyan.com.ar/arboles-de-buenos-aires/">Martín Simonyan</a>');
+	map.attributionControl.addAttribution('Proyecto: <a href="http://martinsimonyan.com/arboles-de-buenos-aires/">Martín Simonyan</a>');
 	
 	map.on('click', function(e) {
 		onLocationFound(e,'','');
