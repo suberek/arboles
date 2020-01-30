@@ -1,12 +1,14 @@
 <form action="<?php echo $APP_URL; ?>/index.php#mapa" method="post" id="busca_arboles">
 	<div class="row">
+
+
 		<div class="col-xs-12">
 			<div class="form-group">
 				<h3>¿Dónde?</h3>
 				<div class="radio"> 
 					<label>
 						<input type="radio" id="rdonde-ciudad" name="rdonde" value="0" <?php if (stripos($busqueda,'marker') == 0) echo 'checked' ?>  />
-						en todo el mapa</label>
+						por localidad</label>
 					<label>
 						<input type="radio" id="rdonde-mapa" name="rdonde" value="<? echo $user_latlng_default[0].' '.$user_latlng_default[1] ?>"  <?php if (stripos($busqueda,'marker') > 0) echo 'checked' ?>  />
 						marcar en el mapa </label>
@@ -18,6 +20,73 @@
 
 		<div class="col-xs-12">
 
+			<div class="form-group">
+				
+				<select class="form-control input-lg selectpicker" data-style="btn-default" name="localidad" id="localidad" data-live-search="true">
+					
+					<?php					
+						//$localidad_busqueda = "CABA";
+						$localidad_query = "SELECT
+									DISTINCT localidad
+									FROM t_registros
+									ORDER BY localidad";
+						
+						$localidad_results	= GetRS($localidad_query);
+						
+						// Armo el array con las localidades
+						while ($localidad_row = mysqli_fetch_array($localidad_results)) {
+							if ( isset($i) ) {
+								$i++;
+							} else {
+								$i = 1;
+							}
+							
+								
+							$lista_LOCL		= $localidad_row['localidad'];
+
+							$selected = '';
+							if ($localidad_busqueda===$lista_LOCL) {
+								$selected = ' selected';
+
+								// Me guardo la variable para cambiar la URL
+								$localidad_URL = sanear_string($lista_LOCL);
+								$localidad_URL = strtolower(str_replace(" ", "-", $localidad_URL));
+								$localidad_URL = "./" . $localidad_URL;
+							} 
+
+							// ver localidad
+							if ( isset($_SESSION["ver_localidad"]) ) {
+								$voluntario_localidad = $lista_LOCL . " - ";
+							}
+
+							
+							echo '<option value="'.$lista_LOCL.'" '.$selected.' data-content="
+									<div>';
+
+									if( isset($voluntario_localidad) ) {
+										echo $voluntario_localidad;
+									}
+
+							echo $lista_LOCL .
+										'
+									</div>
+								">'
+								. $lista_LOCL .
+								'</option>
+							';
+
+
+						}
+						
+					?>
+				</select>
+				
+			</div>
+
+		</div>
+
+
+		<div class="col-xs-12">
 			<div class="form-group">
 				<h3 class="pull-left">¿Qué especie? <a href="#" id="borrar_especie_id"><i class="fa fa-trash-o"></i></a></h3>
 				
@@ -112,39 +181,26 @@
 						}
 						
 					?>
-				</select>
-				
+				</select>				
 			</div>
-
-		</div>
-							
-
-		<div class="col-xs-12 <?php echo $masFiltrosCss; ?>" id="mas-filtros">
+		
 			<div class="form-group">
 				<h3>Sabores</h3>
 				<label for="user_sabores"> <input type="checkbox" name="user_sabores" id="user_sabores" value="1"  <?php if ( (isset($user_sabores)) && ($user_sabores > 0))  echo 'checked' ?> > frutales y medicinales <!-- <span class="label label-warning">beta</span> --></label>
 			</div>
 
 			<div class="form-group">
-				<h3>Origen</h3>
-				<div class="radio"> 
-					<label>
-						<input type="radio" id="rorigen-nativas" name="user_origen" value="Nativo/Autóctono" <?php if (stripos($busqueda,'Nativo') > 0) echo 'checked' ?>  />
-						nativas </label>
-					<label>
-						<input type="radio" id="rorigen-exoticas" name="user_origen" value="Exótico" <?php if (stripos($busqueda,'Exótico') > 0) echo 'checked' ?>  />
-						exóticas </label>
-					<a href="#" id="borrar_origen"><i class="fa fa-trash-o"></i></a>
-				</div>
+
+				<h3>Región de origen</h3>
 
 				<div class="regiones">
 					
-					<h3>Región de origen</h3>
+					
 					<label for="borigen_pampeana"> <input type="checkbox" name="borigen_pampeana" id="borigen_pampeana" value="1"  <?php if ($borigen_pampeana > 0) echo 'checked' ?> > Pampeana </label>
 
-					<label for="borigen_nea"> <input type="checkbox" name="borigen_nea" id="borigen_nea" value="1"  <?php if ($borigen_nea > 0) echo 'checked' ?> > NEA </label>
+					<label for="borigen_nea"> <input type="checkbox" name="borigen_nea" id="borigen_nea" value="1"  <?php if ($borigen_nea > 0) echo 'checked' ?> > Noreste argentino </label>
 
-					<label for="borigen_noa"> <input type="checkbox" name="borigen_noa" id="borigen_noa" value="1"  <?php if ($borigen_noa > 0) echo 'checked' ?> > NOA </label>
+					<label for="borigen_noa"> <input type="checkbox" name="borigen_noa" id="borigen_noa" value="1"  <?php if ($borigen_noa > 0) echo 'checked' ?> > Noroeste argentino </label>
 
 					<label for="borigen_cuyana"> <input type="checkbox" name="borigen_cuyana" id="borigen_cuyana" value="1"  <?php if ($borigen_cuyana > 0) echo 'checked' ?> > Cuyana </label>
 
@@ -154,9 +210,7 @@
 		</div>
 
 
-		<div class="col-xs-12" id="mas-filtros-btn-container">
-			<a href="#" class="btn btn-default mas-filtros"><?php if ($masFiltrosCss == 'oculto') { echo "mostrar"; }else{ echo "ocultar";} ?> filtros</a>
-		</div>
+		
 	</div>
 
 	<input name="Buscar" type="submit" value="Buscar" class="btn btn-primary btn-lg btn-block">

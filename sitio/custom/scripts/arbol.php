@@ -20,7 +20,7 @@ $pass   = "contraseña";
 require_once('funciones-db.php');
 
 $query = "
-	SELECT r.calle, r.calle_altura, r.altura, r.espacio_verde, r.especie_id, r.fecha_creacion, r.streetview, r.lat, r.lng, e.nombre_cientifico, e.nombre_comun, (
+	SELECT r.calle, r.calle_altura, r.localidad, r.altura, r.espacio_verde, r.especie_id, r.fecha_creacion, r.streetview, r.lat, r.lng, e.nombre_cientifico, e.nombre_comun, (
 			SELECT tipo FROM t_tipos WHERE id = e.tipo_id
 		) AS tipo, (
 			SELECT familia FROM t_familias WHERE id = e.familia_id
@@ -81,10 +81,11 @@ while ($row = mysqli_fetch_array($results)  ) {
 
 		if ( empty($espacio_verde) ) {
 			$calle_altura			= $row['calle_altura'];
+			$localidad				= $row['localidad'];
 			if ($calle_altura == 0) $calle_altura = "s/n" ;
-			$ubicacion = $row['calle'] .' '. $calle_altura;
+			$ubicacion = $row['calle'] .' '. $calle_altura .', '.$localidad	;
 		} else {
-			$ubicacion = 'Espacio Verde: '. $row['espacio_verde'];
+			$ubicacion = 'Espacio Verde: '. $row['espacio_verde'].', '.$localidad	;
 		}
 
 		//// Parámetro para ver ID

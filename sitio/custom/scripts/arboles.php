@@ -6,250 +6,260 @@ $radius		= "1000"; // Radio de búsqueda en Metros
 $disableClusteringAtZoom = 21;
 $user_latlng_default = array("-34.60371794474704","-58.38157095015049"); // El Obelisco
 
-// Armo la consulta
 
-if ( isset($_GET['colaborativo'])  ) {
-	
-	$busqueda = "SQL custom";
+/*
+// filtro por la especie dicha en la url 
+$especie_url
 
-} else  {
+// filtro por id de la especie
+$especie_id_busqueda
 
-	// Parámetros de búsqueda
-	$parametro	= "WHERE 1";
+// filtro por el id del árbol
+$arbol_id
+
+// filtro por la localidad seleccionada en el form
+$localidad
+
+// filtro por la posición marcada en el mapa
+$user_latlng
+
+// filtro por especies comestibles o medicinales
+$user_sabores
+
+*/
+
+// fitro por alguna de las siguientes regiones
+$borigen_pampeana = 0;
+$borigen_nea = 0;
+$borigen_noa = 0;
+$borigen_cuyana = 0;
+$borigen_patagonica = 0;
 
 
-	//// Veo qué vino en el form o en la URL
 
-	if (  isset($_GET['especie_url'])  ) {
+// Reviso si hay consulta.
 
-		$especie_url = $_GET['especie_url'];
+if (!empty($_POST) || !empty($_GET)) {
 
-		$url_query	= "
-		SELECT id
-		FROM t_especies
-		WHERE url = '$especie_url'
-		LIMIT 1;
-		";
-		$url_results			= GetRS($url_query);
-		$url_row				= mysqli_fetch_array($url_results);
-		$especie_id_busqueda	= $url_row['id'];
+	// Armo la consulta
 
-	} elseif
-		(
-			( isset($_GET['arbol_id']) ) && 
-			( is_numeric($_GET['arbol_id']) ) &&
-			( $_GET['arbol_id'] > 0 )
-		)
-	{
-		$arbol_id = $_GET['arbol_id'];
+	if ( isset($_GET['colaborativo'])  ) {
+		
+		$busqueda = "SQL custom";
 
-	} else {
+	} else  {
 
-		if (  isset($_POST['especie_id'])  ) {
-			$especie_id_busqueda	= $_POST['especie_id'];
-		} elseif (  isset($_GET['especie_id'])  ) {
-			$especie_id_busqueda	= $_GET['especie_id'];
+		// Parámetros de búsqueda
+		$parametro	= "WHERE 1";
+
+		//// Veo qué vino en el form o en la URL
+
+		if (  isset($_GET['especie_url'])  ) {
+
+			$especie_url = $_GET['especie_url'];
+
+			$url_query	= "
+			SELECT id
+			FROM t_especies
+			WHERE url = '$especie_url'
+			LIMIT 1;
+			";
+			$url_results			= GetRS($url_query);
+			$url_row				= mysqli_fetch_array($url_results);
+			$especie_id_busqueda	= $url_row['id'];
+
+		} elseif
+			(
+				( isset($_GET['arbol_id']) ) && 
+				( is_numeric($_GET['arbol_id']) ) &&
+				( $_GET['arbol_id'] > 0 )
+			)
+		{
+			$arbol_id = $_GET['arbol_id'];
+
+		} else {
+
+			if (  isset($_POST['especie_id'])  ) {
+				$especie_id_busqueda	= $_POST['especie_id'];
+			} elseif (  isset($_GET['especie_id'])  ) {
+				$especie_id_busqueda	= $_GET['especie_id'];
+			}
+
 		}
 
-	}
+		if (  isset($_POST['user_latlng'])  ) {
+			$user_latlng			= $_POST['user_latlng']; // "lat lng"
+		} elseif (  isset($_GET['user_latlng'])  ) {
+			$user_latlng			= $_GET['user_latlng'];
+		}
 
-	if (  isset($_POST['user_latlng'])  ) {
-		$user_latlng			= $_POST['user_latlng']; // "lat lng"
-	} elseif (  isset($_GET['user_latlng'])  ) {
-		$user_latlng			= $_GET['user_latlng'];
-	}
+		if (  isset($_POST['user_sabores'])  ) {
+			$user_sabores		= $_POST['user_sabores'];
+		} elseif (  isset($_GET['user_sabores'])  ) {
+			$user_sabores		= $_GET['user_sabores'];
+		}
 
-	if (  isset($_POST['user_sabores'])  ) {
-		$user_sabores		= $_POST['user_sabores'];
-	} elseif (  isset($_GET['user_sabores'])  ) {
-		$user_sabores		= $_GET['user_sabores'];
-	}
+		if (  isset($_POST['localidad'])  ) {
+			$localidad	= $_POST['localidad'];
+		} elseif (  isset($_GET['localidad'])  ) {
+			$localidad	= $_GET['localidad'];
+		}
 
-	if (  isset($_POST['user_origen'])  ) {
-		$user_origen		= $_POST['user_origen'];
-	} elseif (  isset($_GET['user_origen'])  ) {
-		$user_origen		= $_GET['user_origen'];
-	}
-
-	if (empty($user_origen)) {
-		$user_origen = 'Todas';
-	}
-
-	if (  isset($_POST['borigen_pampeana'])  ) {
-		$borigen_pampeana	= $_POST['borigen_pampeana'];
-	} elseif (  isset($_GET['borigen_pampeana'])  ) {
-		$borigen_pampeana	= $_GET['borigen_pampeana'];
-	}
-
-	if (empty($borigen_pampeana)) {
-		$borigen_pampeana = 0;
-	}
-
-	if (  isset($_POST['borigen_nea'])  ) {
-		$borigen_nea	= $_POST['borigen_nea'];
-	} elseif (  isset($_GET['borigen_nea'])  ) {
-		$borigen_nea	= $_GET['borigen_nea'];
-	}
-
-	if (empty($borigen_nea)) {
-		$borigen_nea = 0;
-	}
-
-	if (  isset($_POST['borigen_noa'])  ) {
-		$borigen_noa	= $_POST['borigen_noa'];
-	} elseif (  isset($_GET['borigen_noa'])  ) {
-		$borigen_noa	= $_GET['borigen_noa'];
-	}
-
-	if (empty($borigen_noa)) {
-		$borigen_noa = 0;
-	}
-
-	if (  isset($_POST['borigen_cuyana'])  ) {
-		$borigen_cuyana	= $_POST['borigen_cuyana'];
-	} elseif (  isset($_GET['borigen_cuyana'])  ) {
-		$borigen_cuyana	= $_GET['borigen_cuyana'];
-	}
-
-	if (empty($borigen_cuyana)) {
-		$borigen_cuyana = 0;
-	}
-
-	if (  isset($_POST['borigen_patagonica'])  ) {
-		$borigen_patagonica	= $_POST['borigen_patagonica'];
-	} elseif (  isset($_GET['borigen_patagonica'])  ) {
-		$borigen_patagonica	= $_GET['borigen_patagonica'];
-	}
-
-	if (empty($borigen_patagonica)) {
-		$borigen_patagonica = 0;
-	}
-
-	/**************************************************************** PARÁMETRO ESPECIE */
-	if ( ( isset($especie_id_busqueda) ) && (is_numeric($especie_id_busqueda)) && ($especie_id_busqueda > 0)) {
-		$parametro .= " AND r.especie_id=$especie_id_busqueda";
-
-		$busqueda	.= "especie una /";
 		
-	} else {
-		$especie_id_busqueda = '';
-		$busqueda	.= "especie todas /";
-	}
+		if (  isset($_POST['borigen_pampeana'])  ) {
+			$borigen_pampeana	= $_POST['borigen_pampeana'];
+		} elseif (  isset($_GET['borigen_pampeana'])  ) {
+			$borigen_pampeana	= $_GET['borigen_pampeana'];
+		}
 
-	/**************************************************************** PARÁMETRO ZONA */
-	if (  !empty($user_latlng) && (strlen($user_latlng) > 1 )  ) {
-		
-		//echo(strlen($user_latlng). "<br>");
-		//echo("me está llegando esto:" . $user_latlng);
-		
-		// Parsear lat y lng
-		$arr_user_latlng = explode(" ", $user_latlng);
-		$user_lat = $arr_user_latlng[0];
-		$user_lng = $arr_user_latlng[1];
-		
-		if (  is_numeric($user_lat) && is_numeric($user_lng)  ) {
-			$busqueda	.= " donde marker /";
+		if (empty($borigen_pampeana)) {
+			$borigen_pampeana = 0;
+		}
+
+		if (  isset($_POST['borigen_nea'])  ) {
+			$borigen_nea	= $_POST['borigen_nea'];
+		} elseif (  isset($_GET['borigen_nea'])  ) {
+			$borigen_nea	= $_GET['borigen_nea'];
+		}
+
+		if (empty($borigen_nea)) {
+			$borigen_nea = 0;
+		}
+
+		if (  isset($_POST['borigen_noa'])  ) {
+			$borigen_noa	= $_POST['borigen_noa'];
+		} elseif (  isset($_GET['borigen_noa'])  ) {
+			$borigen_noa	= $_GET['borigen_noa'];
+		}
+
+		if (empty($borigen_noa)) {
+			$borigen_noa = 0;
+		}
+
+		if (  isset($_POST['borigen_cuyana'])  ) {
+			$borigen_cuyana	= $_POST['borigen_cuyana'];
+		} elseif (  isset($_GET['borigen_cuyana'])  ) {
+			$borigen_cuyana	= $_GET['borigen_cuyana'];
+		}
+
+		if (empty($borigen_cuyana)) {
+			$borigen_cuyana = 0;
+		}
+
+		if (  isset($_POST['borigen_patagonica'])  ) {
+			$borigen_patagonica	= $_POST['borigen_patagonica'];
+		} elseif (  isset($_GET['borigen_patagonica'])  ) {
+			$borigen_patagonica	= $_GET['borigen_patagonica'];
+		}
+
+		if (empty($borigen_patagonica)) {
+			$borigen_patagonica = 0;
+		}
+
+		/**************************************************************** PARÁMETRO ESPECIE */
+		if ( ( isset($especie_id_busqueda) ) && (is_numeric($especie_id_busqueda)) && ($especie_id_busqueda > 0)) {
+			$parametro .= " AND r.especie_id=$especie_id_busqueda";
+
+			$busqueda	.= "especie una /";
+			
+		} else {
+			$especie_id_busqueda = '';
+			$busqueda	.= "especie todas /";
+		}
+
+		/**************************************************************** PARÁMETRO ZONA */
+		if (  !empty($user_latlng) && (strlen($user_latlng) > 1 )  ) {
+			
+			//echo(strlen($user_latlng). "<br>");
+			//echo("me está llegando esto:" . $user_latlng);
+			
+			// Parsear lat y lng
+			$arr_user_latlng = explode(" ", $user_latlng);
+			$user_lat = $arr_user_latlng[0];
+			$user_lng = $arr_user_latlng[1];
+			
+			if (  is_numeric($user_lat) && is_numeric($user_lng)  ) {
+				$busqueda	.= " donde marker /";
+			} else {
+				$busqueda	.= " donde ciudad /";
+			}
+			
 		} else {
 			$busqueda	.= " donde ciudad /";
 		}
+
+		if ($busqueda == "especie todas / donde ciudad /") {
+			$busqueda = "sql todo";
+		}
+
+		/**************************************************************** JOIN con especies */
 		
-	} else {
-		$busqueda	.= " donde ciudad /";
+
+		/**************************************************************** PARÁMETRO SABORES */
+		if ( (isset($user_sabores)) && (is_numeric($user_sabores)) && ($user_sabores > 0)) {
+			//$parametro .= " AND ( especie_id = 23 )";
+			$parametro .= " AND ( e.comestible <> '' OR e.medicinal <> '' )";
+
+			$busqueda .= " con sabores /";
+		}
+
+
+		/**************************************************************** PARÁMETRO R Pampeana */
+		if ( $borigen_pampeana > 0 ) {
+			$parametro .= " AND ( e.region_pampeana = ".$borigen_pampeana."  )";
+
+			$busqueda .= " con pampeana ".$borigen_pampeana." /";
+		}
+
+		/**************************************************************** PARÁMETRO R Pampeana */
+		if ( $borigen_nea > 0 ) {
+			$parametro .= " AND ( e.region_nea = ".$borigen_nea."  )";
+
+			$busqueda .= " con nea ".$borigen_nea." /";
+		}
+
+		/**************************************************************** PARÁMETRO R Pampeana */
+		if ( $borigen_noa > 0 ) {
+			$parametro .= " AND ( e.region_noa = ".$borigen_noa."  )";
+
+			$busqueda .= " con noa ".$borigen_noa." /";
+		}
+
+		/**************************************************************** PARÁMETRO R Pampeana */
+		if ( $borigen_cuyana > 0 ) {
+			$parametro .= " AND ( e.region_cuyana = ".$borigen_cuyana."  )";
+
+			$busqueda .= " con cuyana ".$borigen_cuyana." /";
+		}
+
+		/**************************************************************** PARÁMETRO R Pampeana */
+		if ( $borigen_patagonica > 0 ) {
+			$parametro .= " AND ( e.region_patagonica = ".$borigen_patagonica."  )";
+
+			$busqueda .= " con patagonica ".$borigen_patagonica." /";
+		}
+
+		/**************************************************************** PARÁMETRO INDIVIDUO */
+		if ( isset($arbol_id) && ($arbol_id > 0) ) {
+			$parametro .= " AND ( r.arbol_id = " . $arbol_id . "  )";
+
+			$busqueda = " un arbol";
+		}
+
+		/**************************************************************** PARÁMETRO LOCALIDAD */
+		if ( isset($localidad) ) {
+			$parametro .= " AND ( localidad LIKE '" . $localidad . "'  )";
+
+			$busqueda = " una localidad";
+		}
 	}
 
-	if ($busqueda == "especie todas / donde ciudad /") {
-		$busqueda = "";
-	}
-
-	/**************************************************************** JOIN con especies */
-	if (
-			(  (isset($user_sabores)) && (is_numeric($user_sabores)) && ($user_sabores > 0)  ) 
-			||
-			( $user_origen !== 'Todas' )
-			||
-			( $borigen_pampeana > 0 )
-			||
-			( $borigen_nea > 0 )
-			||
-			( $borigen_noa > 0 )
-			||
-			( $borigen_cuyana > 0 )
-			||
-			( $borigen_patagonica > 0 )
-
-	   )
-	{
-		$masFiltrosCss = "visible";
-
-	} else {
-
-		$masFiltrosCss = "oculto";
-
-	}
-
-	/**************************************************************** PARÁMETRO SABORES */
-	if ( (isset($user_sabores)) && (is_numeric($user_sabores)) && ($user_sabores > 0)) {
-		//$parametro .= " AND ( especie_id = 23 )";
-		$parametro .= " AND ( e.comestible <> '' OR e.medicinal <> '' )";
-
-		$busqueda .= " con sabores /";
-	}
-
-
-	/**************************************************************** PARÁMETRO ORIGEN */
-	if ( $user_origen !== 'Todas' ) {
-		$parametro .= " AND ( e.origen LIKE '%".$user_origen."%'  )";
-
-		$busqueda .= " con origen ".$user_origen." /";
-	}
-
-	/**************************************************************** PARÁMETRO R Pampeana */
-	if ( $borigen_pampeana > 0 ) {
-		$parametro .= " AND ( e.region_pampeana = ".$borigen_pampeana."  )";
-
-		$busqueda .= " con pampeana ".$borigen_pampeana." /";
-	}
-
-	/**************************************************************** PARÁMETRO R Pampeana */
-	if ( $borigen_nea > 0 ) {
-		$parametro .= " AND ( e.region_nea = ".$borigen_nea."  )";
-
-		$busqueda .= " con nea ".$borigen_nea." /";
-	}
-
-	/**************************************************************** PARÁMETRO R Pampeana */
-	if ( $borigen_noa > 0 ) {
-		$parametro .= " AND ( e.region_noa = ".$borigen_noa."  )";
-
-		$busqueda .= " con noa ".$borigen_noa." /";
-	}
-
-	/**************************************************************** PARÁMETRO R Pampeana */
-	if ( $borigen_cuyana > 0 ) {
-		$parametro .= " AND ( e.region_cuyana = ".$borigen_cuyana."  )";
-
-		$busqueda .= " con cuyana ".$borigen_cuyana." /";
-	}
-
-	/**************************************************************** PARÁMETRO R Pampeana */
-	if ( $borigen_patagonica > 0 ) {
-		$parametro .= " AND ( e.region_patagonica = ".$borigen_patagonica."  )";
-
-		$busqueda .= " con patagonica ".$borigen_patagonica." /";
-	}
-
-	/**************************************************************** PARÁMETRO INDIVIDUO */
-	if ( isset($arbol_id) && ($arbol_id > 0) ) {
-		$parametro .= " AND ( r.arbol_id = " . $arbol_id . "  )";
-
-		$busqueda = " un arbol";
-	}
 }
 
 
 
-
 if ($busqueda !== '') {
+
 
 	/********************************************************  Hago LA consulta que trae el resultado de la búsqueda */
 	
@@ -276,8 +286,11 @@ if ($busqueda !== '') {
 
 		$censo_query = $vw_colaborativo;
 
-	} else {
+	} else if ($busqueda == "SQL todo") {
 
+		$censo_query = $vw_arboles_actualizaciones;
+
+	} else {
 		$censo_query = "
 		SELECT arbol_id, lat, lng, especie_id, e.icono
 		FROM ($vw_arboles_actualizaciones) r
@@ -285,10 +298,12 @@ if ($busqueda !== '') {
 		$parametro";
 	}
 
-
-	//echo $busqueda . " ---- ";
-	//echo $censo_query;
-	//die();
+	
+	/*
+	echo $busqueda . " ---- ";
+	echo $censo_query;
+	die();
+	*/
 
 
 	$count = true;
@@ -297,6 +312,9 @@ if ($busqueda !== '') {
 	
 	// Armo el array con los árboles
 	if ($total_registros_censo >= 1) {
+
+		//echo $total_registros_censo;
+		//die();
 		
 		while ($censo_row = mysqli_fetch_array($censo_results)) {
 			if ( isset($i) ) {

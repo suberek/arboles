@@ -20,7 +20,7 @@ $(document).ready(function(){
 	var map = L.map('mapa',
 	{
 		maxZoom: 21,
-		minZoom: 5
+		minZoom: 2
 	})<?php 
 		if (
 				( empty($busqueda) ) ||  (
@@ -193,8 +193,8 @@ $(document).ready(function(){
 		var progressBar = $('.progress-bar');
 
 		function updateProgressBar(processed, total, elapsed, layersArray) {
-			if (elapsed > 1000) {
-				// Si toma más de un segundo en cargar, se muestra la barra de progreso.
+			if (elapsed > 500) {
+				// Si toma más de un 0,5 segundos en cargar, se muestra la barra de progreso.
 				$('.progress').slideDown('slow');
 				porcentaje = Math.round(processed/total*100) + '%';
 				$('.progress-bar').css({'width':porcentaje})

@@ -103,13 +103,15 @@ function validarBusqueda(){
 	
 	// Para seguir, se tiene que dar alguna de las 3 condiciones:
 	// hay alguna especie -ó- se marcó un sitio -ó- se filtra por frutales)
-	if( (especieTodasCheck == false) || (dondeCiudadCheck == false) || (especieSaboresCheck == true) ) {
+	//if( (especieTodasCheck == false) || (dondeCiudadCheck == false) || (especieSaboresCheck == true) ) {
 		var especieOdondeOsaboresCheckOK = true;
-	}
+	//}
 	
 	/********************************************************************* Diagnóstico */
 	
-	if (especieOdondeOsaboresCheckOK == true) {
+	hacerSubmit = true;
+
+	/*if (especieOdondeOsaboresCheckOK == true) {
 		
 		if (especieUnaCheck == true) {
 			if (especieUnaCheckOK == true) {
@@ -139,7 +141,7 @@ function validarBusqueda(){
 		// no pueden ser todas las especies y toda la ciudad
 		$('#respecies-todas-modal').modal('show');
 		hacerSubmit = false;
-	}
+	}*/
 	
 	/********************************************************************* Propuesta */
 	
@@ -156,25 +158,20 @@ function validarBusqueda(){
 	}
 }
 
+function muestraBorrarLocalidad(){
+	if( $('#localidad').val() == 0 ) {
+		$('#borrar_localidad').addClass('hidden');
+	}else{
+		$('#borrar_localidad').removeClass('hidden');
+	}
+}
+
 function muestraBorrarIdEspecie(){
 	if( $('#especie_id').val() == 0 ) {
 		$('#borrar_especie_id').addClass('hidden');
 	}else{
 		$('input#user_sabores').prop('checked', false);
 		$('#borrar_especie_id').removeClass('hidden');
-	}
-}
-
-function muestraBorrarOrigen(){
-	if (
-			($('#rorigen-nativas').prop('checked') == false)
-			&&
-			($('#rorigen-exoticas').prop('checked') == false)
-		)
-	{
-		$('#borrar_origen').addClass('hidden');
-	} else {
-		$('#borrar_origen').removeClass('hidden');
 	}
 }
 
@@ -238,6 +235,19 @@ $(document).ready(function() {
 		noneSelectedText: 'No hay selección',
 		noneResultsText: 'No hay resultados'
 	});
+
+	muestraBorrarLocalidad();
+	
+	$( "#localidad" ).change(function() {
+		muestraBorrarLocalidad();
+	});
+	
+	$('#borrar_localidad').click(function(e){
+		e.preventDefault();
+		$('#localidad').selectpicker('val', 0);
+	});
+
+
 	
 	muestraBorrarIdEspecie();
 	
@@ -257,30 +267,6 @@ $(document).ready(function() {
 		}
 	});
 
-	muestraBorrarOrigen();
-	
-	$( "#rorigen-nativas, #rorigen-exoticas" ).change(function() {
-		muestraBorrarOrigen();
-	});
-
-
-	$('#borrar_origen').click(function(e){
-		e.preventDefault();
-		$('#rorigen-nativas, #rorigen-exoticas').prop('checked', false);
-		$(this).addClass('hidden');
-	});
-
-
-	$('.mas-filtros').click(function(){
-		//alert($('#mas-filtros').css('display'));
-		if  (  $('#mas-filtros').css('display') == 'none' ) {
-			$('#mas-filtros').slideDown();
-			$(this).html('ocultar filtros');
-		}else{
-			$('#mas-filtros').slideUp();
-			$(this).html('mostrar filtros');
-		}
-	})
 
 
 });
