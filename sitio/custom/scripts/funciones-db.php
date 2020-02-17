@@ -116,6 +116,6 @@ $vw_arboles_actualizaciones = "SELECT t_registros.*, t_act.actualizaciones
 $vw_colaborativo = "SELECT arbol_id, lat, lng, especie_id, e.icono
     FROM ($vw_arboles_actualizaciones) r
     LEFT JOIN t_especies e ON r.especie_id = e.id
-    WHERE r.fuente_id >= 4";
+    WHERE r.fuente_id >= 3";
 
 ?>
