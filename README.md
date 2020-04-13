@@ -45,7 +45,7 @@ http://unahormiga.com/2013/06/mapaverde-como-lo-hice/
 Cómo se desarrolló la base de datos (sección "Banco de datos")
 ==================
 
-> **NOTA:** la base de datos es de código cerrado, no está publicada y tampoco tenemos pensado publicarla a corto plazo. Sin embargo, podés descargar los datasets de nuestra cuenta de Google Drive.
+> **NOTA:** la base de datos es de código cerrado, no está publicada y tampoco tenemos pensado publicarla a corto plazo. Sin embargo, podés descargar los datasets del directorio sitio/datos-abiertos o de nuestra cuenta de Google Drive.
 
 1. Descargar un dataset, conservar la copia original y trabajar con un duplicado.
 
