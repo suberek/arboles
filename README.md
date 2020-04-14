@@ -35,7 +35,7 @@ No es necesario que tengas conocimientos técnicos, pero estos nos permiten trab
 Por el momento necesitamos entusiastas, estudiantes y/o profesionales con los siguientes conocimientos.
 
 ### 🙂🍀🏞🌾 Botánicos, Paisajistas, Ingenieros Agrónomos
-#### Identificación de la especie
+#### 🆔 Identificación de la especie
 
 * Morfología Vegetal.
 * Anatomía Vegetal.
