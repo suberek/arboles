@@ -22,5 +22,5 @@ Por favor leé la sección "[Contacto](https://github.com/arboladourbano/arboles
 
 # 🛠️ Mantenedores
 
-* 👨‍💻 Martín Simonyan.
-* 👨‍💻 Francisco Ferioli Marco.
+1. 👨‍💻 Martín Simonyan.
+2. 👨‍💻 Francisco Ferioli Marco.
