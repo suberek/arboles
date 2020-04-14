@@ -2,41 +2,41 @@
 
 🔗 http://www.arboladourbano.com/
 
-# Descripción
+# Descripción ℹ️
 
 Mapa/buscador de árboles. 🗺️ 🔍 🌲
 
-# Utilidad
+# Utilidad ❔
 
 Por favor leé las secciones "[Objetivos](https://github.com/suberek/arboles/wiki/Espa%C3%B1ol#objetivos)" y "[Fundamentación](https://github.com/suberek/arboles/wiki/Espa%C3%B1ol#objetivos)".
 
-# Cómo participar en el proyecto
+# Cómo participar en el proyecto 🙋‍♀️ 🙋‍♂️ 🙋‍♀️ 🙋‍♂️
 
 Por favor leé las secciones "[Voluntariado](https://github.com/arboladourbano/arboles/wiki/Espa%C3%B1ol#voluntariado)" y "[Colaboradores](https://github.com/arboladourbano/arboles/wiki/Espa%C3%B1ol#colaboradores)".
 
-# 🆘 Ayuda
+# Ayuda 🆘
 
 Por favor leé la sección "[Contacto](https://github.com/arboladourbano/arboles/wiki/Espa%C3%B1ol#contacto)".
 
-# 👨‍💻 🛠️ Mantenedores
+# Mantenedores 🛠️
 
-* Martín Simonyan.
-* Francisco Ferioli Marco.
+* Martín Simonyan. 👨‍💻
+* Francisco Ferioli Marco. 👨‍💻
 
 # MIGRAR LA SIGUIENTE INFORMACIÓN A LA WIKI
 
-# Antecedentes (sección "Antecedentes" o "Bibliografía")
+# Antecedentes (sección "Antecedentes" o "Bibliografía") 👵 👴
 
-**Internet**
+🌐 **Internet**
 
 http://mapa.buenosaires.gob.ar/ <br>
 http://www.buenosaires.gob.ar/areas/med_ambiente/Arbolado/index.php?menu_id=20834&tipo=car <br>
 http://arbolesciudad.com.ar/ <br>
 http://unahormiga.com/2013/06/mapaverde-como-lo-hice/
 
-# Cómo se desarrolló la base de datos (sección "Banco de datos")
+# 🗄️ Cómo se desarrolló la base de datos (sección "Banco de datos")
 
-> **NOTA:** la base de datos es de código cerrado, no está publicada y tampoco tenemos pensado publicarla a corto plazo. Sin embargo, podés descargar los datasets del directorio sitio/datos-abiertos o de nuestra cuenta de Google Drive.
+> 📝 **NOTA:** la base de datos es de código cerrado, no está publicada y tampoco tenemos pensado publicarla a corto plazo. Sin embargo, podés descargar los datasets del directorio sitio/datos-abiertos o de nuestra cuenta de Google Drive.
 
 1. Descargar un dataset, conservar la copia original y trabajar con un duplicado.
 
@@ -77,9 +77,9 @@ http://unahormiga.com/2013/06/mapaverde-como-lo-hice/
 - Crear campo vacío.
 - Actualizar la tabla para que vuelque los valores que están en campos separados: UPDATE 1_individuos SET `coordenadas`=  GeomFromText(CONCAT('POINT(',lat, ' ',lng,')'));
 
-# Bibliografía (sección "Bibliografía")
+# 📚 Bibliografía (sección "Bibliografía")
 
-**Internet**
+🌐 **Internet**
 
 http://data.buenosaires.gob.ar/dataset/censo-arbolado <br>
 http://leafletjs.com/ <br>
