@@ -1,24 +1,36 @@
 # Arbolado Urbano
 
-🔗 http://www.arboladourbano.com/
+🔗
 
-# Descripción ℹ️
+http://www.arboladourbano.com/
+
+# Descripción
+
+ℹ️
 
 Mapa/buscador de árboles. 🗺️ 🔍 🌲
 
-# Utilidad ❔
+# Utilidad
+
+❔
 
 Por favor leé las secciones "[Objetivos](https://github.com/suberek/arboles/wiki/Espa%C3%B1ol#objetivos)" y "[Fundamentación](https://github.com/suberek/arboles/wiki/Espa%C3%B1ol#objetivos)".
 
-# Cómo participar en el proyecto 🙋‍♀️ 🙋‍♂️ 🙋‍♀️ 🙋‍♂️
+# Cómo participar en el proyecto
+
+🙋‍ 🙋‍ 🙋‍ 🙋‍
 
 Por favor leé las secciones "[Voluntariado](https://github.com/arboladourbano/arboles/wiki/Espa%C3%B1ol#voluntariado)" y "[Colaboradores](https://github.com/arboladourbano/arboles/wiki/Espa%C3%B1ol#colaboradores)".
 
-# Ayuda 🆘
+# Ayuda
+
+🆘
 
 Por favor leé la sección "[Contacto](https://github.com/arboladourbano/arboles/wiki/Espa%C3%B1ol#contacto)".
 
-# Mantenedores 🛠️
+# Mantenedores
+
+🛠️
 
 * Martín Simonyan. 👨‍💻
 * Francisco Ferioli Marco. 👨‍💻
