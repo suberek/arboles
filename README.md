@@ -44,12 +44,15 @@ Por el momento necesitamos entusiastas, estudiantes y/o profesionales con los si
 Por favor leé las secciones [Bibliografía](https://github.com/suberek/arboles/wiki/Espa%C3%B1ol#bibliograf%C3%ADa) y [Lecturas adicionales](https://github.com/suberek/arboles/wiki/Espa%C3%B1ol#lecturas-adicionales) si estás interesado en estos temas.
 
 ### 👨‍💻 Desarrolladores
+> **ACTUALIZACIÓN:** si bien esta página se completará, será priorizada la de alternativeto.net y luego se utilizará esta última como referencia de la primera.
 * Por favor leé la sección [Tecnologías utilizadas](https://github.com/suberek/arboles/wiki/Espa%C3%B1ol#tecnolog%C3%ADas-utilizadas).
 
 ### 🙂🔡 Traductores
+> **ACTUALIZACIÓN:** la ayuda de traductores es más que bienvenida, pero como primera etapa utilizaremos software de traducción con inteligencia artificial.
 * Debés poseer como mínimo el nivel B2 según el [Marco Común Europeo de Referencia para las lenguas](https://es.wikipedia.org/wiki/Marco_Com%C3%BAn_Europeo_de_Referencia_para_las_lenguas#Niveles_de_referencia_comunes).
 
 ### 👨‍💻 Operadores de computadora
+> **ACTUALIZACIÓN:** valoramos tener una buena biblioteca a la que recurrir  en momentos de dudas técnicas, sin embargo estamos priorizando recolectar los datasets de los portales de datos abiertos de las municipalidades de todo el mundo, así que si te interesa buscar, ordenar y unificar esa información, sumate! Preferimos invertir nuestro tiempo en juntar información fácil de acceder y en mayor cantidad que unos pocos libros que solo se consiguen mediante contactos locales.
 * Te encargarás de conseguir y transcribir, con LibreOffice Calc, la bibliografía necesaria para el proyecto. Es trascendental para nosotros obtener bibliografía oficial de las municipalidades, ya que, en Argentina, son las legalmente encargadas de realizar censos forestales. También será de utilidad que busques bibliografía relacionada publicada por Facultades de Ciencias Agrarias y otras instituciones científicas competentes. Leé la sección [Bibliografía](https://github.com/suberek/arboles/wiki/Espa%C3%B1ol#bibliograf%C3%ADa) para saber con qué tipo de textos tendrás que trabajar.
 
 ## 👨👩 Colaboradores
