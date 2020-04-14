@@ -82,4 +82,4 @@ Contactanos através de:
 
 # Más información
 
-Para saber más, por favor consultá la [wiki](https://github.com/arboladourbano/arboles/wiki/Español)
+Para saber más, por favor consultá la [wiki](https://github.com/arboladourbano/arboles/wiki/Español).
