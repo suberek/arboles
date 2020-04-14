@@ -6,7 +6,7 @@
 
 Mapa/buscador de árboles. 🗺️ 🔍 🌲
 
-#❔ Utilidad
+# ❔ Utilidad
 
 Por favor leé las secciones "[Objetivos](https://github.com/suberek/arboles/wiki/Espa%C3%B1ol#objetivos)" y "[Fundamentación](https://github.com/suberek/arboles/wiki/Espa%C3%B1ol#objetivos)".
 
