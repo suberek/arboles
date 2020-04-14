@@ -4,7 +4,7 @@
 
 # Descripción
 
-Mapa/buscador de árboles.
+Mapa/buscador de árboles. 🗺️ 🔍 🌲
 
 # Utilidad
 
@@ -14,11 +14,11 @@ Por favor leé las secciones "[Objetivos](https://github.com/suberek/arboles/wik
 
 Por favor leé las secciones "[Voluntariado](https://github.com/arboladourbano/arboles/wiki/Espa%C3%B1ol#voluntariado)" y "[Colaboradores](https://github.com/arboladourbano/arboles/wiki/Espa%C3%B1ol#colaboradores)".
 
-# Ayuda
+# 🆘 Ayuda
 
 Por favor leé la sección "[Contacto](https://github.com/arboladourbano/arboles/wiki/Espa%C3%B1ol#contacto)".
 
-# Mantenedores
+# 👨‍💻 🛠️ Mantenedores
 
 * Martín Simonyan.
 * Francisco Ferioli Marco.
