@@ -1,4 +1,4 @@
-# Arbolado Urbano
+# 🌳 🏙 Arbolado Urbano
 
 🔗 http://www.arboladourbano.com/
 
@@ -49,7 +49,7 @@ Por favor leé las secciones [Bibliografía](https://github.com/suberek/arboles/
 También podés ayudarnos de forma independiente utilizando las siguientes herramientas que te servirán para reconocer una especie. Una vez que hallas reconocido la especie, podrás llenar nuestro formulario para agregar una entrada a nuestra base de datos y así hacerla cada vez más grande y completa.
 
 * 🌳 Árbol de la vida: Tree of life web project, Open tree of life.
-* Catálogo de especies: Wikispecies.
+* 🗂 Catálogo de especies: Wikispecies.
 * 📚 Enciclopedia en línea: Encyclopedia of Life, Wikipedia.
 * 🗄 Base de datos botánica: Tropicos, Living Collections, IAPT, Plants of the world online.
 * 📚 Biblioteca digital: Biodiversity Heritage Library, JSTOR.
