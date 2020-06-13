@@ -19,6 +19,8 @@ session_start();
 require_once('_db.php');
 /*
 Acá van los datos de conexión
+Who's in the house??
+Arbolado Urbano is in the house!!!
 $schema = "nombre de la base de datos";
 $server = "servidor";
 $user   = "usuario";
