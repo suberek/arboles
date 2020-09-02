@@ -3,13 +3,7 @@ http://www.arboladourbano.com/
 
 - - -
 
-# README
-
-# 🔡 Idioma
-
-🇵🇹 🇪🇸 🇫🇷 🇮🇹 🇩🇪 🇬🇧 🇷🇺 🇦🇲 🇦🇪 🇮🇳 🇨🇳 🇯🇵
-
-# ℹ️ Descripción
+# Descripción
 
 Mapa/buscador de árboles. 🗺️ 🔍 🌲
 
