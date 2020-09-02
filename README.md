@@ -1,12 +1,6 @@
 # Arbolado Urbano
 http://www.arboladourbano.com/
 
-- - -
-
-# Descripción
-
-Mapa/buscador de árboles. 🗺️ 🔍 🌲
-
 Arbolado Urbano es una herramienta web interactiva que reúne censos del arbolado en diferentes localidades. Permite el fácil acceso a información como la ubicación y la especie de los árboles que se encuentran en espacios públicos.
 
 # Redes
