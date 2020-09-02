@@ -10,7 +10,7 @@ Arbolado Urbano es una herramienta web interactiva que reúne censos del arbolad
 
 # ℹ️ Más información
 
-Para saber más, por favor consultá la [wiki](https://github.com/arboladourbano/arboles/wiki).
+Para saber más, por favor consultá la [wiki](https://github.com/suberek/arboles/wiki).
 
 # Idea y desarrollo
 
