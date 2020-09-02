@@ -9,9 +9,9 @@ Arbolado Urbano es una herramienta web interactiva que reúne censos del arbolad
 (https://github.com/suberek/arboles/wiki).
 
 ### Redes
-* [IG/arbolado.urbano] (https://www.instagram.com/arbolado.urbano/)
-* [FB/arboladomapa] (https://www.facebook.com/arboladomapa/)
-* [TW/arboladomapa] (https://twitter.com/arboladomapa)
+* [IG/arbolado.urbano](https://www.instagram.com/arbolado.urbano/)
+* [FB/arboladomapa](https://www.facebook.com/arboladomapa/)
+* [TW/arboladomapa](https://twitter.com/arboladomapa)
 
 ### Contacto
 http://martinsimonyan.com/contacto/
