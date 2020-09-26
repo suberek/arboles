@@ -94,7 +94,7 @@ $descripcion .= ' esperando que colabore con el conocimiento y el cuidado de nue
 
     <?php
     // Parámetro para ver ID especie
-    if ( isset($_GET['ver_especie_id'])  ) {
+    if (isset($_GET['ver_especie_id'])) {
       $_SESSION['ver_especie_id'] = $_GET['ver_especie_id'];
       if ($_GET['ver_especie_id'] == 0) {
         unset($_SESSION["ver_especie_id"]);
@@ -108,10 +108,11 @@ $descripcion .= ' esperando que colabore con el conocimiento y el cuidado de nue
       echo "ver especie id activado";
       echo "</pre></div>";
     }
+
     // fin ver parametro ID especie
 
     // Parámetro para ver DEBUG
-    if ( isset($_GET['debug'])  ) {
+    if (isset($_GET['debug'])) {
       $_SESSION['debug'] = $_GET['debug'];
       if ($_GET['debug'] == 0) {
         unset($_SESSION["debug"]);
@@ -128,6 +129,7 @@ $descripcion .= ' esperando que colabore con el conocimiento y el cuidado de nue
       };
       echo "</pre></div>";
     }
+
     // fin ver parametro DEBUG
     ?>
 
