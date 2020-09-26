@@ -211,28 +211,11 @@ if ($busqueda !== '') {
   /********************************************************  Hago LA consulta que trae el resultado de la búsqueda */
   if (stripos($busqueda, 'marker') > 0) {
     // Definir el centro y buscar en el radio.
-    $censo_query = "
-      SELECT arbol_id, lat, lng, especie_id, e.icono, (
-          6371 * acos (
-            cos (radians($user_lat))
-            * cos(radians(lat))
-            * cos(radians(lng) - radians($user_lng))
-            + sin (radians($user_lat))
-            * sin(radians(lat))
-       AS distance
-      FROM ($vw_arboles_actualizaciones) r
-      LEFT JOIN t_especies e ON r.especie_id = e.id
-      $parametro
-      HAVING distance < ($radius/1000);
-    ";
+    $censo_query = "SELECT arbol_id, lat, lng, especie_id, e.icono, (6371 * acos(cos(radians($user_lat)) * cos(radians(lat)) * cos(radians(lng) - radians($user_lng)) + sin (radians($user_lat)) * sin(radians(lat)))) AS distance FROM ($vw_arboles_actualizaciones) r LEFT JOIN t_especies e ON r.especie_id = e.id $parametro HAVING distance < ($radius/1000);";
   } elseif ($busqueda == "SQL custom") {
     $censo_query = $vw_colaborativo;
   } else {
-    $censo_query = "
-      SELECT arbol_id, lat, lng, especie_id, e.icono
-      FROM ($vw_arboles_actualizaciones) r
-      INNER JOIN t_especies e ON r.especie_id=e.id
-      $parametro";
+    $censo_query = "SELECT arbol_id, lat, lng, especie_id, e.icono FROM ($vw_arboles_actualizaciones) r INNER JOIN t_especies e ON r.especie_id=e.id $parametro";
   }
 
   $count = true;
