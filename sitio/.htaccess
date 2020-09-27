@@ -3,6 +3,9 @@ RewriteEngine on
 
 RewriteRule ^matrix/$         matrix/index.php
 
+RewriteRule ^blog/$       	  blog/
+
+
 #  Rutas exclusivas y amigables
 RewriteRule ^nativas/?$       index.php?user_origen=Nativo/Autóctono
 
