@@ -207,7 +207,7 @@ while ($row = mysqli_fetch_array($results)) {
     $fuente_tw = "<a href=\"$fuente_tw\" target=\"_blank\"><span class=\"fa-stack fa-lg\"><i class=\"fa fa-circle fa-stack-2x\"></i><i class=\"fa fa-twitter fa-stack-1x fa-inverse\"></i></span></a>";
   }
 
-  if ((!empty($fuente_url)) || (!empty($fuente_fb)) || (!empty($fuente_tw))) {
+  if ((!empty($fuente_url)) || (!empty($fuente_fb)) || (!empty($fuente_ig)) || (!empty($fuente_tw))) {
     $enlaces = $fuente_url . " " . $fuente_fb . " " . $fuente_ig . " " . $fuente_tw;
   }
 
