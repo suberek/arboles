@@ -9,11 +9,7 @@ $user   = "usuario";
 $pass   = "contraseña";
 */
 require_once('custom/scripts/funciones-db.php');
-$descripcion = 'Buscador de árboles para todas las ciudades del mundo.';
-$descripcion .= ' Datos obtenidos de los censos forestales publicados en los';
-$descripcion .= ' portales de datos abiertos de las municipalidades, y de colaboradores independientes.';
-$descripcion .= ' El objetivo principal de este sitio es simplificar el acceso a esta valiosa información';
-$descripcion .= ' esperando que colabore con el conocimiento y el cuidado de nuestro arbolado urbano.';
+$descripcion = 'Mapa colaborativo del arbolado en ciudades';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -21,14 +17,14 @@ $descripcion .= ' esperando que colabore con el conocimiento y el cuidado de nue
     <meta charset="utf-8">
 
     <!-- Facebook meta -->
-    <meta property="og:url" content="http://www.arboladourbano.com/">
-    <meta property="og:title" content="Mapa del Arbolado Urbano">
+    <meta property="og:url" content="<?php echo $APP_URL; ?>">
+    <meta property="og:title" content="Arbolado Urbano">
     <meta property="og:description" content="<?php echo $descripcion ?>">
-    <meta property="og:image" content="https://arboladourbano.com.ar/images/logo-152x152.png">
+    <meta property="og:image" content="<?php echo $APP_URL; ?>/images/logo-152x152.png">
 
-    <title>Arbolado Urbano - árboles de todas las ciudades del mundo</title>
-    <meta name="description" content="<?php echo $descripcion ?>">
-    <meta name="author" content="Martín Simonyan & Francisco Ferioli Marco">
+    <title>Arbolado Urbano - <?php echo strtolower($descripcion); ?></title>
+    <meta name="description" content="<?php echo $descripcion; ?>">
+    <meta name="author" content="Martín Simonyan">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="shortcut icon" href="<?php echo $APP_URL; ?>/images/favicon.ico" type="image/x-icon">
@@ -176,13 +172,14 @@ $descripcion .= ' esperando que colabore con el conocimiento y el cuidado de nue
             <?php require_once('custom/scripts/form.php'); ?>
             <div class="row red">
               <div class="col-xs-12 col-sm-3 col-md-6">
-                <a class="btn btn-default btn-small btn-block facebook" href="https://www.facebook.com/arboladomapa" target="_blank">
-                  <i class="fa fw fa-facebook-official"></i>
+                <button class="btn btn-default btn-small btn-block facebook" data-toggle="modal" data-target="#seguinos">
+                  <i class="fa fw fa-heart" aria-hidden="true"></i>
                   Seguinos
                 </a>
               </div>
               <div class="col-xs-12 col-sm-3 col-md-6">
-                <button class="btn btn-default btn-small btn-block Qué-es-esto?" data-toggle="modal" data-target="#Qué-es-esto?">
+                <button class="btn btn-default btn-small btn-block que-es-esto" data-toggle="modal" data-target="#que-es-esto">
+                  <i class="fa fw fa-info-circle" aria-hidden="true"></i>
                   Sobre el mapa
                 </button>
               </div>

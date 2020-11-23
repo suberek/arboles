@@ -7,39 +7,31 @@
        </div>
       <div class="modal-body">
         <p>
-          Este mapa surge gracias a la publicación de una información increíble:
-          el
-          <a href="https://data.buenosaires.gob.ar/dataset?q=arbolado" target="_blank">
-            censo del arbolado de la Ciudad de Buenos Aires
-          </a>
-          realizado durante el año 2011 y publicado en 2013.
-        </p>
-        <p>
-          El objetivo inicial fue simplificar el acceso a esta valiosa
-          información pero rápidamente se expandió para incluir otros censos.
-          Hoy en día el sitio ayuda a visualizar la posición de miles de árboles
-          ubicados en varias ciudades. La mayor cantidad se concetra en la
-          Ciudad de Buenos Aires, pero también existen registros en Rosario, La
-          Plata y Montevideo entre otras esperando que colabore con el
-          conocimiento y el cuidado de nuestro arbolado urbano.
-        </p>
-        <a href="http://martinsimonyan.com/arboles-de-buenos-aires/" class="btn btn-default" target="_blank">
-          Más información
+          El objetivo principal del sitio web arboladourbano.com es poner en manifiesto el valor del arbolado dentro de las ciudades para incentivar la generación de vínculos culturales entre el arbolado y la población. Partimos de la premisa de que las personas cuidamos lo que para nosotros tiene valor, y sólo podemos valorar aquellas cosas que conocemos. </p>
+
+     
+          <hr>
+          <h4>Historia</h4>
+          <p>Desde hace ya varios años, los gobiernos locales se sumaron a la política de “datos abiertos” publicando de forma libre información generada por el propio Estado. Fue así que en el año 2014, el Gobierno de la Ciudad de Buenos Aires, publicó el <a href="https://data.buenosaires.gob.ar/dataset?q=arbolado" target="_blank">censo del arbolado público</a> que el mismo ente había realizado. Este fue el disparador para la creación de un mapa web que mostrara estos datos de forma simple y sin necesidad de conocimientos específicos. El objetivo rápidamente se expandió para incluir otros censos.</p>
+          <p>Hoy en día el sitio ayuda a visualizar la posición de miles de árboles ubicados en varias ciudades. La mayor cantidad se concentra en la Ciudad Autónoma de Buenos Aires, pero también existen registros en Rosario, La Plata y Montevideo gracias a la recopilación de otros censos y al aporte de los mismos usuarios y usuarias del mapa interactivo.</p>
+          <p>Durante los siguientes años varios colaboradores fueron sumando sus conocimientos de forma desinteresada para hacer crecer el volumen de datos, la calidad de los mismos o haciendo aportes conceptuales y de diseño.</p>
+          <hr>
+
+          <h4>¿Quiénes lo hacemos?</h4>
+          <p>Mi nombre es Martín Simonyan, vivo en la Ciudad de Buenos Aires y soy de familia armenia. En el año 2000 estudié la Tecnicatura en Sistemas Multimediales, luego de trabajar varios años como desarrollador busqué un cambio de rumbo y comencé mis estudios en la Universidad de Buenos Aires de donde pude egresarme como Lic. en Planificación y Diseño del Paisaje. Actualmente trabajo en temas relacionados al diseño del paisaje, sin embargo este proyecto me permite continuar explorando el mundo de la programación, del desarrollo web y de la comunicación en general.</p>
+          <p>Si bien, desde su creación, el sitio tuvo la colaboración de mucha gente amiga, debo destacar la participación reciente pero fundamental de Fermín Aries. Fermín trabaja como desarrollador de software en Montevideo, Uruguay y comenzó a colaborar en mejoras para el código que corre detrás del mapa.</p>
+          <p>
+        <a href="http://martinsimonyan.com" class="btn btn-default" target="_blank">
+          Más información sobre Martín
           <i class="fa fa-caret-right fa-sm"></i>
-        </a>
-      <hr>
-        <h5>¿Con qué seguir?</h5>
-        <p>
-          Podés dejar tu opinión y tus idas para seguir mejorando esta
-          herramienta. Estas son algunas de las ideas que están en curso:
-        </p>
-          <ul>
-            <li>permitir seleccionar el radio de búsqueda</li>
-            <li>buscar por barrio o comuna</li>
-            <li>incorporar a otras ciudades</li>
-            <li>incorporar otras fuentes y no tan sólo las del censo del GCBA y poder buscar filtrando por fuente</li>
-            <li>permitir interacción con usuarios para que carguen ejemplares, fotografías y reporten errores</li>
-          </ul>
+        </a></p>
+        <p><a href="https://www.linkedin.com/in/ferm%C3%ADn-a-0249b71ab/" class="btn btn-default" target="_blank">
+                  Más información sobre Fermín
+                  <i class="fa fa-caret-right fa-sm"></i>
+                </a></p>
+      
+       
+         
         <hr>
         <p class="text-center">
           <a href="https://github.com/suberek/arboles" target="_blank">
@@ -71,6 +63,40 @@
           Gracias por leer
         </button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Seguinos -->
+<div class="modal fade" id="seguinos" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>Podés seguirnos en nuestras redes</h4>
+       </div>
+      <div class="modal-body">
+        
+      
+        <p class="text-center">
+          <a href="https://www.facebook.com/arboladomapa" target="_blank">
+            <i class="fa fw fa-facebook"></i>
+            Seguir en Facebook
+          </a>
+        </p>
+        <p class="text-center">
+          <a href="https://www.instagram.com/arbolado.urbano/" target="_blank">
+            <i class="fa fw fa-instagram"></i>
+            Seguir en Instagram
+          </a>
+        </p>
+        <p class="text-center">
+          <a href="https://twitter.com/arboladomapa" target="_blank">
+            <i class="fa fw fa-twitter"></i>
+            Seguir en Twitter
+          </a>
+        </p>
+      </div>
+      
     </div>
   </div>
 </div>
