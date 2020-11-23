@@ -169,8 +169,7 @@ $descripcion .= ' esperando que colabore con el conocimiento y el cuidado de nue
           <nav>
             <a class="title" href="<?php echo $APP_URL; ?>/">
               <h1>
-                Arbolado Urbano
-                <small>Internacional</small>
+                Arbolado<br> Urbano
               </h1>
               <img src="images/logo-152x152-blanco.png" alt="Arbolado Urbano">
             </a>
@@ -210,14 +209,11 @@ $descripcion .= ' esperando que colabore con el conocimiento y el cuidado de nue
                   Este mapa cuenta con<br>
                   la valiosa colaboración de:
                 </p>
-                <a class="col-xs-6 col-sm-3 col-md-6 col-lg-4 lcnrs" href="https://www.facebook.com/LaCiudadNosRegalaSabores" target="_blank">
+                <a class="col-xs-6 col-sm-3 col-md-6 lcnrs" href="https://www.facebook.com/LaCiudadNosRegalaSabores" target="_blank">
                   <img src="<?php echo $APP_URL; ?>/images/colaborador-lcnrs.png" alt="La ciudad nos regala sabores">
                 </a>
-                <a class="col-xs-6 col-sm-3 col-md-6 col-lg-4 laguna-fvet" href="https://www.facebook.com/elrenacerdelalaguna/" target="_blank">
+                <a class="col-xs-6 col-sm-3 col-md-6 laguna-fvet" href="https://www.facebook.com/elrenacerdelalaguna/" target="_blank">
                   <img src="<?php echo $APP_URL; ?>/images/colaborador-laguna-fvet.png" alt="El Renacer de la Laguna - FVET - UBA">
-                </a>
-                <a class="col-xs-12 col-sm-3 col-md-12 col-lg-4 arn" href="https://www.facebook.com/AsociacionRiberaNorte/" target="_blank">
-                  <img src="<?php echo $APP_URL; ?>/images/colaborador-arn.png" alt="Asociación Ribera Norte">
                 </a>
               </div>
             </div>
