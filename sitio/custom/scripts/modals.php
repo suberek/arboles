@@ -19,7 +19,7 @@
 
           <h4>¿Quiénes lo hacemos?</h4>
           <p>Mi nombre es Martín Simonyan, vivo en la Ciudad de Buenos Aires y soy de familia armenia. En el año 2000 estudié la Tecnicatura en Sistemas Multimediales, luego de trabajar varios años como desarrollador busqué un cambio de rumbo y comencé mis estudios en la Universidad de Buenos Aires de donde pude egresarme como Lic. en Planificación y Diseño del Paisaje. Actualmente trabajo en temas relacionados al diseño del paisaje, sin embargo este proyecto me permite continuar explorando el mundo de la programación, del desarrollo web y de la comunicación en general.</p>
-          <p>Si bien, desde su creación, el sitio tuvo la colaboración de mucha gente amiga, debo destacar la participación reciente pero fundamental de Fermín Aries. Fermín trabaja como desarrollador de software en Montevideo, Uruguay y comenzó a colaborar en mejoras para el código que corre detrás del mapa.</p>
+          <p>Si bien, desde su creación, el sitio tuvo la colaboración de mucha gente amiga, debo destacar la participación reciente pero fundamental de Fermín Ares. Fermín trabaja como desarrollador de software en Montevideo, Uruguay y comenzó a colaborar en mejoras para el código que corre detrás del mapa.</p>
           <p>
         <a href="http://martinsimonyan.com" class="btn btn-default" target="_blank">
           Más información sobre Martín
