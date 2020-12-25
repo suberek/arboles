@@ -1,15 +1,13 @@
 # Activar RewriteEngine
 RewriteEngine on
 
-RewriteRule ^matrix/$         matrix/index.php
-
-RewriteRule ^blog/$       	  blog/
-
+#	carpetas a excluir
+RewriteRule ^(matrix|blog)($|/) - [L]
 
 #  Rutas exclusivas y amigables
 RewriteRule ^nativas/?$       index.php?user_origen=Nativo/Autóctono
 
-#  árboles de usuarios
+#  árboles de usuarios (todos menos los del censo del GCBA)
 RewriteRule ^colaborativo/?$  index.php?colaborativo=1
 
 #  Reescribir la URL solicitada por el usuario

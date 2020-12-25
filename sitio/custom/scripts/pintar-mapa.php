@@ -19,7 +19,7 @@
     var map = L.map('mapa',
     {
       maxZoom: 21,
-      minZoom: 5
+      minZoom: 3
     })<?php echo ((empty($busqueda)) || ((isset($total_registros_censo)) && ($total_registros_censo == 0))) ? '.setView([-34.618, -58.44], 12);' : ';'?>
 
     // MAPA
@@ -277,16 +277,16 @@
         var currentZoom = map.getZoom();
 
         // Los siguientes IF cambian el tamaño de los puntos verdes según el zoom
-        if (currentZoom <= <?php echo $disableClusteringAtZoom - 6; ?>) var ctxradius = 0.5;
-        if (currentZoom == <?php echo $disableClusteringAtZoom - 5; ?>) var ctxradius = 1;
-        if (currentZoom == <?php echo $disableClusteringAtZoom - 4; ?>) var ctxradius = 1.5;
-        if (currentZoom == <?php echo $disableClusteringAtZoom - 3; ?>) var ctxradius = 2;
-        if (currentZoom == <?php echo $disableClusteringAtZoom - 2; ?>) var ctxradius = 3;
-        if (currentZoom >= <?php echo $disableClusteringAtZoom - 1; ?>) var ctxradius = 4;
+        if (currentZoom <= <?php echo $disableClusteringAtZoom - 6; ?>) var ctxradius = 1;
+        if (currentZoom == <?php echo $disableClusteringAtZoom - 5; ?>) var ctxradius = 1.5;
+        if (currentZoom == <?php echo $disableClusteringAtZoom - 4; ?>) var ctxradius = 2;
+        if (currentZoom == <?php echo $disableClusteringAtZoom - 3; ?>) var ctxradius = 4;
+        if (currentZoom == <?php echo $disableClusteringAtZoom - 2; ?>) var ctxradius = 5;
+        if (currentZoom >= <?php echo $disableClusteringAtZoom - 1; ?>) var ctxradius = 6;
         if (currentZoom <= <?php echo $disableClusteringAtZoom - 4; ?>) {
-          ctx.globalAlpha = 0.3;
-        } else {
           ctx.globalAlpha = 0.5;
+        } else {
+          ctx.globalAlpha = 0.7;
         }
 
         // El siguiente IF hace que no se muestren los puntos verdes al hacer zoom

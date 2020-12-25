@@ -20,7 +20,7 @@ $pass   = "contraseña";
 require_once('funciones-db.php');
 
 $query = "
-  SELECT r.calle, r.calle_altura, r.altura, r.espacio_verde, r.especie_id, r.fecha_creacion, r.streetview, r.lat, r.lng, e.nombre_cientifico, e.nombre_comun, (
+  SELECT r.calle, r.calle_altura, r.altura, r.diametro_a_p, r.espacio_verde, r.especie_id, r.fecha_creacion, r.streetview, r.lat, r.lng, e.nombre_cientifico, e.nombre_comun, (
       SELECT tipo FROM t_tipos WHERE id = e.tipo_id
     ) AS tipo, (
       SELECT familia FROM t_familias WHERE id = e.familia_id
@@ -69,6 +69,7 @@ while ($row = mysqli_fetch_array($results)) {
 
     //$barrio        = $row['barrio_nombre'];
     $altura        = $row['altura'];
+    $diametro_a_p   = $row['diametro_a_p'];
 
     $espacio_verde    = $row['espacio_verde'];
 
@@ -157,6 +158,10 @@ while ($row = mysqli_fetch_array($results)) {
 
     if (!empty($altura)) {
       echo "<br>Altura: $altura m";
+    }
+
+    if (!empty($diametro_a_p)) {
+      echo "<br>DAP (diámetro a altura de pecho): $diametro_a_p cm";
     }
 
     echo "

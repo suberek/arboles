@@ -236,7 +236,7 @@ if ($busqueda !== '') {
       $lng = $censo_row['lng'];
       $icono = $censo_row['icono'];
       if (empty($icono)) {
-        $icono = "marker.png";
+        $icono = "marker-navidad.png";
       }
 
       if (isset($arboles_para_mapa)) {
