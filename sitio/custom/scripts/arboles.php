@@ -3,7 +3,7 @@
 // Defino el default
 $busqueda  = "";
 $radius = "1000"; // Radio de búsqueda en Metros
-$disableClusteringAtZoom = 21;
+$disableClusteringAtZoom = 20;
 $user_latlng_default = array("-34.60371794474704","-58.38157095015049"); // El Obelisco
 
 // Consulta para obtener sólo arboles y NO registros
@@ -54,7 +54,7 @@ if (isset($_GET['colaborativo'])) {
     $user_sabores = $_GET['user_sabores'];
   }
 
-  if (isset($_POST['user_origen'])) {
+  /*if (isset($_POST['user_origen'])) {
     $user_origen = $_POST['user_origen'];
   } elseif (isset($_GET['user_origen'])) {
     $user_origen = $_GET['user_origen'];
@@ -62,7 +62,7 @@ if (isset($_GET['colaborativo'])) {
 
   if (empty($user_origen)) {
     $user_origen = 'Todas';
-  }
+  }*/
 
   if (isset($_POST['borigen_pampeana'])) {
     $borigen_pampeana  = $_POST['borigen_pampeana'];
@@ -145,16 +145,16 @@ if (isset($_GET['colaborativo'])) {
 
 /**************************************************************** JOIN con especies */
   if (((isset($user_sabores)) && (is_numeric($user_sabores)) && ($user_sabores > 0)) ||
-    ($user_origen !== 'Todas') ||
+    //($user_origen !== 'Todas') ||
     ($borigen_pampeana > 0) ||
     ($borigen_nea > 0) ||
     ($borigen_noa > 0) ||
     ($borigen_cuyana > 0) ||
     ($borigen_patagonica > 0)
   ) {
-    $masFiltrosCss = "visible";
+    //$masFiltrosCss = "visible";
   } else {
-    $masFiltrosCss = "oculto";
+    //$masFiltrosCss = "oculto";
   }
 
   /**************************************************************** PARÁMETRO SABORES */
@@ -165,10 +165,10 @@ if (isset($_GET['colaborativo'])) {
 
 
   /**************************************************************** PARÁMETRO ORIGEN */
-  if ($user_origen !== 'Todas') {
+  /*if ($user_origen !== 'Todas') {
     $parametro .= " AND (e.origen LIKE '%".$user_origen."%')";
     $busqueda .= " con origen ".$user_origen." /";
-  }
+  }*/
 
   /**************************************************************** PARÁMETRO R Pampeana */
   if ($borigen_pampeana > 0) {
@@ -236,7 +236,7 @@ if ($busqueda !== '') {
       $lng = $censo_row['lng'];
       $icono = $censo_row['icono'];
       if (empty($icono)) {
-        $icono = "marker-navidad.png";
+        $icono = "marker.png";
       }
 
       if (isset($arboles_para_mapa)) {

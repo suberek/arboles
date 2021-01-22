@@ -22,15 +22,18 @@
       minZoom: 3
     })<?php echo ((empty($busqueda)) || ((isset($total_registros_censo)) && ($total_registros_censo == 0))) ? '.setView([-34.618, -58.44], 12);' : ';'?>
 
+
+//https://api.mapbox.com/styles/v1/suberek/ckk6294j90ari17ocd28zuakv.html?fresh=true&title=view&access_token=pk.eyJ1Ijoic3ViZXJlayIsImEiOiJja2s2MDlxMzgwZzdvMm9uMm92eGxocTdrIn0.H6ReMST-5jUNoweS_4dsuA
+
+mapbox://styles/suberek/ckk6294j90ari17ocd28zuakv
+
+
     // MAPA
     L.tileLayer(
-      'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
+      'https://api.mapbox.com/styles/v1/suberek/ckk6294j90ari17ocd28zuakv/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic3ViZXJlayIsImEiOiJja2s2MDlxMzgwZzdvMm9uMm92eGxocTdrIn0.H6ReMST-5jUNoweS_4dsuA',
       {
         maxZoom: 21,
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-          '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-          'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-        id: 'mapbox.streets'
+        attribution: '© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }
     ).addTo(map);
 
@@ -141,7 +144,7 @@
 
         // Contenido html del Popup
         container.html(
-          '<a href="#buscar_aca" id="buscar_aca" class="btn btn-primary btn-block"><i class="fa fa-search fa-lg fa-fw"></i> Buscar en esta zona</a><a href="#buscar_en_toda_la_ciudad" id="buscar_en_toda_la_ciudad" class="btn btn-default btn-block"><i class="fa fa-trash-o fa-lg fa-fw"></i> Borrar marcador de posición <br><small>para buscar en todo el mapa</small></a>'
+          '<a href="#buscar_aca" id="buscar_aca" class="btn btn-primary btn-block"><i class="fa fa-search fa-lg fa-fw"></i> Buscar <br><small>en esta zona</small></a>'
         );
 
         window.new_user_marker.bindPopup(container[0]);
@@ -149,6 +152,7 @@
         // Agrego el círculo, el marker
         window.new_user_circle.addTo(map);
         window.new_user_marker.addTo(map);
+
       } else {
         window.new_user_marker.setLatLng([nuevoLat,nuevoLng]);
         window.new_user_circle.setLatLng([nuevoLat,nuevoLng]);
@@ -161,6 +165,7 @@
       window.new_user_marker.on("dragend", function (e) {
         var chagedPos = e.target.getLatLng();
         window.new_user_circle.setLatLng(chagedPos);
+
         muestraPorAca(chagedPos.lat, chagedPos.lng, map);
       });
     }

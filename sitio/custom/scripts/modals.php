@@ -177,7 +177,7 @@
           <div class="col-sm-10">
             Marcá un punto en el mapa para limitar la búsqueda<br>
             <small>
-              Podés buscar en toda la ciudad seleccionado una especie.
+              Podés buscar en todo el mapa si seleccionás una sola especie.
             </small>
           </div>
         </div>

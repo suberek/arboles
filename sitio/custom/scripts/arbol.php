@@ -24,7 +24,7 @@ $query = "
       SELECT tipo FROM t_tipos WHERE id = e.tipo_id
     ) AS tipo, (
       SELECT familia FROM t_familias WHERE id = e.familia_id
-    ) AS familia, e.origen, e.region_pampeana, e.region_nea, e.region_noa, e.region_cuyana, e.region_patagonica, e.procedencia_exotica, f.nombre, f.descripcion, f.url, f.facebook, f.twitter, f.instagram
+    ) AS familia, e.region_pampeana, e.region_nea, e.region_noa, e.region_cuyana, e.region_patagonica, e.procedencia_exotica, f.nombre, f.descripcion, f.url, f.facebook, f.twitter, f.instagram
   FROM t_registros r
   LEFT JOIN t_especies e ON r.especie_id = e.id
   LEFT JOIN t_fuentes f ON r.fuente_id = f.id
@@ -53,7 +53,7 @@ while ($row = mysqli_fetch_array($results)) {
     $nombre_comun    = $row['nombre_comun'];
     $familia      = $row['familia'];
     $tipo        = $row['tipo'];
-    $origen        = $row['origen'];
+    //$origen        = $row['origen'];
 
     $streetview      = $row['streetview'];
     $lat         = $row['lat'];
@@ -99,8 +99,7 @@ while ($row = mysqli_fetch_array($results)) {
 
     echo "$nombre_cientifico<br> <small>$nombre_comun</small></h1>
       <p>$tipo<br>
-      Familia: $familia<br>
-      Origen: $origen";
+      Familia: $familia";
 
     if (!empty($procedencia_exotica)) {
       echo "<br>Procedencia: $procedencia_exotica";

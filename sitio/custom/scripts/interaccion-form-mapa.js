@@ -34,6 +34,10 @@ function muestraPorAca(lat,lng,map,buscar) {
 	if (map) {
 		// centrar el mapa al click
 		map.panTo(new L.LatLng(lat, lng));
+		if ( window.new_user_marker !== undefined && window.new_user_marker !== null ) {  
+			window.new_user_marker.openPopup();
+		}
+		
 	}
 
 	if (buscar) {
@@ -165,7 +169,7 @@ function muestraBorrarIdEspecie(){
 	}
 }
 
-function muestraBorrarOrigen(){
+/*function muestraBorrarOrigen(){
 	if (
 			($('#rorigen-nativas').prop('checked') == false)
 			&&
@@ -176,7 +180,7 @@ function muestraBorrarOrigen(){
 	} else {
 		$('#borrar_origen').removeClass('hidden');
 	}
-}
+}*/
 
 
 // Start Ready
@@ -184,6 +188,14 @@ $(document).ready(function() {
 
 	/********************************************************************************* FUNCIONES */
 	
+
+
+	$('[data-toggle="tooltip"]').tooltip();
+
+	$('a[href="#"]').click(function(e) {
+   		e.preventDefault ? e.preventDefault() : e.returnValue = false;
+	});
+
 	
 	
 	/********************************************************************************* INTERACCIONES */
@@ -257,6 +269,7 @@ $(document).ready(function() {
 		}
 	});
 
+	/*
 	muestraBorrarOrigen();
 	
 	$( "#rorigen-nativas, #rorigen-exoticas" ).change(function() {
@@ -269,8 +282,9 @@ $(document).ready(function() {
 		$('#rorigen-nativas, #rorigen-exoticas').prop('checked', false);
 		$(this).addClass('hidden');
 	});
+	*/
 
-
+	/*
 	$('.mas-filtros').click(function(){
 		//alert($('#mas-filtros').css('display'));
 		if  (  $('#mas-filtros').css('display') == 'none' ) {
@@ -281,6 +295,7 @@ $(document).ready(function() {
 			$(this).html('mostrar filtros');
 		}
 	})
+	*/
 
 
 });

@@ -10,7 +10,7 @@
           </label>
           <label>
             <input type="radio" id="rdonde-mapa" name="rdonde" value="<? echo $user_latlng_default[0].' '.$user_latlng_default[1] ?>" <?php echo (stripos($busqueda, 'marker') > 0) ? 'checked' : '' ?>>
-            marcar en el mapa
+            en una zona
           </label>
         </div>
         <input type="hidden" value="<?php echo (isset($user_lat) && isset($user_lng)) ? $user_lat.' '.$user_lng : '' ?>" name="user_latlng" id="user_latlng">
@@ -87,7 +87,7 @@
       </div>
     </div>
 
-    <div class="col-xs-12 <?php echo $masFiltrosCss; ?>" id="mas-filtros">
+    <div class="col-xs-12 <?php // echo $masFiltrosCss; ?>" id="mas-filtros">
       <div class="form-group">
         <h3>Sabores</h3>
         <label for="user_sabores">
@@ -97,7 +97,7 @@
       </div>
 
       <div class="form-group">
-        <h3>Origen</h3>
+        <!--<h3>Origen</h3>
         <div class="radio">
           <label>
             <input type="radio" id="rorigen-nativas" name="user_origen" value="Nativo/Autóctono" <?php echo (stripos($busqueda, 'Nativo') > 0) ? 'checked' : '' ?>>
@@ -110,10 +110,17 @@
           <a href="#" id="borrar_origen">
             <i class="fa fa-trash-o"></i>
           </a>
-        </div>
+        </div>-->
 
         <div class="regiones">
-          <h3>Región de origen</h3>
+
+          <h3 class="pull-left">
+            Región de origen
+            <a href="#" id="origen" data-toggle="tooltip" data-placement="top" title="Por el momento el mapa permite filtrar especies para las distintas regiones de origen sólo dentro de Argentina, ¡esperamos ampliar esta sección pronto!">
+              <i class="fa fa-question-circle"></i>
+            </a>
+          </h3>
+
           <label for="borigen_pampeana"> <input type="checkbox" name="borigen_pampeana" id="borigen_pampeana" value="1" <?php echo ($borigen_pampeana > 0) ? 'checked' : '' ?>>
             Pampeana
           </label>
@@ -132,11 +139,11 @@
         </div>
       </div>
     </div>
-    <div class="col-xs-12" id="mas-filtros-btn-container">
-      <a href="#" class="btn btn-default mas-filtros">
+    <!--<div class="col-xs-12" id="mas-filtros-btn-container">
+      <btn class="btn btn-default mas-filtros">
         <?php echo ($masFiltrosCss == 'oculto') ? "mostrar" : "ocultar" ?> filtros
-      </a>
-    </div>
+      </btn>
+    </div>-->
   </div>
   <input name="Buscar" type="submit" value="Buscar" class="btn btn-primary btn-lg btn-block">
 </form>

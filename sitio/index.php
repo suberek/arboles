@@ -129,16 +129,50 @@ $descripcion = 'Mapa colaborativo del arbolado en ciudades';
     // fin ver parametro DEBUG
     ?>
 
+    <nav id="menu-top" class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a class="navbar-brand" href="<?php echo $APP_URL; ?>/">
+            <img src="<?php echo $APP_URL; ?>/images/logo-arbolado-urbano-titulo.png" alt="Arbolado Urbano">
+            Arbolado Urbano
+          </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+          <ul class="nav navbar-nav navbar-right">
+            <!--<li><a href="/blog"><i class="fa fa-pencil" aria-hidden="true"></i> Blog</a></li>-->
+            <li><a href="#" data-toggle="modal" data-target="#que-es-esto"><i class="fa fw fa-question-circle" aria-hidden="true"></i> Sobre el mapa</a></li>
+            <li><a href="https://cafecito.app/arboladomapa" target="_blank"><i class="fa fa-coffee" aria-hidden="true"></i> Donaciones</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#seguinos" ><i class="fa fw fa-heart" aria-hidden="true"></i> Seguinos</a></li>
+            <li></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
     <nav class="navbar navbar-default navbar-fixed-bottom visible-sm visible-xs">
       <div class="container-fluid">
-        <a class="btn btn-default navbar-btn scroll" href="#busca_arboles">
-          <i class="fa fa-search fa-sm"></i>
-          Buscador
-          <i class="fa fa-caret-up fa-sm"></i>
-        </a>
+        
         <a class="btn btn-default navbar-btn scroll" href="#mapa">
           <i class="fa fa-map-marker fa-sm"></i>
           Mapa
+          <i class="fa fa-caret-up fa-sm"></i>
+        </a>
+
+        <a class="btn btn-default navbar-btn scroll" href="#busca_arboles">
+          <i class="fa fa-search fa-sm"></i>
+          Buscador
           <i class="fa fa-caret-down fa-sm"></i>
         </a>
       </div>
@@ -160,32 +194,16 @@ $descripcion = 'Mapa colaborativo del arbolado en ciudades';
         <div class="col-xs-12 col-sm-9 col-md-6" id="info-arbol">
         </div>
 
-        <!-- left slide bar -->
-        <div class="col-md-4 col-lg-3" id="menu">
-          <nav>
-            <a class="title" href="<?php echo $APP_URL; ?>/">
-              <h1>
-                Arbolado<br> Urbano
-              </h1>
-              <img src="images/logo-152x152-blanco.png" alt="Arbolado Urbano">
-            </a>
-            <?php require_once('custom/scripts/form.php'); ?>
-            <div class="row red">
-              <div class="col-xs-12 col-sm-3 col-md-6">
-                <button class="btn btn-default btn-small btn-block facebook" data-toggle="modal" data-target="#seguinos">
-                  <i class="fa fw fa-heart" aria-hidden="true"></i>
-                  Seguinos
-                </a>
-              </div>
-              <div class="col-xs-12 col-sm-3 col-md-6">
-                <button class="btn btn-default btn-small btn-block que-es-esto" data-toggle="modal" data-target="#que-es-esto">
-                  <i class="fa fw fa-info-circle" aria-hidden="true"></i>
-                  Sobre el mapa
-                </button>
-              </div>
-            </div>
+         <!-- mapa (container) -->
+        <div class="col-xs-12 col-sm-8 col-lg-9" id="mapa"> </div>
 
-            <div id="adsense" class="row">
+        <!-- left slide bar -->
+        <div class="col-xs-12 col-sm-4 col-lg-3" id="menu">
+          <nav>
+            <?php require_once('custom/scripts/form.php'); ?>
+            
+
+            <div id="adsense" class="row hidden-xs visible-sm visible-md visible-lg">
               <div class="col-xs-12">
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- arbolado1 -->
@@ -200,16 +218,16 @@ $descripcion = 'Mapa colaborativo del arbolado en ciudades';
               </div>
             </div>
 
-            <div class="red red2 row">
-              <div class="col-xs-12">
-                <p class="col-xs-12 col-sm-3 col-md-12 este-mapa">
-                  Este mapa cuenta con<br>
-                  la valiosa colaboración de:
+            <div class="red row">
+              <div class="col-xs-12 hidden-xs visible-sm visible-md visible-lg">
+                <p class="col-xs-12 este-mapa">
+                  Este mapa cuenta con la<br>
+                   inconmensurable colaboración de:
                 </p>
-                <a class="col-xs-6 col-sm-3 col-md-6 lcnrs" href="https://www.facebook.com/LaCiudadNosRegalaSabores" target="_blank">
+                <a class="col-xs-6 lcnrs" href="https://www.facebook.com/LaCiudadNosRegalaSabores" target="_blank">
                   <img src="<?php echo $APP_URL; ?>/images/colaborador-lcnrs.png" alt="La ciudad nos regala sabores">
                 </a>
-                <a class="col-xs-6 col-sm-3 col-md-6 laguna-fvet" href="https://www.facebook.com/elrenacerdelalaguna/" target="_blank">
+                <a class="col-xs-6 laguna-fvet" href="https://www.facebook.com/elrenacerdelalaguna/" target="_blank">
                   <img src="<?php echo $APP_URL; ?>/images/colaborador-laguna-fvet.png" alt="El Renacer de la Laguna - FVET - UBA">
                 </a>
               </div>
@@ -217,8 +235,7 @@ $descripcion = 'Mapa colaborativo del arbolado en ciudades';
           </nav>
         </div>
 
-        <!-- mapa (container) -->
-        <div class="col-md-8 col-lg-9 full-height" id="mapa"> </div>
+       
       </div>
     </div>
 

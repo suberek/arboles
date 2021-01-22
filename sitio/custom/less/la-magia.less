@@ -30,58 +30,35 @@ label {
 	font-weight: normal;
 }
 
-#menu {
-	nav {
-		a {
-			&.title {
-				text-decoration: none;
-				position: relative;
-				display: block;
-				height: 72px;
-				margin-bottom: 20px;
-
-				img {
-					position: absolute;
-					height: 72px;
-					z-index: 1;
-					left: -19px;
-					top: 11px;
-				}
-
-				h1 {
-					position: absolute;
-					z-index: 2;
-
-					line-height: 1.1em;
-					font-weight: 400;
-					
-					//background-image: url(../../images/logo-72x72-blanco.png);
-					//background-position: -19px -5px;
-					//background-repeat: no-repeat;
-
-					font-size: 1.35em;
-					height: 63px;
-					margin-bottom: 0px;
-					padding-top: 21px;
-					padding-left: 42px;
-					small {
-						display: block;
-						margin-top: 0.1em;
-					}
-					br {
-						display: none;
-					}
-				}
-				&:hover {
-					img {
-						opacity: 0.7;
-					}
-					h1 {
-						color: lighten(@verde, 20%);
-					}
-				}
-			}
+#menu-top {
+	padding: 12px 0;
+	
+	a.navbar-brand {
+		
+		color: @verde;
+		&:hover {
+			color: darken(@verde, 10%);
 		}
+
+		img {
+			display: none;
+		}
+
+		background-image: url(../../images/logo-arbolado-urbano-titulo.png);
+		background-repeat: no-repeat;
+		background-size: 50px;
+		background-position: 15px 0;
+		
+		padding-left: 75px;
+		font-size: 1.5em;
+
+	}
+
+}
+
+#menu {
+
+	nav {
 
 		h6.results-text {
 			display: none;
@@ -127,9 +104,11 @@ label {
 	}
 
 	form#busca_arboles {
-		margin-bottom: 20px;
+
 		h3 {
 			font-size: 1.2em;
+			width: 95%;
+			display: block;
 		}
 		.radio label,
 		.regiones label {
@@ -146,18 +125,20 @@ label {
 			}
 		}
 
-		#borrar_origen {
-
-		}
+		
 	}
 
 	#mas-filtros {
-		&.oculto {
+
+		margin-top: -20px;
+
+
+		/*&.oculto {
 			display: none;
 		}
 		&.visible {
 			display: block;
-		}
+		}*/
 	}
 
 	#mas-filtros-btn-container {
@@ -253,11 +234,9 @@ label {
 	color: #FFF !important;
 }
 
-#mapa {
-	margin-bottom: 50px;
-	height: 500px !important;
-	bottom: -200px;
-	//height: 100% !important;
+
+.easy-button-container {
+	border-width: 1px !important;
 }
 
 #agregar-arbol {
@@ -275,10 +254,24 @@ label {
 	z-index: 99999999999;
 }
 
-.leaflet-popup-content h1 small {
-	font-size:  50%;
-	font-style: italic;
+.leaflet-popup-close-button {
+	display: none;
 }
+
+.leaflet-popup-content {
+	width: auto !important;
+
+	h1 small {
+		font-size:  50%;
+		font-style: italic;
+	}
+
+	#buscar_aca {
+		width: 120px;
+	}
+}
+
+
 
 .leaflet-container a.btn-primary,
 .leaflet-container a.btn-warning {
@@ -286,12 +279,10 @@ label {
 }
 
 .red {
-	text-align: center;
 
-	.este-mapa {
-		color: @gris2;
-		font-size: 0.9em;
-	}
+	top: 20px;
+
+	text-align: center;
 
 	a.lcnrs,
 	a.laguna-fvet
@@ -323,23 +314,6 @@ label {
 
 }
 
-/* #ads {
-	//width: 100%;
-	margin-bottom: 1.2em;
-	img {
-		width: 100%;
-		max-width: 500px;
-	}
-	p {
-		color: @blanco;
-		font-size: 0.7em;
-		position: absolute;
-		background-color: rgba(0,0,0,0.8);
-		display: inline-block;
-		padding: 0.05em 0.3em;
-		opacity: 0.5;
-	}
-} */
 
 #adsense {
 	//width: 100%;
@@ -348,18 +322,40 @@ label {
 
 /**************
 
+VERY Small devices ONLY (mobiles, 767px and down) 
+
+**************/
+@media (max-width: 767px) { 
+
+	#mapa {
+		height: 600px;
+		//margin-top: 72px;
+		//padding-top: 72px;
+		border-top: 72px solid;
+	}
+
+	#menu {
+		margin-bottom: 70px;
+	}
+	
+}
+
+/**************
+
  Small devices (tablets, 768px and up) 
 
 **************/
 @media (min-width: 768px) { 
+
 	#mapa {
-		//height: 100%;
-		bottom: 0;
+		position: fixed;
+		top:71px;
+		bottom:0;
+		right: 0;
 	}
 
-	.red .este-mapa {
-		text-align: right;
-		margin-top: 5rem;
+	#menu {
+		margin-top: 72px;
 	}
 	
 }
@@ -369,14 +365,6 @@ label {
 
 	body {
 		padding: 0;
-	}
-	
-	#mapa {
-		position: fixed;
-		margin: 0;
-		right: 0;
-		top: 0;
-		height: 100% !important;
 	}
 
 	#menu nav {
@@ -408,7 +396,6 @@ label {
 			height: 106px;
 			padding-top: 36px;
 			padding-left: 83px;
-			letter-spacing: .12em;
 			line-height: 1em;
 		}
 	}
@@ -442,7 +429,6 @@ label {
 			
 			font-size: 2.5em;
 			line-height: 1em;
-			letter-spacing: 0.12em;
 			
 			height: 136px;
 		}
