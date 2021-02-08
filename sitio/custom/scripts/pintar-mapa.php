@@ -23,17 +23,25 @@
     })<?php echo ((empty($busqueda)) || ((isset($total_registros_censo)) && ($total_registros_censo == 0))) ? '.setView([-34.618, -58.44], 12);' : ';'?>
 
 
-//https://api.mapbox.com/styles/v1/suberek/ckk6294j90ari17ocd28zuakv.html?fresh=true&title=view&access_token=pk.eyJ1Ijoic3ViZXJlayIsImEiOiJja2s2MDlxMzgwZzdvMm9uMm92eGxocTdrIn0.H6ReMST-5jUNoweS_4dsuA
+/*
 
-mapbox://styles/suberek/ckk6294j90ari17ocd28zuakv
 
+var CartoDB_Positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+  subdomains: 'abcd',
+  maxZoom: 21
+});
+
+
+*/
 
     // MAPA
     L.tileLayer(
-      'https://api.mapbox.com/styles/v1/suberek/ckk6294j90ari17ocd28zuakv/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic3ViZXJlayIsImEiOiJja2s2MDlxMzgwZzdvMm9uMm92eGxocTdrIn0.H6ReMST-5jUNoweS_4dsuA',
+      'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
       {
-        maxZoom: 21,
-        attribution: '© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 21
       }
     ).addTo(map);
 
@@ -144,7 +152,7 @@ mapbox://styles/suberek/ckk6294j90ari17ocd28zuakv
 
         // Contenido html del Popup
         container.html(
-          '<a href="#buscar_aca" id="buscar_aca" class="btn btn-primary btn-block"><i class="fa fa-search fa-lg fa-fw"></i> Buscar <br><small>en esta zona</small></a>'
+          '<a href="#buscar_aca" id="buscar_aca" class="btn btn-primary btn-block"><i class="fa fa-search fa-lg fa-fw"></i> Buscar <br><small>en esta zona</small></a><a href="#buscar_en_toda_la_ciudad" id="buscar_en_toda_la_ciudad" class="btn btn-default btn-block"><i class="fa fa-trash-o fa-fw"></i></a>'
         );
 
         window.new_user_marker.bindPopup(container[0]);
