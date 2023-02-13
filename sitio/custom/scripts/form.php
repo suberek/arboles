@@ -22,7 +22,7 @@
         <h3 class="pull-left">
           ¿Qué especie?
           <a href="#" id="borrar_especie_id">
-            <i class="fa fa-trash-o"></i>
+            <i class="fas fa-trash"></i>
           </a>
         </h3>
         <select class="form-control input-lg selectpicker" data-style="btn-default" name="especie_id" id="especie_id" data-live-search="true">
@@ -108,7 +108,7 @@
             exóticas
           </label>
           <a href="#" id="borrar_origen">
-            <i class="fa fa-trash-o"></i>
+            <i class="fas fa-trash"></i>
           </a>
         </div>-->
 
@@ -117,7 +117,7 @@
           <h3 class="pull-left">
             Región de origen
             <a href="#" id="origen" data-toggle="tooltip" data-placement="top" title="Por el momento el mapa permite filtrar especies para las distintas regiones de origen sólo dentro de Argentina, ¡esperamos ampliar esta sección pronto!">
-              <i class="fa fa-question-circle"></i>
+              <i class="fas fa-question-circle"></i>
             </a>
           </h3>
 

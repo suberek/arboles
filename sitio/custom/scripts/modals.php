@@ -3,7 +3,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4>¿Qué es esto?</h4>
+        <h4>¿De qué se trata?</h4>
        </div>
       <div class="modal-body">
         <p>
@@ -23,40 +23,38 @@
           <p>
         <a href="http://martinsimonyan.com" class="btn btn-default" target="_blank">
           Más información sobre Martín
-          <i class="fa fa-caret-right fa-sm"></i>
+          <i class="fas fa-caret-right fa-sm"></i>
         </a></p>
         <p><a href="https://www.linkedin.com/in/ferm%C3%ADn-a-0249b71ab/" class="btn btn-default" target="_blank">
                   Más información sobre Fermín
-                  <i class="fa fa-caret-right fa-sm"></i>
+                  <i class="fas fa-caret-right fa-sm"></i>
                 </a></p>
       
        
          
         <hr>
-        <p class="text-center">
-          <a href="https://github.com/suberek/arboles" target="_blank">
-            <i class="fa fw fa-github"></i>
-            Ver en GitHub
-          </a>
-        </p>
-        <p class="text-center">
-          <a href="https://www.facebook.com/arboladomapa" target="_blank">
-            <i class="fa fw fa-facebook"></i>
-            Seguir en Facebook
-          </a>
-        </p>
-        <p class="text-center">
-          <a href="https://www.instagram.com/arbolado.urbano/" target="_blank">
-            <i class="fa fw fa-instagram"></i>
-            Seguir en Instagram
-          </a>
-        </p>
-        <p class="text-center">
-          <a href="https://twitter.com/arboladomapa" target="_blank">
-            <i class="fa fw fa-twitter"></i>
-            Seguir en Twitter
-          </a>
-        </p>
+
+      <p><a href="https://github.com/suberek/arboles" target="_blank"><span class="fa-stack fa-2x">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i> 
+      </span> Ver en GitHub</a></p>
+
+      <p><a href="https://www.instagram.com/arbolado.urbano/" target="_blank"><span class="fa-stack fa-2x">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-instagram fa-stack-1x fa-inverse"></i> 
+      </span> Seguir en Instagram</a></p>
+
+      <p><a href="https://www.facebook.com/arboladomapa/" target="_blank"><span class="fa-stack fa-2x">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-facebook fa-stack-1x fa-inverse"></i> 
+      </span> Seguir en Facebook</a></p>
+
+      <p><a href="https://twitter.com/arboladomapa" target="_blank"><span class="fa-stack fa-2x">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i> 
+      </span> Seguir en Twitter</a></p>
+
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">
@@ -69,32 +67,35 @@
 
 <!-- Modal: Seguinos -->
 <div class="modal fade" id="seguinos" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
-        <h4>Podés seguirnos en nuestras redes</h4>
+        <h4>Te esperamos<br> en nuestras redes</h4>
        </div>
-      <div class="modal-body">
-        
-      
-        <p class="text-center">
-          <a href="https://www.facebook.com/arboladomapa" target="_blank">
-            <i class="fa fw fa-facebook"></i>
-            Seguir en Facebook
-          </a>
-        </p>
-        <p class="text-center">
-          <a href="https://www.instagram.com/arbolado.urbano/" target="_blank">
-            <i class="fa fw fa-instagram"></i>
-            Seguir en Instagram
-          </a>
-        </p>
-        <p class="text-center">
-          <a href="https://twitter.com/arboladomapa" target="_blank">
-            <i class="fa fw fa-twitter"></i>
-            Seguir en Twitter
-          </a>
-        </p>
+        <div class="modal-body">
+
+       
+
+      <p><a href="https://www.instagram.com/arbolado.urbano/" target="_blank"><span class="fa-stack fa-2x">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-instagram fa-stack-1x fa-inverse"></i> 
+      </span> Seguir en Instagram</a></p>
+
+      <p><a href="https://www.facebook.com/arboladomapa/" target="_blank"><span class="fa-stack fa-2x">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-facebook fa-stack-1x fa-inverse"></i> 
+      </span> Seguir en Facebook</a></p>
+
+      <p><a href="https://twitter.com/arboladomapa" target="_blank"><span class="fa-stack fa-2x">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i> 
+      </span> Seguir en Twitter</a></p>
+
+        <p><a href="https://github.com/suberek/arboles" target="_blank"><span class="fa-stack fa-2x">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i> 
+      </span> Ver en GitHub</a></p>
+
       </div>
       
     </div>
@@ -108,7 +109,7 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-sm-2">
-            <i class="fa fa-exclamation-triangle fa-3x"></i>
+            <i class="fas fa-exclamation-triangle fa-3x"></i>
           </div>
           <div class="col-sm-10">
             <p>
@@ -140,7 +141,7 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-sm-2">
-            <i class="fa fa-lightbulb-o fa-3x"></i>
+            <i class="fas fa-lightbulb-o fa-3x"></i>
           </div>
           <div class="col-sm-10">
             <p>
@@ -172,7 +173,7 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-sm-2">
-            <i class="fa fa-map-marker fa-3x"></i>
+            <i class="fas fa-map-marker fa-3x"></i>
           </div>
           <div class="col-sm-10">
             Marcá un punto en el mapa para limitar la búsqueda<br>
@@ -198,7 +199,7 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-sm-2">
-            <i class="fa fa-search fa-3x"></i>
+            <i class="fas fa-search fa-3x"></i>
           </div>
           <div class="col-sm-10">
             Empieza la búsqueda.<br>
@@ -213,7 +214,6 @@
 </div>
 
 <!-- Modal: Formulario -->
-
 <div class="modal fade" id="agregar-arbol" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-sm">
   <div class="modal-content">
@@ -221,13 +221,9 @@
     <div class="row">
       <iframe
         src="https://docs.google.com/forms/d/e/1FAIpQLSdT1-TNDDN7Gau_798r4EIMCqKLR58VHfsPpP6LrHUg7SEIXw/viewform?embedded=true"
-        width="100%"
-        height="500"
-        frameborder="0"
-        marginheight="0"
-        marginwidth="0">
-        Cargando...
-      </iframe>
+          width="100%"
+          height="500"
+          frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
     </div>
 
      </div>
@@ -248,7 +244,7 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-sm-2">
-              <i class="fa fa-search fa-3x"></i>
+              <i class="fas fa-search fa-3x"></i>
             </div>
             <div class="col-sm-10">
               <p>

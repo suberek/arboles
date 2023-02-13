@@ -78,7 +78,7 @@ $descripcion = 'Mapa colaborativo del arbolado en ciudades';
     <script src="<?php echo $APP_URL; ?>/third-party/leaflet-plugins/EasyButton/easy-button.js"></script>
 
     <!-- Font Awesome -->
-    <script src="https://use.fontawesome.com/10e53b9570.js"></script>
+    <script src="https://kit.fontawesome.com/d358d02727.js" crossorigin="anonymous"></script>
 
     <!-- Custom -->
     <link href="<?php echo $APP_URL; ?>/custom/css/estilos.css" rel="stylesheet" type="text/css" media="all">
@@ -151,10 +151,10 @@ $descripcion = 'Mapa colaborativo del arbolado en ciudades';
 
 
           <ul class="nav navbar-nav navbar-right">
-            <!--<li><a href="/blog"><i class="fa fa-pencil" aria-hidden="true"></i> Blog</a></li>-->
-            <li><a href="#" data-toggle="modal" data-target="#que-es-esto"><i class="fa fw fa-question-circle" aria-hidden="true"></i> Sobre el mapa</a></li>
-            <li><a href="https://cafecito.app/arboladomapa" target="_blank"><i class="fa fa-coffee" aria-hidden="true"></i> Donaciones</a></li>
-            <li><a href="#" data-toggle="modal" data-target="#seguinos" ><i class="fa fw fa-heart" aria-hidden="true"></i> Seguinos</a></li>
+            <!--<li><a href="/blog"><i class="fas fa-pencil" aria-hidden="true"></i> Blog</a></li>-->
+            <li><a href="#" data-toggle="modal" data-target="#que-es-esto"><i class="fas fw fa-question-circle" aria-hidden="true"></i> Sobre el mapa</a></li>
+            <li><a href="https://cafecito.app/arboladomapa" target="_blank"><i class="fas fa-coffee" aria-hidden="true"></i> Donaciones</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#seguinos" ><i class="fas fw fa-heart" aria-hidden="true"></i> Seguinos</a></li>
             <li></li>
           </ul>
         </div><!-- /.navbar-collapse -->
@@ -165,15 +165,15 @@ $descripcion = 'Mapa colaborativo del arbolado en ciudades';
       <div class="container-fluid">
         
         <a class="btn btn-default navbar-btn scroll" href="#mapa">
-          <i class="fa fa-map-marker fa-sm"></i>
+          <i class="fas fa-map-marker fa-sm"></i>
           Mapa
-          <i class="fa fa-caret-up fa-sm"></i>
+          <i class="fas fa-caret-up fa-sm"></i>
         </a>
 
         <a class="btn btn-default navbar-btn scroll" href="#busca_arboles">
-          <i class="fa fa-search fa-sm"></i>
+          <i class="fas fa-search fa-sm"></i>
           Buscador
-          <i class="fa fa-caret-down fa-sm"></i>
+          <i class="fas fa-caret-down fa-sm"></i>
         </a>
       </div>
     </nav>
@@ -203,7 +203,7 @@ $descripcion = 'Mapa colaborativo del arbolado en ciudades';
             <?php require_once('custom/scripts/form.php'); ?>
             
 
-            <div id="adsense" class="row hidden-xs visible-sm visible-md visible-lg">
+            <div id="adsense" class="row">
               <div class="col-xs-12">
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- arbolado1 -->
@@ -219,7 +219,7 @@ $descripcion = 'Mapa colaborativo del arbolado en ciudades';
             </div>
 
             <div class="red row">
-              <div class="col-xs-12 hidden-xs visible-sm visible-md visible-lg">
+              <div class="col-xs-12 ">
                 <p class="col-xs-12 este-mapa">
                   Este mapa cuenta con la<br>
                    inconmensurable colaboración de:

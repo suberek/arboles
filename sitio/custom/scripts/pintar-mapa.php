@@ -49,7 +49,7 @@ var CartoDB_Positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/
     var agregarArbol = L.easyButton({
       states: [{
         stateName: 'agregar-arbol',
-        icon: '<i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar árbol',
+        icon: '<i class="fas fa-plus-circle" aria-hidden="true"></i> Agregar árbol',
         title: 'Agregar un árbol',
         onClick: function(btn, map) {
           $('#agregar-arbol').find('.modal-content').css('min-width', '550px');
@@ -152,7 +152,7 @@ var CartoDB_Positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/
 
         // Contenido html del Popup
         container.html(
-          '<a href="#buscar_aca" id="buscar_aca" class="btn btn-primary btn-block"><i class="fa fa-search fa-lg fa-fw"></i> Buscar <br><small>en esta zona</small></a><a href="#buscar_en_toda_la_ciudad" id="buscar_en_toda_la_ciudad" class="btn btn-default btn-block"><i class="fa fa-trash-o fa-fw"></i></a>'
+          '<a href="#buscar_aca" id="buscar_aca" class="btn btn-primary btn-block"><i class="fas fa-search fa-lg fa-fw"></i> Buscar <br><small>en esta zona</small></a><a href="#buscar_en_toda_la_ciudad" id="buscar_en_toda_la_ciudad" class="btn btn-default btn-block"><i class="fas fa-trash fa-fw"></i></a>'
         );
 
         window.new_user_marker.bindPopup(container[0]);

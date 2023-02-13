@@ -86,7 +86,7 @@ while ($row = mysqli_fetch_array($results)) {
     }
 
     //// Parámetro para ver ID
-    session_start();
+    //session_start();
     if (isset($_SESSION["ver_especie_id"])) {
       $voluntario_especie_id = $especie_id . " - ";
     }
@@ -196,19 +196,19 @@ while ($row = mysqli_fetch_array($results)) {
   $fuente_fecha = date_format($fuente_fecha, 'd/m/Y');
 
   if (!empty($fuente_url)) {
-    $fuente_url = "<a href=\"$fuente_url\" target=\"_blank\"><span class=\"fa-stack fa-lg\"><i class=\"fa fa-circle fa-stack-2x\"></i><i class=\"fa fa-link fa-stack-1x fa-inverse\"></i></span></a>";
+    $fuente_url = "<p><a href=\"$fuente_url\" target=\"_blank\"><span class=\"fa-stack\"><i class=\"fa fa-circle fa-stack-2x\"></i><i class=\"fa fa-link fa-stack-1x fa-inverse\"></i></span> $fuente_url</a></p>";
   }
 
   if (!empty($fuente_fb)) {
-    $fuente_fb = "<a href=\"$fuente_fb\" target=\"_blank\"><span class=\"fa-stack fa-lg\"><i class=\"fa fa-circle fa-stack-2x\"></i><i class=\"fa fa-facebook fa-stack-1x fa-inverse\"></i></span></a>";
+    $fuente_fb = "<p><a href=\"$fuente_fb\" target=\"_blank\"><span class=\"fa-stack\"><i class=\"fa fa-circle fa-stack-2x\"></i><i class=\"fa fa-facebook fa-stack-1x fa-inverse\"></i></span> $fuente_fb</a></p>";
   }
 
   if (!empty($fuente_ig)) {
-    $fuente_ig = "<a href=\"$fuente_ig\" target=\"_blank\"><span class=\"fa-stack fa-lg\"><i class=\"fa fa-circle fa-stack-2x\"></i><i class=\"fa fa-instagram fa-stack-1x fa-inverse\"></i></span></a>";
+    $fuente_ig = "<p><a href=\"$fuente_ig\" target=\"_blank\"><span class=\"fa-stack\"><i class=\"fa fa-circle fa-stack-2x\"></i><i class=\"fa fa-instagram fa-stack-1x fa-inverse\"></i></span>$fuente_ig</a></p>";
   }
 
   if (!empty($fuente_tw)) {
-    $fuente_tw = "<a href=\"$fuente_tw\" target=\"_blank\"><span class=\"fa-stack fa-lg\"><i class=\"fa fa-circle fa-stack-2x\"></i><i class=\"fa fa-twitter fa-stack-1x fa-inverse\"></i></span></a>";
+    $fuente_tw = "<p><a href=\"$fuente_tw\" target=\"_blank\"><span class=\"fa-stack\"><i class=\"fa fa-circle fa-stack-2x\"></i><i class=\"fa fa-twitter fa-stack-1x fa-inverse\"></i></span>$fuente_tw</a></p>";
   }
 
   if ((!empty($fuente_url)) || (!empty($fuente_fb)) || (!empty($fuente_ig)) || (!empty($fuente_tw))) {
@@ -254,7 +254,28 @@ while ($row = mysqli_fetch_array($results)) {
           El siguiente código sirve para identificar a este árbol: <kbd>$arbol_id</kbd>
           <a href='$APP_URL/$arbol_id' target='_blank'><i class='fa fa-external-link'></i></a>
         </p>
-        <p>Podés usarlo para reportar datos incorrectos enviando el código con los comentarios que quieras hacer por medio de <a class='text-primary' href='https://www.facebook.com/arboladomapa/' target='_blank'> <i class='fa fa-facebook-square'></i>/arboladomapa</a><br> ¡Gracias!</p>
+        <p>Podés usarlo para reportar datos incorrectos enviando el código con los comentarios que quieras hacer por medio de nuestras redes:</p>";
+      ?>
+
+        <p><a href="https://www.instagram.com/arbolado.urbano/" target="_blank"><span class="fa-stack fa-1x">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-instagram fa-stack-1x fa-inverse"></i> 
+      </span> /arbolado.urbano</a></p>
+
+      <p><a href="https://www.facebook.com/arboladomapa/" target="_blank"><span class="fa-stack fa-1x">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-facebook fa-stack-1x fa-inverse"></i> 
+      </span> /arboladomapa</a></p>
+
+      <p><a href="https://twitter.com/arboladomapa" target="_blank"><span class="fa-stack fa-1x">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i> 
+      </span> /arboladomapa</a></p>
+
+<?php
+
+echo "
+        <p>¡Gracias!</p>
       </div>
     </div>";
   }
@@ -263,3 +284,5 @@ while ($row = mysqli_fetch_array($results)) {
 } // fin while
 
 echo "</div>"; // fin div.box
+
+?>
