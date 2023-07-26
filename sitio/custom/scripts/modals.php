@@ -25,7 +25,7 @@
           Más información sobre Martín
           <i class="fas fa-caret-right fa-sm"></i>
         </a></p>
-        <p><a href="https://www.linkedin.com/in/ferm%C3%ADn-a-0249b71ab/" class="btn btn-default" target="_blank">
+        <p><a href="https://www.linkedin.com/in/ferm%C3%ADn-ares-0249b71ab/" class="btn btn-default" target="_blank">
                   Más información sobre Fermín
                   <i class="fas fa-caret-right fa-sm"></i>
                 </a></p>
